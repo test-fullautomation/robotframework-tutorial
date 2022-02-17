@@ -1,0 +1,156 @@
+**************************************************************************************************************
+
+Tutorial Documentation Concept
+==============================
+
+Reference:
+https://rb-tracker.bosch.com/tracker01/browse/ROBFW-236
+
+Version 0.2.1 / 16.02.2022
+
+--------------------------------------------------------------------------------------------------------------
+
+Paradigms:
+----------
+
+* Output format of documentation: HTML
+
+* 1 to 1 relationship between source file and HTML file
+  (therefore also no automatically generated linking between several output files;
+   every HTML file is standalone)
+
+* Supported source file formats are: .rst, .py, .robot and .resource
+
+* Because of different source file formats also different converters are needed:
+  * Python
+    - Standalone rst files to HTML: rst2html.py
+  * Robotframework
+    - Python files ("""docstring""") and resource files ([Documentation] section) to HTML: robot.libdoc
+    - robot files ([Documentation] section) to HTML: robot.testdoc
+
+* A Clean() function executed at the beginning, deletes all previously generated HTML files.
+  Therefore it is not allowed to add own (manually created) HTML files within a tutorial section; they will be deleted!
+  A "tutorial section" is a subfolder of the tutorial folder, except "__setup" and ".git".
+
+* HTML files generated out of standalone rst files are placed within the tutorial section root folder (and not beside the source file)!
+  Therefore it is not allowed to have several rst files with same name in several subfolders of a tutorial section.
+
+
+How to call the renderer:
+-------------------------
+
+"%RobotPythonPath%/python.exe" <tutorial repository location>/__setup/gen_doc_tutorial.py
+
+Log file:
+---------
+
+<tutorial repository location>/__setup/gen_doc_tutorial.log
+
+
+Return values:
+--------------
+
+gen_doc_tutorial.py returns the following values:
+
+SUCCESS                 = 0
+WARNING_CONVERTER_ISSUE = 1
+ERROR_CCONFIG           = 2
+ERROR_CTUTORIAL         = 3
+ERROR_README            = 4
+ERROR_SECTIONSLIST      = 5
+ERROR_CLEAN             = 6
+ERROR_CSECTION          = 7
+ERROR_DOCUMENTSLIST     = 8
+ERROR_CDOCUMENT         = 9
+ERROR_CONVERT           = 10
+
+In case of empty input files some converters return a value not equal to zero. Unfortunately the same
+return value 252 is used for errors like not existing input files. Therefore a proper error handling
+is not possible.
+
+Missing input files should be handled as error, but an empty __init__.resource is not an error.
+
+Because it is not possible to distinguish between these scenarios, gen_doc_tutorial.py does not stop
+the computation but returns WARNING_CONVERTER_ISSUE in case of any converter call returns a value
+not equal to zero.
+
+--------------------------------------------------------------------------------------------------------------
+
+Example:
+
+1. File system status before documentation rendering (= after Clean())
+======================================================================
+
+tutorial_dir
+   |
+   | - tutorial_setup_dir
+   |        | --- gen_doc_tutorial.py
+   |        | --- tutorial_docu_concept.txt
+   |
+   | - tutorial_section_001_dir
+   |        |
+   |        | - tutorial_section_001_doc_dir
+   |        |        |
+   |        |        | --- tutorial_section_001_additional_doc.rst
+   |        |        |
+   |        |        | - tutorial_section_001_pictures_dir
+   |        |                 | --- tutorial_section_001_picture_1.png
+   |        |                 | --- tutorial_section_001_picture_2.png
+   |        |
+   |        | - tutorial_section_001_library_dir
+   |        |        |
+   |        |        | --- tutorial_section_001.1.resource
+   |        |        | --- tutorial_section_001.2.resource
+   |        |        |
+   |        |        | - tutorial_section_001_additional_stuff_dir
+   |        |                 |
+   |        |                 | - tutorial_section_001.helper.py
+   |        |                 | - tutorial_section_001.additional_keywords.py
+   |        |
+   |        | --- tutorial_section_001.1.robot
+   |        | --- tutorial_section_001.2.robot
+   |        |
+   ...
+
+
+2. File system status after documentation rendering
+===================================================
+
+tutorial_dir
+   |
+   | - tutorial_setup_dir
+   |        | --- GenDocTooling.py
+   |
+   | - tutorial_section_001_dir
+   |        |
+   |        | - tutorial_section_001_additional_doc_src_dir
+   |        |        |
+   |        |        | --- tutorial_section_001_additional_doc.rst
+   |        | --- tutorial_section_001_additional_doc.html      !!! html files generated out of standalone rst files are placed within the tutorial section root folder !!!
+   |        |        |
+   |        |        | - tutorial_section_001_additional_doc_src_pictures_dir
+   |        |                 | --- tutorial_section_001_additional_doc_src_picture_1.png
+   |        |                 | --- tutorial_section_001_additional_doc_src_picture_2.png
+   |        |
+   |        | - tutorial_section_001_library_dir
+   |        |        |
+   |        |        | --- tutorial_section_001.1.resource
+   |        |        | --- tutorial_section_001.1.html
+   |        |        | --- tutorial_section_001.2.resource
+   |        |        | --- tutorial_section_001.2.html
+   |        |        |
+   |        |        | - tutorial_section_001_additional_stuff_dir
+   |        |                 |
+   |        |                 | - tutorial_section_001.helper.py
+   |        |                 | - tutorial_section_001.helper.html
+   |        |                 | - tutorial_section_001.additional_keywords.py
+   |        |                 | - tutorial_section_001.additional_keywords.html
+   |        |
+   |        | --- tutorial_section_001.1.robot
+   |        | --- tutorial_section_001.1.html
+   |        | --- tutorial_section_001.2.robot
+   |        | --- tutorial_section_001.2.html
+   |        |
+   ...
+
+--------------------------------------------------------------------------------------------------------------

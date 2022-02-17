@@ -1,0 +1,544 @@
+<!--
+#  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+-->
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<title>Static code analysis in Robotframework</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="static-code-analysis-in-robotframework">
+<h1 class="title">Static code analysis in Robotframework</h1>
+
+<p>Version 0.1.0 / 05.08.2021 / by XC-CI1/ECA3-Queckenstedt</p>
+<div class="section" id="table-of-content">
+<h1>Table of content</h1>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#introduction">Introduction</a></div>
+<div class="line"><a class="reference internal" href="#executing-robocop">Executing Robocop</a></div>
+<div class="line"><a class="reference internal" href="#preconfigured-settings">Preconfigured settings</a></div>
+<div class="line"><a class="reference internal" href="#output">Output</a></div>
+<div class="line"><a class="reference internal" href="#additional-hints">Additional hints</a></div>
+<div class="line"><a class="reference internal" href="#tutorial-files">Tutorial files</a></div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction</h1>
+<p>Robotframework sources are present in robot files (<tt class="docutils literal">.robot</tt>) and in resource files (<tt class="docutils literal">.resource</tt>). The maturity of these files can be checked
+by a static code analyser called Robocop.</p>
+<p>Robocop is integrated in Eclipse and can be accessed by the External Tools menu.</p>
+<p>It is possible to check a single file only and it is also possible to check complete folders. In case of a folder is checked, Robocop searches
+within this folder recursively for robot and resource files.</p>
+<p>Caution: Robocop does not consider imports! If a single robot file is checked and this robot file imports a resource file, then this resource file
+is <em>not</em> also checked. The resource file has to be selected separately.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<div class="section" id="executing-robocop">
+<h1>Executing Robocop</h1>
+<ol class="arabic">
+<li><p class="first">In Eclipse Project Explorer select a single Robotframework file or a folder.</p>
+</li>
+<li><p class="first">Open the External Tools menu and select one of the listed items belonging to Robocop. Currently available are the following preconfigured settings:</p>
+<img alt="./doc_src/images/RCExtToolsMenu.png" src="./doc_src/images/RCExtToolsMenu.png" />
+<p><strong>RF SCAn</strong> is the abbreviation for <strong>R</strong>obot<strong>F</strong>ramework <strong>S</strong>tatic <strong>C</strong>ode <strong>An</strong>alysis.</p>
+<p>The results of the execution are available either within the Eclipse console window or within a separate log file
+(depending on the selected item, for details see <a class="reference internal" href="#preconfigured-settings">Preconfigured settings</a>).</p>
+</li>
+</ol>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<div class="section" id="preconfigured-settings">
+<h1>Preconfigured settings</h1>
+<p><strong>RF SCAn (console)</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Robocop executes a relevant subset of available checks (some checks that are not really helpful or against internal coding conventions, are excluded).</li>
+<li>The output of Robocop is listed within the Eclipse console window.</li>
+<li>The advantage of the console window is that every finding is a link to the position at which the finding occurs.
+A double click on the link causes the Red editor to open the affected file at this position.</li>
+</ul>
+</blockquote>
+<p><strong>RF SCAn (log file)</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Robocop executes a relevant subset of available checks (some checks that are not really helpful or against internal coding conventions, are excluded).</li>
+<li>The output of Robocop is written to the following log file: <tt class="docutils literal"><span class="pre">%ROBOTLOGPATH%\Robocop.log</span></tt></li>
+<li>This option is mostly for documentation purposes.</li>
+</ul>
+</blockquote>
+<p><strong>TODO list (console)</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Robocop executes only a single check that searches for the string <tt class="docutils literal">TODO</tt> within comment blocks.</li>
+<li>The idea behind this is: Every developer who needs a reminder about what still has to be done before the next release,
+uses the <tt class="docutils literal">TODO</tt> string to mark the corresponding position in the code. Before a release this check tells if all things are done
+or if something has been forgotten.</li>
+<li>Therefore the <tt class="docutils literal">TODO</tt> string inside code comments should be used for developer internal communication and not to give common hints
+to customer. A released code should not contain any <tt class="docutils literal">TODO</tt> strings any more, except a good reason is added why it is not possible
+to resolve the TODO.</li>
+</ul>
+</blockquote>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<div class="section" id="output">
+<h1>Output</h1>
+<p>The output of Robocop is the same in console and in log file, and consists of two parts:</p>
+<p><strong>Part 1: A list of findings</strong></p>
+<p>Every line within the list is a finding. Every finding contains the following informations:</p>
+<ol class="arabic simple">
+<li>Path and name of file in which the finding occurred</li>
+<li>Line number</li>
+<li>Column number</li>
+<li>Type of finding (error, warning or info; represented by one capital letter in squared brackets)</li>
+<li>ID of the Robocop internal rule behind the finding</li>
+<li>Short description of the rule</li>
+<li>Short name of the rule (single string in round brackets)</li>
+</ol>
+<p>Example:</p>
+<img alt="./doc_src/images/ConsoleList.png" src="./doc_src/images/ConsoleList.png" />
+<p><strong>Part 2: A final statistic</strong></p>
+<p>The final statistic tells how often every type of finding has been found in the entire checked code, sorted by the number of occurrances.</p>
+<p>Example:</p>
+<img alt="./doc_src/images/ConsoleStatistics.png" src="./doc_src/images/ConsoleStatistics.png" />
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<div class="section" id="additional-hints">
+<h1>Additional hints</h1>
+<p>The output of Robocop starts with a <tt class="docutils literal">DEPRECATION WARNING</tt>. This warning informs about changes between the current version and the previous version of Robocop
+and can be ignored.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<div class="section" id="tutorial-files">
+<h1>Tutorial files</h1>
+<p>The files within this tutorial show some examples for Robocop findings.</p>
+<ul>
+<li><p class="first">Findings in file <tt class="docutils literal">suite01.robot</tt></p>
+<ul>
+<li><p class="first"><em>Warning 0203 : Missing documentation in suite</em></p>
+<p>Tells that the documentation of the suite is missing.</p>
+</li>
+<li><p class="first"><em>Warning 1003 : Invalid number of empty lines between sections (1/2)</em></p>
+<p>Within <tt class="docutils literal">suite01.robot</tt> there is only one blank line between the end of the <tt class="docutils literal">*** Settings ***</tt> section and the <tt class="docutils literal">*** Test Cases ***</tt> section.</p>
+<img alt="./doc_src/images/InvalidNumberOfEmptyLines.png" src="./doc_src/images/InvalidNumberOfEmptyLines.png" />
+<p>To ease the readability of the code Robocop wants to have exactly two blank lines between sections.</p>
+</li>
+<li><p class="first"><em>Warning 0202 : Missing documentation in test case</em></p>
+<p>Tells that the documentation of the test case is missing.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Findings in file <tt class="docutils literal">suite02.robot</tt></p>
+<ul>
+<li><p class="first"><em>Error 0801 : Multiple test cases with name &quot;Test Case 0201&quot; in suite</em></p>
+<p>Accidently two tests inside the suite have the same name. This error is listed multiple times (every single occurrance of the same name is a separate finding).</p>
+<img alt="./doc_src/images/MultipleTestCases.png" src="./doc_src/images/MultipleTestCases.png" />
+<p>Test names must be unique.</p>
+</li>
+<li><p class="first"><em>Warning 0701 : Found TODO in comment</em></p>
+<p>A <tt class="docutils literal">TODO</tt> marker indicates that still something is to do in the code.</p>
+<img alt="./doc_src/images/ToDo.png" src="./doc_src/images/ToDo.png" />
+<p>A <tt class="docutils literal">TODO</tt> marker needs to have an own line and must not be placed at the end of a line containing code!</p>
+</li>
+<li><p class="first"><em>Warning 1010 : Too many blank lines at the end of file</em></p>
+<img alt="./doc_src/images/BlankLinesAtEndOfFile.png" src="./doc_src/images/BlankLinesAtEndOfFile.png" />
+<p>Only one blank line is expected at the end of a file.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Findings in file <tt class="docutils literal">testimport.resource</tt></p>
+<ul>
+<li><p class="first"><em>Warning 1001 : Trailing whitespace at the end of line</em></p>
+<p>Tells that there is additional whitespace (here: 4 blanks) at the end of the line.</p>
+<img alt="./doc_src/images/TrailingWhitespace.png" src="./doc_src/images/TrailingWhitespace.png" />
+<p>No additional whitespace is expected at the end of a line.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary:</strong></p>
+<p>Checking the complete Robocop tutorial section causes the following list of findings (the file paths are shortened):</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal">libs/testimport.resource:9:65 [W] 1001 Trailing whitespace at the end of line <span class="pre">(trailing-whitespace)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite01.robot:1:0 [W] 0203 Missing documentation in suite <span class="pre">(missing-doc-suite)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite01.robot:10:0 [W] 1003 Invalid number of empty lines between sections (1/2) <span class="pre">(empty-lines-between-sections)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite01.robot:12:0 [W] 0202 Missing documentation in test case <span class="pre">(missing-doc-test-case)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite02.robot:18:0 [E] 0801 Multiple test cases with name &quot;Test Case 0201&quot; in suite <span class="pre">(duplicated-test-case)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite02.robot:21:4 [W] 0701 Found TODO in comment <span class="pre">(todo-in-comment)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite02.robot:24:0 [E] 0801 Multiple test cases with name &quot;Test Case 0201&quot; in suite <span class="pre">(duplicated-test-case)</span></tt></div>
+<div class="line"><tt class="docutils literal">suite02.robot:30:0 [W] 1010 Too many blank lines at the end of file <span class="pre">(too-many-trailing-blank-lines)</span></tt></div>
+<div class="line"><br /></div>
+<div class="line"><tt class="docutils literal">Processed 3 file(s) from which 3 file(s) contained issues</tt></div>
+</div>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+</div>
+</body>
+</html>
