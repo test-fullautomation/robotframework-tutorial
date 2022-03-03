@@ -3,10 +3,7 @@
 Tutorial Documentation Concept
 ==============================
 
-Reference:
-https://rb-tracker.bosch.com/tracker01/browse/ROBFW-236
-
-Version 0.2.1 / 16.02.2022
+Version 0.2.2 / 03.03.2022
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +36,7 @@ Paradigms:
 How to call the renderer:
 -------------------------
 
-"%RobotPythonPath%/python.exe" <tutorial repository location>/__setup/gen_doc_tutorial.py
+"<Python installation>/python.exe" <tutorial repository location>/__setup/gen_doc_tutorial.py
 
 Log file:
 ---------

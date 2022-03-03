@@ -1,19 +1,6 @@
-#  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
 # **************************************************************************************************************
 #
-#  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+#  Copyright 2020-2022 Robert Bosch GmbH
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -32,6 +19,9 @@
 # CDocument.py
 #
 # XC-CT/ECA3-Queckenstedt
+#
+# 03.03.2022 / XC-CT/ECA3-Queckenstedt
+# configured --docformat=reST
 #
 # Initial version 02/2022
 #
@@ -112,6 +102,7 @@ class CDocument():
          sDstFile = f"{sSrcFile}.html"
          listCmdLineParts.append(f"\"{sPython}\"")
          listCmdLineParts.append("-m robot.testdoc")
+         # !!! # listCmdLineParts.append("--docformat=reST") # !!! # such a switch is available for robot.libdoc only, but not for robot.testdoc
          listCmdLineParts.append(f"\"{sSrcFile}\"")
          listCmdLineParts.append(f"\"{sDstFile}\"")
 
@@ -121,6 +112,7 @@ class CDocument():
          sDstFile = f"{sSrcFile}.html"
          listCmdLineParts.append(f"\"{sPython}\"")
          listCmdLineParts.append("-m robot.libdoc")
+         listCmdLineParts.append("--docformat=reST")
          listCmdLineParts.append(f"\"{sSrcFile}\"")
          listCmdLineParts.append(f"\"{sDstFile}\"")
 
