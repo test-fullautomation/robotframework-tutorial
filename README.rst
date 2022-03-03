@@ -19,7 +19,7 @@ Getting Started
 ---------------
 
 The RobotFramework AIO tutorial contains robot code examples together with the documentation explaining how to use these
-examples and how they works. The basic idea behind this tutorial is not to have theory only but additionally to this theory
+examples and how they work. The basic idea behind this tutorial is not to have theory only but additionally to this theory
 also the possibility to experience what is explained inside.
 
 The main focus of this tutorial is on all additional features provided by the RobotFramework AIO. It is assumed
@@ -34,7 +34,7 @@ How to install
 
 Clone the **robotframework-tutorial** repository to your machine.
 
-`RobotFramework AIO <https://github.com/test-fullautomation/robotframework-tutorial>`_
+`robotframework-tutorial <https://github.com/test-fullautomation/robotframework-tutorial>`_
 
 After this you can directly navigate to the subfolders of your local repository folder.
 Every subfolder contains a separate chapter of the tutorial that can be investigated individually.
@@ -57,10 +57,15 @@ Contributors
 ------------
 
 `Mai Dinh Nam Son <mailto:Son.MaiDinhNam@vn.bosch.com>`_
+
 `Tran Duy Ngoan <mailto:Ngoan.TranDuy@vn.bosch.com>`_
+
 `Nguyen Huynh Tri Cuong <mailto:Cuong.NguyenHuynhTri@vn.bosch.com>`_
+
 `Tran Hoang Nguyen <mailto:Nguyen.TranHoang@vn.bosch.com>`_
+
 `Holger Queckenstedt <mailto:Holger.Queckenstedt@de.bosch.com>`_
+
 `Thomas Pollerspöck <mailto:Thomas.Pollerspoeck@de.bosch.com>`_
 
 License
