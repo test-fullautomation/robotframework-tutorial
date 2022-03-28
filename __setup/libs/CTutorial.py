@@ -20,7 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# Initial version 02/2022
+# 28.03.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -67,6 +67,8 @@ class CTutorial():
 
    # --------------------------------------------------------------------------------------------------------------
    def GetSectionsList(self):
+      """Computes the list of all tutorial sections (subfolder of tutorial main folder except '__setup' and '.git').
+      """
 
       sMethod = "GetSectionsList"
 
@@ -97,6 +99,8 @@ class CTutorial():
 
    # --------------------------------------------------------------------------------------------------------------
    def Clean(self):
+      """Deletes all HTML files (that is assumed to be the output of previous computation).
+      """
 
       sMethod = "Clean"
 
@@ -167,7 +171,7 @@ class CTutorial():
 
    # --------------------------------------------------------------------------------------------------------------
    def DumpStatistics(self, oLogfile=None):
-      """
+      """Dumps computation statistics to console and log file.
       """
 
       # !! statistics are dumped at end of computation; therefore no return value (doesn't matter) !!

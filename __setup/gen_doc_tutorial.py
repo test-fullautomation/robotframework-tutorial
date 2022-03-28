@@ -25,8 +25,8 @@
 #
 # --------------------------------------------------------------------------------------------------------------
 #
-sThisScriptVersionNumber = "0.4.1"
-sThisScriptVersionDate   = "16.02.2022"
+sThisScriptVersionNumber = "0.5.0"
+sThisScriptVersionDate   = "28.03.2022"
 #
 # --------------------------------------------------------------------------------------------------------------
 #TM***
@@ -163,7 +163,7 @@ for sSectionRootPath in listSections:
       del oLogfile
       sys.exit(ERROR_CSECTION)
 
-   listDocuments, bSuccess, sResult = oSection.GetDocumentsList()
+   listRstFiles, bSuccess, sResult = oSection.GetDocumentsList()
    oLogfile.Append(sResult)
    if bSuccess is not True:
       print()
@@ -171,15 +171,16 @@ for sSectionRootPath in listSections:
       print()
       oStatistics.IncCntInternalErrors()
       oTutorial.DumpStatistics(oLogfile)
+      # oSection.DumpSectionFileList(oLogfile) # debug only
       del oLogfile
       sys.exit(ERROR_DOCUMENTSLIST)
    else:
       print(sResult)
    print()
 
-   for sDocument in listDocuments:
+   for sRstFile in listRstFiles:
       try:
-         oDocument = CDocument(sDocument, oRepositoryConfig, oStatistics)
+         oDocument = CDocument(sRstFile, oRepositoryConfig, oStatistics)
       except Exception as ex:
          sResult = str(ex)
          print()
@@ -207,7 +208,7 @@ for sSectionRootPath in listSections:
          else:
             print(sResult)
       print()
-   # eof for sDocument in listDocuments:
+   # eof for sRstFile in listRstFiles:
 
 # eof for sSectionRootPath in listSections:
    
@@ -219,16 +220,19 @@ oTutorial.DumpStatistics(oLogfile)
 
 # --------------------------------------------------------------------------------------------------------------
 
-sResult = "Tutorial documentation rendering done"
-print(COLBG + sResult)
-print()
-oLogfile.Append(sResult)
-
-del oLogfile
-
-if oStatistics.GetCntConverterReturnedNotZero() == 0:
+if ( (oStatistics.GetCntConverterReturnedNotZero() == 0) and (oStatistics.GetCntOutputFilesNotExisting() == 0) ):
+   sResult = "Tutorial documentation rendering done"
+   print(COLBG + sResult)
+   print()
+   oLogfile.Append(sResult)
+   del oLogfile
    sys.exit(SUCCESS)
 else:
+   sResult = "Tutorial documentation rendering done - but with conversion issues"
+   print(COLBY + sResult)
+   print()
+   oLogfile.Append(sResult)
+   del oLogfile
    sys.exit(WARNING_CONVERTER_ISSUE)
 
 
