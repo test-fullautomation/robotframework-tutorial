@@ -20,7 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# Initial version 02/2022
+# 28.03.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -62,18 +62,25 @@ class CSection():
 
       self.__oRepositoryConfig.Set("sSectionRootPath", self.__sSectionRootPath)
 
+      self.__listRstFiles      = []
+      self.__dictTutorialFiles = {}
+
+      self.__oRepositoryConfig.Set("dictTutorialFiles", self.__dictTutorialFiles)
+
    def __del__(self):
       pass
 
+   # --------------------------------------------------------------------------------------------------------------
    def GetDocumentsList(self):
+      """Computes a list of documents within a tutorial section.
+      """
 
       sMethod = "GetDocumentsList"
 
-      tupleSupportedFileExtensions = (".robot", ".resource", ".rst", ".py")
+      tupleSupportedFileExtensions = (".rst", ".robot", ".resource", ".json", ".py")
 
-      listDocuments = []
-      bSuccess      = None
-      sResult       = None
+      bSuccess = None
+      sResult  = None
 
       for sLocalRootPath, listFolderNames, listFileNames in os.walk(self.__sSectionRootPath):
          for sFileName in listFileNames:
@@ -83,18 +90,61 @@ class CSection():
                   bFileSupported = True
                   break
             if bFileSupported is True:
-               sDocument = CString.NormalizePath(os.path.join(sLocalRootPath, sFileName))
-               listDocuments.append(sDocument)
+               sFile = CString.NormalizePath(os.path.join(sLocalRootPath, sFileName))
+               if sFileName.lower().endswith('.rst'):
+                  self.__listRstFiles.append(sFile)
+               else:
+                  # duplicate check
+                  if sFileName in self.__dictTutorialFiles:
+                     self.__oRepositoryConfig.Set("dictTutorialFiles", self.__dictTutorialFiles)
+
+                     # file with same name found previously in tutorial section
+                     sTutorialFilePath = self.__dictTutorialFiles[sFileName]
+                     sTutorialFile = CString.NormalizePath(os.path.join(sTutorialFilePath, sFileName))
+
+                     bSuccess = False
+                     sResult  = f"Found file duplicate '{sFile}'\n(duplicate of '{sTutorialFile}')"
+                     return self.__listRstFiles, bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+                  else:
+                     self.__dictTutorialFiles[sFileName] = sLocalRootPath
+            # eof if bFileSupported is True:
          # eof for sFileName in listFileNames:
       # eof for sLocalRootPath, listFolderNames, listFileNames in os.walk(self.__sSectionRootPath):
 
-      listDocuments.sort()
-      nNrOfDocuments = len(listDocuments)
+      self.__oRepositoryConfig.Set("dictTutorialFiles", self.__dictTutorialFiles)
+
+      self.__listRstFiles.sort()
+      nNrOfRstFiles = len(self.__listRstFiles)
 
       bSuccess = True
-      sResult  = f"Found {nNrOfDocuments} tutorial documents within '{self.__sSectionRootPath}'"
+      sResult  = f"Found {nNrOfRstFiles} tutorial rst files within '{self.__sSectionRootPath}'"
 
-      return listDocuments, bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+      return self.__listRstFiles, bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+
+   # --------------------------------------------------------------------------------------------------------------
+   def DumpSectionFileList(self, oLogfile=None):
+      """Dumps the list of all files within the current tutorial section to log file
+      """
+
+      if oLogfile is not None:
+         oLogfile.Append("                                                RST FILES")
+         oLogfile.Append()
+
+         for sRstFile in self.__listRstFiles:
+            oLogfile.Append(f"* '{sRstFile}'")
+
+         oLogfile.Append()
+         oLogfile.Append(120*"=")
+         oLogfile.Append()
+         oLogfile.Append("                                                TUTORIAL SECTION FILES")
+         oLogfile.Append()
+         oLogfile.Append("                  (either all files or subset of files detected until a duplicate has been found)")
+         oLogfile.Append()
+
+         for sTutorialFileName in self.__dictTutorialFiles:
+            sTutorialFilePath = self.__dictTutorialFiles[sTutorialFileName]
+            sTutorialFile = CString.NormalizePath(os.path.join(sTutorialFilePath, sTutorialFileName))
+            oLogfile.Append(f"* '{sTutorialFile}'")
 
 # eof class CSection():
 

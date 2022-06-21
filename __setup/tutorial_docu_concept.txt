@@ -3,7 +3,9 @@
 Tutorial Documentation Concept
 ==============================
 
-Version 0.2.2 / 03.03.2022
+XC-CT/ECA3-Queckenstedt
+
+Version 0.4.0 / 28.03.2022
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -12,36 +14,53 @@ Paradigms:
 
 * Output format of documentation: HTML
 
+* Supported source file formats for HTML output files are: .rst
+  Also the documentation of  ".rst", ".robot", ".resource", ".json" and ".py" files are taken out
+  of separate rst files (and not out of the source files immediately.
+  Reason: Limitations of Robot Framework internal documentation generators
+  (robot.libdoc and robot.testdoc).
+
 * 1 to 1 relationship between source file and HTML file
   (therefore also no automatically generated linking between several output files;
-   every HTML file is standalone)
+  every HTML file is standalone)
 
-* Supported source file formats are: .rst, .py, .robot and .resource
-
-* Because of different source file formats also different converters are needed:
+* Converter used for documentation rendering:
   * Python
     - Standalone rst files to HTML: rst2html.py
-  * Robotframework
-    - Python files ("""docstring""") and resource files ([Documentation] section) to HTML: robot.libdoc
-    - robot files ([Documentation] section) to HTML: robot.testdoc
 
 * A Clean() function executed at the beginning, deletes all previously generated HTML files.
-  Therefore it is not allowed to add own (manually created) HTML files within a tutorial section; they will be deleted!
+  Therefore it is not allowed to add own (manually created) HTML files within a tutorial section;
+  they will be deleted!
   A "tutorial section" is a subfolder of the tutorial folder, except "__setup" and ".git".
 
-* HTML files generated out of standalone rst files are placed within the tutorial section root folder (and not beside the source file)!
-  Therefore it is not allowed to have several rst files with same name in several subfolders of a tutorial section.
+* HTML files generated out of stand alone rst files are generated within the root folder of a tutorial section.
+  HTML files generated out of rst files that have a naming counterpart with extension ".robot", ".resource",
+  ".json" or ".py" at any other position within a tutorial folder, are generated within the folder of this
+  source file (see overview below).
+
+* !!! Names of files with supported extensions ".rst", ".robot", ".resource", ".json" or ".py" must be
+  unique within a tutorial section !!!
+
+* In case of an rst file contains a relative path to another document it has to be considered, that this
+  path has to be relative to the position of the generated HTML file - and not relative to the position of
+  the rst file itself.
 
 
-How to call the renderer:
--------------------------
+How to call the tutorial renderer:
+----------------------------------
 
-"<Python installation>/python.exe" <tutorial repository location>/__setup/gen_doc_tutorial.py
+"<Python installation>/python.exe" "<tutorial repository location>/__setup/gen_doc_tutorial.py"
 
 Log file:
 ---------
 
 <tutorial repository location>/__setup/gen_doc_tutorial.log
+
+
+Stand alone command line for the underlying converter:
+------------------------------------------------------
+
+"<Python installation>/python.exe" "<Python installation>/Scripts/rst2html.py" --input-encoding="utf-8" --output-encoding="utf-8" <source file (rst)> <destination file (html)>
 
 
 Return values:
@@ -61,17 +80,8 @@ ERROR_DOCUMENTSLIST     = 8
 ERROR_CDOCUMENT         = 9
 ERROR_CONVERT           = 10
 
-In case of empty input files some converters return a value not equal to zero. Unfortunately the same
-return value 252 is used for errors like not existing input files. Therefore a proper error handling
-is not possible.
-
-Missing input files should be handled as error, but an empty __init__.resource is not an error.
-
-Because it is not possible to distinguish between these scenarios, gen_doc_tutorial.py does not stop
-the computation but returns WARNING_CONVERTER_ISSUE in case of any converter call returns a value
-not equal to zero.
-
 --------------------------------------------------------------------------------------------------------------
+
 
 Example:
 
@@ -81,18 +91,25 @@ Example:
 tutorial_dir
    |
    | - tutorial_setup_dir
-   |        | --- gen_doc_tutorial.py
-   |        | --- tutorial_docu_concept.txt
+   |        | --- GenDocTooling.py
    |
    | - tutorial_section_001_dir
    |        |
-   |        | - tutorial_section_001_doc_dir
+   |        | - tutorial_section_001_doc_src_dir
    |        |        |
-   |        |        | --- tutorial_section_001_additional_doc.rst
+   |        |        | --- tutorial_section_001_introduction.rst
    |        |        |
-   |        |        | - tutorial_section_001_pictures_dir
-   |        |                 | --- tutorial_section_001_picture_1.png
-   |        |                 | --- tutorial_section_001_picture_2.png
+   |        |        | --- tutorial_section_001.1.resource.rst
+   |        |        | --- tutorial_section_001.2.resource.rst
+   |        |        | --- tutorial_section_001.helper.py.rst
+   |        |        | --- tutorial_section_001.additional_keywords.py.rst
+   |        |        | --- tutorial_section_001.1.json.rst
+   |        |        | --- tutorial_section_001.1.robot.rst
+   |        |        | --- tutorial_section_001.2.robot.rst
+   |        |        |
+   |        |        | - tutorial_section_001_doc_src_pictures_dir
+   |        |                 | --- tutorial_section_001_doc_src_picture_1.png
+   |        |                 | --- tutorial_section_001_doc_src_picture_2.png
    |        |
    |        | - tutorial_section_001_library_dir
    |        |        |
@@ -103,6 +120,7 @@ tutorial_dir
    |        |                 |
    |        |                 | - tutorial_section_001.helper.py
    |        |                 | - tutorial_section_001.additional_keywords.py
+   |        |                 | - tutorial_section_001.1.json
    |        |
    |        | --- tutorial_section_001.1.robot
    |        | --- tutorial_section_001.2.robot
@@ -120,33 +138,44 @@ tutorial_dir
    |
    | - tutorial_section_001_dir
    |        |
-   |        | - tutorial_section_001_additional_doc_src_dir
+   |        | - tutorial_section_001_doc_src_dir
    |        |        |
-   |        |        | --- tutorial_section_001_additional_doc.rst
-   |        | --- tutorial_section_001_additional_doc.html      !!! html files generated out of standalone rst files are placed within the tutorial section root folder !!!
+   |        |        | --- tutorial_section_001_introduction.rst
    |        |        |
-   |        |        | - tutorial_section_001_additional_doc_src_pictures_dir
-   |        |                 | --- tutorial_section_001_additional_doc_src_picture_1.png
-   |        |                 | --- tutorial_section_001_additional_doc_src_picture_2.png
+   |        | --- tutorial_section_001_introduction.html  !!! html files generated out of standalone rst files are placed within the tutorial section root folder !!!
+   |        |        |
+   |        |        | --- tutorial_section_001.1.resource.rst
+   |        |        | --- tutorial_section_001.2.resource.rst
+   |        |        | --- tutorial_section_001.helper.py.rst
+   |        |        | --- tutorial_section_001.additional_keywords.py.rst
+   |        |        | --- tutorial_section_001.1.json.rst
+   |        |        | --- tutorial_section_001.1.robot.rst
+   |        |        | --- tutorial_section_001.2.robot.rst
+   |        |        |
+   |        |        | - tutorial_section_001_doc_src_pictures_dir
+   |        |                 | --- tutorial_section_001_doc_src_picture_1.png
+   |        |                 | --- tutorial_section_001_doc_src_picture_2.png
    |        |
    |        | - tutorial_section_001_library_dir
    |        |        |
    |        |        | --- tutorial_section_001.1.resource
-   |        |        | --- tutorial_section_001.1.html
+   |        |        | --- tutorial_section_001.1.resource.html
    |        |        | --- tutorial_section_001.2.resource
-   |        |        | --- tutorial_section_001.2.html
+   |        |        | --- tutorial_section_001.2.resource.html
    |        |        |
    |        |        | - tutorial_section_001_additional_stuff_dir
    |        |                 |
    |        |                 | - tutorial_section_001.helper.py
-   |        |                 | - tutorial_section_001.helper.html
+   |        |                 | - tutorial_section_001.helper.py.html
    |        |                 | - tutorial_section_001.additional_keywords.py
-   |        |                 | - tutorial_section_001.additional_keywords.html
+   |        |                 | - tutorial_section_001.additional_keywords.py.html
+   |        |                 | - tutorial_section_001.1.json
+   |        |                 | - tutorial_section_001.1.json.html
    |        |
    |        | --- tutorial_section_001.1.robot
-   |        | --- tutorial_section_001.1.html
+   |        | --- tutorial_section_001.1.robot.html
    |        | --- tutorial_section_001.2.robot
-   |        | --- tutorial_section_001.2.html
+   |        | --- tutorial_section_001.2.robot.html
    |        |
    ...
 
