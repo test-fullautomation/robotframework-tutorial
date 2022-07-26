@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<title>Static code analysis in Robotframework</title>
+<title>Static code analysis in Robot Framework</title>
 <style type="text/css">
 
 /*
@@ -360,10 +360,10 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="static-code-analysis-in-robotframework">
-<h1 class="title">Static code analysis in Robotframework</h1>
+<div class="document" id="static-code-analysis-in-robot-framework">
+<h1 class="title">Static code analysis in Robot Framework</h1>
 
-<!-- Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+<!-- Copyright 2020-2022 Robert Bosch GmbH
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -376,165 +376,48 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p>Version 0.1.0 / 05.08.2021 / by XC-CI1/ECA3-Queckenstedt</p>
+<p>Version 0.2.0 / 26.07.2022 / by XC-CT/ECA3-Queckenstedt</p>
 <div class="section" id="table-of-content">
 <h1>Table of content</h1>
 <div class="line-block">
 <div class="line"><a class="reference internal" href="#introduction">Introduction</a></div>
-<div class="line"><a class="reference internal" href="#executing-robocop">Executing Robocop</a></div>
-<div class="line"><a class="reference internal" href="#preconfigured-settings">Preconfigured settings</a></div>
-<div class="line"><a class="reference internal" href="#output">Output</a></div>
-<div class="line"><a class="reference internal" href="#additional-hints">Additional hints</a></div>
+<div class="line"><a class="reference internal" href="#configuration">Configuration</a></div>
 <div class="line"><a class="reference internal" href="#tutorial-files">Tutorial files</a></div>
 </div>
 </div>
 <div class="section" id="introduction">
 <h1>Introduction</h1>
-<p>Robotframework sources are present in robot files (<tt class="docutils literal">.robot</tt>) and in resource files (<tt class="docutils literal">.resource</tt>). The maturity of these files can be checked
+<p>Robot Framework sources are present in robot files (<tt class="docutils literal">.robot</tt>) and in resource files (<tt class="docutils literal">.resource</tt>). The maturity of these files can be checked
 by a static code analyser called Robocop.</p>
-<p>Robocop is integrated in Eclipse and can be accessed by the External Tools menu.</p>
-<p>It is possible to check a single file only and it is also possible to check complete folders. In case of a folder is checked, Robocop searches
-within this folder recursively for robot and resource files.</p>
-<p>Caution: Robocop does not consider imports! If a single robot file is checked and this robot file imports a resource file, then this resource file
-is <em>not</em> also checked. The resource file has to be selected separately.</p>
-<p><a class="reference internal" href="#table-of-content">TOC</a></p>
-</div>
-<div class="section" id="executing-robocop">
-<h1>Executing Robocop</h1>
-<ol class="arabic">
-<li><p class="first">In Eclipse Project Explorer select a single Robotframework file or a folder.</p>
-</li>
-<li><p class="first">Open the External Tools menu and select one of the listed items belonging to Robocop. Currently available are the following preconfigured settings:</p>
-<img alt="./doc_src/images/RCExtToolsMenu.png" src="./doc_src/images/RCExtToolsMenu.png" />
-<p><strong>RF SCAn</strong> is the abbreviation for <strong>R</strong>obot<strong>F</strong>ramework <strong>S</strong>tatic <strong>C</strong>ode <strong>An</strong>alysis.</p>
-<p>The results of the execution are available either within the Eclipse console window or within a separate log file
-(depending on the selected item, for details see <a class="reference internal" href="#preconfigured-settings">Preconfigured settings</a>).</p>
-</li>
-</ol>
-<p><a class="reference internal" href="#table-of-content">TOC</a></p>
-</div>
-<div class="section" id="preconfigured-settings">
-<h1>Preconfigured settings</h1>
-<p><strong>RF SCAn (console)</strong></p>
-<blockquote>
-<ul class="simple">
-<li>Robocop executes a relevant subset of available checks (some checks that are not really helpful or against internal coding conventions, are excluded).</li>
-<li>The output of Robocop is listed within the Eclipse console window.</li>
-<li>The advantage of the console window is that every finding is a link to the position at which the finding occurs.
-A double click on the link causes the Red editor to open the affected file at this position.</li>
-</ul>
-</blockquote>
-<p><strong>RF SCAn (log file)</strong></p>
-<blockquote>
-<ul class="simple">
-<li>Robocop executes a relevant subset of available checks (some checks that are not really helpful or against internal coding conventions, are excluded).</li>
-<li>The output of Robocop is written to the following log file: <tt class="docutils literal"><span class="pre">%ROBOTLOGPATH%\Robocop.log</span></tt></li>
-<li>This option is mostly for documentation purposes.</li>
-</ul>
-</blockquote>
-<p><strong>TODO list (console)</strong></p>
-<blockquote>
-<ul class="simple">
-<li>Robocop executes only a single check that searches for the string <tt class="docutils literal">TODO</tt> within comment blocks.</li>
-<li>The idea behind this is: Every developer who needs a reminder about what still has to be done before the next release,
-uses the <tt class="docutils literal">TODO</tt> string to mark the corresponding position in the code. Before a release this check tells if all things are done
-or if something has been forgotten.</li>
-<li>Therefore the <tt class="docutils literal">TODO</tt> string inside code comments should be used for developer internal communication and not to give common hints
-to customer. A released code should not contain any <tt class="docutils literal">TODO</tt> strings any more, except a good reason is added why it is not possible
-to resolve the TODO.</li>
-</ul>
-</blockquote>
-<p><a class="reference internal" href="#table-of-content">TOC</a></p>
-</div>
-<div class="section" id="output">
-<h1>Output</h1>
-<p>The output of Robocop is the same in console and in log file, and consists of two parts:</p>
-<p><strong>Part 1: A list of findings</strong></p>
-<p>Every line within the list is a finding. Every finding contains the following informations:</p>
+<p>Robocop is integrated in Visual Studio Code and and is triggered automatically in case of</p>
 <ol class="arabic simple">
-<li>Path and name of file in which the finding occurred</li>
-<li>Line number</li>
-<li>Column number</li>
-<li>Type of finding (error, warning or info; represented by one capital letter in squared brackets)</li>
-<li>ID of the Robocop internal rule behind the finding</li>
-<li>Short description of the rule</li>
-<li>Short name of the rule (single string in round brackets)</li>
+<li>a file is opened in editor,</li>
+<li>a file is changed and saved.</li>
 </ol>
-<p>Example:</p>
-<img alt="./doc_src/images/ConsoleList.png" src="./doc_src/images/ConsoleList.png" />
-<p><strong>Part 2: A final statistic</strong></p>
-<p>The final statistic tells how often every type of finding has been found in the entire checked code, sorted by the number of occurrances.</p>
-<p>Example:</p>
-<img alt="./doc_src/images/ConsoleStatistics.png" src="./doc_src/images/ConsoleStatistics.png" />
+<p>The results of the check are listed in the PROBLEMS window of Visual Studio Code:</p>
+<img alt="./doc_src/images/ProblemsWindow.png" src="./doc_src/images/ProblemsWindow.png" />
+<p>A left click on a findings line opens the affected file at the position of the finding. Every result also contains the id of the rule that causes the finding.
+The id (colored in blue) is a link to the documentation of the rule in the web:</p>
+<img alt="./doc_src/images/ProblemsWindow2.png" src="./doc_src/images/ProblemsWindow2.png" />
+<p>Warnings are indicated by a dark orange symbol, errors are indicated by a red symbol at the beginning of a findings line:</p>
+<img alt="./doc_src/images/ProblemsWindow3.png" src="./doc_src/images/ProblemsWindow3.png" />
+<p>The same color code is used within the Explorer:</p>
+<img alt="./doc_src/images/Explorer.png" src="./doc_src/images/Explorer.png" />
+<p>Caution: Robocop does not consider imports! If a robot file is checked and this robot file imports a resource file, then this resource file
+is <em>not</em> also checked. The resource file has to be opened separately.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
-<div class="section" id="additional-hints">
-<h1>Additional hints</h1>
-<p>The output of Robocop starts with a <tt class="docutils literal">DEPRECATION WARNING</tt>. This warning informs about changes between the current version and the previous version of Robocop
-and can be ignored.</p>
+<div class="section" id="configuration">
+<h1>Configuration</h1>
+<p>Robocop can be configured by a <tt class="docutils literal">.robocop</tt> file that has to be placed within the project folder. The <tt class="docutils literal">.robocop</tt> file within this tutorial excludes some checks,
+that are not really helpful or against internal coding conventions.</p>
+<p>The file also contains some parameter values belonging to rules, that can be modified. The currently used values are the default values.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 <div class="section" id="tutorial-files">
 <h1>Tutorial files</h1>
-<p>The files within this tutorial show some examples for Robocop findings.</p>
-<ul>
-<li><p class="first">Findings in file <tt class="docutils literal">suite01.robot</tt></p>
-<ul>
-<li><p class="first"><em>Warning 0203 : Missing documentation in suite</em></p>
-<p>Tells that the documentation of the suite is missing.</p>
-</li>
-<li><p class="first"><em>Warning 1003 : Invalid number of empty lines between sections (1/2)</em></p>
-<p>Within <tt class="docutils literal">suite01.robot</tt> there is only one blank line between the end of the <tt class="docutils literal">*** Settings ***</tt> section and the <tt class="docutils literal">*** Test Cases ***</tt> section.</p>
-<img alt="./doc_src/images/InvalidNumberOfEmptyLines.png" src="./doc_src/images/InvalidNumberOfEmptyLines.png" />
-<p>To ease the readability of the code Robocop wants to have exactly two blank lines between sections.</p>
-</li>
-<li><p class="first"><em>Warning 0202 : Missing documentation in test case</em></p>
-<p>Tells that the documentation of the test case is missing.</p>
-</li>
-</ul>
-</li>
-<li><p class="first">Findings in file <tt class="docutils literal">suite02.robot</tt></p>
-<ul>
-<li><p class="first"><em>Error 0801 : Multiple test cases with name &quot;Test Case 0201&quot; in suite</em></p>
-<p>Accidently two tests inside the suite have the same name. This error is listed multiple times (every single occurrance of the same name is a separate finding).</p>
-<img alt="./doc_src/images/MultipleTestCases.png" src="./doc_src/images/MultipleTestCases.png" />
-<p>Test names must be unique.</p>
-</li>
-<li><p class="first"><em>Warning 0701 : Found TODO in comment</em></p>
-<p>A <tt class="docutils literal">TODO</tt> marker indicates that still something is to do in the code.</p>
-<img alt="./doc_src/images/ToDo.png" src="./doc_src/images/ToDo.png" />
-<p>A <tt class="docutils literal">TODO</tt> marker needs to have an own line and must not be placed at the end of a line containing code!</p>
-</li>
-<li><p class="first"><em>Warning 1010 : Too many blank lines at the end of file</em></p>
-<img alt="./doc_src/images/BlankLinesAtEndOfFile.png" src="./doc_src/images/BlankLinesAtEndOfFile.png" />
-<p>Only one blank line is expected at the end of a file.</p>
-</li>
-</ul>
-</li>
-<li><p class="first">Findings in file <tt class="docutils literal">testimport.resource</tt></p>
-<ul>
-<li><p class="first"><em>Warning 1001 : Trailing whitespace at the end of line</em></p>
-<p>Tells that there is additional whitespace (here: 4 blanks) at the end of the line.</p>
-<img alt="./doc_src/images/TrailingWhitespace.png" src="./doc_src/images/TrailingWhitespace.png" />
-<p>No additional whitespace is expected at the end of a line.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Summary:</strong></p>
-<p>Checking the complete Robocop tutorial section causes the following list of findings (the file paths are shortened):</p>
-<div class="line-block">
-<div class="line"><tt class="docutils literal">libs/testimport.resource:9:65 [W] 1001 Trailing whitespace at the end of line <span class="pre">(trailing-whitespace)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite01.robot:1:0 [W] 0203 Missing documentation in suite <span class="pre">(missing-doc-suite)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite01.robot:10:0 [W] 1003 Invalid number of empty lines between sections (1/2) <span class="pre">(empty-lines-between-sections)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite01.robot:12:0 [W] 0202 Missing documentation in test case <span class="pre">(missing-doc-test-case)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite02.robot:18:0 [E] 0801 Multiple test cases with name &quot;Test Case 0201&quot; in suite <span class="pre">(duplicated-test-case)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite02.robot:21:4 [W] 0701 Found TODO in comment <span class="pre">(todo-in-comment)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite02.robot:24:0 [E] 0801 Multiple test cases with name &quot;Test Case 0201&quot; in suite <span class="pre">(duplicated-test-case)</span></tt></div>
-<div class="line"><tt class="docutils literal">suite02.robot:30:0 [W] 1010 Too many blank lines at the end of file <span class="pre">(too-many-trailing-blank-lines)</span></tt></div>
-<div class="line"><br /></div>
-<div class="line"><tt class="docutils literal">Processed 3 file(s) from which 3 file(s) contained issues</tt></div>
-</div>
+<p>This tutorial contains two robot files (<tt class="docutils literal">suite01.robot</tt> and <tt class="docutils literal">suite01.robot</tt>) and one resource file (<tt class="docutils literal">testimport.resource</tt>).</p>
+<p>Open the files in Visual Studio Code and let Robocop list all the findings inside.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 </div>
