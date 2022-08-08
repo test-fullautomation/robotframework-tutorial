@@ -1,0 +1,12 @@
+--report all
+--exclude 0301,0302,0305,0309,0310,0509,0602,0605,0606,0607,0702,0704,0907,0908
+--configure too-long-keyword:max_len:40
+--configure too-few-calls-in-keyword:min_calls:1
+--configure too-many-calls-in-keyword:max_calls:10
+--configure too-long-test-case:max_len:20
+--configure too-many-calls-in-test-case:max_calls:10
+--configure file-too-long:max_lines:400
+--configure too-many-arguments:max_args:5
+--configure line-too-long:line_length:120
+--configure number-of-returned-values:max_returns:4
+
