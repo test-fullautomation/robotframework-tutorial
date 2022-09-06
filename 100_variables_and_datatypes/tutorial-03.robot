@@ -18,7 +18,7 @@
 #
 # dictionaries handling
 #
-# 0.1.0 / 05.09.2022
+# 0.2.0 / 06.09.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -32,10 +32,12 @@ Test Teardown     testsuites.testcase_teardown
 
 *** Test Cases ***
 Test Case 03_01
+    [documentation]    Log of a predefined dictionary
     Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
     log_dict    ${var_dict}
 
 Test Case 03_02
+    [documentation]    Access to dictionary keys
     Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
 
     # the key

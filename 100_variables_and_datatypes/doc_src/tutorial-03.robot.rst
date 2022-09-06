@@ -15,6 +15,8 @@
 tutorial-03: working with dictionaries
 ======================================
 
+**Data sets**
+
 Within
 
 .. code::
@@ -30,9 +32,7 @@ the scalars of tutorial-01 are put together within a dictionary
               ...
    ...            key_18=${var_18}
 
-*What will be the data types of the keys of the dictionary?*
-
-To answer this question the keyword library
+The keyword library
 
 .. code::
 
@@ -47,13 +47,17 @@ contains the keyword ``log_dict`` that logs the value and the type of all keys o
       key_type  = str(type(param[key]))
       BuiltIn().log(f"+ key: '{key}' / value: '{key_value}' / type: {key_type}", "INFO", console=True)
 
+**Robot file**
+
 ``tutorial-03.robot`` demonstrates how to work with dictionaries.
 
-**Execution:**
+**Execution**
 
 .. code::
 
    "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
+
+**Test case 03_01**
 
 In test case ``03_01`` all dictionary keys are logged with ``log_dict``:
 
@@ -61,9 +65,11 @@ In test case ``03_01`` all dictionary keys are logged with ``log_dict``:
 
    log_dict    ${var_dict}
 
-**Outcome:**
+**Outcome**
 
-The outcome is the same like in the previous tutorials. The fact that we work with a dictionary now, does not cause any changes regarding the data types of the keys.
+Values and data types are the same like in tutorial-01 and tutorial-02.
+
+**Test case 03_02**
 
 In test case ``03_02`` single keys of the dictionary are accessed in two ways:
 
@@ -81,7 +87,7 @@ The following key variable is used:
 
    ${key_as_string}    key_06
 
-**Outcome:**
+**Outcome**
 
 In both cases the result is the same (``123``). The Robot Framework documentation tells that when using this syntax: ``${var}``, this expression
 is replaced by the value of the variable (``var``) *as-is*.

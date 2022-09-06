@@ -18,7 +18,7 @@
 #
 # lists handling
 #
-# 0.1.0 / 05.09.2022
+# 0.2.0 / 06.09.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -31,11 +31,14 @@ Test Setup        testsuites.testcase_setup
 Test Teardown     testsuites.testcase_teardown
 
 *** Test Cases ***
+
 Test Case 02_01
+    [documentation]    Log of a predefined list
     Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
     log_list    ${var_list}
 
 Test Case 02_02
+    [documentation]    Access to list elements
     Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
 
     # the indices

@@ -15,7 +15,7 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.1.0 / 05.09.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.2.0 / 06.09.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
@@ -52,8 +52,8 @@ For this we use a Python based keyword library of this tutorial, that prints inf
 The names of the robot files of this tutorial are ``tutorial-01``, ``tutorial-02``, ``tutorial-03`` ... The content of every robot file is explained
 in more detail in a HTML file with same name.
 
-Most of the robot files can be executed directly. But some of them require command line extensions. In the next chapter all tutorial files are listed
-and for every robot file a command line is provided as example how to execute the test.
+Most of the robot files can be executed directly. But some of them require command line extensions. Therefore this tutorial contains for all robot files
+a command line that demonstates how to execute the file.
 
 All command lines let the Robot Framework save the log files in a local ``logfiles`` folder within this tutorial.
 
@@ -92,31 +92,13 @@ Tutorial files
 
   Tutorial file to handle scalars
 
-  *How to execute*:
-
-  .. code::
-
-     "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
-
 * ``tutorial-02.robot``
 
   Tutorial file to handle lists
 
-  *How to execute*:
-
-  .. code::
-
-     "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-02.xml -l tutorial-02_log.html -r tutorial-02_report.html -b tutorial-02.log ./tutorial-02.robot
-
 * ``tutorial-03.robot``
 
   Tutorial file to handle dictionaries
-
-  *How to execute*:
-
-  .. code::
-
-     "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
 
 
 TOC_

@@ -18,7 +18,7 @@
 #
 # scalar handling
 #
-# 0.1.0 / 05.09.2022
+# 0.2.0 / 06.09.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -32,6 +32,7 @@ Test Teardown     testsuites.testcase_teardown
 
 *** Test Cases ***
 Test Case 01_01
+    [documentation]    Log of some predefined scalars
     Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
     log_scalar    ${var_01}
     log_scalar    ${var_02}
@@ -51,4 +52,53 @@ Test Case 01_01
     log_scalar    ${var_16}
     log_scalar    ${var_17}
     log_scalar    ${var_18}
+
+Test Case 01_02
+    [documentation]    Arithmetical computation and concatenation of variables with different data types
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
+
+    Set Test Variable    ${test_var_1}    1
+    Set Test Variable    ${test_var_2}    2.3
+    Set Test Variable    ${test_var_3}    ${3}
+    Set Test Variable    ${test_var_4}    ${4.5}
+    Set Test Variable    ${test_var_5}    A
+    Set Test Variable    ${test_var_6}    B
+    Set Test Variable    ${test_var_7}    'C'
+
+    # arithmetical computation of two numbers defined as string
+    ${result} =    Evaluate    ${test_var_1} + ${test_var_2}
+    log_scalar     ${result}
+
+    # arithmetical computation of two numbers defined as integer and float
+    ${result} =    Evaluate    ${test_var_3} + ${test_var_4}
+    log_scalar     ${result}
+
+    # arithmetical computation of two numbers defined as string and float
+    ${result} =    Evaluate    ${test_var_1} + ${test_var_4}
+    log_scalar     ${result}
+
+    # catenation of two numbers defined as string
+    ${result} =    Catenate    ${test_var_1}    ${test_var_2}
+    log_scalar     ${result}
+
+    # catenation of two numbers defined as integer and float
+    ${result} =    Catenate    ${test_var_3}    ${test_var_4}
+    log_scalar     ${result}
+
+    # catenation of two strings
+    ${result} =    Catenate    ${test_var_5}    ${test_var_6}
+    log_scalar     ${result}
+
+    # catenation of an integer with a string (with quotes)
+    ${result} =    Catenate    "${test_var_3}"    ${test_var_7}
+    log_scalar     ${result}
+
+    # catenation of two numbers defined as integer and float (with no space in between)
+    ${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
+    log_scalar     ${test_var_7}
+
+    # arithmetical computation of the new variable test_var_7 (string) with an integer
+    ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
+    log_scalar     ${result}
+
 

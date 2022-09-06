@@ -15,6 +15,8 @@
 tutorial-01: working with scalars
 =================================
 
+**Data sets**
+
 Within
 
 .. code::
@@ -68,8 +70,19 @@ contains the keyword ``log_scalar`` that logs the value and the type of a given 
    scalar_type  = str(type(param))
    BuiltIn().log(f"+ value: '{scalar_value}' / type: {scalar_type}", "INFO", console=True)
 
+**Robot file**
 
-In ``tutorial-01.robot`` all variables listed above are logged with ``log_scalar``:
+``tutorial-02.robot`` demonstrates how to work with scalars.
+
+**Execution**
+
+.. code::
+
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
+
+**Test case 01_01**
+
+In test case ``01_01`` all variables listed above are logged with ``log_scalar``:
 
 .. code::
 
@@ -77,15 +90,7 @@ In ``tutorial-01.robot`` all variables listed above are logged with ``log_scalar
    ...
    log_scalar    ${var_18}
 
-
-**Execution:**
-
-.. code::
-
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
-
-
-**Outcome:**
+**Outcome**
 
 * Without quotes and curly brackets all values are interpreted as string - even in case they can be interpreted as
   integer (``var_04``) or keywords (``var_10``) also.
@@ -96,5 +101,95 @@ In ``tutorial-01.robot`` all variables listed above are logged with ``log_scalar
 * The dollar notation with an argument that cannot be interpreted as a numrical value (e.g. ``${ABC}``), requires that the argument is the name
   of an existing variable (``var_03``).
 
+**Test case 01_02**
 
+Test case ``01_02`` contains some arithmetical computation and concatenations of variables with different data types.
+
+To go also some other ways like before the variables of this test are defined as test variable.
+We have two numbers defined as string (``test_var_1`` and ``test_var_2``).
+We have two numbers defined as integer (``test_var_3`` and ``test_var_4``).
+And we have three strings (``test_var_5``, ``test_var_6`` and ``test_var_7``).
+
+.. code::
+
+   Set Test Variable    ${test_var_1}    1
+   Set Test Variable    ${test_var_2}    2.3
+   Set Test Variable    ${test_var_3}    ${3}
+   Set Test Variable    ${test_var_4}    ${4.5}
+   Set Test Variable    ${test_var_5}    A
+   Set Test Variable    ${test_var_6}    B
+   Set Test Variable    ${test_var_7}    'C'
+
+With these variables test case ``01_02`` does the following arithmetical computations and concatenations:
+
+1. Arithmetical computation of two numbers defined as string
+
+   .. code::
+
+      ${result} =    Evaluate    ${test_var_1} + ${test_var_2}
+      log_scalar     ${result}
+
+2. Arithmetical computation of two numbers defined as integer and float
+
+   .. code::
+
+      ${result} =    Evaluate    ${test_var_3} + ${test_var_4}
+      log_scalar     ${result}
+
+3. Arithmetical computation of two numbers defined as string and float
+
+   .. code::
+
+      ${result} =    Evaluate    ${test_var_1} + ${test_var_4}
+      log_scalar     ${result}
+
+4. Catenation of two numbers defined as string
+
+   .. code::
+
+      ${result} =    Catenate    ${test_var_1}    ${test_var_2}
+      log_scalar     ${result}
+
+5. Catenation of two numbers defined as integer and float
+
+   .. code::
+
+      ${result} =    Catenate    ${test_var_3}    ${test_var_4}
+      log_scalar     ${result}
+
+6. Catenation of two strings
+
+   .. code::
+
+      ${result} =    Catenate    ${test_var_5}    ${test_var_6}
+      log_scalar     ${result}
+
+7. Catenation of an integer with a string (with quotes)
+
+   .. code::
+
+      ${result} =    Catenate    "${test_var_3}"    ${test_var_7}
+      log_scalar     ${result}
+
+
+8. Catenation of two numbers defined as integer and float (with no space in between)
+
+   .. code::
+
+      ${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
+      log_scalar     ${test_var_7}
+
+9. Arithmetical computation of the new variable test_var_7 (string) with an integer
+
+   .. code::
+
+      ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
+      log_scalar     ${result}
+
+
+
+
+**Outcome**
+
+Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.
 

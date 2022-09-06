@@ -376,6 +376,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
+<p><strong>Data sets</strong></p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -387,8 +388,7 @@ limitations under the License. -->
            ...
 ...            key_18=${var_18}
 </pre>
-<p><em>What will be the data types of the keys of the dictionary?</em></p>
-<p>To answer this question the keyword library</p>
+<p>The keyword library</p>
 <pre class="code literal-block">
 ./libs/testlibrary.py
 </pre>
@@ -399,17 +399,20 @@ for key in param:
    key_type  = str(type(param[key]))
    BuiltIn().log(f&quot;+ key: '{key}' / value: '{key_value}' / type: {key_type}&quot;, &quot;INFO&quot;, console=True)
 </pre>
+<p><strong>Robot file</strong></p>
 <p><tt class="docutils literal"><span class="pre">tutorial-03.robot</span></tt> demonstrates how to work with dictionaries.</p>
-<p><strong>Execution:</strong></p>
+<p><strong>Execution</strong></p>
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
 </pre>
+<p><strong>Test case 03_01</strong></p>
 <p>In test case <tt class="docutils literal">03_01</tt> all dictionary keys are logged with <tt class="docutils literal">log_dict</tt>:</p>
 <pre class="code literal-block">
 log_dict    ${var_dict}
 </pre>
-<p><strong>Outcome:</strong></p>
-<p>The outcome is the same like in the previous tutorials. The fact that we work with a dictionary now, does not cause any changes regarding the data types of the keys.</p>
+<p><strong>Outcome</strong></p>
+<p>Values and data types are the same like in tutorial-01 and tutorial-02.</p>
+<p><strong>Test case 03_02</strong></p>
 <p>In test case <tt class="docutils literal">03_02</tt> single keys of the dictionary are accessed in two ways:</p>
 <ol class="arabic simple">
 <li>Key name is hard coded</li>
@@ -423,7 +426,7 @@ log_scalar    ${var_dict}[${key_as_string}]
 <pre class="code literal-block">
 ${key_as_string}    key_06
 </pre>
-<p><strong>Outcome:</strong></p>
+<p><strong>Outcome</strong></p>
 <p>In both cases the result is the same (<tt class="docutils literal">123</tt>). The Robot Framework documentation tells that when using this syntax: <tt class="docutils literal">${var}</tt>, this expression
 is replaced by the value of the variable (<tt class="docutils literal">var</tt>) <em>as-is</em>.</p>
 <p>Therefore <tt class="docutils literal">${key_as_string}</tt> is replaced by <tt class="docutils literal">key_06</tt>. The result is that in both cases <tt class="docutils literal"><span class="pre">${var_dict}[key_06]</span></tt> is the expression to be evaluated.</p>

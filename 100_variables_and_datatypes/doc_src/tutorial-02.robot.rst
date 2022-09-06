@@ -15,6 +15,8 @@
 tutorial-02: working with lists
 ===============================
 
+**Data sets**
+
 Within
 
 .. code::
@@ -30,9 +32,7 @@ the scalars of tutorial-01 are put together within a list
               ...
    ...            ${var_18}
 
-*What will be the data types of the elements of the list?*
-
-To answer this question the keyword library
+The keyword library
 
 .. code::
 
@@ -47,14 +47,17 @@ contains the keyword ``log_list`` that logs the value and the type of all elemen
       elem_type  = str(type(element))
       BuiltIn().log(f"+ value: '{elem_value}' / type: {elem_type}", "INFO", console=True)
 
+**Robot file**
 
 ``tutorial-02.robot`` demonstrates how to work with lists.
 
-**Execution:**
+**Execution**
 
 .. code::
 
    "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-02.xml -l tutorial-02_log.html -r tutorial-02_report.html -b tutorial-02.log ./tutorial-02.robot
+
+**Test case 02_01**
 
 In test case ``02_01`` all list elements are logged with ``log_list``:
 
@@ -62,9 +65,11 @@ In test case ``02_01`` all list elements are logged with ``log_list``:
 
    log_list    ${var_list}
 
-**Outcome:**
+**Outcome**
 
-The outcome is the same like in tutorial-01. The fact that we work with a list now, does not cause any changes regarding the data types of the elements.
+Values and data types are the same like in tutorial-01.
+
+**Test case 02_02**
 
 In test case ``02_02`` single elements of the list are accessed in three ways:
 
@@ -85,7 +90,7 @@ The following index variables are used:
    ${index_as_string}    5
    ${index_as_integer}   ${5}
 
-**Outcome:**
+**Outcome**
 
 In all three cases the result is the same (``123``). The Robot Framework documentation tells that when using this syntax: ``${var}``, this expression
 is replaced by the value of the variable (``var``) *as-is*.

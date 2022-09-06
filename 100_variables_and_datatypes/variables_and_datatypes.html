@@ -376,7 +376,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p>Version 0.1.0 / 05.09.2022 / by XC-CT/ECA3-Queckenstedt</p>
+<p>Version 0.2.0 / 06.09.2022 / by XC-CT/ECA3-Queckenstedt</p>
 <div class="section" id="table-of-content">
 <h1>Table of content</h1>
 <div class="line-block">
@@ -407,8 +407,8 @@ limitations under the License. -->
 <p>For this we use a Python based keyword library of this tutorial, that prints informations like type and content of a given variable to console.</p>
 <p>The names of the robot files of this tutorial are <tt class="docutils literal"><span class="pre">tutorial-01</span></tt>, <tt class="docutils literal"><span class="pre">tutorial-02</span></tt>, <tt class="docutils literal"><span class="pre">tutorial-03</span></tt> ... The content of every robot file is explained
 in more detail in a HTML file with same name.</p>
-<p>Most of the robot files can be executed directly. But some of them require command line extensions. In the next chapter all tutorial files are listed
-and for every robot file a command line is provided as example how to execute the test.</p>
+<p>Most of the robot files can be executed directly. But some of them require command line extensions. Therefore this tutorial contains for all robot files
+a command line that demonstates how to execute the file.</p>
 <p>All command lines let the Robot Framework save the log files in a local <tt class="docutils literal">logfiles</tt> folder within this tutorial.</p>
 <p>The syntax of all command lines belong to Windows. In case you work with this tutorial under Linux you have to modify the way, environment variables are accessed:</p>
 <ul class="simple">
@@ -436,24 +436,12 @@ and for every robot file a command line is provided as example how to execute th
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-01.robot</span></tt></p>
 <p>Tutorial file to handle scalars</p>
-<p><em>How to execute</em>:</p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
-</pre>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-02.robot</span></tt></p>
 <p>Tutorial file to handle lists</p>
-<p><em>How to execute</em>:</p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-02.xml -l tutorial-02_log.html -r tutorial-02_report.html -b tutorial-02.log ./tutorial-02.robot
-</pre>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-03.robot</span></tt></p>
 <p>Tutorial file to handle dictionaries</p>
-<p><em>How to execute</em>:</p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
-</pre>
 </li>
 </ul>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>

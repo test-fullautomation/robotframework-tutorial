@@ -376,6 +376,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
+<p><strong>Data sets</strong></p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -420,17 +421,20 @@ scalar_value = str(param)
 scalar_type  = str(type(param))
 BuiltIn().log(f&quot;+ value: '{scalar_value}' / type: {scalar_type}&quot;, &quot;INFO&quot;, console=True)
 </pre>
-<p>In <tt class="docutils literal"><span class="pre">tutorial-01.robot</span></tt> all variables listed above are logged with <tt class="docutils literal">log_scalar</tt>:</p>
+<p><strong>Robot file</strong></p>
+<p><tt class="docutils literal"><span class="pre">tutorial-02.robot</span></tt> demonstrates how to work with scalars.</p>
+<p><strong>Execution</strong></p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
+</pre>
+<p><strong>Test case 01_01</strong></p>
+<p>In test case <tt class="docutils literal">01_01</tt> all variables listed above are logged with <tt class="docutils literal">log_scalar</tt>:</p>
 <pre class="code literal-block">
 log_scalar    ${var_01}
 ...
 log_scalar    ${var_18}
 </pre>
-<p><strong>Execution:</strong></p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
-</pre>
-<p><strong>Outcome:</strong></p>
+<p><strong>Outcome</strong></p>
 <ul class="simple">
 <li>Without quotes and curly brackets all values are interpreted as string - even in case they can be interpreted as
 integer (<tt class="docutils literal">var_04</tt>) or keywords (<tt class="docutils literal">var_10</tt>) also.</li>
@@ -441,6 +445,80 @@ integer (<tt class="docutils literal">var_04</tt>) or keywords (<tt class="docut
 <li>The dollar notation with an argument that cannot be interpreted as a numrical value (e.g. <tt class="docutils literal">${ABC}</tt>), requires that the argument is the name
 of an existing variable (<tt class="docutils literal">var_03</tt>).</li>
 </ul>
+<p><strong>Test case 01_02</strong></p>
+<p>Test case <tt class="docutils literal">01_02</tt> contains some arithmetical computation and concatenations of variables with different data types.</p>
+<p>To go also some other ways like before the variables of this test are defined as test variable.
+We have two numbers defined as string (<tt class="docutils literal">test_var_1</tt> and <tt class="docutils literal">test_var_2</tt>).
+We have two numbers defined as integer (<tt class="docutils literal">test_var_3</tt> and <tt class="docutils literal">test_var_4</tt>).
+And we have three strings (<tt class="docutils literal">test_var_5</tt>, <tt class="docutils literal">test_var_6</tt> and <tt class="docutils literal">test_var_7</tt>).</p>
+<pre class="code literal-block">
+Set Test Variable    ${test_var_1}    1
+Set Test Variable    ${test_var_2}    2.3
+Set Test Variable    ${test_var_3}    ${3}
+Set Test Variable    ${test_var_4}    ${4.5}
+Set Test Variable    ${test_var_5}    A
+Set Test Variable    ${test_var_6}    B
+Set Test Variable    ${test_var_7}    'C'
+</pre>
+<p>With these variables test case <tt class="docutils literal">01_02</tt> does the following arithmetical computations and concatenations:</p>
+<ol class="arabic">
+<li><p class="first">Arithmetical computation of two numbers defined as string</p>
+<pre class="code literal-block">
+${result} =    Evaluate    ${test_var_1} + ${test_var_2}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Arithmetical computation of two numbers defined as integer and float</p>
+<pre class="code literal-block">
+${result} =    Evaluate    ${test_var_3} + ${test_var_4}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Arithmetical computation of two numbers defined as string and float</p>
+<pre class="code literal-block">
+${result} =    Evaluate    ${test_var_1} + ${test_var_4}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Catenation of two numbers defined as string</p>
+<pre class="code literal-block">
+${result} =    Catenate    ${test_var_1}    ${test_var_2}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Catenation of two numbers defined as integer and float</p>
+<pre class="code literal-block">
+${result} =    Catenate    ${test_var_3}    ${test_var_4}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Catenation of two strings</p>
+<pre class="code literal-block">
+${result} =    Catenate    ${test_var_5}    ${test_var_6}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Catenation of an integer with a string (with quotes)</p>
+<pre class="code literal-block">
+${result} =    Catenate    &quot;${test_var_3}&quot;    ${test_var_7}
+log_scalar     ${result}
+</pre>
+</li>
+<li><p class="first">Catenation of two numbers defined as integer and float (with no space in between)</p>
+<pre class="code literal-block">
+${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
+log_scalar     ${test_var_7}
+</pre>
+</li>
+<li><p class="first">Arithmetical computation of the new variable test_var_7 (string) with an integer</p>
+<pre class="code literal-block">
+${result} =    Evaluate    ${test_var_7} + ${test_var_3}
+log_scalar     ${result}
+</pre>
+</li>
+</ol>
+<p><strong>Outcome</strong></p>
+<p>Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.</p>
 </div>
 </body>
 </html>
