@@ -405,14 +405,17 @@ for key in param:
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
 </pre>
-<p><strong>Test case 03_01</strong></p>
+<div class="section" id="test-case-03-01">
+<h1>Test case 03_01</h1>
 <p>In test case <tt class="docutils literal">03_01</tt> all dictionary keys are logged with <tt class="docutils literal">log_dict</tt>:</p>
 <pre class="code literal-block">
 log_dict    ${var_dict}
 </pre>
 <p><strong>Outcome</strong></p>
 <p>Values and data types are the same like in tutorial-01 and tutorial-02.</p>
-<p><strong>Test case 03_02</strong></p>
+</div>
+<div class="section" id="test-case-03-02">
+<h1>Test case 03_02</h1>
 <p>In test case <tt class="docutils literal">03_02</tt> single keys of the dictionary are accessed in two ways:</p>
 <ol class="arabic simple">
 <li>Key name is hard coded</li>
@@ -430,6 +433,7 @@ ${key_as_string}    key_06
 <p>In both cases the result is the same (<tt class="docutils literal">123</tt>). The Robot Framework documentation tells that when using this syntax: <tt class="docutils literal">${var}</tt>, this expression
 is replaced by the value of the variable (<tt class="docutils literal">var</tt>) <em>as-is</em>.</p>
 <p>Therefore <tt class="docutils literal">${key_as_string}</tt> is replaced by <tt class="docutils literal">key_06</tt>. The result is that in both cases <tt class="docutils literal"><span class="pre">${var_dict}[key_06]</span></tt> is the expression to be evaluated.</p>
+</div>
 </div>
 </body>
 </html>

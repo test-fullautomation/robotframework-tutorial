@@ -427,7 +427,8 @@ BuiltIn().log(f&quot;+ value: '{scalar_value}' / type: {scalar_type}&quot;, &quo
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
 </pre>
-<p><strong>Test case 01_01</strong></p>
+<div class="section" id="test-case-01-01">
+<h1>Test case 01_01</h1>
 <p>In test case <tt class="docutils literal">01_01</tt> all variables listed above are logged with <tt class="docutils literal">log_scalar</tt>:</p>
 <pre class="code literal-block">
 log_scalar    ${var_01}
@@ -445,11 +446,13 @@ integer (<tt class="docutils literal">var_04</tt>) or keywords (<tt class="docut
 <li>The dollar notation with an argument that cannot be interpreted as a numrical value (e.g. <tt class="docutils literal">${ABC}</tt>), requires that the argument is the name
 of an existing variable (<tt class="docutils literal">var_03</tt>).</li>
 </ul>
-<p><strong>Test case 01_02</strong></p>
+</div>
+<div class="section" id="test-case-01-02">
+<h1>Test case 01_02</h1>
 <p>Test case <tt class="docutils literal">01_02</tt> contains some arithmetical computation and concatenations of variables with different data types.</p>
 <p>To go also some other ways like before the variables of this test are defined as test variable.
 We have two numbers defined as string (<tt class="docutils literal">test_var_1</tt> and <tt class="docutils literal">test_var_2</tt>).
-We have two numbers defined as integer (<tt class="docutils literal">test_var_3</tt> and <tt class="docutils literal">test_var_4</tt>).
+We have two numbers defined as integer (<tt class="docutils literal">test_var_3</tt>) and float (<tt class="docutils literal">test_var_4</tt>).
 And we have three strings (<tt class="docutils literal">test_var_5</tt>, <tt class="docutils literal">test_var_6</tt> and <tt class="docutils literal">test_var_7</tt>).</p>
 <pre class="code literal-block">
 Set Test Variable    ${test_var_1}    1
@@ -519,6 +522,64 @@ log_scalar     ${result}
 </ol>
 <p><strong>Outcome</strong></p>
 <p>Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.</p>
+</div>
+<div class="section" id="test-case-01-03">
+<h1>Test case 01_03</h1>
+<p>Test case <tt class="docutils literal">01_03</tt> contain the comparison of variables in several combinations. This test case works again with the variables from</p>
+<pre class="code literal-block">
+./libs/testimport.resource``
+</pre>
+<p>Comparisons:</p>
+<ol class="arabic">
+<li><p class="first">Comparison of string variable with hard coded string</p>
+<pre class="code literal-block">
+${status}=    Evaluate    &quot;${var_01}&quot; == &quot;ABC&quot;
+</pre>
+</li>
+<li><p class="first">Comparison of two different kind of string variables (pay attention of the usage of the quotes)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    &quot;${var_01}&quot; == ${var_02}
+</pre>
+</li>
+<li><p class="first">Comparison of a number (as string) with a number (as integer)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_04} == ${var_06}
+</pre>
+</li>
+<li><p class="first">Comparison of a number (as string) with a number (as integer), (pay attention of the usage of the quotes)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_05} == &quot;${var_06}&quot;
+</pre>
+</li>
+<li><p class="first">Comparison of boolean values</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_10} == ${var_12}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as string)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_04} &gt; ${var_07}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as string; short form)</p>
+<pre class="code literal-block">
+IF    ${var_04} &gt; ${var_07}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as integers; short form)</p>
+<pre class="code literal-block">
+IF    ${var_06} &gt; ${var_09}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (one as string and one as integer; short form)</p>
+<pre class="code literal-block">
+IF    ${var_04} &gt; ${var_09}
+</pre>
+</li>
+</ol>
+<p><strong>Outcome</strong></p>
+<p>All comparisons are <tt class="docutils literal">True</tt>.</p>
+</div>
 </div>
 </body>
 </html>

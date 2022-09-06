@@ -45,7 +45,7 @@ These are the positions:
 
 This part of the tutorial contains examples that demonstrate how to handle the definition of variables and how to access them.
 
-We also take a look behind the curtain to observe what happen with the data types of variables depending on the way they are handled.
+We also take a look behind the curtain to observe what happen with the data types of variables depending on the way they are handled and defined.
 
 For this we use a Python based keyword library of this tutorial, that prints informations like type and content of a given variable to console.
 
@@ -65,6 +65,13 @@ The syntax of all command lines belong to Windows. In case you work with this tu
 For best results while working with this tutorial, a basic knowledge of Robot Framework is recommended.
 
 It is also recommended to explore the tutorial files in the order of their numbers.
+
+A lot of things can go wrong in all examples of this tutorial (e.g. missing quotes, too much quotes, wrong operators, missing keywords like ``Evaluate``, and so on).
+Not all of these things cause syntax errors immediately. But if it's not a syntax issue, there will be no direct feedback by an error message. But the result of the test
+execution is not like expected.
+
+It is not the intention of this tutorial to go through all possible error scenarios while working with variables. We concentrate here on *what works*. And the way
+we do it, might also not be the *only* way to do it in a proper way.
 
 TOC_
 

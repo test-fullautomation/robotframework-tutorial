@@ -57,7 +57,8 @@ contains the keyword ``log_dict`` that logs the value and the type of all keys o
 
    "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-03.xml -l tutorial-03_log.html -r tutorial-03_report.html -b tutorial-03.log ./tutorial-03.robot
 
-**Test case 03_01**
+Test case 03_01
+---------------
 
 In test case ``03_01`` all dictionary keys are logged with ``log_dict``:
 
@@ -69,7 +70,8 @@ In test case ``03_01`` all dictionary keys are logged with ``log_dict``:
 
 Values and data types are the same like in tutorial-01 and tutorial-02.
 
-**Test case 03_02**
+Test case 03_02
+---------------
 
 In test case ``03_02`` single keys of the dictionary are accessed in two ways:
 

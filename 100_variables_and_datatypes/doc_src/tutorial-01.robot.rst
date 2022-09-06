@@ -80,7 +80,8 @@ contains the keyword ``log_scalar`` that logs the value and the type of a given 
 
    "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
 
-**Test case 01_01**
+Test case 01_01
+---------------
 
 In test case ``01_01`` all variables listed above are logged with ``log_scalar``:
 
@@ -101,13 +102,14 @@ In test case ``01_01`` all variables listed above are logged with ``log_scalar``
 * The dollar notation with an argument that cannot be interpreted as a numrical value (e.g. ``${ABC}``), requires that the argument is the name
   of an existing variable (``var_03``).
 
-**Test case 01_02**
+Test case 01_02
+---------------
 
 Test case ``01_02`` contains some arithmetical computation and concatenations of variables with different data types.
 
 To go also some other ways like before the variables of this test are defined as test variable.
 We have two numbers defined as string (``test_var_1`` and ``test_var_2``).
-We have two numbers defined as integer (``test_var_3`` and ``test_var_4``).
+We have two numbers defined as integer (``test_var_3``) and float (``test_var_4``).
 And we have three strings (``test_var_5``, ``test_var_6`` and ``test_var_7``).
 
 .. code::
@@ -186,10 +188,78 @@ With these variables test case ``01_02`` does the following arithmetical computa
       ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
       log_scalar     ${result}
 
-
-
-
 **Outcome**
 
 Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.
+
+Test case 01_03
+---------------
+
+Test case ``01_03`` contain the comparison of variables in several combinations. This test case works again with the variables from
+
+.. code::
+
+   ./libs/testimport.resource``
+
+Comparisons:
+
+1. Comparison of string variable with hard coded string
+
+   .. code::
+
+      ${status}=    Evaluate    "${var_01}" == "ABC"
+
+2. Comparison of two different kind of string variables (pay attention of the usage of the quotes)
+
+   .. code::
+
+      ${status}=    Evaluate    "${var_01}" == ${var_02}
+
+3. Comparison of a number (as string) with a number (as integer)
+
+   .. code::
+
+      ${status}=    Evaluate    ${var_04} == ${var_06}
+
+4. Comparison of a number (as string) with a number (as integer), (pay attention of the usage of the quotes)
+
+   .. code::
+
+      ${status}=    Evaluate    ${var_05} == "${var_06}"
+
+5. Comparison of boolean values
+
+   .. code::
+
+      ${status}=    Evaluate    ${var_10} == ${var_12}
+
+6. Comparison of numbers (as string)
+
+   .. code::
+
+      ${status}=    Evaluate    ${var_04} > ${var_07}
+
+7. Comparison of numbers (as string; short form)
+
+   .. code::
+
+      IF    ${var_04} > ${var_07}
+
+8. Comparison of numbers (as integers; short form)
+
+   .. code::
+
+      IF    ${var_06} > ${var_09}
+
+9. Comparison of numbers (one as string and one as integer; short form)
+
+   .. code::
+
+      IF    ${var_04} > ${var_09}
+
+**Outcome**
+
+All comparisons are ``True``.
+
+
 

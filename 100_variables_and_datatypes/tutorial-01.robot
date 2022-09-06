@@ -102,3 +102,110 @@ Test Case 01_02
     log_scalar     ${result}
 
 
+Test Case 01_03
+    [documentation]    Comparison of variables in several combinations.
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
+
+    # comparison of string variable with hard coded string
+    ${status}=    Evaluate    "${var_01}" == "ABC"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_01} == ABC is True   console=yes
+    ELSE
+        Log    ${var_01} == ABC is False   console=yes
+    END
+
+    # comparison of two different kind of string variables (pay attention of the usage of the quotes)
+    ${status}=    Evaluate    "${var_01}" == ${var_02}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    "${var_01}" == ${var_02} is True   console=yes
+    ELSE
+        Log    "${var_01}" == ${var_02} is False   console=yes
+    END
+
+
+    # comparison of a number (as string) with a number (as integer)
+    ${status}=    Evaluate    ${var_04} == ${var_06}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_04} == ${var_06} is True   console=yes
+    ELSE
+        Log    ${var_04} == ${var_06} is False   console=yes
+    END
+
+    # comparison of a number (as string) with a number (as integer), (pay attention of the usage of the quotes)
+    ${status}=    Evaluate    ${var_05} == "${var_06}"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_05} == "${var_06}" is True   console=yes
+    ELSE
+        Log    ${var_05} == "${var_06}" is False   console=yes
+    END
+
+    # comparison of boolean values
+    ${status}=    Evaluate    ${var_10} == ${var_12}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_10} == ${var_12} is True   console=yes
+    ELSE
+        Log    ${var_10} == ${var_12} is False   console=yes
+    END
+
+    # comparison of numbers (as string)
+    ${status}=    Evaluate    ${var_04} > ${var_07}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_04} > ${var_07} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_07} is False   console=yes
+    END
+
+    # comparison of numbers (as string; short form)
+    IF    ${var_04} > ${var_07}
+        Log    ${var_04} > ${var_07} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_07} is False   console=yes
+    END
+
+    # comparison of numbers (as integers; short form)
+    IF    ${var_06} > ${var_09}
+        Log    ${var_06} > ${var_09} is True   console=yes
+    ELSE
+        Log    ${var_06} > ${var_09} is False   console=yes
+    END
+
+    # comparison of numbers (one as string and one as integer; short form)
+    IF    ${var_04} > ${var_09}
+        Log    ${var_04} > ${var_09} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_09} is False   console=yes
+    END
+
+
+
+
+# ${var_01}    ABC
+# ${var_02}    "ABC"
+# ${var_03}    ${ABC}
+# ${var_04}    123
+# ${var_05}    "123"
+# ${var_06}    ${123}
+# ${var_07}    4.56
+# ${var_08}    "4.56"
+# ${var_09}    ${4.56}
+# ${var_10}    True
+# ${var_11}    "True"
+# ${var_12}    ${True}
+# ${var_13}    False
+# ${var_14}    "False"
+# ${var_15}    ${False}
+# ${var_16}    None
+# ${var_17}    "None"
+# ${var_18}    ${None}
