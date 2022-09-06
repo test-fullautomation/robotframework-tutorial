@@ -580,6 +580,68 @@ IF    ${var_04} &gt; ${var_09}
 <p><strong>Outcome</strong></p>
 <p>All comparisons are <tt class="docutils literal">True</tt>.</p>
 </div>
+<div class="section" id="test-case-01-04">
+<h1>Test case 01_04</h1>
+<p>Test case <tt class="docutils literal">01_04</tt> contains the computation of variables defined within the following json configuration file:</p>
+<pre class="code literal-block">
+./config/tutorialconfig.json
+</pre>
+<p>Within the global params section of this configuration file the following scalars are defined (also lists and dictionaries, but they will be handled
+in other parts of this tutorial):</p>
+<pre class="code literal-block">
+&quot;string_val&quot; : &quot;test string&quot;,
+&quot;int_val&quot; : 123,
+&quot;float_val&quot; : 4.56,
+&quot;bool_val_1&quot; : True,
+&quot;bool_val_2&quot; : true,
+&quot;bool_val_3&quot; : False,
+&quot;bool_val_4&quot; : false,
+&quot;none_val&quot; : None,
+&quot;null_val&quot; : null
+</pre>
+<p><em>Background:</em></p>
+<p>Basically the json configuration files of the Robot Framework AIO have to follow the syntax rules of the json format. But the Robot Framework AIO extends
+this syntax by some additional features like</p>
+<ul class="simple">
+<li>the possibility to add comments,</li>
+<li>the possibility to use the <tt class="docutils literal">${}</tt> syntax to refer to parameters,</li>
+<li>the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and json).</li>
+</ul>
+<p>In json the boolean values are written with the first letter capitalized (<tt class="docutils literal">True</tt>, <tt class="docutils literal">False</tt>). In json they are written in small letters completely
+(<tt class="docutils literal">true</tt>, <tt class="docutils literal">false</tt>). The Python singleton <tt class="docutils literal">None</tt> is <tt class="docutils literal">null</tt> in json.</p>
+<p>Now it is obvious that the parameters <tt class="docutils literal">bool_val_1</tt>, <tt class="docutils literal">bool_val_3</tt> and <tt class="docutils literal">none_val</tt> follow the Python way of typing them and the parameters
+<tt class="docutils literal">bool_val_2</tt>, <tt class="docutils literal">bool_val_4</tt> and <tt class="docutils literal">null_val</tt> follow the json way of typing them.</p>
+<p><em>Possible is both!</em></p>
+<p>But this has to be considered: In case of the json way of typing is choosed, internally the values are converted to the Python way of typing.
+If you implement own keyword libraries in Python you have to use the way of typing keywords, that is Python specific.</p>
+<p>In this test case at first the content of every parameter is logged with the already knwon <tt class="docutils literal">log_scalar</tt> keyword:</p>
+<pre class="code literal-block">
+log_scalar    ${string_val}
+log_scalar    ${int_val}
+log_scalar    ${float_val}
+log_scalar    ${bool_val_1}
+log_scalar    ${bool_val_2}
+log_scalar    ${bool_val_3}
+log_scalar    ${bool_val_4}
+log_scalar    ${none_val}
+log_scalar    ${null_val}
+</pre>
+<p><strong>Outcome</strong></p>
+<ul class="simple">
+<li>The value of <tt class="docutils literal">bool_val_2</tt> is <tt class="docutils literal">True</tt> - even in case of the parameter is defined with <tt class="docutils literal">true</tt> within the json file.</li>
+<li>The value of <tt class="docutils literal">bool_val_4</tt> is <tt class="docutils literal">False</tt> - even in case of the parameter is defined with <tt class="docutils literal">false</tt> within the json file.</li>
+<li>The value of <tt class="docutils literal">null_val</tt> is <tt class="docutils literal">None</tt> - even in case of the parameter is defined with <tt class="docutils literal">null</tt> within the json file.</li>
+</ul>
+<p>This test case finishes with some comparisons between parameters defined in json file and parameters defined in the resource file.</p>
+<p>Because of the internal conversion of keywords take a deeper look at the following expressions:</p>
+<pre class="code literal-block">
+IF    ${bool_val_2} != &quot;true&quot;
+
+IF    ${null_val} != &quot;null&quot;
+</pre>
+<p><strong>Outcome</strong></p>
+<p>All comparisons are <tt class="docutils literal">True</tt>.</p>
+</div>
 </div>
 </body>
 </html>

@@ -262,4 +262,81 @@ Comparisons:
 All comparisons are ``True``.
 
 
+Test case 01_04
+---------------
+
+Test case ``01_04`` contains the computation of variables defined within the following json configuration file:
+
+.. code::
+
+   ./config/tutorialconfig.json
+
+Within the global params section of this configuration file the following scalars are defined (also lists and dictionaries, but they will be handled
+in other parts of this tutorial):
+
+.. code::
+
+   "string_val" : "test string",
+   "int_val" : 123,
+   "float_val" : 4.56,
+   "bool_val_1" : True,
+   "bool_val_2" : true,
+   "bool_val_3" : False,
+   "bool_val_4" : false,
+   "none_val" : None,
+   "null_val" : null
+
+*Background:*
+
+Basically the json configuration files of the Robot Framework AIO have to follow the syntax rules of the json format. But the Robot Framework AIO extends
+this syntax by some additional features like
+
+* the possibility to add comments,
+* the possibility to use the ``${}`` syntax to refer to parameters,
+* the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and json).
+
+In json the boolean values are written with the first letter capitalized (``True``, ``False``). In json they are written in small letters completely
+(``true``, ``false``). The Python singleton ``None`` is ``null`` in json.
+
+Now it is obvious that the parameters ``bool_val_1``, ``bool_val_3`` and ``none_val`` follow the Python way of typing them and the parameters
+``bool_val_2``, ``bool_val_4`` and ``null_val`` follow the json way of typing them.
+
+*Possible is both!*
+
+But this has to be considered: In case of the json way of typing is choosed, internally the values are converted to the Python way of typing.
+If you implement own keyword libraries in Python you have to use the way of typing keywords, that is Python specific.
+
+In this test case at first the content of every parameter is logged with the already knwon ``log_scalar`` keyword:
+
+.. code::
+
+   log_scalar    ${string_val}
+   log_scalar    ${int_val}
+   log_scalar    ${float_val}
+   log_scalar    ${bool_val_1}
+   log_scalar    ${bool_val_2}
+   log_scalar    ${bool_val_3}
+   log_scalar    ${bool_val_4}
+   log_scalar    ${none_val}
+   log_scalar    ${null_val}
+
+**Outcome**
+
+* The value of ``bool_val_2`` is ``True`` - even in case of the parameter is defined with ``true`` within the json file.
+* The value of ``bool_val_4`` is ``False`` - even in case of the parameter is defined with ``false`` within the json file.
+* The value of ``null_val`` is ``None`` - even in case of the parameter is defined with ``null`` within the json file.
+
+This test case finishes with some comparisons between parameters defined in json file and parameters defined in the resource file.
+
+Because of the internal conversion of keywords take a deeper look at the following expressions:
+
+.. code::
+
+   IF    ${bool_val_2} != "true"
+
+   IF    ${null_val} != "null"
+
+**Outcome**
+
+All comparisons are ``True``.
 

@@ -188,24 +188,79 @@ Test Case 01_03
         Log    ${var_04} > ${var_09} is False   console=yes
     END
 
+Test Case 01_04
+    [documentation]    Working with variables taken from json configuration file
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
 
+    # the content of the json parameters
+    log_scalar    ${string_val}
+    log_scalar    ${int_val}
+    log_scalar    ${float_val}
+    log_scalar    ${bool_val_1}
+    log_scalar    ${bool_val_2}
+    log_scalar    ${bool_val_3}
+    log_scalar    ${bool_val_4}
+    log_scalar    ${none_val}
+    log_scalar    ${null_val}
 
+    # comparisons between json parameters and resource parameters
 
-# ${var_01}    ABC
-# ${var_02}    "ABC"
-# ${var_03}    ${ABC}
-# ${var_04}    123
-# ${var_05}    "123"
-# ${var_06}    ${123}
-# ${var_07}    4.56
-# ${var_08}    "4.56"
-# ${var_09}    ${4.56}
-# ${var_10}    True
-# ${var_11}    "True"
-# ${var_12}    ${True}
-# ${var_13}    False
-# ${var_14}    "False"
-# ${var_15}    ${False}
-# ${var_16}    None
-# ${var_17}    "None"
-# ${var_18}    ${None}
+    # comparison of numbers
+
+    IF    ${int_val} == ${var_06}
+        Log    ${int_val} == ${var_06} is True   console=yes
+    ELSE
+        Log    ${int_val} == ${var_06} is False   console=yes
+    END
+
+    # comparison of strings
+
+    ${status}=    Evaluate    "${string_val}" != "${var_01}"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    "${string_val}" != "${var_01}" is True   console=yes
+    ELSE
+        Log    "${string_val}" != "${var_01}" is False   console=yes
+    END
+
+    IF    "${string_val}" != "${var_01}"
+        Log    "${string_val}" != "${var_01}" is True   console=yes
+    ELSE
+        Log    "${string_val}" != "${var_01}" is False   console=yes
+    END
+
+    # comparison of boolean values
+
+    IF    ${bool_val_1} == ${var_12}
+        Log    ${bool_val_1} == ${var_12} is True   console=yes
+    ELSE
+        Log    ${bool_val_1} == ${var_12} is False   console=yes
+    END
+
+    IF    ${bool_val_1} == ${var_10}
+        Log    ${bool_val_1} == ${var_10} is True   console=yes
+    ELSE
+        Log    ${bool_val_1} == ${var_10} is False   console=yes
+    END
+
+    IF    ${bool_val_2} != "true"
+        Log    ${bool_val_2} != "true" is True   console=yes
+    ELSE
+        Log    ${bool_val_2} != "true" is False   console=yes
+    END
+
+    # comparison of None/null
+
+    IF    ${none_val} == ${var_18}
+        Log    ${none_val} == ${var_18} is True   console=yes
+    ELSE
+        Log    ${none_val} == ${var_18} is False   console=yes
+    END
+
+    IF    ${null_val} != "null"
+        Log    ${null_val} != "null" is True   console=yes
+    ELSE
+        Log    ${null_val} != "null" is False   console=yes
+    END
+

@@ -20,5 +20,19 @@
   "Minimum_version": "0.4.11",
 
   "Project": "G3g",
-  "TargetName" : "gen3flex@dlt"
+  "TargetName" : "gen3flex@dlt",
+
+  "params" : {
+              "global": {
+                         "string_val" : "test string",
+                         "int_val" : 123,
+                         "float_val" : 4.56,
+                         "bool_val_1" : True,
+                         "bool_val_2" : true,
+                         "bool_val_3" : False,
+                         "bool_val_4" : false,
+                         "none_val" : None,
+                         "null_val" : null
+                        }
+             }
 }
