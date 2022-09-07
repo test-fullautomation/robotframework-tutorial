@@ -32,7 +32,19 @@
                          "bool_val_3" : False,
                          "bool_val_4" : false,
                          "none_val" : None,
-                         "null_val" : null
+                         "null_val" : null,
+                         "dict_val" : {},
+                         "${params}['global']['dict_val']['key_1']" : {},
+                         "${params}['global']['dict_val']['key_1']['subkey_11']" : {},
+                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
+                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112']" : "${params}['global']['int_val']",
+                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113']" : "${params}['global']['float_val']",
+                         "${params}['global']['dict_val']['key_2']" : {},
+                         "${params}['global']['dict_val']['key_2']['subkey_21']" : {},
+                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211']" : "${params}['global']['bool_val_1']",
+                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212']" : "${params}['global']['bool_val_2']",
+                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213']" : "${params}['global']['null_val']"
                         }
              }
 }
+
