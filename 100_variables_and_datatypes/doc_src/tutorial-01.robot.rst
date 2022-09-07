@@ -295,7 +295,7 @@ this syntax by some additional features like
 * the possibility to use the ``${}`` syntax to refer to parameters,
 * the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and json).
 
-In json the boolean values are written with the first letter capitalized (``True``, ``False``). In json they are written in small letters completely
+In Python the boolean values are written with the first letter capitalized (``True``, ``False``). In json they are written in small letters completely
 (``true``, ``false``). The Python singleton ``None`` is ``null`` in json.
 
 Now it is obvious that the parameters ``bool_val_1``, ``bool_val_3`` and ``none_val`` follow the Python way of typing them and the parameters
