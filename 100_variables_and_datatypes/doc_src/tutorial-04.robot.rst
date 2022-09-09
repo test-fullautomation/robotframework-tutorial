@@ -133,7 +133,7 @@ Complete command line:
 
 **Outcome**
 
-The variable ``cmdline_var_1`` has the new value ``command line test string``. The value of all other variables are still ``None``.
+The variable ``cmdline_var_1`` has the new value ``command line test string``. The value of all other variables is still ``None``.
 
 ----
 
