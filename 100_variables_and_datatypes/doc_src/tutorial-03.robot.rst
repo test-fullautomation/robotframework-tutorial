@@ -17,6 +17,8 @@ tutorial-03: working with dictionaries
 
 **Data sets**
 
+Before we go to the tests of this tutorial we take a look at the variables used here:
+
 Within
 
 .. code::
@@ -121,10 +123,9 @@ Another aspect is the name of the data type of a dictionary. In this tutorial we
 
 In case of a parameter is an integer value, the name of the data type is: ``int``. That's easy. The name of the dictionary data type
 is: ``dict`` (in pure Python). Also in pure Python an extension of the ``dict`` data type is available: called ``dotdict``. This is a dictionary
-with reduced syntax - and therefore easier to use. Examples will be shown below.
-
-Now only one more thing is important: Additionally to what Python provides already, the Robot Framework implements his own version of a dotdict.
-And when you use the Python ``type()`` function to get the data type of a dictionary variable, this will be the answer: 
+with reduced syntax - and therefore easier to use. Examples will be shown below. Important here is: Additionally to what Python provides already,
+the Robot Framework implements his own version of a dotdict. And when you use the Python ``type()`` function to get the data type of
+a dictionary variable, this will be the answer: 
 
 .. code::
 
@@ -260,9 +261,9 @@ The following key name variables are defined:
    Set Test Variable    ${subkey}    subkey_11
    Set Test Variable    ${subsubkey}    subsubkey_111
 
-**Summarized:**
+**Summary**
 
-The following ways of accessing a dictionary value are possible:
+The following ways of accessing a dictionary value are possible in robot code:
 
 .. code::
 

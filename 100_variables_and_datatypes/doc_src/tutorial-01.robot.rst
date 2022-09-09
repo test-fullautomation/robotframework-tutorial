@@ -17,6 +17,8 @@ tutorial-01: working with scalars
 
 **Data sets**
 
+Before we go to the tests of this tutorial we take a look at the variables used here:
+
 Within
 
 .. code::
@@ -129,49 +131,42 @@ With these variables test case ``01_02`` does the following arithmetical computa
    .. code::
 
       ${result} =    Evaluate    ${test_var_1} + ${test_var_2}
-      log_scalar     ${result}
 
 2. Arithmetical computation of two numbers defined as integer and float
 
    .. code::
 
       ${result} =    Evaluate    ${test_var_3} + ${test_var_4}
-      log_scalar     ${result}
 
 3. Arithmetical computation of two numbers defined as string and float
 
    .. code::
 
       ${result} =    Evaluate    ${test_var_1} + ${test_var_4}
-      log_scalar     ${result}
 
 4. Catenation of two numbers defined as string
 
    .. code::
 
       ${result} =    Catenate    ${test_var_1}    ${test_var_2}
-      log_scalar     ${result}
 
 5. Catenation of two numbers defined as integer and float
 
    .. code::
 
       ${result} =    Catenate    ${test_var_3}    ${test_var_4}
-      log_scalar     ${result}
 
 6. Catenation of two strings
 
    .. code::
 
       ${result} =    Catenate    ${test_var_5}    ${test_var_6}
-      log_scalar     ${result}
 
 7. Catenation of an integer with a string (with quotes)
 
    .. code::
 
       ${result} =    Catenate    "${test_var_3}"    ${test_var_7}
-      log_scalar     ${result}
 
 
 8. Catenation of two numbers defined as integer and float (with no space in between)
@@ -179,14 +174,12 @@ With these variables test case ``01_02`` does the following arithmetical computa
    .. code::
 
       ${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
-      log_scalar     ${test_var_7}
 
 9. Arithmetical computation of the new variable test_var_7 (string) with an integer
 
    .. code::
 
       ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
-      log_scalar     ${result}
 
 **Outcome**
 
@@ -195,7 +188,7 @@ Where necessary the Robot Framework automatically converts the data types to ena
 Test case 01_03
 ---------------
 
-Test case ``01_03`` contain the comparison of variables in several combinations. This test case works again with the variables from
+Test case ``01_03`` contains the comparison of variables in several combinations. This test case works again with the variables from
 
 .. code::
 

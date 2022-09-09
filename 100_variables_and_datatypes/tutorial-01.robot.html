@@ -377,6 +377,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 <p><strong>Data sets</strong></p>
+<p>Before we go to the tests of this tutorial we take a look at the variables used here:</p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -468,55 +469,46 @@ Set Test Variable    ${test_var_7}    'C'
 <li><p class="first">Arithmetical computation of two numbers defined as string</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_1} + ${test_var_2}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of two numbers defined as integer and float</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_3} + ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of two numbers defined as string and float</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_1} + ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as string</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_1}    ${test_var_2}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as integer and float</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_3}    ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two strings</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_5}    ${test_var_6}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of an integer with a string (with quotes)</p>
 <pre class="code literal-block">
 ${result} =    Catenate    &quot;${test_var_3}&quot;    ${test_var_7}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as integer and float (with no space in between)</p>
 <pre class="code literal-block">
 ${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
-log_scalar     ${test_var_7}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of the new variable test_var_7 (string) with an integer</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
-log_scalar     ${result}
 </pre>
 </li>
 </ol>
@@ -525,7 +517,7 @@ log_scalar     ${result}
 </div>
 <div class="section" id="test-case-01-03">
 <h1>Test case 01_03</h1>
-<p>Test case <tt class="docutils literal">01_03</tt> contain the comparison of variables in several combinations. This test case works again with the variables from</p>
+<p>Test case <tt class="docutils literal">01_03</tt> contains the comparison of variables in several combinations. This test case works again with the variables from</p>
 <pre class="code literal-block">
 ./libs/testimport.resource``
 </pre>

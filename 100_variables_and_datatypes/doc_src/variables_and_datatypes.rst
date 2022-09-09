@@ -15,7 +15,7 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.2.1 / 07.09.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.3.0 / 09.09.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
@@ -87,13 +87,17 @@ Tutorial files
 
   Resource file containing the definition of some test variables
 
-* ``libs/arguments.robot``
-
-  Arguments file containing the definition of some test variables
-
 * ``libs/testlibrary.py``
 
   Python based keyword library containing some test keywords to support this tutorial
+
+* ``variables/testvariables.py``
+
+  Python based variable file containing the definition of some test variables
+
+* ``arguments/arguments.robot``
+
+  Arguments file containing the definition of some test variables
 
 * ``tutorial-01.robot``
 
@@ -106,6 +110,10 @@ Tutorial files
 * ``tutorial-03.robot``
 
   Tutorial file to handle dictionaries
+
+* ``tutorial-04.robot``
+
+  Tutorial file to handle variables taken from command line (either directly or by a Python variable file)
 
 
 TOC_

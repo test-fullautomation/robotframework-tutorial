@@ -17,6 +17,8 @@ tutorial-02: working with lists
 
 **Data sets**
 
+Before we go to the tests of this tutorial we take a look at the variables used here:
+
 Within
 
 .. code::

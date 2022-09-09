@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<title>Variables and datatypes in Robot Framework</title>
+<title>tutorial-04: working with variable files in command line</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="variables-and-datatypes-in-robot-framework">
-<h1 class="title">Variables and datatypes in Robot Framework</h1>
+<div class="document" id="tutorial-04-working-with-variable-files-in-command-line">
+<h1 class="title">tutorial-04: working with variable files in command line</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH
 
@@ -376,86 +376,119 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p>Version 0.3.0 / 09.09.2022 / by XC-CT/ECA3-Queckenstedt</p>
-<div class="section" id="table-of-content">
-<h1>Table of content</h1>
-<div class="line-block">
-<div class="line"><a class="reference internal" href="#introduction">Introduction</a></div>
-<div class="line"><a class="reference internal" href="#tutorial-files">Tutorial files</a></div>
-</div>
-</div>
-<div class="section" id="introduction">
-<h1>Introduction</h1>
-<p>The Robot Framework supports several types of variables and variables can be defined at several positions.</p>
-<p>These are the types:</p>
-<ul class="simple">
-<li>scalar</li>
-<li>list</li>
-<li>dictionary</li>
-</ul>
-<p>These are the positions:</p>
-<ul class="simple">
-<li>command line</li>
-<li><tt class="docutils literal">Variable</tt> section of test file</li>
-<li>imported resource file</li>
-<li>imported variable file</li>
-<li>during test execution</li>
-<li>json configuration file (RobotFramework AIO addon)</li>
-</ul>
-<p>This part of the tutorial contains examples that demonstrate how to handle the definition of variables and how to access them.</p>
-<p>We also take a look behind the curtain to observe what happen with the data types of variables depending on the way they are handled and defined.</p>
-<p>For this we use a Python based keyword library of this tutorial, that prints informations like type and content of a given variable to console.</p>
-<p>The names of the robot files of this tutorial are <tt class="docutils literal"><span class="pre">tutorial-01</span></tt>, <tt class="docutils literal"><span class="pre">tutorial-02</span></tt>, <tt class="docutils literal"><span class="pre">tutorial-03</span></tt> ... The content of every robot file is explained
-in more detail in a HTML file with same name.</p>
-<p>Most of the robot files can be executed directly. But some of them require command line extensions. Therefore this tutorial contains for all robot files
-a command line that demonstates how to execute the file.</p>
-<p>All command lines let the Robot Framework save the log files in a local <tt class="docutils literal">logfiles</tt> folder within this tutorial.</p>
-<p>The syntax of all command lines belong to Windows. In case you work with this tutorial under Linux you have to modify the way, environment variables are accessed:</p>
-<ul class="simple">
-<li><tt class="docutils literal">%RobotPythonPath%</tt> under Windows</li>
-<li><tt class="docutils literal">${RobotPythonPath}</tt> under Linux</li>
-</ul>
-<p>For best results while working with this tutorial, a basic knowledge of Robot Framework is recommended.</p>
-<p>It is also recommended to explore the tutorial files in the order of their numbers.</p>
-<p>A lot of things can go wrong in all examples of this tutorial (e.g. missing quotes, too much quotes, wrong operators, missing keywords like <tt class="docutils literal">Evaluate</tt>, and so on).
-Not all of these things cause syntax errors immediately. But if it's not a syntax issue, there will be no direct feedback in form of an error message.
-Only the result of the test execution is not like expected.</p>
-<p>It is not the intention of this tutorial to go through all possible error scenarios while working with variables. We concentrate here on <em>what works</em>. And the way
-we do it, might also not be the <em>only</em> way to do it in a proper way.</p>
-<p><a class="reference internal" href="#table-of-content">TOC</a></p>
-</div>
-<div class="section" id="tutorial-files">
-<h1>Tutorial files</h1>
-<ul>
-<li><p class="first"><tt class="docutils literal">config/tutorialconfig.json</tt></p>
-<p>Json configuration file containing the definition of some test variables</p>
-</li>
-<li><p class="first"><tt class="docutils literal">libs/testimport.resource</tt></p>
-<p>Resource file containing the definition of some test variables</p>
-</li>
-<li><p class="first"><tt class="docutils literal">libs/testlibrary.py</tt></p>
-<p>Python based keyword library containing some test keywords to support this tutorial</p>
-</li>
-<li><p class="first"><tt class="docutils literal">variables/testvariables.py</tt></p>
-<p>Python based variable file containing the definition of some test variables</p>
-</li>
-<li><p class="first"><tt class="docutils literal">arguments/arguments.robot</tt></p>
-<p>Arguments file containing the definition of some test variables</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-01.robot</span></tt></p>
-<p>Tutorial file to handle scalars</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-02.robot</span></tt></p>
-<p>Tutorial file to handle lists</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-03.robot</span></tt></p>
-<p>Tutorial file to handle dictionaries</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">tutorial-04.robot</span></tt></p>
-<p>Tutorial file to handle variables taken from command line (either directly or by a Python variable file)</p>
-</li>
-</ul>
-<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+<p><strong>Data sets</strong></p>
+<p>Before we go to the tests of this tutorial we take a look at the variables used here.</p>
+<p>Providing additional informations and settings in command line is an option. To be on the save side,
+every variable should be initialized</p>
+<p>The variables of this tutorial are initialized within</p>
+<pre class="code literal-block">
+./libs/testimport.resource
+</pre>
+<p>in the following way:</p>
+<pre class="code literal-block">
+${cmdline_var_1}    ${None}
+${cmdline_var_2}    ${None}
+${cmdline_var_3}    ${None}
+${cmdline_var_4}    ${None}
+${cmdline_var_5}    ${None}
+${cmdline_var_6}    ${None}
+${cmdline_var_7}    ${None}
+</pre>
+<p>Valid values are defined within the Python variable file</p>
+<pre class="code literal-block">
+./variables/testvariables.py
+</pre>
+<p>in the following way:</p>
+<pre class="code literal-block">
+cmdline_var_1 = &quot;variable file test string&quot;
+cmdline_var_2 = 234
+cmdline_var_3 = 5.67
+cmdline_var_4 = ['A', 'B', 'C']
+cmdline_var_5 = {'A' : 1, 'B' : 2, 'C' : 3}
+cmdline_var_6 = True
+cmdline_var_7 = None
+</pre>
+<p><strong>Robot file</strong></p>
+<p><tt class="docutils literal"><span class="pre">tutorial-04.robot</span></tt> demonstrates how to work with variable files and single variables in command line.</p>
+<div class="section" id="test-case-04-01">
+<h1>Test case 04_01</h1>
+<p>In test case <tt class="docutils literal">04_01</tt> all variables are logged with <tt class="docutils literal">log_scalar</tt>:</p>
+<pre class="code literal-block">
+log_scalar    ${variablefile_val_1}
+log_scalar    ${variablefile_val_2}
+log_scalar    ${variablefile_val_3}
+log_scalar    ${variablefile_val_4}
+log_scalar    ${variablefile_val_5}
+log_scalar    ${variablefile_val_6}
+log_scalar    ${variablefile_val_7}
+</pre>
+<p><strong>Execution</strong></p>
+<p>Now we go through several ways to execute the test.</p>
+<p><em>Standard execution without any command line extensions</em></p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+</pre>
+<p><strong>Outcome</strong></p>
+<p>The value of all variables is <tt class="docutils literal">None</tt> (like initialized).</p>
+<hr class="docutils" />
+<p><em>Execution with variable file in command line</em></p>
+<p>Now we add a variable file to command line:</p>
+<pre class="code literal-block">
+--variablefile ./variables/testvariables.py
+</pre>
+<p>Complete command line:</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot --variablefile ./variables/testvariables.py -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+</pre>
+<p><strong>Outcome</strong></p>
+<p>Value and data type of all variables are like defined in <tt class="docutils literal">testvariables.py</tt>.</p>
+<hr class="docutils" />
+<p><em>Execution with single variable in command line</em></p>
+<p>Instead of using a file containing definitions of variables it is also possible to provide single variables in command line.</p>
+<p>But here we have a limitation: It is only possible to use string values!</p>
+<p>Now we add a single variable to command line:</p>
+<pre class="code literal-block">
+--variable cmdline_var_1:&quot;command line test string&quot;
+</pre>
+<p>Complete command line:</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable cmdline_var_1:&quot;command line test string&quot; -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+</pre>
+<p><strong>Outcome</strong></p>
+<p>The variable <tt class="docutils literal">cmdline_var_1</tt> has the new value <tt class="docutils literal">command line test string</tt>. The value of all other variables are still <tt class="docutils literal">None</tt>.</p>
+<hr class="docutils" />
+<p><em>Execution with several variables in command line</em></p>
+<p>Now we provide two variables in command line: an integer and a boolean value:</p>
+<pre class="code literal-block">
+--variable cmdline_var_2:234 --variable cmdline_var_6:True
+</pre>
+<p>Complete command line:</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable cmdline_var_2:234 --variable cmdline_var_6:True -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+</pre>
+<p><strong>Outcome</strong></p>
+<p>Both variables are strings! Like already mentioned above: Only string values can be defined in command line. Or in other words:
+Every command line value will be interpreted as string. In case you need to work also with other data types you have to use the variable file mechanism
+(<tt class="docutils literal"><span class="pre">--variablefile</span></tt>).</p>
+<hr class="docutils" />
+<p><strong>Command line variables and TestsuitesManagement configuration</strong></p>
+<p>Up to now for command line tests we have only used variables that are not already defined within a json file of the TestsuitesManagement configuration.
+What will happen, when we try to overwrite such a configuration value in command line? The answer is: This will not work!</p>
+<p>The TestsuitesManagement configuration of the RobotFramework AIO is a certain extension of the Robot Framework core. The possibility to
+define values in several json files under certain conditions is a powerful feature - but this feature currently has the limitation
+that the json file values cannot be overwritten in command line (with both <tt class="docutils literal"><span class="pre">--variablefile</span></tt> and <tt class="docutils literal"><span class="pre">--variable</span></tt>).</p>
+<p>Remember:</p>
+<p>In the global params section of <tt class="docutils literal">tutorialconfig.json</tt> the following string variable is defined:</p>
+<pre class="code literal-block">
+&quot;string_val&quot; : &quot;test string&quot;,
+</pre>
+<p>Use the following command line to (try to) overwrite this value:</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable string_val:&quot;command line test string&quot; -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+</pre>
+<p><strong>Outcome</strong></p>
+<p>The configuration variable <tt class="docutils literal">string_val</tt> still has the original value <tt class="docutils literal">test string</tt>.</p>
+<p><em>Please be aware of this effect when you design your tests.</em></p>
 </div>
 </div>
 </body>

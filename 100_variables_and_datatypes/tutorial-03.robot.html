@@ -377,6 +377,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 <p><strong>Data sets</strong></p>
+<p>Before we go to the tests of this tutorial we take a look at the variables used here:</p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -452,9 +453,9 @@ the structure of the json files itself to the requirements of the robot world. T
 <tt class="docutils literal">log_scalar</tt>, <tt class="docutils literal">log_list</tt> and <tt class="docutils literal">log_dict</tt>. With the purpose to check also the data type of the given parameter.</p>
 <p>In case of a parameter is an integer value, the name of the data type is: <tt class="docutils literal">int</tt>. That's easy. The name of the dictionary data type
 is: <tt class="docutils literal">dict</tt> (in pure Python). Also in pure Python an extension of the <tt class="docutils literal">dict</tt> data type is available: called <tt class="docutils literal">dotdict</tt>. This is a dictionary
-with reduced syntax - and therefore easier to use. Examples will be shown below.</p>
-<p>Now only one more thing is important: Additionally to what Python provides already, the Robot Framework implements his own version of a dotdict.
-And when you use the Python <tt class="docutils literal">type()</tt> function to get the data type of a dictionary variable, this will be the answer:</p>
+with reduced syntax - and therefore easier to use. Examples will be shown below. Important here is: Additionally to what Python provides already,
+the Robot Framework implements his own version of a dotdict. And when you use the Python <tt class="docutils literal">type()</tt> function to get the data type of
+a dictionary variable, this will be the answer:</p>
 <pre class="code literal-block">
 RobotFramework_Testsuites.Config.CConfig.dotdict
 </pre>
@@ -558,8 +559,8 @@ Set Test Variable    ${key}    key_1
 Set Test Variable    ${subkey}    subkey_11
 Set Test Variable    ${subsubkey}    subsubkey_111
 </pre>
-<p><strong>Summarized:</strong></p>
-<p>The following ways of accessing a dictionary value are possible:</p>
+<p><strong>Summary</strong></p>
+<p>The following ways of accessing a dictionary value are possible in robot code:</p>
 <pre class="code literal-block">
 log_scalar    ${dict_val}[key_1][subkey_11][subsubkey_111]
 log_scalar    ${dict_val.key_1.subkey_11.subsubkey_111}
