@@ -88,3 +88,14 @@ ${index_as_integer}   ${5}
 
 ${key_as_string}    key_06
 
+# --------------------------------------------------------------------------------------------------------------
+# initialization of variables for command line tests in tutorial-04
+
+${cmdline_var_1}    ${None}
+${cmdline_var_2}    ${None}
+${cmdline_var_3}    ${None}
+${cmdline_var_4}    ${None}
+${cmdline_var_5}    ${None}
+${cmdline_var_6}    ${None}
+${cmdline_var_7}    ${None}
+

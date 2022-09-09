@@ -377,6 +377,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 <p><strong>Data sets</strong></p>
+<p>Before we go to the tests of this tutorial we take a look at the variables used here:</p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -405,14 +406,17 @@ for element in param:
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-02.xml -l tutorial-02_log.html -r tutorial-02_report.html -b tutorial-02.log ./tutorial-02.robot
 </pre>
-<p><strong>Test case 02_01</strong></p>
+<div class="section" id="test-case-02-01">
+<h1>Test case 02_01</h1>
 <p>In test case <tt class="docutils literal">02_01</tt> all list elements are logged with <tt class="docutils literal">log_list</tt>:</p>
 <pre class="code literal-block">
 log_list    ${var_list}
 </pre>
 <p><strong>Outcome</strong></p>
 <p>Values and data types are the same like in tutorial-01.</p>
-<p><strong>Test case 02_02</strong></p>
+</div>
+<div class="section" id="test-case-02-02">
+<h1>Test case 02_02</h1>
 <p>In test case <tt class="docutils literal">02_02</tt> single elements of the list are accessed in three ways:</p>
 <ol class="arabic simple">
 <li>Index is hard coded</li>
@@ -434,6 +438,7 @@ ${index_as_integer}   ${5}
 is replaced by the value of the variable (<tt class="docutils literal">var</tt>) <em>as-is</em>.</p>
 <p>Therefore <tt class="docutils literal">${index_as_string}</tt> is replaced by <tt class="docutils literal">5</tt> and also <tt class="docutils literal">${index_as_integer}</tt> is replaced by <tt class="docutils literal">5</tt>. The result is that in all three cases
 <tt class="docutils literal"><span class="pre">${var_list}[5]</span></tt> is the expression to be evaluated.</p>
+</div>
 </div>
 </body>
 </html>

@@ -377,6 +377,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 <p><strong>Data sets</strong></p>
+<p>Before we go to the tests of this tutorial we take a look at the variables used here:</p>
 <p>Within</p>
 <pre class="code literal-block">
 ./libs/testimport.resource
@@ -427,7 +428,8 @@ BuiltIn().log(f&quot;+ value: '{scalar_value}' / type: {scalar_type}&quot;, &quo
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-01.xml -l tutorial-01_log.html -r tutorial-01_report.html -b tutorial-01.log ./tutorial-01.robot
 </pre>
-<p><strong>Test case 01_01</strong></p>
+<div class="section" id="test-case-01-01">
+<h1>Test case 01_01</h1>
 <p>In test case <tt class="docutils literal">01_01</tt> all variables listed above are logged with <tt class="docutils literal">log_scalar</tt>:</p>
 <pre class="code literal-block">
 log_scalar    ${var_01}
@@ -445,11 +447,13 @@ integer (<tt class="docutils literal">var_04</tt>) or keywords (<tt class="docut
 <li>The dollar notation with an argument that cannot be interpreted as a numrical value (e.g. <tt class="docutils literal">${ABC}</tt>), requires that the argument is the name
 of an existing variable (<tt class="docutils literal">var_03</tt>).</li>
 </ul>
-<p><strong>Test case 01_02</strong></p>
+</div>
+<div class="section" id="test-case-01-02">
+<h1>Test case 01_02</h1>
 <p>Test case <tt class="docutils literal">01_02</tt> contains some arithmetical computation and concatenations of variables with different data types.</p>
 <p>To go also some other ways like before the variables of this test are defined as test variable.
 We have two numbers defined as string (<tt class="docutils literal">test_var_1</tt> and <tt class="docutils literal">test_var_2</tt>).
-We have two numbers defined as integer (<tt class="docutils literal">test_var_3</tt> and <tt class="docutils literal">test_var_4</tt>).
+We have two numbers defined as integer (<tt class="docutils literal">test_var_3</tt>) and float (<tt class="docutils literal">test_var_4</tt>).
 And we have three strings (<tt class="docutils literal">test_var_5</tt>, <tt class="docutils literal">test_var_6</tt> and <tt class="docutils literal">test_var_7</tt>).</p>
 <pre class="code literal-block">
 Set Test Variable    ${test_var_1}    1
@@ -465,60 +469,171 @@ Set Test Variable    ${test_var_7}    'C'
 <li><p class="first">Arithmetical computation of two numbers defined as string</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_1} + ${test_var_2}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of two numbers defined as integer and float</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_3} + ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of two numbers defined as string and float</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_1} + ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as string</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_1}    ${test_var_2}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as integer and float</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_3}    ${test_var_4}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two strings</p>
 <pre class="code literal-block">
 ${result} =    Catenate    ${test_var_5}    ${test_var_6}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of an integer with a string (with quotes)</p>
 <pre class="code literal-block">
 ${result} =    Catenate    &quot;${test_var_3}&quot;    ${test_var_7}
-log_scalar     ${result}
 </pre>
 </li>
 <li><p class="first">Catenation of two numbers defined as integer and float (with no space in between)</p>
 <pre class="code literal-block">
 ${test_var_7} =    Catenate    SEPARATOR=    ${test_var_3}    ${test_var_4}
-log_scalar     ${test_var_7}
 </pre>
 </li>
 <li><p class="first">Arithmetical computation of the new variable test_var_7 (string) with an integer</p>
 <pre class="code literal-block">
 ${result} =    Evaluate    ${test_var_7} + ${test_var_3}
-log_scalar     ${result}
 </pre>
 </li>
 </ol>
 <p><strong>Outcome</strong></p>
 <p>Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.</p>
+</div>
+<div class="section" id="test-case-01-03">
+<h1>Test case 01_03</h1>
+<p>Test case <tt class="docutils literal">01_03</tt> contains the comparison of variables in several combinations. This test case works again with the variables from</p>
+<pre class="code literal-block">
+./libs/testimport.resource``
+</pre>
+<p>Comparisons:</p>
+<ol class="arabic">
+<li><p class="first">Comparison of string variable with hard coded string</p>
+<pre class="code literal-block">
+${status}=    Evaluate    &quot;${var_01}&quot; == &quot;ABC&quot;
+</pre>
+</li>
+<li><p class="first">Comparison of two different kind of string variables (pay attention of the usage of the quotes)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    &quot;${var_01}&quot; == ${var_02}
+</pre>
+</li>
+<li><p class="first">Comparison of a number (as string) with a number (as integer)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_04} == ${var_06}
+</pre>
+</li>
+<li><p class="first">Comparison of a number (as string) with a number (as integer), (pay attention of the usage of the quotes)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_05} == &quot;${var_06}&quot;
+</pre>
+</li>
+<li><p class="first">Comparison of boolean values</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_10} == ${var_12}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as string)</p>
+<pre class="code literal-block">
+${status}=    Evaluate    ${var_04} &gt; ${var_07}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as string; short form)</p>
+<pre class="code literal-block">
+IF    ${var_04} &gt; ${var_07}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (as integers; short form)</p>
+<pre class="code literal-block">
+IF    ${var_06} &gt; ${var_09}
+</pre>
+</li>
+<li><p class="first">Comparison of numbers (one as string and one as integer; short form)</p>
+<pre class="code literal-block">
+IF    ${var_04} &gt; ${var_09}
+</pre>
+</li>
+</ol>
+<p><strong>Outcome</strong></p>
+<p>All comparisons are <tt class="docutils literal">True</tt>.</p>
+</div>
+<div class="section" id="test-case-01-04">
+<h1>Test case 01_04</h1>
+<p>Test case <tt class="docutils literal">01_04</tt> contains the computation of variables defined within the following json configuration file:</p>
+<pre class="code literal-block">
+./config/tutorialconfig.json
+</pre>
+<p>Within the global params section of this configuration file the following scalars are defined (also lists and dictionaries, but they will be handled
+in other parts of this tutorial):</p>
+<pre class="code literal-block">
+&quot;string_val&quot; : &quot;test string&quot;,
+&quot;int_val&quot; : 123,
+&quot;float_val&quot; : 4.56,
+&quot;bool_val_1&quot; : True,
+&quot;bool_val_2&quot; : true,
+&quot;bool_val_3&quot; : False,
+&quot;bool_val_4&quot; : false,
+&quot;none_val&quot; : None,
+&quot;null_val&quot; : null
+</pre>
+<p><em>Background:</em></p>
+<p>Basically the json configuration files of the Robot Framework AIO have to follow the syntax rules of the json format. But the Robot Framework AIO extends
+this syntax by some additional features like</p>
+<ul class="simple">
+<li>the possibility to add comments,</li>
+<li>the possibility to use the <tt class="docutils literal">${}</tt> syntax to refer to parameters,</li>
+<li>the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and json).</li>
+</ul>
+<p>In Python the boolean values are written with the first letter capitalized (<tt class="docutils literal">True</tt>, <tt class="docutils literal">False</tt>). In json they are written in small letters completely
+(<tt class="docutils literal">true</tt>, <tt class="docutils literal">false</tt>). The Python singleton <tt class="docutils literal">None</tt> is <tt class="docutils literal">null</tt> in json.</p>
+<p>Now it is obvious that the parameters <tt class="docutils literal">bool_val_1</tt>, <tt class="docutils literal">bool_val_3</tt> and <tt class="docutils literal">none_val</tt> follow the Python way of typing them and the parameters
+<tt class="docutils literal">bool_val_2</tt>, <tt class="docutils literal">bool_val_4</tt> and <tt class="docutils literal">null_val</tt> follow the json way of typing them.</p>
+<p><em>Possible is both!</em></p>
+<p>But this has to be considered: In case of the json way of typing is choosed, internally the values are converted to the Python way of typing.
+If you implement own keyword libraries in Python you have to use the way of typing keywords, that is Python specific.</p>
+<p>In this test case at first the content of every parameter is logged with the already knwon <tt class="docutils literal">log_scalar</tt> keyword:</p>
+<pre class="code literal-block">
+log_scalar    ${string_val}
+log_scalar    ${int_val}
+log_scalar    ${float_val}
+log_scalar    ${bool_val_1}
+log_scalar    ${bool_val_2}
+log_scalar    ${bool_val_3}
+log_scalar    ${bool_val_4}
+log_scalar    ${none_val}
+log_scalar    ${null_val}
+</pre>
+<p><strong>Outcome</strong></p>
+<ul class="simple">
+<li>The value of <tt class="docutils literal">bool_val_2</tt> is <tt class="docutils literal">True</tt> - even in case of the parameter is defined with <tt class="docutils literal">true</tt> within the json file.</li>
+<li>The value of <tt class="docutils literal">bool_val_4</tt> is <tt class="docutils literal">False</tt> - even in case of the parameter is defined with <tt class="docutils literal">false</tt> within the json file.</li>
+<li>The value of <tt class="docutils literal">null_val</tt> is <tt class="docutils literal">None</tt> - even in case of the parameter is defined with <tt class="docutils literal">null</tt> within the json file.</li>
+</ul>
+<p>This test case finishes with some comparisons between parameters defined in json file and parameters defined in the resource file.</p>
+<p>Because of the internal conversion of keywords take a deeper look at the following expressions:</p>
+<pre class="code literal-block">
+IF    ${bool_val_2} != &quot;true&quot;
+
+IF    ${null_val} != &quot;null&quot;
+</pre>
+<p><strong>Outcome</strong></p>
+<p>All comparisons are <tt class="docutils literal">True</tt>.</p>
+</div>
 </div>
 </body>
 </html>

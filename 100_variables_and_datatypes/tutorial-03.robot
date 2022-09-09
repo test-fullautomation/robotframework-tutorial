@@ -18,7 +18,7 @@
 #
 # dictionaries handling
 #
-# 0.2.0 / 06.09.2022
+# 0.3.0 / 07.09.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -50,6 +50,39 @@ Test Case 03_02
     # key name as string type
     log_scalar    ${var_dict}[${key_as_string}]
 
+Test Case 03_03
+    [documentation]    Working with nested dictionaries taken from json configuration file
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
 
+    # log entire dictionary (scope: params/global)
+    log_dict    ${dict_val}
 
+    # log every single subkey to check the data types (notation 1)
+    log_scalar    ${dict_val}[key_1][subkey_11][subsubkey_111]
+    log_scalar    ${dict_val}[key_1][subkey_11][subsubkey_112]
+    log_scalar    ${dict_val}[key_1][subkey_11][subsubkey_113]
+    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_211]
+    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_212]
+    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
+
+    # log every single subkey to check the data types (notation 2)
+    log_scalar    ${dict_val.key_1.subkey_11.subsubkey_111}
+    log_scalar    ${dict_val.key_1.subkey_11.subsubkey_112}
+    log_scalar    ${dict_val.key_1.subkey_11.subsubkey_113}
+    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_211}
+    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_212}
+    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_213}
+
+    # define some variables containing names of keys
+    Set Test Variable    ${key}    key_1
+    Set Test Variable    ${subkey}    subkey_11
+    Set Test Variable    ${subsubkey}    subsubkey_111
+
+    # summary: access to single keys with several possible notations
+
+    log_scalar    ${dict_val}[key_1][subkey_11][subsubkey_111]
+    log_scalar    ${dict_val.key_1.subkey_11.subsubkey_111}
+    log_scalar    ${dict_val['key_1']['subkey_11']['subsubkey_111']}
+    log_scalar    ${dict_val}[${key}][${subkey}][${subsubkey}]
+    log_scalar    ${dict_val['${key}']['${subkey}']['${subsubkey}']}
 

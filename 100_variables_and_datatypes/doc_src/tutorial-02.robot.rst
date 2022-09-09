@@ -17,6 +17,8 @@ tutorial-02: working with lists
 
 **Data sets**
 
+Before we go to the tests of this tutorial we take a look at the variables used here:
+
 Within
 
 .. code::
@@ -57,7 +59,8 @@ contains the keyword ``log_list`` that logs the value and the type of all elemen
 
    "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o tutorial-02.xml -l tutorial-02_log.html -r tutorial-02_report.html -b tutorial-02.log ./tutorial-02.robot
 
-**Test case 02_01**
+Test case 02_01
+---------------
 
 In test case ``02_01`` all list elements are logged with ``log_list``:
 
@@ -69,7 +72,8 @@ In test case ``02_01`` all list elements are logged with ``log_list``:
 
 Values and data types are the same like in tutorial-01.
 
-**Test case 02_02**
+Test case 02_02
+---------------
 
 In test case ``02_02`` single elements of the list are accessed in three ways:
 

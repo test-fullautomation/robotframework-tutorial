@@ -102,3 +102,165 @@ Test Case 01_02
     log_scalar     ${result}
 
 
+Test Case 01_03
+    [documentation]    Comparison of variables in several combinations.
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
+
+    # comparison of string variable with hard coded string
+    ${status}=    Evaluate    "${var_01}" == "ABC"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_01} == ABC is True   console=yes
+    ELSE
+        Log    ${var_01} == ABC is False   console=yes
+    END
+
+    # comparison of two different kind of string variables (pay attention of the usage of the quotes)
+    ${status}=    Evaluate    "${var_01}" == ${var_02}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    "${var_01}" == ${var_02} is True   console=yes
+    ELSE
+        Log    "${var_01}" == ${var_02} is False   console=yes
+    END
+
+
+    # comparison of a number (as string) with a number (as integer)
+    ${status}=    Evaluate    ${var_04} == ${var_06}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_04} == ${var_06} is True   console=yes
+    ELSE
+        Log    ${var_04} == ${var_06} is False   console=yes
+    END
+
+    # comparison of a number (as string) with a number (as integer), (pay attention of the usage of the quotes)
+    ${status}=    Evaluate    ${var_05} == "${var_06}"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_05} == "${var_06}" is True   console=yes
+    ELSE
+        Log    ${var_05} == "${var_06}" is False   console=yes
+    END
+
+    # comparison of boolean values
+    ${status}=    Evaluate    ${var_10} == ${var_12}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_10} == ${var_12} is True   console=yes
+    ELSE
+        Log    ${var_10} == ${var_12} is False   console=yes
+    END
+
+    # comparison of numbers (as string)
+    ${status}=    Evaluate    ${var_04} > ${var_07}
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    ${var_04} > ${var_07} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_07} is False   console=yes
+    END
+
+    # comparison of numbers (as string; short form)
+    IF    ${var_04} > ${var_07}
+        Log    ${var_04} > ${var_07} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_07} is False   console=yes
+    END
+
+    # comparison of numbers (as integers; short form)
+    IF    ${var_06} > ${var_09}
+        Log    ${var_06} > ${var_09} is True   console=yes
+    ELSE
+        Log    ${var_06} > ${var_09} is False   console=yes
+    END
+
+    # comparison of numbers (one as string and one as integer; short form)
+    IF    ${var_04} > ${var_09}
+        Log    ${var_04} > ${var_09} is True   console=yes
+    ELSE
+        Log    ${var_04} > ${var_09} is False   console=yes
+    END
+
+Test Case 01_04
+    [documentation]    Working with variables taken from json configuration file
+    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
+
+    # the content of the json parameters
+    log_scalar    ${string_val}
+    log_scalar    ${int_val}
+    log_scalar    ${float_val}
+    log_scalar    ${bool_val_1}
+    log_scalar    ${bool_val_2}
+    log_scalar    ${bool_val_3}
+    log_scalar    ${bool_val_4}
+    log_scalar    ${none_val}
+    log_scalar    ${null_val}
+
+    # comparisons between json parameters and resource parameters
+
+    # comparison of numbers
+
+    IF    ${int_val} == ${var_06}
+        Log    ${int_val} == ${var_06} is True   console=yes
+    ELSE
+        Log    ${int_val} == ${var_06} is False   console=yes
+    END
+
+    # comparison of strings
+
+    ${status}=    Evaluate    "${string_val}" != "${var_01}"
+    log_scalar    ${status}
+
+    IF    ${status} == True
+        Log    "${string_val}" != "${var_01}" is True   console=yes
+    ELSE
+        Log    "${string_val}" != "${var_01}" is False   console=yes
+    END
+
+    IF    "${string_val}" != "${var_01}"
+        Log    "${string_val}" != "${var_01}" is True   console=yes
+    ELSE
+        Log    "${string_val}" != "${var_01}" is False   console=yes
+    END
+
+    # comparison of boolean values
+
+    IF    ${bool_val_1} == ${var_12}
+        Log    ${bool_val_1} == ${var_12} is True   console=yes
+    ELSE
+        Log    ${bool_val_1} == ${var_12} is False   console=yes
+    END
+
+    IF    ${bool_val_1} == ${var_10}
+        Log    ${bool_val_1} == ${var_10} is True   console=yes
+    ELSE
+        Log    ${bool_val_1} == ${var_10} is False   console=yes
+    END
+
+    IF    ${bool_val_2} != "true"
+        Log    ${bool_val_2} != "true" is True   console=yes
+    ELSE
+        Log    ${bool_val_2} != "true" is False   console=yes
+    END
+
+    # comparison of None/null
+
+    IF    ${none_val} == ${var_18}
+        Log    ${none_val} == ${var_18} is True   console=yes
+    ELSE
+        Log    ${none_val} == ${var_18} is False   console=yes
+    END
+
+    IF    ${null_val} != "null"
+        Log    ${null_val} != "null" is True   console=yes
+    ELSE
+        Log    ${null_val} != "null" is False   console=yes
+    END
+

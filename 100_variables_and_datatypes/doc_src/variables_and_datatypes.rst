@@ -15,7 +15,7 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.2.0 / 06.09.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.3.0 / 09.09.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
@@ -45,7 +45,7 @@ These are the positions:
 
 This part of the tutorial contains examples that demonstrate how to handle the definition of variables and how to access them.
 
-We also take a look behind the curtain to observe what happen with the data types of variables depending on the way they are handled.
+We also take a look behind the curtain to observe what happen with the data types of variables depending on the way they are handled and defined.
 
 For this we use a Python based keyword library of this tutorial, that prints informations like type and content of a given variable to console.
 
@@ -66,6 +66,13 @@ For best results while working with this tutorial, a basic knowledge of Robot Fr
 
 It is also recommended to explore the tutorial files in the order of their numbers.
 
+A lot of things can go wrong in all examples of this tutorial (e.g. missing quotes, too much quotes, wrong operators, missing keywords like ``Evaluate``, and so on).
+Not all of these things cause syntax errors immediately. But if it's not a syntax issue, there will be no direct feedback in form of an error message.
+Only the result of the test execution is not like expected.
+
+It is not the intention of this tutorial to go through all possible error scenarios while working with variables. We concentrate here on *what works*. And the way
+we do it, might also not be the *only* way to do it in a proper way.
+
 TOC_
 
 
@@ -80,13 +87,17 @@ Tutorial files
 
   Resource file containing the definition of some test variables
 
-* ``libs/arguments.robot``
-
-  Arguments file containing the definition of some test variables
-
 * ``libs/testlibrary.py``
 
   Python based keyword library containing some test keywords to support this tutorial
+
+* ``variables/testvariables.py``
+
+  Python based variable file containing the definition of some test variables
+
+* ``arguments/arguments.robot``
+
+  Arguments file containing the definition of some test variables
 
 * ``tutorial-01.robot``
 
@@ -99,6 +110,10 @@ Tutorial files
 * ``tutorial-03.robot``
 
   Tutorial file to handle dictionaries
+
+* ``tutorial-04.robot``
+
+  Tutorial file to handle variables taken from command line (either directly or by a Python variable file)
 
 
 TOC_
