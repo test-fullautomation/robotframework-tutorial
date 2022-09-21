@@ -20,10 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# 03.03.2022 / XC-CT/ECA3-Queckenstedt
-# Rework after migration to GitHub
-#
-# Initial version 02/2022
+# 20.09.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -123,9 +120,18 @@ class CConfig():
       except Exception as ex:
           bSuccess = False
           sResult  = str(ex)
-          return bSuccess, sResult
+          return bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
 
-      sRST2HTML = CString.NormalizePath(f"{sPythonPath}/Scripts/rst2html.py")
+      sRST2HTML = None
+      if sPlatformSystem == "Windows":
+         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/Scripts/rst2html.py")
+      elif sPlatformSystem == "Linux":
+         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/rst2html.py")
+      else:
+         bSuccess = None
+         sResult  = f"Platform system '{sPlatformSystem}' is not supported"
+         raise Exception(CString.FormatResult(sMethod, bSuccess, sResult))
+
       if os.path.isfile(sRST2HTML) is False:
          bSuccess = False
          sResult  = "Missing file converter '" + str(sRST2HTML) + "'"
@@ -140,7 +146,7 @@ class CConfig():
 
       bSuccess = True
       sResult  = "Repository setup done"
-      return bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+      return bSuccess, sResult
 
    # eof def __InitConfig(self):
 
