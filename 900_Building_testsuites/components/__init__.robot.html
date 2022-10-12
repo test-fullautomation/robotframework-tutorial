@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>suite03: Do some basic tests with global parameters</title>
+<title>__init__: Define the first suite setup and last suite teardown</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="suite03-do-some-basic-tests-with-global-parameters">
-<h1 class="title">suite03: Do some basic tests with global parameters</h1>
+<div class="document" id="init-define-the-first-suite-setup-and-last-suite-teardown">
+<h1 class="title">__init__: Define the first suite setup and last suite teardown</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
 
@@ -376,83 +376,13 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p><strong>Data sets</strong></p>
-<p>The CONFIG and the global parameters will be loaded in</p>
-<pre class="code literal-block">
-../config/testsuites_config.json
-</pre>
-<p>according to the variant name, the robot run will choose the corresponding json configuration
-file. If variant name is not set, the robot will run with <tt class="docutils literal"><span class="pre">../config/robot_execution_config.json</span></tt> config file.</p>
 <p><strong>Robot file</strong></p>
-<p><tt class="docutils literal">suite03.robot</tt> do some basic testings with global variable which are set in json configuration file.</p>
+<p><tt class="docutils literal">__init__.robot</tt> is used to define the first suite setup and the last suite teardown
+when triggers the robot testing for all testsuites in robotframework-tutorial\900_Building_testsuites\components.</p>
 <p><strong>Execution</strong></p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o suite03.xml -l suite03_log.html -r suite03_report.html -b suite03.log ./suite03.robot
-</pre>
-<div class="section" id="test-case-0301">
-<h1>Test Case 0301</h1>
-<p>In test case <tt class="docutils literal">0301</tt> implement a simple <tt class="docutils literal">FOR</tt> loop and log out string <tt class="docutils literal">Hello world &lt;loop_index&gt;</tt>:</p>
-<pre class="code literal-block">
-FOR    ${index}    IN RANGE    31    41
-   Log  Hello world ${index}
-END
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The string <tt class="docutils literal">Hello world &lt;loop_index&gt;</tt> is logged out.</p>
-</div>
-<div class="section" id="test-case-0302">
-<h1>Test Case 0302</h1>
-<p>In test case <tt class="docutils literal">0302</tt> just simply logs out the values of CONFIG parameters:</p>
-<pre class="code literal-block">
-Log    ${CONFIG}[WelcomeString]
-Log    ${CONFIG}[Project]
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The values of parameters which are defined in <tt class="docutils literal"><span class="pre">../config/common/test_config_common.json</span></tt> is logged out.</p>
-</div>
-<div class="section" id="test-case-0303">
-<h1>Test Case 0303</h1>
-<p>In test case <tt class="docutils literal">0303</tt> prints out the version of Testsuitesmanagement package which is stored in CONFIG object:</p>
-<pre class="code literal-block">
-Log    ${CONFIG}[version][majorversion] ${CONFIG}[version][minorversion] ${CONFIG}[version][patchversion]
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The values of <tt class="docutils literal">version.majorversion</tt>, <tt class="docutils literal">version.minorversion</tt>, and <tt class="docutils literal">version.patchversion</tt> are logged out
-alternately.</p>
-</div>
-<div class="section" id="test-case-0304">
-<h1>Test Case 0304</h1>
-<p>In test case <tt class="docutils literal">0304</tt> sums two <tt class="docutils literal">int</tt> datatype global variables which are defined in json configuration file, and print
-the result out:</p>
-<pre class="code literal-block">
-${sum} =    Evaluate    ${gGlobalIntParam} + ${gGlobalIntParam}
-log   ${sum}
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The result of sum operation between two global variables are printed out.</p>
-</div>
-<div class="section" id="test-case-0305">
-<h1>Test Case 0305</h1>
-<p>In test case <tt class="docutils literal">0305</tt> sums two float datatype global variables which are defined in json configuration file, and print
-the result out:</p>
-<pre class="code literal-block">
-${sum} =    Evaluate    ${gGlobalFloatParam} + ${gGlobalFloatParam}
-log   ${sum}
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The result of sum operation between two global variables are printed out.</p>
-</div>
-<div class="section" id="test-case-0306">
-<h1>Test Case 0306</h1>
-<p>In test case <tt class="docutils literal">0306</tt> sums two str datatype global variables which are defined in json configuration file, and print
-the result out:</p>
-<pre class="code literal-block">
-${sum} =    Evaluate    &quot;${gGlobalString}&quot; + &quot;${gGlobalString}&quot;
-log   ${sum}
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The result of sum operation between two global variables are printed out.</p>
-</div>
+<p>This <tt class="docutils literal">__init__.robot</tt> file doesn't contain any testcase, it just defines the keywords
+<tt class="docutils literal">Initialized Suite Setup</tt> and <tt class="docutils literal">Last Suite Teardown</tt>, call <tt class="docutils literal">Suite Setup</tt> and <tt class="docutils literal">Suite Teardown</tt>
+for all testsuites in current directory which <tt class="docutils literal">__init__.robot</tt> is located.</p>
 </div>
 </body>
 </html>

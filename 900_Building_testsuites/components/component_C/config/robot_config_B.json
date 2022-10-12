@@ -18,7 +18,6 @@
 //  test config files
 //*****************************************************************************
 {
- 
   "WelcomeString": "Hello... ROBFW is running now!",
   "Maximum_version": "0.5.2",
   "Minimum_version": "0.4.10",
@@ -28,7 +27,6 @@
     "minorversion": "1",
     "patchversion": "0"
   },
- 
-  "TargetName" :  "gen3flex@dlt",
-  "Project": "G3g-component_B-Suite04"
+  "Project": "G3g-default-level3",
+  "TargetName" :  "gen3flex@dlt"
 }

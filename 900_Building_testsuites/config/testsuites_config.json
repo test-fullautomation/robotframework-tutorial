@@ -36,11 +36,11 @@
 //*****************************************************************************
 {
   "default": {
-    "name": "robot_config.json",
+    "name": "robot_execution_config.json",
     "path": ".../config/"
   },
   "variant_0": {
-    "name": "robot_config.json",
+    "name": "robot_execution_config.json",
     "path": ".../config/"
   },
   "variant_1": {

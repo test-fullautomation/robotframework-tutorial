@@ -11,6 +11,9 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+*** Variables ***
+${variant}    variant_2
+
 *** Settings ***
 Library      RobotFramework_Testsuites    WITH NAME    testsuites
 Suite Setup      testsuites.testsuite_setup    ../config/testsuites_config.json
@@ -20,5 +23,6 @@ Test Teardown    testsuites.testcase_teardown
 
 *** Test Cases ***
 Test Case 0201
+    [documentation]    Log of some CONFIG parameters
     Log    ${CONFIG}[WelcomeString]
     Log    ${CONFIG}[Project]
