@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>Building testsuites in RobotFrameowork AIO</title>
+<title>Building test suites in RobotFrameowork AIO</title>
 <style type="text/css">
 
 /*
@@ -360,175 +360,241 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="building-testsuites-in-robotframeowork-aio">
-<h1 class="title">Building testsuites in RobotFrameowork AIO</h1>
+<div class="document" id="building-test-suites-in-robotframeowork-aio">
+<h1 class="title">Building test suites in RobotFrameowork AIO</h1>
 
-<!-- Copyright 2020-2022 Robert Bosch GmbH
-
-Licensed under the Apache License, Version 2.0 (the "License");
+<!-- Copyright 2020-2022 Robert Bosch GmbH -->
+<!-- Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
+You may obtain a copy of the License at -->
+<!-- http://www.apache.org/licenses/LICENSE-2.0 -->
+<!-- Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p>Version 0.1.0 / 25.10.2022 / by MS/EMC1-XC Mai Dinh Nam Son</p>
+<hr class="docutils" />
 <div class="section" id="table-of-content">
 <h1>Table of content</h1>
-<div class="line-block">
-<div class="line"><a class="reference internal" href="#introduction">Introduction</a></div>
-<div class="line"><a class="reference internal" href="#tutorial-files">Tutorial files</a></div>
-</div>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+</ol>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-the-initial-situation">What is the initial situation?</a></li>
+<li><a class="reference internal" href="#how-to-handle-configuration-parameters-in-robotframework-aio">How to handle configuration parameters in RobotFramework AIO?</a></li>
+<li><a class="reference internal" href="#how-to-realize-a-concrete-test-suites-management">How to realize a concrete test suites management?</a></li>
+<li><a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ol>
 </div>
 <div class="section" id="introduction">
 <h1>Introduction</h1>
-<p>The RobotFramework AIO supports configuration files with Json format and 4 configuration levels
-with different prority for various purpose during using RobotFramework AIO to create automation
-testing project.</p>
-<p>The json configuration files is handled by <a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor">JsonPreprocessor package</a>
-which is embbeded into RobotFrameowork AIO installation package:</p>
-<ul class="simple">
-<li>Adding the comments to the json configuration file is allowed.</li>
-<li>Import the content of another json files.</li>
-<li>Allow python datatypes <tt class="docutils literal">True</tt>, <tt class="docutils literal">False</tt> and <tt class="docutils literal">None</tt> as json syntax elements.</li>
-<li>Be able to use nested variable.</li>
-</ul>
-<p>The RobotFramework AIO defines 4 different configuration levels, from level 1 -&gt; level 4, where Level 1
-is highest priority and level 4 is lowest priority:</p>
-<p><strong>Level 1: Loads configuration file while executing robot testsuite by command</strong></p>
-<p>User can address the json configuration file when executing robot testsuite with input parameter
-<tt class="docutils literal"><span class="pre">--variable</span> <span class="pre">config_file:&quot;&lt;path_to_json_file&gt;&quot;</span></tt></p>
-<p>Ex: <tt class="docutils literal">robot <span class="pre">--variable</span> <span class="pre">config_file:&quot;&lt;path_to_json_file&gt;&quot;</span> &lt;path_to_testsuite&gt;</tt></p>
-<p><strong>Level 2: Loads Json configuration according to variant name</strong></p>
-<p>This level 2 is designed for the scenario that user creates the automation testing project which running
-for many different variants. Base on variant name input when trigger robot run, it will load the appropriate
-json configuration file.</p>
-<p>To set RobotFrameowork AIO run with level 2, first user has to create a json file which contains different
-variants point to different configuration files.</p>
-<p>For example, we create the <tt class="docutils literal">variants_cfg.json</tt> with content below:</p>
-<pre class="code json literal-block">
-<span class="punctuation">{</span><span class="whitespace">
-  </span><span class="name tag">&quot;default&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="punctuation">{</span><span class="whitespace">
-    </span><span class="name tag">&quot;name&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;default_cfg_file&gt;&quot;</span><span class="punctuation">,</span><span class="whitespace">
-    </span><span class="name tag">&quot;path&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;path&gt;&quot;</span><span class="whitespace">
-  </span><span class="punctuation">},</span><span class="whitespace">
-  </span><span class="name tag">&quot;variant_0&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="punctuation">{</span><span class="whitespace">
-    </span><span class="name tag">&quot;name&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;file_name_variant_0&gt;&quot;</span><span class="punctuation">,</span><span class="whitespace">
-    </span><span class="name tag">&quot;path&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;path&gt;&quot;</span><span class="whitespace">
-  </span><span class="punctuation">},</span><span class="whitespace">
-  </span><span class="name tag">&quot;variant_1&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="punctuation">{</span><span class="whitespace">
-    </span><span class="name tag">&quot;name&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;file_name_variant_1&gt;&quot;</span><span class="punctuation">,</span><span class="whitespace">
-    </span><span class="name tag">&quot;path&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;path&gt;&quot;</span><span class="whitespace">
-  </span><span class="punctuation">},</span><span class="whitespace">
-  </span><span class="name tag">&quot;variant_2&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="punctuation">{</span><span class="whitespace">
-    </span><span class="name tag">&quot;name&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;file_name_variant_2&gt;&quot;</span><span class="punctuation">,</span><span class="whitespace">
-    </span><span class="name tag">&quot;path&quot;</span><span class="punctuation">:</span><span class="whitespace"> </span><span class="literal string double">&quot;&lt;path&gt;&quot;</span><span class="whitespace">
-  </span><span class="punctuation">}</span><span class="whitespace">
-</span><span class="punctuation">}</span>
-</pre>
-<p>Then the path of <tt class="docutils literal">variants_cfg.json</tt> file has to add as input parameter of <tt class="docutils literal">testsuites.testsuite_setup</tt>
-in <tt class="docutils literal">Suite Setup</tt> of a testsuite.</p>
-<p>In case of user wants to set configuration level 2 for entire RobotFrameowork test project instead of
-indiviual robot testsuite file, <tt class="docutils literal">__init__.robot</tt> file has to be created at the highest folder of
-RobotFrameowork test project, and the path of <tt class="docutils literal">variants_cfg.json</tt> file has to add as input parameter of
-<tt class="docutils literal">testsuites.testsuite_setup</tt> in <tt class="docutils literal">Suite Setup</tt> of the <tt class="docutils literal">__init__.robot</tt> file.</p>
-<pre class="code literal-block">
-*** Settings ***
-Library      RobotFramework_Testsuites    WITH NAME    testsuites
-Suite Setup      testsuites.testsuite_setup    &lt;Path_to_the_file_variants_cfg.json&gt;
-</pre>
-<p><strong>Level 3: Find the ``config/`` folder in current testsuite directory</strong></p>
-<p>Configuration level 3 is triggered only in case of level 1 and level 2 were not set.</p>
-<p>The configuration level 3 will check in <tt class="docutils literal">config/</tt> folder in current testsuite directory, if there has json
-file which has the same name with testsuite file (ex: <tt class="docutils literal">abc.rotbot</tt> &amp; <tt class="docutils literal">./config/abc.json</tt>), then it will
-load this configuration file. In case there is no json file has the same name with robot testsuite file, it will
-check the existence of <tt class="docutils literal">./config/robot_config.json</tt> then load this <tt class="docutils literal">./config/robot_config.json</tt> file as
-configuration file.</p>
-<p><strong>Level 4: Lowest priority level, it reads default configuration file</strong></p>
-<p>The default configuration file (<tt class="docutils literal">robot_config.json</tt>) in installation directory:</p>
-<p><tt class="docutils literal">\RobotFramework_Testsuites\Config\robot_config.json</tt></p>
+<div class="section" id="what-is-the-initial-situation">
+<h2>What is the initial situation?</h2>
+<p>In the scope of the RobotFrameowork AIO a test suite is either a single robot file containing one or more test cases, or a set of several robot files.</p>
+<p>Usually all test cases of a test suite run under the same conditions - but these conditions may be different. For example the same test case is used
+to test several different variants of a &quot;System under Test&quot; (SuT). Every variant requires individual values for certain configuration parameter.</p>
+<p>Based on this consideration two different scenarios are thinkable:</p>
+<ol class="arabic">
+<li><p class="first">A simple one</p>
+<p>Project <em>P</em> requires software for a target. There is only one variant <em>V</em> developed for this target.
+Tests developed for testing the target software, are carried out at several test benches.
+All test benches have the same hardware configuration.</p>
+<p><em>Therefore all tests run at every time under the same conditions.</em></p>
+</li>
+<li><p class="first">A complicated one</p>
+<p>Project <em>P</em> requires software for a target. There are several variants <em>V1-Vx</em> developed for this target.
+Tests developed for testing the target software on several variants, are carried out at several test benches.
+All test benches have different hardware configurations.
+All variants and all test benches require individual values for configuration parameters used in the tests.</p>
+<p><em>Therefore the same tests have to run under different conditions.</em></p>
+</li>
+</ol>
+<p>We assume here that in most of the cases the world isn't so much easy like described in scenario 1. Therefore in this tutorial we concentrate on scenario 2.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
-<div class="section" id="tutorial-files">
-<h1>Tutorial files</h1>
-<ul>
-<li><p class="first"><tt class="docutils literal">config\common\test_config_common.json</tt></p>
-<p>Json configuration file containing common parameters which are stored <tt class="docutils literal">${CONFIG}</tt> object. This Json file is
-imported to the main json configuration file.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\common\preprocessor_definitions_common.json</tt></p>
-<p>Json configuration file containing preprocessor parameters which are set as global variable of robot run, we
-can call these parameters in robot test script using <tt class="docutils literal"><span class="pre">${&lt;parameter_name&gt;}</span></tt>. This json configuration file is
-imported to the main json configuration file in <tt class="docutils literal">&quot;preprocessor&quot; { &quot;definitions&quot; : <span class="pre">{...}</span> }</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\common\params_global_common.json</tt></p>
-<p>Json configuration file containing global parameters which are set as global variable of robot run, we
-can call these parameters in robot test script using <tt class="docutils literal"><span class="pre">${&lt;parameter_name&gt;}</span></tt>. This json configuration file is
-imported to the main json configuration file in <tt class="docutils literal">&quot;params&quot; { &quot;global&quot; : <span class="pre">{...}</span> }</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\robot_config_noimport.json</tt></p>
-<p>This is the main json configuration file without the import for <tt class="docutils literal">preprocessor definitions</tt> and <tt class="docutils literal">params global</tt></p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\robot_config_variant_1.json</tt></p>
-<p>This is the main json configuration file for variant with name <tt class="docutils literal">variant_1</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\robot_config_variant_2.json</tt></p>
-<p>This is the main json configuration file for variant with name <tt class="docutils literal">variant_2</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\robot_execution_config.json</tt></p>
-<p>This is the main json configuration file in case variant name is not set or default.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">config\testsuites_config.json</tt></p>
-<p>This is the json configuration file uses for configuration level 2 only, it contains the path to the main
-configuration file appropriate with variant name is set while executing robot run.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\suite01.robot</tt></p>
-<p>This is robot test script which is using configuration level 2 with default variant. It will load the main
-configuration file <tt class="docutils literal">config\robot_execution_config.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\suite02.robot</tt></p>
-<p>This is robot test script which is using configuration level 2 with variant name <tt class="docutils literal">variant_2</tt>. it will
-load the main configuration file <tt class="docutils literal">config\robot_config_variant_2.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\__init__.robot</tt></p>
-<p>This <tt class="docutils literal">__init__.robot</tt> robot test script using to set configuration level 2 when we execute all testsuites
-in <tt class="docutils literal">components</tt> with default variant. In this case, <tt class="docutils literal">components</tt> robot run will load the main configuration
-file <tt class="docutils literal">config\robot_execution_config.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_A\suite03.robot</tt></p>
-<p>This is robot test script which using configuration level 2 with default variant. It will load the main
-configuration file <tt class="docutils literal">config\robot_execution_config.json</tt>.</p>
-<p>This test script logs out some parameters in <tt class="docutils literal">config\common\test_config_common.json</tt> via <tt class="docutils literal">${CONFIG}</tt>
-object, and parameters in <tt class="docutils literal">config\common\params_global_common.json</tt> and <tt class="docutils literal">config\common\preprocessor_definitions_common.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_B\config\suite04.json</tt></p>
-<p>This is the main json configuration file which using for <tt class="docutils literal">components\component_B\suite04.robot</tt> robot test script using
-configuration level 3.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_B\config\robot_config.json</tt></p>
-<p>This is the main json configuration file which using for <tt class="docutils literal">components\component_B\suite05.robot</tt> robot test script using
-configuration level 3.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_B\suite04.robot</tt></p>
-<p>Robot test script using configuration level 3 with the main json configuration file <tt class="docutils literal">components\component_B\config\suite04.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_B\suite05.robot</tt></p>
-<p>Robot test script using configuration level 3 with the main json configuration file <tt class="docutils literal">components\component_B\config\robot_config.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_C\config\robot_config_B.json</tt> and <tt class="docutils literal">components\component_C\config\suite.json</tt></p>
-<p>These json configuration files are named with invalid naming convention which is defined in configuration level 3,
-so the robot test script <tt class="docutils literal">components\component_C\suite06.robot</tt> will use configuration level 4 with the default main
-json configuration file <tt class="docutils literal">\RobotFramework_Testsuites\Config\robot_config.json</tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal">components\component_C\suite06.robot</tt></p>
-<p>Robot test script using configuration level 4 with the default json configuration file <tt class="docutils literal">\RobotFramework_Testsuites\Config\robot_config.json</tt>.</p>
-</li>
+<hr class="docutils" />
+<div class="section" id="how-to-handle-configuration-parameters-in-robotframework-aio">
+<h2>How to handle configuration parameters in RobotFramework AIO?</h2>
+<p>The RobotFramework AIO provides several places to define parameters: robot files, resource files, parameter files. But these parameters
+are fixed - and therefore sufficient for the simple scenario 1 only.</p>
+<p>For the complicated scenario 2 we need a more dynamic way of accessing parameters. And we postulate the following: When switching between
+tests of several variants and test executions on several test benches, no changes shall be required within the test code.</p>
+<p>The outcome is that another position has to be introduced to store values for variant and test bench specific parameters.
+And a possibility has to be provided to dynamically make either the one or the other set of values vailable during the execution of tests - depending on
+outer circumstances like &quot;<em>which variant?</em>&quot; and &quot;<em>which test bench?</em>&quot;.</p>
+<p>The RobotFramework AIO contains two components - the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> - that allow the user
+to define dynamic configuration values within separate configuration files in JSON format. The content of these files will be available
+during the test execution.</p>
+<p>In this set the <strong>JsonPreprocessor</strong> is responsible for reading in the values. This includes basic aspects like syntax checks and required data type
+conversions (between JSON format and robot format).</p>
+<p>The <strong>RobotFramework_Testsuites</strong> is responsible for making the values available during test execution - but under certain conditions that can be defined
+by the user (e.g. to realize a variant handling). This means: Not all parameter values are available during test execution - only the ones that belong to
+the current test scenario.</p>
+<p>To realize this, the <strong>RobotFramework_Testsuites</strong> together with the <strong>JsonPreprocessor</strong> enables the user to do the following things:</p>
+<ul class="simple">
+<li>Split all possible configuration values into several JSON configuration files, with every configuration file contains a specific set of values
+for configuration parameter</li>
+<li>Use nested imports of JSON configuration files</li>
+<li>Follow up definitions in configuration files overwrite previous definitions (of the same parameter)</li>
+<li>Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file</li>
+</ul>
+<p>The RobotFramework AIO supports two different kinds of JSON configuration files:</p>
+<ul class="simple">
+<li>Configuration files containing the parameter definitions</li>
+<li>A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
+(usually the name of a variant). This name can be used in command line to select a certain configuration file containing the values
+for this variant.</li>
+</ul>
+<p>More details about the structure of JSON files can be found in section <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>.</p>
+<p>More informations about the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> can be found here:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.org/project/robotframework-testsuitesmanagement">RobotFramework_Testsuites in PyPi</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement">RobotFramework_Testsuites in GitHub</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_Testsuites/RobotFramework_Testsuites.pdf">RobotFramework_Testsuites documentation</a></li>
+<li><a class="reference external" href="https://pypi.org/project/JsonPreprocessor">JsonPreprocessor in PyPi</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor">JsonPreprocessor in GitHub</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor/blob/develop/JsonPreprocessor/JsonPreprocessor.pdf">JsonPreprocessor documentation</a></li>
 </ul>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-to-realize-a-concrete-test-suites-management">
+<h2>How to realize a concrete test suites management?</h2>
+<p>In this section it is described in theory which steps have to be followed to realize a concrete test suites management.
+The example we use here, is also the main topic of the test suites in this tutorial. Details about the internal structure of
+configuration files will be given in the next part of this introduction.</p>
+<p><em>Step 1: Analyze the current situation in your project</em></p>
+<p>An outcome of the analysis can be something like that:</p>
+<ul class="simple">
+<li>Three variants need to be tested (<em>V1-V3</em>)</li>
+<li>Two test benches are available (<em>B1-B2</em>)</li>
+<li>Three configuration parameter are needed (<em>P1-P3</em>)</li>
+</ul>
+<p>Additionally we assume that all variants can be tested on all test benches, but the parameters need to be separated:</p>
+<ul class="simple">
+<li><em>P1</em> has the same value in all variants and at all test benches</li>
+<li><em>P2</em> is variant specific; <em>P2V1</em> != <em>P2V2</em> != <em>P2V3</em></li>
+<li><em>P3</em> is test bench specific; <em>P3B1</em> != <em>P3B2</em></li>
+</ul>
+<p><em>Step 2: Implement the mapping configuration file for variant switching</em></p>
+<p>For every variant (<em>V1-V3</em>) make an entry referring to the configuration file in which the concrete values
+for this variant are defined.</p>
+<p><em>Step 3: Define values for the identified parameters</em></p>
+<p>For every variant (<em>V1-V3</em>) introduce an indicidual configuration file containing the values for this variant.</p>
+<p><em>Step 4: Define values for all remaining parameters that are not specific for any variant or test bench</em></p>
+<p>How this does look like concretely is described in the next section.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-does-the-content-of-a-configuration-files-in-json-format-look-like">
+<h2>How does the content of a configuration files in JSON format look like?</h2>
+<p>In this part of the introduction we take a first look at the content of configuration files.</p>
+<ol class="arabic">
+<li><p class="first">Configuration file defining the mapping between variant names and where to find the corresponding parameter values</p>
+<p>This file configures the access to all variant dependent <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;default&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.json&quot;</span><span class="punctuation">,</span>
+               <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+             <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_1&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_2&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_3&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>The example above contains definitions for three variants with name <tt class="docutils literal">variant_1</tt>, <tt class="docutils literal">variant_2</tt> and <tt class="docutils literal">variant_3</tt>.</p>
+<p>Additionally a variant named <tt class="docutils literal">default</tt> is defined. This default configuration becomes active in case of no certain variant name is provided
+when the test suite is being executed.</p>
+<p>Another aspect is important: the <em>three dots</em>.
+The path to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files depends on the test file location. A
+different number of <tt class="docutils literal">../</tt> is required dependent on the directory depth of the test
+case location.</p>
+<p>Therefore we use here three dots to tell the Robot Framework AIO to search from the test
+file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
+<pre class="code python literal-block">
+<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+</pre>
+<p>and so on.</p>
+</li>
+<li><p class="first">Configuration file defining all parameters that shall be available globally during test execution.</p>
+<p>Some of them are required. Optionally the user can add own ones. The following example shows the smallest version
+of a configuration file containing only the required parameters. This version is a default version and part of the
+RobotFramework AIO installation.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;G3g&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... RobotFramework AIO is running now!&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.4.10&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;gen3flex&#64;dlt&quot;</span>
+<span class="punctuation">}</span>
+</pre>
+<p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
+are part of a version control mechanism: In case of the version of the currently installed RobotFramework AIO is outside the range between
+<tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>, the test execution stops with an error message.</p>
+<p>The following example is an extended version of a configuration file containing also some user defined parameters.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;G3g&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... RobotFramework AIO is running now!&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.4.10&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;gen3flex&#64;dlt&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+              <span class="operator">//</span> <span class="keyword">global</span> <span class="name">parameters</span>
+              <span class="literal string double">&quot;global&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span>
+                           <span class="literal string double">&quot;param1&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;ABC&quot;</span><span class="punctuation">,</span>
+                           <span class="literal string double">&quot;param2&quot;</span> <span class="punctuation">:</span> <span class="literal number integer">25</span>
+                         <span class="punctuation">}</span>
+            <span class="punctuation">},</span>
+  <span class="literal string double">&quot;preprocessor&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                    <span class="operator">//</span> <span class="name">feature</span> <span class="name">switches</span>
+                    <span class="literal string double">&quot;definitions&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span>
+                                      <span class="literal string double">&quot;switch1&quot;</span> <span class="punctuation">:</span> <span class="name">true</span><span class="punctuation">,</span>
+                                      <span class="literal string double">&quot;switch2&quot;</span> <span class="punctuation">:</span> <span class="name">false</span>
+                                    <span class="punctuation">}</span>
+                  <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>The user defined parameters are separated into <strong>global parameters</strong> and <strong>preprocessor definitions</strong>.</p>
+<p><em>TODO: Explain differences; clarify implementation status.</em></p>
+<p>And another feature can be seen in the example above: In the context of the RobotFramework AIO the JSON format is an extended one.
+Deviating from JSON standard it is possible to comment out lines with starting them with a double slash &quot;<tt class="docutils literal">//</tt>&quot;. This allows to
+add explanations about the meaning of the defined parameters already within the JSON file.</p>
+<p><strong>For now it's enough theory - time for exercises.</strong></p>
+<p>All further formats and features that need to be explained, will be explained in those test suites who use them.</p>
+<p>The following part of this document contains a list of test suites available in this tutorial - together with some hints
+about their main topics.</p>
+<p>After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
+(named <tt class="docutils literal"><span class="pre">exercise-01</span></tt>, <tt class="docutils literal"><span class="pre">exercise-02</span></tt>, ...) and can be explored independently from all others.</p>
+</li>
+</ol>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercises">
+<h1>Exercises</h1>
+<p>to be continued</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+<hr class="docutils" />
+<p><em>Tutorial v. 0.2.0 / 23.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </body>

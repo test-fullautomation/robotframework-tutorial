@@ -12,201 +12,287 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Building testsuites in RobotFrameowork AIO
-==========================================
+Building test suites in RobotFrameowork AIO
+===========================================
 
-Version 0.1.0 / 25.10.2022 / by MS/EMC1-XC Mai Dinh Nam Son
+----
 
 Table of content
 ----------------
 
-| `Introduction`_
-| `Tutorial files`_
+1. `Introduction`_
+
+* `What is the initial situation?`_
+
+* `How to handle configuration parameters in RobotFramework AIO?`_
+
+* `How to realize a concrete test suites management?`_
+
+* `How does the content of a configuration files in JSON format look like?`_
+
+2. `Exercises`_
+
 
 Introduction
 ------------
 
-The RobotFramework AIO supports configuration files with Json format and 4 configuration levels 
-with different prority for various purpose during using RobotFramework AIO to create automation 
-testing project.
+What is the initial situation?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The json configuration files is handled by `JsonPreprocessor package <https://github.com/test-fullautomation/python-jsonpreprocessor>`_ 
-which is embbeded into RobotFrameowork AIO installation package:
+In the scope of the RobotFrameowork AIO a test suite is either a single robot file containing one or more test cases, or a set of several robot files.
 
-* Adding the comments to the json configuration file is allowed.
-* Import the content of another json files.
-* Allow python datatypes ``True``, ``False`` and ``None`` as json syntax elements.
-* Be able to use nested variable.
+Usually all test cases of a test suite run under the same conditions - but these conditions may be different. For example the same test case is used
+to test several different variants of a "System under Test" (SuT). Every variant requires individual values for certain configuration parameter.
 
-The RobotFramework AIO defines 4 different configuration levels, from level 1 -> level 4, where Level 1 
-is highest priority and level 4 is lowest priority:
+Based on this consideration two different scenarios are thinkable:
 
-**Level 1: Loads configuration file while executing robot testsuite by command**
+1. A simple one
 
-User can address the json configuration file when executing robot testsuite with input parameter 
-``--variable config_file:"<path_to_json_file>"``
+   Project *P* requires software for a target. There is only one variant *V* developed for this target.
+   Tests developed for testing the target software, are carried out at several test benches.
+   All test benches have the same hardware configuration.
 
-Ex: ``robot --variable config_file:"<path_to_json_file>" <path_to_testsuite>``
+   *Therefore all tests run at every time under the same conditions.*
 
-**Level 2: Loads Json configuration according to variant name**
+2. A complicated one
 
-This level 2 is designed for the scenario that user creates the automation testing project which running 
-for many different variants. Base on variant name input when trigger robot run, it will load the appropriate 
-json configuration file.
+   Project *P* requires software for a target. There are several variants *V1-Vx* developed for this target.
+   Tests developed for testing the target software on several variants, are carried out at several test benches.
+   All test benches have different hardware configurations.
+   All variants and all test benches require individual values for configuration parameters used in the tests.
 
-To set RobotFrameowork AIO run with level 2, first user has to create a json file which contains different 
-variants point to different configuration files.
+   *Therefore the same tests have to run under different conditions.*
 
-For example, we create the ``variants_cfg.json`` with content below:
-
-.. code-block:: json
-
-   {
-     "default": {
-       "name": "<default_cfg_file>",
-       "path": "<path>"
-     },
-     "variant_0": {
-       "name": "<file_name_variant_0>",
-       "path": "<path>"
-     },
-     "variant_1": {
-       "name": "<file_name_variant_1>",
-       "path": "<path>"
-     },
-     "variant_2": {
-       "name": "<file_name_variant_2>",
-       "path": "<path>"
-     }
-   }
-
-Then the path of ``variants_cfg.json`` file has to add as input parameter of ``testsuites.testsuite_setup`` 
-in ``Suite Setup`` of a testsuite.
-
-In case of user wants to set configuration level 2 for entire RobotFrameowork test project instead of 
-indiviual robot testsuite file, ``__init__.robot`` file has to be created at the highest folder of 
-RobotFrameowork test project, and the path of ``variants_cfg.json`` file has to add as input parameter of 
-``testsuites.testsuite_setup`` in ``Suite Setup`` of the ``__init__.robot`` file.
-
-.. code-block::
-
-   *** Settings ***
-   Library      RobotFramework_Testsuites    WITH NAME    testsuites
-   Suite Setup      testsuites.testsuite_setup    <Path_to_the_file_variants_cfg.json>
-
-**Level 3: Find the ``config/`` folder in current testsuite directory**
-
-Configuration level 3 is triggered only in case of level 1 and level 2 were not set.
-
-The configuration level 3 will check in ``config/`` folder in current testsuite directory, if there has json 
-file which has the same name with testsuite file (ex: ``abc.rotbot`` & ``./config/abc.json``), then it will 
-load this configuration file. In case there is no json file has the same name with robot testsuite file, it will 
-check the existence of ``./config/robot_config.json`` then load this ``./config/robot_config.json`` file as 
-configuration file.  
-
-**Level 4: Lowest priority level, it reads default configuration file**
-
-The default configuration file (``robot_config.json``) in installation directory:
-
-``\RobotFramework_Testsuites\Config\robot_config.json``
+We assume here that in most of the cases the world isn't so much easy like described in scenario 1. Therefore in this tutorial we concentrate on scenario 2.
 
 TOC_
 
+----
 
-Tutorial files
---------------
+How to handle configuration parameters in RobotFramework AIO?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ``config\common\test_config_common.json``
-  
-  Json configuration file containing common parameters which are stored ``${CONFIG}`` object. This Json file is 
-  imported to the main json configuration file.
+The RobotFramework AIO provides several places to define parameters: robot files, resource files, parameter files. But these parameters
+are fixed - and therefore sufficient for the simple scenario 1 only.
 
-* ``config\common\preprocessor_definitions_common.json``
+For the complicated scenario 2 we need a more dynamic way of accessing parameters. And we postulate the following: When switching between
+tests of several variants and test executions on several test benches, no changes shall be required within the test code.
 
-  Json configuration file containing preprocessor parameters which are set as global variable of robot run, we 
-  can call these parameters in robot test script using ``${<parameter_name>}``. This json configuration file is 
-  imported to the main json configuration file in ``"preprocessor" { "definitions" : {...} }``.
+The outcome is that another position has to be introduced to store values for variant and test bench specific parameters.
+And a possibility has to be provided to dynamically make either the one or the other set of values vailable during the execution of tests - depending on
+outer circumstances like "*which variant?*" and "*which test bench?*".
 
-* ``config\common\params_global_common.json``
+The RobotFramework AIO contains two components - the **RobotFramework_Testsuites** and the **JsonPreprocessor** - that allow the user
+to define dynamic configuration values within separate configuration files in JSON format. The content of these files will be available
+during the test execution.
 
-  Json configuration file containing global parameters which are set as global variable of robot run, we 
-  can call these parameters in robot test script using ``${<parameter_name>}``. This json configuration file is 
-  imported to the main json configuration file in ``"params" { "global" : {...} }``.
+In this set the **JsonPreprocessor** is responsible for reading in the values. This includes basic aspects like syntax checks and required data type
+conversions (between JSON format and robot format).
 
-* ``config\robot_config_noimport.json``
+The **RobotFramework_Testsuites** is responsible for making the values available during test execution - but under certain conditions that can be defined
+by the user (e.g. to realize a variant handling). This means: Not all parameter values are available during test execution - only the ones that belong to
+the current test scenario.
 
-  This is the main json configuration file without the import for ``preprocessor definitions`` and ``params global``
+To realize this, the **RobotFramework_Testsuites** together with the **JsonPreprocessor** enables the user to do the following things:
 
-* ``config\robot_config_variant_1.json``
+* Split all possible configuration values into several JSON configuration files, with every configuration file contains a specific set of values
+  for configuration parameter
+* Use nested imports of JSON configuration files
+* Follow up definitions in configuration files overwrite previous definitions (of the same parameter)
+* Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file
 
-  This is the main json configuration file for variant with name ``variant_1``.
+The RobotFramework AIO supports two different kinds of JSON configuration files:
 
-* ``config\robot_config_variant_2.json``
+* Configuration files containing the parameter definitions
+* A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
+  (usually the name of a variant). This name can be used in command line to select a certain configuration file containing the values
+  for this variant.
 
-  This is the main json configuration file for variant with name ``variant_2``.
+More details about the structure of JSON files can be found in section `How does the content of a configuration files in JSON format look like?`_.
 
-* ``config\robot_execution_config.json``
+More informations about the **RobotFramework_Testsuites** and the **JsonPreprocessor** can be found here:
 
-  This is the main json configuration file in case variant name is not set or default.
+* `RobotFramework_Testsuites in PyPi <https://pypi.org/project/robotframework-testsuitesmanagement>`_
+* `RobotFramework_Testsuites in GitHub <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_
+* `RobotFramework_Testsuites documentation <https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_Testsuites/RobotFramework_Testsuites.pdf>`_
+* `JsonPreprocessor in PyPi <https://pypi.org/project/JsonPreprocessor>`_
+* `JsonPreprocessor in GitHub <https://github.com/test-fullautomation/python-jsonpreprocessor>`_
+* `JsonPreprocessor documentation <https://github.com/test-fullautomation/python-jsonpreprocessor/blob/develop/JsonPreprocessor/JsonPreprocessor.pdf>`_
 
-* ``config\testsuites_config.json``
+TOC_
 
-  This is the json configuration file uses for configuration level 2 only, it contains the path to the main 
-  configuration file appropriate with variant name is set while executing robot run.
+----
 
-* ``components\suite01.robot``
+How to realize a concrete test suites management?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  This is robot test script which is using configuration level 2 with default variant. It will load the main 
-  configuration file ``config\robot_execution_config.json``.
+In this section it is described in theory which steps have to be followed to realize a concrete test suites management.
+The example we use here, is also the main topic of the test suites in this tutorial. Details about the internal structure of 
+configuration files will be given in the next part of this introduction.
 
-* ``components\suite02.robot``
+*Step 1: Analyze the current situation in your project*
 
-  This is robot test script which is using configuration level 2 with variant name ``variant_2``. it will 
-  load the main configuration file ``config\robot_config_variant_2.json``.
+An outcome of the analysis can be something like that:
 
-* ``components\__init__.robot``
+* Three variants need to be tested (*V1-V3*)
+* Two test benches are available (*B1-B2*)
+* Three configuration parameter are needed (*P1-P3*)
 
-  This ``__init__.robot`` robot test script using to set configuration level 2 when we execute all testsuites 
-  in ``components`` with default variant. In this case, ``components`` robot run will load the main configuration 
-  file ``config\robot_execution_config.json``.
+Additionally we assume that all variants can be tested on all test benches, but the parameters need to be separated:
 
-* ``components\component_A\suite03.robot``
+* *P1* has the same value in all variants and at all test benches
+* *P2* is variant specific; *P2V1* != *P2V2* != *P2V3*
+* *P3* is test bench specific; *P3B1* != *P3B2*
 
-  This is robot test script which using configuration level 2 with default variant. It will load the main 
-  configuration file ``config\robot_execution_config.json``. 
+*Step 2: Implement the mapping configuration file for variant switching*
 
-  This test script logs out some parameters in ``config\common\test_config_common.json`` via ``${CONFIG}`` 
-  object, and parameters in ``config\common\params_global_common.json`` and ``config\common\preprocessor_definitions_common.json``.
+For every variant (*V1-V3*) make an entry referring to the configuration file in which the concrete values
+for this variant are defined.
 
-* ``components\component_B\config\suite04.json``
+*Step 3: Define values for the identified parameters*
 
-  This is the main json configuration file which using for ``components\component_B\suite04.robot`` robot test script using 
-  configuration level 3.
+For every variant (*V1-V3*) introduce an indicidual configuration file containing the values for this variant.
 
-* ``components\component_B\config\robot_config.json``
+*Step 4: Define values for all remaining parameters that are not specific for any variant or test bench*
 
-  This is the main json configuration file which using for ``components\component_B\suite05.robot`` robot test script using 
-  configuration level 3.
-
-* ``components\component_B\suite04.robot``
-
-  Robot test script using configuration level 3 with the main json configuration file ``components\component_B\config\suite04.json``.
-
-* ``components\component_B\suite05.robot``
-
-  Robot test script using configuration level 3 with the main json configuration file ``components\component_B\config\robot_config.json``.
-
-* ``components\component_C\config\robot_config_B.json`` and ``components\component_C\config\suite.json``
-
-  These json configuration files are named with invalid naming convention which is defined in configuration level 3, 
-  so the robot test script ``components\component_C\suite06.robot`` will use configuration level 4 with the default main 
-  json configuration file ``\RobotFramework_Testsuites\Config\robot_config.json``.
-
-* ``components\component_C\suite06.robot``
-
-  Robot test script using configuration level 4 with the default json configuration file ``\RobotFramework_Testsuites\Config\robot_config.json``.
+How this does look like concretely is described in the next section.
 
 
 TOC_
+
+----
+
+How does the content of a configuration files in JSON format look like?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In this part of the introduction we take a first look at the content of configuration files.
+
+1. Configuration file defining the mapping between variant names and where to find the corresponding parameter values
+
+   This file configures the access to all variant dependent ``robot_config*.json`` files.
+
+   .. code:: python
+
+      {
+        "default": {
+                     "name": "robot_execution_config.json",
+                     "path": ".../config/"
+                   },
+        "variant_1": {
+                       "name": "robot_config_variant_1.json",
+                       "path": ".../config/"
+                     },
+        "variant_2": {
+                       "name": "robot_config_variant_2.json",
+                       "path": ".../config/"
+                     },
+        "variant_3": {
+                       "name": "robot_config_variant_3.json",
+                       "path": ".../config/"
+                     }
+      }
+
+   The example above contains definitions for three variants with name ``variant_1``, ``variant_2`` and ``variant_3``.
+
+   Additionally a variant named ``default`` is defined. This default configuration becomes active in case of no certain variant name is provided
+   when the test suite is being executed.
+
+   Another aspect is important: the *three dots*.
+   The path to the ``robot_config*.json`` files depends on the test file location. A 
+   different number of ``../`` is required dependent on the directory depth of the test 
+   case location.
+
+   Therefore we use here three dots to tell the Robot Framework AIO to search from the test 
+   file location up till the ``robot_config*.json`` files are found:
+
+   .. code:: python
+
+      ./config/robot_config.json
+      ../config/robot_config.json
+      ../../config/robot_config.json
+      ../../../config/robot_config.json
+
+   and so on.
+
+2. Configuration file defining all parameters that shall be available globally during test execution.
+
+   Some of them are required. Optionally the user can add own ones. The following example shows the smallest version 
+   of a configuration file containing only the required parameters. This version is a default version and part of the
+   RobotFramework AIO installation.
+
+   .. code:: python
+
+      {
+        "Project"         : "G3g",
+        "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
+        "Maximum_version" : "0.5.2",
+        "Minimum_version" : "0.4.10",
+        "TargetName"      : "gen3flex@dlt"
+      }
+
+   ``Project``, ``WelcomeString`` and ``TargetName`` are simple strings that can be used anyhow. ``Maximum_version`` and ``Minimum_version``
+   are part of a version control mechanism: In case of the version of the currently installed RobotFramework AIO is outside the range between
+   ``Minimum_version`` and ``Maximum_version``, the test execution stops with an error message.
+
+   The following example is an extended version of a configuration file containing also some user defined parameters.
+
+   .. code:: python
+
+      {
+        "Project"         : "G3g",
+        "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
+        "Maximum_version" : "0.5.2",
+        "Minimum_version" : "0.4.10",
+        "TargetName"      : "gen3flex@dlt",
+        "params": {
+                    // global parameters
+                    "global" : {
+                                 "param1" : "ABC",
+                                 "param2" : 25
+                               }
+                  },
+        "preprocessor": {
+                          // feature switches
+                          "definitions" : {
+                                            "switch1" : true,
+                                            "switch2" : false
+                                          }
+                        }
+      }
+
+   The user defined parameters are separated into **global parameters** and **preprocessor definitions**.
+
+   *TODO: Explain differences; clarify implementation status.*
+
+   And another feature can be seen in the example above: In the context of the RobotFramework AIO the JSON format is an extended one.
+   Deviating from JSON standard it is possible to comment out lines with starting them with a double slash "``//``". This allows to
+   add explanations about the meaning of the defined parameters already within the JSON file.
+
+   **For now it's enough theory - time for exercises.**
+
+   All further formats and features that need to be explained, will be explained in those test suites who use them.
+
+   The following part of this document contains a list of test suites available in this tutorial - together with some hints
+   about their main topics.
+
+   After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
+   (named ``exercise-01``, ``exercise-02``, ...) and can be explored independently from all others.
+
+TOC_
+
+----
+
+Exercises
+---------
+
+to be continued
+
+
+TOC_
+
+----
+
+*Tutorial v. 0.2.0 / 23.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
+
