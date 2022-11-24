@@ -30,6 +30,8 @@ Table of content
 
 * `How does the content of a configuration files in JSON format look like?`_
 
+* `How does the RobotFramework AIO access configuration files?`_
+
 2. `Exercises`_
 
 
@@ -157,7 +159,6 @@ For every variant (*V1-V3*) introduce an individual configuration file containin
 
 How this does look like concretely is described in the next section.
 
-
 TOC_
 
 ----
@@ -268,15 +269,69 @@ In this part of the introduction we take a first look at the content of configur
    Deviating from JSON standard it is possible to comment out lines with starting them with a double slash "``//``". This allows to
    add explanations about the meaning of the defined parameters already within the JSON file.
 
-   **For now it's enough theory - time for exercises.**
+   Further JSON syntax extensions will be explained in the corresponding exercises.
 
-   All further formats and features that need to be explained, will be explained in those test suites who use them.
+TOC_
 
-   The following part of this document contains a list of test suites available in this tutorial - together with some hints
-   about their main topics.
+----
 
-   After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
-   (named ``exercise-01``, ``exercise-02``, ...) and can be explored independently from all others.
+How does the RobotFramework AIO access configuration files?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Every test execution requires a configuration - that is the accessibility of a configuration file in JSON format. The RobotFramework AIO provides
+four different possibilities - also called *level* - to realize such an access. These possibilities are sorted and the RobotFramework AIO tries to
+access the configuration file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.
+
+* Level 1
+
+  Path and name of the configuration file is provided in command line of the RobotFramework AIO.
+
+* Level 2
+
+  The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
+  that contains the mapping between the variant and the variant specific configuration
+  (like described in `How does the content of a configuration files in JSON format look like?`_).
+
+  This also requires that this mapping file is known to the test (path and name is an input parameter of the ``Suite Setup``).
+
+  This is handled in exercise (**TODO: add name**).
+
+* Level 3
+
+  The RobotFramework AIO searches for configuration files within a folder ``config/`` in current test suite directory.
+  In case of such a folder exists and configuration files are inside, they will be used.
+
+  This is handled in exercise (**TODO: add name**).
+
+* Level 4
+
+  The RobotFramework AIO uses the default configuration file that is part of the installation.
+
+  This is handled in exercise (**TODO: add name**).
+
+*Summarized*:
+
+* With highest priority a configuration file provided in command line is considered - even in case of also other configuration files (level 2 - level 4)
+  are available.
+
+* If a configuration file is not provided in command line, but a level name, then the configuration belonging to this level is loaded - even
+  in case of also other configuration files (level 3 - level 4) are available.
+
+* If nothing is specified in command line, then the RobotFramework AIO tries to find configuration files within a ``config/`` folder and take them if
+  available - even in case of also the level 4 configuration file is available.
+
+* In case of the user does not provid any information about configuration files to use, the RobotFramework AIO loads the default configuration
+  from installation folder (fallback solution).
+
+**For now it's enough theory - time for exercises.**
+
+All further formats and features that need to be explained, will be explained in those test suites who use them.
+
+The following part of this document contains a list of test suites available in this tutorial - together with some hints
+about their main topics.
+
+After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
+(named ``exercise-01``, ``exercise-02``, ...) and can be explored independently from all others.
 
 TOC_
 
@@ -292,7 +347,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.2.1 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.2.2 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

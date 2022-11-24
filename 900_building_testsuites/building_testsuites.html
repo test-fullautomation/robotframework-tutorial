@@ -384,6 +384,7 @@ limitations under the License. -->
 <li><a class="reference internal" href="#how-to-handle-configuration-parameters-in-robotframework-aio">How to handle configuration parameters in RobotFramework AIO?</a></li>
 <li><a class="reference internal" href="#how-to-realize-a-concrete-test-suites-management">How to realize a concrete test suites management?</a></li>
 <li><a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a></li>
+<li><a class="reference internal" href="#how-does-the-robotframework-aio-access-configuration-files">How does the RobotFramework AIO access configuration files?</a></li>
 </ul>
 <ol class="arabic simple" start="2">
 <li><a class="reference internal" href="#exercises">Exercises</a></li>
@@ -577,14 +578,55 @@ are part of a version control mechanism: In case of the version of the currently
 <p>And another feature can be seen in the example above: In the context of the RobotFramework AIO the JSON format is an extended one.
 Deviating from JSON standard it is possible to comment out lines with starting them with a double slash &quot;<tt class="docutils literal">//</tt>&quot;. This allows to
 add explanations about the meaning of the defined parameters already within the JSON file.</p>
+<p>Further JSON syntax extensions will be explained in the corresponding exercises.</p>
+</li>
+</ol>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-does-the-robotframework-aio-access-configuration-files">
+<h2>How does the RobotFramework AIO access configuration files?</h2>
+<p>Every test execution requires a configuration - that is the accessibility of a configuration file in JSON format. The RobotFramework AIO provides
+four different possibilities - also called <em>level</em> - to realize such an access. These possibilities are sorted and the RobotFramework AIO tries to
+access the configuration file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.</p>
+<ul>
+<li><p class="first">Level 1</p>
+<p>Path and name of the configuration file is provided in command line of the RobotFramework AIO.</p>
+</li>
+<li><p class="first">Level 2</p>
+<p>The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
+that contains the mapping between the variant and the variant specific configuration
+(like described in <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>).</p>
+<p>This also requires that this mapping file is known to the test (path and name is an input parameter of the <tt class="docutils literal">Suite Setup</tt>).</p>
+<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+</li>
+<li><p class="first">Level 3</p>
+<p>The RobotFramework AIO searches for configuration files within a folder <tt class="docutils literal">config/</tt> in current test suite directory.
+In case of such a folder exists and configuration files are inside, they will be used.</p>
+<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+</li>
+<li><p class="first">Level 4</p>
+<p>The RobotFramework AIO uses the default configuration file that is part of the installation.</p>
+<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+</li>
+</ul>
+<p><em>Summarized</em>:</p>
+<ul class="simple">
+<li>With highest priority a configuration file provided in command line is considered - even in case of also other configuration files (level 2 - level 4)
+are available.</li>
+<li>If a configuration file is not provided in command line, but a level name, then the configuration belonging to this level is loaded - even
+in case of also other configuration files (level 3 - level 4) are available.</li>
+<li>If nothing is specified in command line, then the RobotFramework AIO tries to find configuration files with a <tt class="docutils literal">config/</tt> folder and take them if
+available - even in case of also the level 4 configuration file is available.</li>
+<li>In case of the user does not provid any information about configuration files to use, the RobotFramework AIO loads the default configuration
+from installation folder (fallback solution).</li>
+</ul>
 <p><strong>For now it's enough theory - time for exercises.</strong></p>
 <p>All further formats and features that need to be explained, will be explained in those test suites who use them.</p>
 <p>The following part of this document contains a list of test suites available in this tutorial - together with some hints
 about their main topics.</p>
 <p>After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
 (named <tt class="docutils literal"><span class="pre">exercise-01</span></tt>, <tt class="docutils literal"><span class="pre">exercise-02</span></tt>, ...) and can be explored independently from all others.</p>
-</li>
-</ol>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 </div>
@@ -594,7 +636,7 @@ about their main topics.</p>
 <p>to be continued</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.2.1 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.2.2 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </body>
