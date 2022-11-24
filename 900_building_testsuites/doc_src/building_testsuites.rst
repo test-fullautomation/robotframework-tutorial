@@ -39,10 +39,10 @@ Introduction
 What is the initial situation?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the scope of the RobotFrameowork AIO a test suite is either a single robot file containing one or more test cases, or a set of several robot files.
+In the scope of the RobotFramework AIO a test suite is either a single robot file containing one or more test cases, or a set of several robot files.
 
 Usually all test cases of a test suite run under the same conditions - but these conditions may be different. For example the same test case is used
-to test several different variants of a "System under Test" (SuT). Every variant requires individual values for certain configuration parameter.
+to test several different variants of a *System under Test*. Every variant requires individual values for certain configuration parameters.
 
 Based on this consideration two different scenarios are thinkable:
 
@@ -151,7 +151,7 @@ for this variant are defined.
 
 *Step 3: Define values for the identified parameters*
 
-For every variant (*V1-V3*) introduce an indicidual configuration file containing the values for this variant.
+For every variant (*V1-V3*) introduce an individual configuration file containing the values for this variant.
 
 *Step 4: Define values for all remaining parameters that are not specific for any variant or test bench*
 
@@ -292,7 +292,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.2.0 / 23.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.2.1 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
