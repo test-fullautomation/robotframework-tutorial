@@ -12,8 +12,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Building test suites in RobotFrameowork AIO
-===========================================
+Building test suites in RobotFramework AIO
+==========================================
 
 ----
 
@@ -31,6 +31,8 @@ Table of content
 * `How does the content of a configuration files in JSON format look like?`_
 
 * `How does the RobotFramework AIO access configuration files?`_
+
+* `How to enable the test suites management in RobotFramework AIO?`_
 
 2. `Exercises`_
 
@@ -224,11 +226,11 @@ In this part of the introduction we take a first look at the content of configur
    .. code:: python
 
       {
-        "Project"         : "G3g",
         "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
         "Maximum_version" : "0.5.2",
-        "Minimum_version" : "0.4.10",
-        "TargetName"      : "gen3flex@dlt"
+        "Minimum_version" : "0.5.2",
+        "Project"         : "RobotFramework AIO tutorial",
+        "TargetName"      : "device"
       }
 
    ``Project``, ``WelcomeString`` and ``TargetName`` are simple strings that can be used anyhow. ``Maximum_version`` and ``Minimum_version``
@@ -240,11 +242,11 @@ In this part of the introduction we take a first look at the content of configur
    .. code:: python
 
       {
-        "Project"         : "G3g",
         "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
         "Maximum_version" : "0.5.2",
-        "Minimum_version" : "0.4.10",
-        "TargetName"      : "gen3flex@dlt",
+        "Minimum_version" : "0.5.2",
+        "Project"         : "RobotFramework AIO tutorial",
+        "TargetName"      : "device",
         "params": {
                     // global parameters
                     "global" : {
@@ -321,7 +323,54 @@ access the configuration file in a certain order: Level 1 has the highest priori
   available - even in case of also the level 4 configuration file is available.
 
 * In case of the user does not provide any information about configuration files to use, the RobotFramework AIO loads the default configuration
-  from installation folder (fallback solution).
+  from installation folder (fallback solution; level 4).
+
+TOC_
+
+----
+
+How to enable the test suites management in RobotFramework AIO?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To enable the test suites management you have to import the **RobotFramework_Testsuites** library in the following way:
+
+.. code::
+
+   Library    RobotFramework_Testsuites    WITH NAME    testsuites
+
+We recommend to use the ``WITH NAME`` option to shorten the robot code a little bit.
+
+The next step is to call the ``testsuite_setup`` of the **RobotFramework_Testsuites** within the ``Suite Setup`` of your test:
+
+.. code::
+
+   Suite Setup    testsuites.testsuite_setup
+
+As long as you
+
+* do not provide a configuration file in command line when executing the test suite (level 1),
+* do not provide a configuration files as parameter of the ``testsuite_setup`` (level 2),
+* do not have a ``config`` folder containing configuration files in your test suites folder (level 3),
+
+the **RobotFramework_Testsuites** falls back to the default configuration (level 4).
+
+In case you want to realize a variant handling you have to provide the path and the name of a variant configuration file to the ``testsuite_setup``:
+
+   .. code::
+
+      Suite Setup    testsuites.testsuite_setup    ./config/exercise_variants.json
+
+To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
+configuration file, for example:
+
+   .. code::
+
+      Running with configuration level: 2
+      CfgFile Path: ./config/exercise_config.json
+
+Please consider: The ``testsuite_setup`` requires the mapping configuration file (containing the mapping between the variant names and the
+corresponding parameter configuration files; ``exercise_variants.json``) - whereas the log file contains the resulting parameter configuration
+file (``exercise_config.json``), that is selected depending on the name of the variant provided in command line of the RobotFramework AIO.
 
 **For now it's enough theory - time for exercises.**
 
@@ -333,12 +382,34 @@ about their main topics.
 After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
 (named ``exercise-01``, ``exercise-02``, ...) and can be explored independently from all others.
 
+
 TOC_
 
 ----
 
 Exercises
 ---------
+
+Every exercise folder (``exercise-01`` - ``exercise-x``) contains one or more robot files together with all additionally required files
+and together with the documentation of the exercise. Therefore every exercise folder is stand-alone.
+
+We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required when the tests are executed.
+Corresponding informations you will find in the documentation inside the exercise folder.
+
+Every exercise folder will have it's own log files folder with the log files having the same name like the executed robot files:
+
+* Test: exercise-x.robot
+* Log: logfiles/exercise-x.log
+
+exercise-01
+~~~~~~~~~~~
+
+Simple example referring to the default configuration
+
+
+
+----
+
 
 to be continued
 
@@ -347,7 +418,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.2.3 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.3.0 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

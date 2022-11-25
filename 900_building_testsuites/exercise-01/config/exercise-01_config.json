@@ -11,22 +11,19 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//*****************************************************************************
-//  Author: Mai Dinh Nam Son
-//
-//  This file defines all common global parameters and will be included to all
-//  test config files
-//*****************************************************************************
+//**************************************************************************
+
 {
-  "WelcomeString": "Hello... RobotFramework AIO is running now!",
-  "Maximum_version": "0.5.2",
-  "Minimum_version": "0.4.10",
-  // Version control information.
-  "version": {
-    "majorversion": "0",
-    "minorversion": "1",
-    "patchversion": "0"
-  },
-  "TargetName" : "gen3flex@dlt",
-  "Project": "G3g_Tutorial"
+  "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
+  "Maximum_version" : "0.5.2",
+  "Minimum_version" : "0.5.2",
+  "Project"         : "RobotFramework AIO tutorial",
+  "TargetName"      : "device",
+
+  "params" : {
+              "global": {
+                         "teststring" : "I am exercise 01"
+                        }
+             }
 }
+
