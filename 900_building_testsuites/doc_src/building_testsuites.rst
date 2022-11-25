@@ -309,11 +309,11 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
   The RobotFramework AIO uses the default configuration file that is part of the installation.
 
-  This is handled in exercise (**TODO: add name**).
+  This is handled in ``exercise-01``.
 
 *Summarized*:
 
-* With highest priority a configuration file provided in command line is considered - even in case of also other configuration files (level 2 - level 4)
+* With highest priority a configuration file provided in command line, is considered - even in case of also other configuration files (level 2 - level 4)
   are available.
 
 * If a configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
@@ -369,19 +369,15 @@ configuration file, for example:
       CfgFile Path: ./config/exercise_config.json
 
 Please consider: The ``testsuite_setup`` requires the mapping configuration file (containing the mapping between the variant names and the
-corresponding parameter configuration files; ``exercise_variants.json``) - whereas the log file contains the resulting parameter configuration
-file (``exercise_config.json``), that is selected depending on the name of the variant provided in command line of the RobotFramework AIO.
+corresponding parameter configuration files; in the example above: ``exercise_variants.json``) - whereas the log file contains the resulting
+parameter configuration file (in the example above: ``exercise_config.json``), that is selected depending on the name of the variant provided
+in command line of the RobotFramework AIO.
 
 **For now it's enough theory - time for exercises.**
 
 All further formats and features that need to be explained, will be explained in those test suites who use them.
 
-The following part of this document contains a list of test suites available in this tutorial - together with some hints
-about their main topics.
-
-After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
-(named ``exercise-01``, ``exercise-02``, ...) and can be explored independently from all others.
-
+The following part of this document contains an overview about all exercises available in this tutorial.
 
 TOC_
 
@@ -390,11 +386,12 @@ TOC_
 Exercises
 ---------
 
-Every exercise folder (``exercise-01`` - ``exercise-x``) contains one or more robot files together with all additionally required files
-and together with the documentation of the exercise. Therefore every exercise folder is stand-alone.
+Every exercise is placed in an own exercise folder (``exercise-01`` - ``exercise-x``) that is stand-alone.
+Every exercise folder contains one or more robot files together with all additionally required files
+and together with the documentation of the exercise.
 
-We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required when the tests are executed.
-Corresponding informations you will find in the documentation inside the exercise folder.
+We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required
+when the tests are executed. Corresponding informations you will find in the documentation inside the exercise folder.
 
 Every exercise folder will have it's own log files folder with the log files having the same name like the executed robot files:
 

@@ -608,12 +608,12 @@ In case of such a folder exists and configuration files are inside, they will be
 </li>
 <li><p class="first">Level 4</p>
 <p>The RobotFramework AIO uses the default configuration file that is part of the installation.</p>
-<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+<p>This is handled in <tt class="docutils literal"><span class="pre">exercise-01</span></tt>.</p>
 </li>
 </ul>
 <p><em>Summarized</em>:</p>
 <ul class="simple">
-<li>With highest priority a configuration file provided in command line is considered - even in case of also other configuration files (level 2 - level 4)
+<li>With highest priority a configuration file provided in command line, is considered - even in case of also other configuration files (level 2 - level 4)
 are available.</li>
 <li>If a configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
 in case of also other configuration files (level 3 - level 4) are available.</li>
@@ -658,24 +658,23 @@ CfgFile Path: ./config/exercise_config.json
 </pre>
 </blockquote>
 <p>Please consider: The <tt class="docutils literal">testsuite_setup</tt> requires the mapping configuration file (containing the mapping between the variant names and the
-corresponding parameter configuration files; <tt class="docutils literal">exercise_variants.json</tt>) - whereas the log file contains the resulting parameter configuration
-file (<tt class="docutils literal">exercise_config.json</tt>), that is selected depending on the name of the variant provided in command line of the RobotFramework AIO.</p>
+corresponding parameter configuration files; in the example above: <tt class="docutils literal">exercise_variants.json</tt>) - whereas the log file contains the resulting
+parameter configuration file (in the example above: <tt class="docutils literal">exercise_config.json</tt>), that is selected depending on the name of the variant provided
+in command line of the RobotFramework AIO.</p>
 <p><strong>For now it's enough theory - time for exercises.</strong></p>
 <p>All further formats and features that need to be explained, will be explained in those test suites who use them.</p>
-<p>The following part of this document contains a list of test suites available in this tutorial - together with some hints
-about their main topics.</p>
-<p>After you have got an overview about the content you are ready to go to the exercises. Every exercise has it's own subfolder
-(named <tt class="docutils literal"><span class="pre">exercise-01</span></tt>, <tt class="docutils literal"><span class="pre">exercise-02</span></tt>, ...) and can be explored independently from all others.</p>
+<p>The following part of this document contains an overview about all exercises available in this tutorial.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 </div>
 <hr class="docutils" />
 <div class="section" id="exercises">
 <h1>Exercises</h1>
-<p>Every exercise folder (<tt class="docutils literal"><span class="pre">exercise-01</span></tt> - <tt class="docutils literal"><span class="pre">exercise-x</span></tt>) contains one or more robot files together with all additionally required files
-and together with the documentation of the exercise. Therefore every exercise folder is stand-alone.</p>
-<p>We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required when the tests are executed.
-Corresponding informations you will find in the documentation inside the exercise folder.</p>
+<p>Every exercise is placed in an own exercise folder (<tt class="docutils literal"><span class="pre">exercise-01</span></tt> - <tt class="docutils literal"><span class="pre">exercise-x</span></tt>) that is stand-alone.
+Every exercise folder contains one or more robot files together with all additionally required files
+and together with the documentation of the exercise.</p>
+<p>We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required
+when the tests are executed. Corresponding informations you will find in the documentation inside the exercise folder.</p>
 <p>Every exercise folder will have it's own log files folder with the log files having the same name like the executed robot files:</p>
 <ul class="simple">
 <li>Test: exercise-x.robot</li>

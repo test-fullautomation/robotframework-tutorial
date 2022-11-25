@@ -26,7 +26,7 @@ The first exercise contains the simplest realization of a test suites management
 
 .. code::
 
-   Suite Setup    testsuites.testsuite_setup
+   Library    RobotFramework_Testsuites    WITH NAME    testsuites
 
 and executes the ``testsuite_setup``
 

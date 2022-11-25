@@ -379,7 +379,7 @@ limitations under the License. -->
 <p>The first exercise contains the simplest realization of a test suites management:</p>
 <p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
 <pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup
+Library    RobotFramework_Testsuites    WITH NAME    testsuites
 </pre>
 <p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
 <pre class="code literal-block">
