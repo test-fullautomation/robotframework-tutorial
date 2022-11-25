@@ -314,13 +314,13 @@ access the configuration file in a certain order: Level 1 has the highest priori
 * With highest priority a configuration file provided in command line is considered - even in case of also other configuration files (level 2 - level 4)
   are available.
 
-* If a configuration file is not provided in command line, but a level name, then the configuration belonging to this level is loaded - even
+* If a configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
   in case of also other configuration files (level 3 - level 4) are available.
 
 * If nothing is specified in command line, then the RobotFramework AIO tries to find configuration files within a ``config/`` folder and take them if
   available - even in case of also the level 4 configuration file is available.
 
-* In case of the user does not provid any information about configuration files to use, the RobotFramework AIO loads the default configuration
+* In case of the user does not provide any information about configuration files to use, the RobotFramework AIO loads the default configuration
   from installation folder (fallback solution).
 
 **For now it's enough theory - time for exercises.**
@@ -347,7 +347,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.2.2 / 24.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.2.3 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
