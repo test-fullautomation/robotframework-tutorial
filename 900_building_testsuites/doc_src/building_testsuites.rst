@@ -390,20 +390,23 @@ Every exercise is placed in an own exercise folder (``exercise-01`` - ``exercise
 Every exercise folder contains one or more robot files together with all additionally required files
 and together with the documentation of the exercise.
 
-We recommend to exexute every robot file in command line. This is because of in lots of cases command line parameters are required
+We recommend to execute every robot file in command line. This is because of in lots of cases command line parameters are required
 when the tests are executed. Corresponding informations you will find in the documentation inside the exercise folder.
 
 Every exercise folder will have it's own log files folder with the log files having the same name like the executed robot files:
 
-* Test: exercise-x.robot
-* Log: logfiles/exercise-x.log
+* Test: ``exercise-x.robot``
+* Log: ``logfiles/exercise-x.log``
 
 exercise-01
 ~~~~~~~~~~~
 
-Simple example referring to the default configuration
+Simplest example referring to the default configuration from installation
 
+exercise-02
+~~~~~~~~~~~
 
+Demonstrates several ways to define the configuration in command line
 
 ----
 

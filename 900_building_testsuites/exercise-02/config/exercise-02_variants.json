@@ -15,7 +15,15 @@
 
 {
   "default": {
-               "name": "exercise-01_config.json",
-               "path": ".../config/"
-             }
+               "name": "exercise-02_config_default.json",
+               "path": "./config/"
+             },
+  "variant1": {
+               "name": "exercise-02_config_variant1.json",
+               "path": "./config/"
+              },
+  "variant2": {
+               "name": "exercise-02_config_variant2.json",
+               "path": "./config/"
+              }
 }

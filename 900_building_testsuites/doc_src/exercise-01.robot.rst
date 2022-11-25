@@ -43,7 +43,7 @@ Command line
 
 .. code::
 
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-01.xml -l exercise-01_log.html -r exercise-01_report.html -b exercise-01.log ./exercise-01.robot
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-01.xml -l exercise-01_log.html -r exercise-01_report.html -b exercise-01.log "./exercise-01.robot"
 
 ----
 
