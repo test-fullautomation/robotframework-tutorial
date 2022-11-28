@@ -351,7 +351,7 @@ The next step is to call the ``testsuite_setup`` of the **RobotFramework_Testsui
 As long as you
 
 * do not provide a configuration file in command line when executing the test suite (level 1),
-* do not provide a configuration files as parameter of the ``testsuite_setup`` (level 2),
+* do not provide a configuration file as parameter of the ``testsuite_setup`` (level 2),
 * do not have a ``config`` folder containing configuration files in your test suites folder (level 3),
 
 the **RobotFramework_Testsuites** falls back to the default configuration (level 4).

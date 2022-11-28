@@ -72,12 +72,13 @@ Command lines
 Outcome
 -------
 
-The test suites ``exercise-03-A.robot`` and ``exercise-03-B.robot`` have the configuration counterparts ``config/exercise-03-A.json`` and ``config/exercise-03-B.json``.
+The test suites ``exercise-03-A.robot`` and ``exercise-03-B.robot`` have the configuration counterparts (same file names) ``config/exercise-03-A.json``
+and ``config/exercise-03-B.json``.
 
 Therefore the value of the test string is taken out of these configuration files.
 
 The test suite ``exercise-03.robot`` does not have a configuration counterpart. Therefore the Robot Framework AIO falls back to the configuration file with the
-default name ``config/robot_config.json.json`` and the value of the test string is:
+default name ``config/robot_config.json`` and the value of the test string is:
 
 .. code::
 
