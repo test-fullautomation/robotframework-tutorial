@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>exercise-01</title>
+<title>exercise-03</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="exercise-01">
-<h1 class="title">exercise-01</h1>
+<div class="document" id="exercise-03">
+<h1 class="title">exercise-03</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH -->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");
@@ -376,41 +376,64 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p>The first exercise contains the simplest realization of a test suites management:</p>
-<p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
+<p><tt class="docutils literal"><span class="pre">exercise-03</span></tt> demonstrates several ways to load the configuration from a local <tt class="docutils literal">config</tt> folder.</p>
+<p>The meaning of &quot;local&quot; is that the <tt class="docutils literal">config</tt> folder is placed in the same folder than the test suites.</p>
+<p>Configuration files within this folder are considered under two different conditions:</p>
+<ul>
+<li><p class="first">The configuration file has the name <tt class="docutils literal">robot_config.json</tt>. That is a fix name predefined by the <strong>RobotFramework_Testsuites</strong>.</p>
+</li>
+<li><p class="first">The configuration file has the same name than a robot file inside the test suites folder, e.g.:</p>
+<ul class="simple">
+<li>Name of test suite file: <tt class="docutils literal"><span class="pre">exercise-03-A.robot</span></tt></li>
+<li>Path and name of corresponding configuration file: <tt class="docutils literal"><span class="pre">./config/exercise-03-A.json</span></tt></li>
+</ul>
+<p>With this rule it is possible to give every test suite in a certain folder an own individual configuration.</p>
+</li>
+</ul>
+<p>This exercise contains the following test suites:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">exercise-03.robot</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">exercise-03-A.robot</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">exercise-03-B.robot</span></tt></li>
+</ul>
+<p>together with the following configuration files:</p>
+<ul class="simple">
+<li><tt class="docutils literal">config/robot_config.json.json</tt></li>
+<li><tt class="docutils literal"><span class="pre">config/exercise-03-A.json</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">config/exercise-03-B.json</span></tt></li>
+</ul>
+<p>Every of these configuration files define a test string containing an individual value, e.g. the file <tt class="docutils literal"><span class="pre">exercise-03-A.json</span></tt>
+defines:</p>
 <pre class="code literal-block">
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+&quot;teststring&quot; : &quot;I am the 'exercise-03-A' configuration of exercise 03&quot;
 </pre>
-<p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
-<pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup
-</pre>
-<p>No further configuration file is given.</p>
+<p>With the following command lines we execute all test suites (without any configuration related command line extension).</p>
+<p>Also the test suites itself do not contain any configuration information.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="command-line">
-<h1>Command line</h1>
+<div class="section" id="command-lines">
+<h1>Command lines</h1>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-01.xml -l exercise-01_log.html -r exercise-01_report.html -b exercise-01.log &quot;./exercise-01.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-03.xml -l exercise-03_log.html -r exercise-03_report.html -b exercise-03.log &quot;./exercise-03.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-03.xml -l exercise-03_log.html -r exercise-03_report.html -b exercise-03.log &quot;./exercise-03-A.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-03.xml -l exercise-03_log.html -r exercise-03_report.html -b exercise-03.log &quot;./exercise-03-B.robot&quot;
 </pre>
 </div>
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>Because of nothing more is specified the RobotFramework AIO falls back to the default configuration (level 4).</p>
-<p>The test prints the <tt class="docutils literal">Maximum_version</tt> and the <tt class="docutils literal">Project</tt> name like defined in this default configuration.</p>
-<p>Hint: The parameters are keys of an internal configuration dictionary. They have to be accessed in the following way:</p>
+<p>The test suites <tt class="docutils literal"><span class="pre">exercise-03-A.robot</span></tt> and <tt class="docutils literal"><span class="pre">exercise-03-B.robot</span></tt> have the configuration counterparts <tt class="docutils literal"><span class="pre">config/exercise-03-A.json</span></tt> and <tt class="docutils literal"><span class="pre">config/exercise-03-B.json</span></tt>.</p>
+<p>Therefore the value of the test string is taken out of these configuration files.</p>
+<p>The test suite <tt class="docutils literal"><span class="pre">exercise-03.robot</span></tt> does not have a configuration counterpart. Therefore the Robot Framework AIO falls back to the configuration file with the
+default name <tt class="docutils literal">config/robot_config.json.json</tt> and the value of the test string is:</p>
 <pre class="code literal-block">
-Log    Maximum_version : ${CONFIG}[Maximum_version]    console=yes
-Log    Project : ${CONFIG}[Project]    console=yes
+I am the 'robot_config' configuration of exercise 03
 </pre>
-<p>The logfile tells about the origin of the values:</p>
+<p>The log file gives more information about the origin; in case of <tt class="docutils literal"><span class="pre">exercise-03.robot</span></tt>:</p>
 <pre class="code literal-block">
-Running with configuration level: 4
-CfgFile Path: &lt;Robot Framework installation&gt;\python39\lib\site-packages\RobotFramework_Testsuites\Config\robot_config.json
+Running with configuration level: 3
+CfgFile Path: config/robot_config.json
 </pre>
-<p>Hint: The <em>level 4</em> configuration is a fallback solution and should be avoided. In case you activate the test suites management, you should also specify an own configuration file.
-This is handled in the following exercises.</p>
 </div>
 </div>
 </body>

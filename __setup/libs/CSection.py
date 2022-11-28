@@ -20,7 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# 28.03.2022
+# 28.11.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ class CSection():
 
       sMethod = "GetDocumentsList"
 
-      tupleSupportedFileExtensions = (".rst", ".robot", ".resource", ".json", ".py")
+      tupleSupportedFileExtensions = (".rst", ".robot", ".resource", ".py") # excluded: , ".json"
 
       bSuccess = None
       sResult  = None

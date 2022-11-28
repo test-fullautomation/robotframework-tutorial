@@ -466,8 +466,7 @@ for this variant.</li>
 <div class="section" id="how-to-realize-a-concrete-test-suites-management">
 <h2>How to realize a concrete test suites management?</h2>
 <p>In this section it is described in theory which steps have to be followed to realize a concrete test suites management.
-The example we use here, is also the main topic of the test suites in this tutorial. Details about the internal structure of
-configuration files will be given in the next part of this introduction.</p>
+Details about the internal structure of configuration files are given in the next part of this introduction.</p>
 <p><em>Step 1: Analyze the current situation in your project</em></p>
 <p>An outcome of the analysis can be something like that:</p>
 <ul class="simple">
@@ -524,7 +523,7 @@ when the test suite is being executed.</p>
 The path to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files depends on the test file location. A
 different number of <tt class="docutils literal">../</tt> is required dependent on the directory depth of the test
 case location.</p>
-<p>Therefore we use here three dots to tell the Robot Framework AIO to search from the test
+<p>Therefore we use here three dots to tell the <strong>RobotFramework_Testsuites</strong> to search from the test
 file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
 <pre class="code python literal-block">
 <span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
@@ -533,6 +532,9 @@ file location up till the <tt class="docutils literal"><span class="pre">robot_c
 <span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
 </pre>
 <p>and so on.</p>
+<p>Hint: The paths to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are relative to the position of the test suite - <strong>and not relative to the position of the
+mapping file in which they are defined!</strong> You are free to move your test suites one or more level up or down in the file system, but using the
+<em>three dots</em> notation enables you to let the position of the <tt class="docutils literal">config</tt> folder unchanged.</p>
 </li>
 <li><p class="first">Configuration file defining all parameters that shall be available globally during test execution.</p>
 <p>Some of them are required. Optionally the user can add own ones. The following example shows the smallest version
@@ -599,12 +601,12 @@ access the configuration file in a certain order: Level 1 has the highest priori
 that contains the mapping between the variant and the variant specific configuration
 (like described in <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>).</p>
 <p>This also requires that this mapping file is known to the test (path and name is an input parameter of the <tt class="docutils literal">Suite Setup</tt>).</p>
-<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+<p>This is handled in <tt class="docutils literal"><span class="pre">exercise-02</span></tt>.</p>
 </li>
 <li><p class="first">Level 3</p>
 <p>The RobotFramework AIO searches for configuration files within a folder <tt class="docutils literal">config/</tt> in current test suite directory.
 In case of such a folder exists and configuration files are inside, they will be used.</p>
-<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+<p>This is handled in <tt class="docutils literal"><span class="pre">exercise-03</span></tt>.</p>
 </li>
 <li><p class="first">Level 4</p>
 <p>The RobotFramework AIO uses the default configuration file that is part of the installation.</p>
@@ -687,11 +689,15 @@ when the tests are executed. Corresponding informations you will find in the doc
 <div class="section" id="exercise-02">
 <h2>exercise-02</h2>
 <p>Demonstrates several ways to define the configuration in command line</p>
+</div>
+<div class="section" id="exercise-03">
+<h2>exercise-03</h2>
+<p>Demonstrates several ways to load the configuration from a local <tt class="docutils literal">config</tt> folder</p>
 <hr class="docutils" />
 <p>to be continued</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.3.0 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.4.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

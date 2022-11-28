@@ -131,8 +131,7 @@ How to realize a concrete test suites management?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this section it is described in theory which steps have to be followed to realize a concrete test suites management.
-The example we use here, is also the main topic of the test suites in this tutorial. Details about the internal structure of 
-configuration files will be given in the next part of this introduction.
+Details about the internal structure of configuration files are given in the next part of this introduction.
 
 *Step 1: Analyze the current situation in your project*
 
@@ -205,7 +204,7 @@ In this part of the introduction we take a first look at the content of configur
    different number of ``../`` is required dependent on the directory depth of the test 
    case location.
 
-   Therefore we use here three dots to tell the Robot Framework AIO to search from the test 
+   Therefore we use here three dots to tell the **RobotFramework_Testsuites** to search from the test 
    file location up till the ``robot_config*.json`` files are found:
 
    .. code:: python
@@ -216,6 +215,10 @@ In this part of the introduction we take a first look at the content of configur
       ../../../config/robot_config.json
 
    and so on.
+
+   Hint: The paths to the ``robot_config*.json`` files are relative to the position of the test suite - **and not relative to the position of the
+   mapping file in which they are defined!** You are free to move your test suites one or more level up or down in the file system, but using the
+   *three dots* notation enables you to let the position of the ``config`` folder unchanged.
 
 2. Configuration file defining all parameters that shall be available globally during test execution.
 
@@ -296,14 +299,14 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
   This also requires that this mapping file is known to the test (path and name is an input parameter of the ``Suite Setup``).
 
-  This is handled in exercise (**TODO: add name**).
+  This is handled in ``exercise-02``.
 
 * Level 3
 
   The RobotFramework AIO searches for configuration files within a folder ``config/`` in current test suite directory.
   In case of such a folder exists and configuration files are inside, they will be used.
 
-  This is handled in exercise (**TODO: add name**).
+  This is handled in ``exercise-03``.
 
 * Level 4
 
@@ -408,6 +411,11 @@ exercise-02
 
 Demonstrates several ways to define the configuration in command line
 
+exercise-03
+~~~~~~~~~~~
+
+Demonstrates several ways to load the configuration from a local ``config`` folder
+
 ----
 
 
@@ -418,7 +426,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.3.0 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.4.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
