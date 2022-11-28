@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>tutorial-04: working with variable files in command line</title>
+<title>exercise-01</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="tutorial-04-working-with-variable-files-in-command-line">
-<h1 class="title">tutorial-04: working with variable files in command line</h1>
+<div class="document" id="exercise-01">
+<h1 class="title">exercise-01</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH -->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");
@@ -373,119 +373,45 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
-<p><strong>Data sets</strong></p>
-<p>Before we go to the tests of this tutorial we take a look at the variables used here.</p>
-<p>Providing additional informations and settings in command line is an option. To be on the save side,
-every variable should be initialized</p>
-<p>The variables of this tutorial are initialized within</p>
-<pre class="code literal-block">
-./libs/testimport.resource
-</pre>
-<p>in the following way:</p>
-<pre class="code literal-block">
-${cmdline_var_1}    ${None}
-${cmdline_var_2}    ${None}
-${cmdline_var_3}    ${None}
-${cmdline_var_4}    ${None}
-${cmdline_var_5}    ${None}
-${cmdline_var_6}    ${None}
-${cmdline_var_7}    ${None}
-</pre>
-<p>Valid values are defined within the Python variable file</p>
-<pre class="code literal-block">
-./variables/testvariables.py
-</pre>
-<p>in the following way:</p>
-<pre class="code literal-block">
-cmdline_var_1 = &quot;variable file test string&quot;
-cmdline_var_2 = 234
-cmdline_var_3 = 5.67
-cmdline_var_4 = ['A', 'B', 'C']
-cmdline_var_5 = {'A' : 1, 'B' : 2, 'C' : 3}
-cmdline_var_6 = True
-cmdline_var_7 = None
-</pre>
-<p><strong>Robot file</strong></p>
-<p><tt class="docutils literal"><span class="pre">tutorial-04.robot</span></tt> demonstrates how to work with variable files and single variables in command line.</p>
-<div class="section" id="test-case-04-01">
-<h1>Test case 04_01</h1>
-<p>In test case <tt class="docutils literal">04_01</tt> all variables are logged with <tt class="docutils literal">log_scalar</tt>:</p>
-<pre class="code literal-block">
-log_scalar    ${variablefile_val_1}
-log_scalar    ${variablefile_val_2}
-log_scalar    ${variablefile_val_3}
-log_scalar    ${variablefile_val_4}
-log_scalar    ${variablefile_val_5}
-log_scalar    ${variablefile_val_6}
-log_scalar    ${variablefile_val_7}
-</pre>
-<p><strong>Execution</strong></p>
-<p>Now we go through several ways to execute the test.</p>
-<p><em>Standard execution without any command line extensions</em></p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The value of all variables is <tt class="docutils literal">None</tt> (like initialized).</p>
 <hr class="docutils" />
-<p><em>Execution with variable file in command line</em></p>
-<p>Now we add a variable file to command line:</p>
+<div class="section" id="content">
+<h1>Content</h1>
+<p>The first exercise contains the simplest realization of a test suites management:</p>
+<p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
 <pre class="code literal-block">
---variablefile ./variables/testvariables.py
+Library    RobotFramework_Testsuites    WITH NAME    testsuites
 </pre>
-<p>Complete command line:</p>
+<p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot --variablefile ./variables/testvariables.py -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+Suite Setup    testsuites.testsuite_setup
 </pre>
-<p><strong>Outcome</strong></p>
-<p>Value and data type of all variables are like defined in <tt class="docutils literal">testvariables.py</tt>.</p>
+<p>No further configuration file is given.</p>
+</div>
 <hr class="docutils" />
-<p><em>Execution with single variable in command line</em></p>
-<p>Instead of using a file containing definitions of variables it is also possible to provide single variables in command line.</p>
-<p>But here we have a limitation: It is only possible to use string values!</p>
-<p>Now we add a single variable to command line:</p>
+<div class="section" id="command-line">
+<h1>Command line</h1>
 <pre class="code literal-block">
---variable cmdline_var_1:&quot;command line test string&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-01.xml -l exercise-01_log.html -r exercise-01_report.html -b exercise-01.log &quot;./exercise-01.robot&quot;
 </pre>
-<p>Complete command line:</p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable cmdline_var_1:&quot;command line test string&quot; -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The variable <tt class="docutils literal">cmdline_var_1</tt> has the new value <tt class="docutils literal">command line test string</tt>. The value of all other variables is still <tt class="docutils literal">None</tt>.</p>
+</div>
 <hr class="docutils" />
-<p><em>Execution with several variables in command line</em></p>
-<p>Now we provide two variables in command line: an integer and a boolean value:</p>
+<div class="section" id="outcome">
+<h1>Outcome</h1>
+<p>Because of nothing more is specified the RobotFramework AIO falls back to the default configuration (level 4).</p>
+<p>The test prints the <tt class="docutils literal">Maximum_version</tt> and the <tt class="docutils literal">Project</tt> name like defined in this default configuration.</p>
+<p>Hint: The parameters are keys of an internal configuration dictionary. They have to be accessed in the following way:</p>
 <pre class="code literal-block">
---variable cmdline_var_2:234 --variable cmdline_var_6:True
+Log    Maximum_version : ${CONFIG}[Maximum_version]    console=yes
+Log    Project : ${CONFIG}[Project]    console=yes
 </pre>
-<p>Complete command line:</p>
+<p>The logfile tells about the origin of the values:</p>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable cmdline_var_2:234 --variable cmdline_var_6:True -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
+Running with configuration level: 4
+CfgFile Path: &lt;RobotFramework AIO installation&gt;\python39\lib\site-packages\RobotFramework_Testsuites\Config\robot_config.json
 </pre>
-<p><strong>Outcome</strong></p>
-<p>Both variables are strings! Like already mentioned above: Only string values can be defined in command line. Or in other words:
-Every command line value will be interpreted as string. In case you need to work also with other data types you have to use the variable file mechanism
-(<tt class="docutils literal"><span class="pre">--variablefile</span></tt>).</p>
-<hr class="docutils" />
-<p><strong>Command line variables and TestsuitesManagement configuration</strong></p>
-<p>Up to now for command line tests we have only used variables that are not already defined within a json file of the TestsuitesManagement configuration.
-What will happen, when we try to overwrite such a configuration value in command line? The answer is: This will not work!</p>
-<p>The TestsuitesManagement configuration of the RobotFramework AIO is a certain extension of the Robot Framework core. The possibility to
-define values in several json files under certain conditions is a powerful feature - but this feature currently has the limitation
-that the json file values cannot be overwritten in command line (with both <tt class="docutils literal"><span class="pre">--variablefile</span></tt> and <tt class="docutils literal"><span class="pre">--variable</span></tt>).</p>
-<p>Remember:</p>
-<p>In the global params section of <tt class="docutils literal">tutorialconfig.json</tt> the following string variable is defined:</p>
-<pre class="code literal-block">
-&quot;string_val&quot; : &quot;test string&quot;,
-</pre>
-<p>Use the following command line to (try to) overwrite this value:</p>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot --variable string_val:&quot;command line test string&quot; -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
-</pre>
-<p><strong>Outcome</strong></p>
-<p>The configuration variable <tt class="docutils literal">string_val</tt> still has the original value <tt class="docutils literal">test string</tt>.</p>
-<p><em>Please be aware of this effect when you design your tests.</em></p>
+<p>(with <tt class="docutils literal">&lt;RobotFramework AIO <span class="pre">installation&gt;\python39</span></tt> is equivalent to <tt class="docutils literal">%RobotPythonPath%</tt>)</p>
+<p>Hint: The <em>level 4</em> configuration is a fallback solution and should be avoided. In case you activate the test suites management, you should also specify an own configuration file.
+This is handled in the following exercises.</p>
 </div>
 </div>
 </body>

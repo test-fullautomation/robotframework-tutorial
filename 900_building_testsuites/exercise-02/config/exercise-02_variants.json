@@ -1,4 +1,4 @@
-//  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+//  Copyright 2020-2022 Robert Bosch GmbH
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -11,20 +11,19 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//*****************************************************************************
-//  Author: Mai Dinh Nam Son
-//
-//  This file defines all common global parameters and will be included to all
-//  test config files
-//*****************************************************************************
+//**************************************************************************
+
 {
-  "gPreprolIntParam" : 1,
-  
-  "gPreproFloatParam" : 1.332,
-  
-  "gPreproString"   : "This is a string",
-   
-  "gPreproStructure": {
-                         "general": "general"
-                      }
+  "default": {
+               "name": "exercise-02_config_default.json",
+               "path": "./config/"
+             },
+  "variant1": {
+               "name": "exercise-02_config_variant1.json",
+               "path": "./config/"
+              },
+  "variant2": {
+               "name": "exercise-02_config_variant2.json",
+               "path": "./config/"
+              }
 }

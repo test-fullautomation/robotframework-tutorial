@@ -1,12 +1,12 @@
 .. Copyright 2020-2022 Robert Bosch GmbH
 
-   Licensed under the Apache License, Version 2.0 (the "License");
+.. Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+.. http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
+.. Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
@@ -107,9 +107,9 @@ In test case ``03_03`` we work with nested dictionaries defined within the json 
 
    ./config/tutorialconfig.json
 
-But before we start, some internals needs to be mentioned: The json format and the robot code format are two different worlds.
+But before we start, some internals need to be mentioned: The json format and the robot code format are two different worlds.
 Both have their own formats. Compared to the Robot Framework core, the RobotFramework AIO contains a component called ``JsonPreprocessor``.
-With the help of this component the RobotFramework AIO is able to access the content of json files independend from format differences.
+With the help of this component the RobotFramework AIO is able to access the content of json files independently from format differences.
 The ``JsonPreprocessor`` is able to convert the formats, and when the json content is passed to the robot world, then the content is adapted.
 
 But behind the curtain still json parsing mechanisms are used to get the content and therefore it is not possible to align already
@@ -250,6 +250,8 @@ The impact is:
    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_211}
    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_212}
    log_scalar    ${dict_val.key_2.subkey_21.subsubkey_213}
+
+But this notation requires that the key names do not contain dots. In case they do, you have to switch back to the standard notation.
 
 Up to now we have used hard coded strings as key names. The last step in this tutorial is to use the content of variables as key names.
 

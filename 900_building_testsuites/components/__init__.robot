@@ -16,6 +16,7 @@ Documentation
 ...    The __init__.robot file is used to define the first suite setup
 ...    and the last suite teardown when we trigger the robot testing 
 ...    for all testsuites in tutorial\900_Building_testsuites\components
+Library      RobotFramework_Testsuites    WITH NAME    testsuites
 Suite Setup      Initialized Suite Setup
 Suite Teardown   Last Suite Teardown
 
@@ -28,6 +29,7 @@ Initialized Suite Setup
     ...    We can define anything we need in this setup keyword before 
     ...    executing all robot files in components directory.
     Log    "The initialized Suite setup"
+	testsuites.testsuite_setup    ../config/testsuites_config.json
     
 Last Suite Teardown
     [Documentation]

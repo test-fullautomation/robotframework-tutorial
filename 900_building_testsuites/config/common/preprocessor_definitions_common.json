@@ -1,4 +1,4 @@
-//  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+//  Copyright 2020-2022 Robert Bosch GmbH
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,15 +18,13 @@
 //  test config files
 //*****************************************************************************
 {
-  "WelcomeString": "Hello... ROBFW is running now!",
-  "Maximum_version": "0.5.2",
-  "Minimum_version": "0.4.10",
-  // Version control information.
-  "version": {
-    "majorversion": "0",
-    "minorversion": "1",
-    "patchversion": "0"
-  },
-  "Project": "G3g-default-level3",
-  "TargetName" :  "gen3flex@dlt"
+  "gPreprolIntParam" : 1,
+  
+  "gPreproFloatParam" : 1.332,
+  
+  "gPreproString"   : "This is a string",
+   
+  "gPreproStructure": {
+                         "general": "general"
+                      }
 }

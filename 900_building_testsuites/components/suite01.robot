@@ -20,5 +20,6 @@ Test Teardown    testsuites.testcase_teardown
 
 *** Test Cases ***
 Test Case 0101
+    [documentation]    Log of some CONFIG parameters
     Log    ${CONFIG}[WelcomeString]
     Log    ${CONFIG}[Project]

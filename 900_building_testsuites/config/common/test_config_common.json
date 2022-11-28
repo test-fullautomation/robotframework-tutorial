@@ -1,4 +1,4 @@
-//  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+//  Copyright 2020-2022 Robert Bosch GmbH
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 //  test config files
 //*****************************************************************************
 {
-  "WelcomeString": "Hello... ROBFW is running now!",
+  "WelcomeString": "Hello... RobotFramework AIO is running now!",
   "Maximum_version": "0.5.2",
   "Minimum_version": "0.4.10",
   // Version control information.
@@ -27,7 +27,6 @@
     "minorversion": "1",
     "patchversion": "0"
   },
- 
-  "TargetName" :  "gen3flex@dlt",
-  "Project": "G3g-component_B-Suite05"
+  "TargetName" : "gen3flex@dlt",
+  "Project": "G3g_Tutorial"
 }

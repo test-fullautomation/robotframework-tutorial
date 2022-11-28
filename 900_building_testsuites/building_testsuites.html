@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<title>Building test suites in RobotFramework AIO</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="building-test-suites-in-robotframework-aio">
+<h1 class="title">Building test suites in RobotFramework AIO</h1>
+
+<!-- Copyright 2020-2022 Robert Bosch GmbH -->
+<!-- Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at -->
+<!-- http://www.apache.org/licenses/LICENSE-2.0 -->
+<!-- Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<hr class="docutils" />
+<div class="section" id="table-of-content">
+<h1>Table of content</h1>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+</ol>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-the-initial-situation">What is the initial situation?</a></li>
+<li><a class="reference internal" href="#how-to-handle-configuration-parameters-in-robotframework-aio">How to handle configuration parameters in RobotFramework AIO?</a></li>
+<li><a class="reference internal" href="#how-to-realize-a-concrete-test-suites-management">How to realize a concrete test suites management?</a></li>
+<li><a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a></li>
+<li><a class="reference internal" href="#how-does-the-robotframework-aio-access-configuration-files">How does the RobotFramework AIO access configuration files?</a></li>
+<li><a class="reference internal" href="#how-to-enable-the-test-suites-management-in-robotframework-aio">How to enable the test suites management in RobotFramework AIO?</a></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><a class="reference internal" href="#exercises">Exercises</a></li>
+</ol>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction</h1>
+<div class="section" id="what-is-the-initial-situation">
+<h2>What is the initial situation?</h2>
+<p>In the scope of the RobotFramework AIO a test suite is either a single robot file containing one or more test cases, or a set of several robot files.</p>
+<p>Usually all test cases of a test suite run under the same conditions - but these conditions may be different. For example the same test case is used
+to test several different variants of a <em>System under Test</em>. Every variant requires individual values for certain configuration parameters.</p>
+<p>Based on this consideration two different scenarios are thinkable:</p>
+<ol class="arabic">
+<li><p class="first">A simple one</p>
+<p>Project <em>P</em> requires software for a target. There is only one variant <em>V</em> developed for this target.
+Tests developed for testing the target software, are carried out at several test benches.
+All test benches have the same hardware configuration.</p>
+<p><em>Therefore all tests run at every time under the same conditions.</em></p>
+</li>
+<li><p class="first">A complicated one</p>
+<p>Project <em>P</em> requires software for a target. There are several variants <em>V1-Vx</em> developed for this target.
+Tests developed for testing the target software on several variants, are carried out at several test benches.
+All test benches have different hardware configurations.
+All variants and all test benches require individual values for configuration parameters used in the tests.</p>
+<p><em>Therefore the same tests have to run under different conditions.</em></p>
+</li>
+</ol>
+<p>We assume here that in most of the cases the world isn't so much easy like described in scenario 1. Therefore in this tutorial we concentrate on scenario 2.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-to-handle-configuration-parameters-in-robotframework-aio">
+<h2>How to handle configuration parameters in RobotFramework AIO?</h2>
+<p>The RobotFramework AIO provides several places to define parameters: robot files, resource files, parameter files. But these parameters
+are fixed - and therefore sufficient for the simple scenario 1 only.</p>
+<p>For the complicated scenario 2 we need a more dynamic way of accessing parameters. And we postulate the following: When switching between
+tests of several variants and test executions on several test benches, no changes shall be required within the test code.</p>
+<p>The outcome is that another position has to be introduced to store values for variant and test bench specific parameters.
+And a possibility has to be provided to dynamically make either the one or the other set of values vailable during the execution of tests - depending on
+outer circumstances like &quot;<em>which variant?</em>&quot; and &quot;<em>which test bench?</em>&quot;.</p>
+<p>The RobotFramework AIO contains two components - the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> - that allow the user
+to define dynamic configuration values within separate configuration files in JSON format. The content of these files will be available
+during the test execution.</p>
+<p>In this set the <strong>JsonPreprocessor</strong> is responsible for reading in the values. This includes basic aspects like syntax checks and required data type
+conversions (between JSON format and robot format).</p>
+<p>The <strong>RobotFramework_Testsuites</strong> is responsible for making the values available during test execution - but under certain conditions that can be defined
+by the user (e.g. to realize a variant handling). This means: Not all parameter values are available during test execution - only the ones that belong to
+the current test scenario.</p>
+<p>To realize this, the <strong>RobotFramework_Testsuites</strong> together with the <strong>JsonPreprocessor</strong> enables the user to do the following things:</p>
+<ul class="simple">
+<li>Split all possible configuration values into several JSON configuration files, with every configuration file contains a specific set of values
+for configuration parameter</li>
+<li>Use nested imports of JSON configuration files</li>
+<li>Follow up definitions in configuration files overwrite previous definitions (of the same parameter)</li>
+<li>Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file</li>
+</ul>
+<p>The RobotFramework AIO supports two different kinds of JSON configuration files:</p>
+<ul class="simple">
+<li>Configuration files containing the parameter definitions</li>
+<li>A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
+(usually the name of a variant). This name can be used in command line to select a certain configuration file containing the values
+for this variant.</li>
+</ul>
+<p>More details about the structure of JSON files can be found in section <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>.</p>
+<p>More informations about the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> can be found here:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.org/project/robotframework-testsuitesmanagement">RobotFramework_Testsuites in PyPi</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement">RobotFramework_Testsuites in GitHub</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_Testsuites/RobotFramework_Testsuites.pdf">RobotFramework_Testsuites documentation</a></li>
+<li><a class="reference external" href="https://pypi.org/project/JsonPreprocessor">JsonPreprocessor in PyPi</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor">JsonPreprocessor in GitHub</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor/blob/develop/JsonPreprocessor/JsonPreprocessor.pdf">JsonPreprocessor documentation</a></li>
+</ul>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-to-realize-a-concrete-test-suites-management">
+<h2>How to realize a concrete test suites management?</h2>
+<p>In this section it is described in theory which steps have to be followed to realize a concrete test suites management.
+The example we use here, is also the main topic of the test suites in this tutorial. Details about the internal structure of
+configuration files will be given in the next part of this introduction.</p>
+<p><em>Step 1: Analyze the current situation in your project</em></p>
+<p>An outcome of the analysis can be something like that:</p>
+<ul class="simple">
+<li>Three variants need to be tested (<em>V1-V3</em>)</li>
+<li>Two test benches are available (<em>B1-B2</em>)</li>
+<li>Three configuration parameter are needed (<em>P1-P3</em>)</li>
+</ul>
+<p>Additionally we assume that all variants can be tested on all test benches, but the parameters need to be separated:</p>
+<ul class="simple">
+<li><em>P1</em> has the same value in all variants and at all test benches</li>
+<li><em>P2</em> is variant specific; <em>P2V1</em> != <em>P2V2</em> != <em>P2V3</em></li>
+<li><em>P3</em> is test bench specific; <em>P3B1</em> != <em>P3B2</em></li>
+</ul>
+<p><em>Step 2: Implement the mapping configuration file for variant switching</em></p>
+<p>For every variant (<em>V1-V3</em>) make an entry referring to the configuration file in which the concrete values
+for this variant are defined.</p>
+<p><em>Step 3: Define values for the identified parameters</em></p>
+<p>For every variant (<em>V1-V3</em>) introduce an individual configuration file containing the values for this variant.</p>
+<p><em>Step 4: Define values for all remaining parameters that are not specific for any variant or test bench</em></p>
+<p>How this does look like concretely is described in the next section.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-does-the-content-of-a-configuration-files-in-json-format-look-like">
+<h2>How does the content of a configuration files in JSON format look like?</h2>
+<p>In this part of the introduction we take a first look at the content of configuration files.</p>
+<ol class="arabic">
+<li><p class="first">Configuration file defining the mapping between variant names and where to find the corresponding parameter values</p>
+<p>This file configures the access to all variant dependent <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;default&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.json&quot;</span><span class="punctuation">,</span>
+               <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+             <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_1&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_2&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">},</span>
+  <span class="literal string double">&quot;variant_3&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.json&quot;</span><span class="punctuation">,</span>
+                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
+               <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>The example above contains definitions for three variants with name <tt class="docutils literal">variant_1</tt>, <tt class="docutils literal">variant_2</tt> and <tt class="docutils literal">variant_3</tt>.</p>
+<p>Additionally a variant named <tt class="docutils literal">default</tt> is defined. This default configuration becomes active in case of no certain variant name is provided
+when the test suite is being executed.</p>
+<p>Another aspect is important: the <em>three dots</em>.
+The path to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files depends on the test file location. A
+different number of <tt class="docutils literal">../</tt> is required dependent on the directory depth of the test
+case location.</p>
+<p>Therefore we use here three dots to tell the Robot Framework AIO to search from the test
+file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
+<pre class="code python literal-block">
+<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+</pre>
+<p>and so on.</p>
+</li>
+<li><p class="first">Configuration file defining all parameters that shall be available globally during test execution.</p>
+<p>Some of them are required. Optionally the user can add own ones. The following example shows the smallest version
+of a configuration file containing only the required parameters. This version is a default version and part of the
+RobotFramework AIO installation.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... RobotFramework AIO is running now!&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework AIO tutorial&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;device&quot;</span>
+<span class="punctuation">}</span>
+</pre>
+<p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
+are part of a version control mechanism: In case of the version of the currently installed RobotFramework AIO is outside the range between
+<tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>, the test execution stops with an error message.</p>
+<p>The following example is an extended version of a configuration file containing also some user defined parameters.</p>
+<pre class="code python literal-block">
+<span class="punctuation">{</span>
+  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... RobotFramework AIO is running now!&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework AIO tutorial&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;device&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+              <span class="operator">//</span> <span class="keyword">global</span> <span class="name">parameters</span>
+              <span class="literal string double">&quot;global&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span>
+                           <span class="literal string double">&quot;param1&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;ABC&quot;</span><span class="punctuation">,</span>
+                           <span class="literal string double">&quot;param2&quot;</span> <span class="punctuation">:</span> <span class="literal number integer">25</span>
+                         <span class="punctuation">}</span>
+            <span class="punctuation">},</span>
+  <span class="literal string double">&quot;preprocessor&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
+                    <span class="operator">//</span> <span class="name">feature</span> <span class="name">switches</span>
+                    <span class="literal string double">&quot;definitions&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span>
+                                      <span class="literal string double">&quot;switch1&quot;</span> <span class="punctuation">:</span> <span class="name">true</span><span class="punctuation">,</span>
+                                      <span class="literal string double">&quot;switch2&quot;</span> <span class="punctuation">:</span> <span class="name">false</span>
+                                    <span class="punctuation">}</span>
+                  <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
+<p>The user defined parameters are separated into <strong>global parameters</strong> and <strong>preprocessor definitions</strong>.</p>
+<p><em>TODO: Explain differences; clarify implementation status.</em></p>
+<p>And another feature can be seen in the example above: In the context of the RobotFramework AIO the JSON format is an extended one.
+Deviating from JSON standard it is possible to comment out lines with starting them with a double slash &quot;<tt class="docutils literal">//</tt>&quot;. This allows to
+add explanations about the meaning of the defined parameters already within the JSON file.</p>
+<p>Further JSON syntax extensions will be explained in the corresponding exercises.</p>
+</li>
+</ol>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-does-the-robotframework-aio-access-configuration-files">
+<h2>How does the RobotFramework AIO access configuration files?</h2>
+<p>Every test execution requires a configuration - that is the accessibility of a configuration file in JSON format. The RobotFramework AIO provides
+four different possibilities - also called <em>level</em> - to realize such an access. These possibilities are sorted and the RobotFramework AIO tries to
+access the configuration file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.</p>
+<ul>
+<li><p class="first">Level 1</p>
+<p>Path and name of the configuration file is provided in command line of the RobotFramework AIO.</p>
+</li>
+<li><p class="first">Level 2</p>
+<p>The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
+that contains the mapping between the variant and the variant specific configuration
+(like described in <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>).</p>
+<p>This also requires that this mapping file is known to the test (path and name is an input parameter of the <tt class="docutils literal">Suite Setup</tt>).</p>
+<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+</li>
+<li><p class="first">Level 3</p>
+<p>The RobotFramework AIO searches for configuration files within a folder <tt class="docutils literal">config/</tt> in current test suite directory.
+In case of such a folder exists and configuration files are inside, they will be used.</p>
+<p>This is handled in exercise (<strong>TODO: add name</strong>).</p>
+</li>
+<li><p class="first">Level 4</p>
+<p>The RobotFramework AIO uses the default configuration file that is part of the installation.</p>
+<p>This is handled in <tt class="docutils literal"><span class="pre">exercise-01</span></tt>.</p>
+</li>
+</ul>
+<p><em>Summarized</em>:</p>
+<ul class="simple">
+<li>With highest priority a configuration file provided in command line, is considered - even in case of also other configuration files (level 2 - level 4)
+are available.</li>
+<li>If a configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
+in case of also other configuration files (level 3 - level 4) are available.</li>
+<li>If nothing is specified in command line, then the RobotFramework AIO tries to find configuration files within a <tt class="docutils literal">config/</tt> folder and take them if
+available - even in case of also the level 4 configuration file is available.</li>
+<li>In case of the user does not provide any information about configuration files to use, the RobotFramework AIO loads the default configuration
+from installation folder (fallback solution; level 4).</li>
+</ul>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-to-enable-the-test-suites-management-in-robotframework-aio">
+<h2>How to enable the test suites management in RobotFramework AIO?</h2>
+<p>To enable the test suites management you have to import the <strong>RobotFramework_Testsuites</strong> library in the following way:</p>
+<pre class="code literal-block">
+Library    RobotFramework_Testsuites    WITH NAME    testsuites
+</pre>
+<p>We recommend to use the <tt class="docutils literal">WITH NAME</tt> option to shorten the robot code a little bit.</p>
+<p>The next step is to call the <tt class="docutils literal">testsuite_setup</tt> of the <strong>RobotFramework_Testsuites</strong> within the <tt class="docutils literal">Suite Setup</tt> of your test:</p>
+<pre class="code literal-block">
+Suite Setup    testsuites.testsuite_setup
+</pre>
+<p>As long as you</p>
+<ul class="simple">
+<li>do not provide a configuration file in command line when executing the test suite (level 1),</li>
+<li>do not provide a configuration files as parameter of the <tt class="docutils literal">testsuite_setup</tt> (level 2),</li>
+<li>do not have a <tt class="docutils literal">config</tt> folder containing configuration files in your test suites folder (level 3),</li>
+</ul>
+<p>the <strong>RobotFramework_Testsuites</strong> falls back to the default configuration (level 4).</p>
+<p>In case you want to realize a variant handling you have to provide the path and the name of a variant configuration file to the <tt class="docutils literal">testsuite_setup</tt>:</p>
+<blockquote>
+<pre class="code literal-block">
+Suite Setup    testsuites.testsuite_setup    ./config/exercise_variants.json
+</pre>
+</blockquote>
+<p>To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
+configuration file, for example:</p>
+<blockquote>
+<pre class="code literal-block">
+Running with configuration level: 2
+CfgFile Path: ./config/exercise_config.json
+</pre>
+</blockquote>
+<p>Please consider: The <tt class="docutils literal">testsuite_setup</tt> requires the mapping configuration file (containing the mapping between the variant names and the
+corresponding parameter configuration files; in the example above: <tt class="docutils literal">exercise_variants.json</tt>) - whereas the log file contains the resulting
+parameter configuration file (in the example above: <tt class="docutils literal">exercise_config.json</tt>), that is selected depending on the name of the variant provided
+in command line of the RobotFramework AIO.</p>
+<p><strong>For now it's enough theory - time for exercises.</strong></p>
+<p>All further formats and features that need to be explained, will be explained in those test suites who use them.</p>
+<p>The following part of this document contains an overview about all exercises available in this tutorial.</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercises">
+<h1>Exercises</h1>
+<p>Every exercise is placed in an own exercise folder (<tt class="docutils literal"><span class="pre">exercise-01</span></tt> - <tt class="docutils literal"><span class="pre">exercise-x</span></tt>) that is stand-alone.
+Every exercise folder contains one or more robot files together with all additionally required files
+and together with the documentation of the exercise.</p>
+<p>We recommend to execute every robot file in command line. This is because of in lots of cases command line parameters are required
+when the tests are executed. Corresponding informations you will find in the documentation inside the exercise folder.</p>
+<p>Every exercise folder will have it's own log files folder with the log files having the same name like the executed robot files:</p>
+<ul class="simple">
+<li>Test: <tt class="docutils literal"><span class="pre">exercise-x.robot</span></tt></li>
+<li>Log: <tt class="docutils literal"><span class="pre">logfiles/exercise-x.log</span></tt></li>
+</ul>
+<div class="section" id="exercise-01">
+<h2>exercise-01</h2>
+<p>Simplest example referring to the default configuration from installation</p>
+</div>
+<div class="section" id="exercise-02">
+<h2>exercise-02</h2>
+<p>Demonstrates several ways to define the configuration in command line</p>
+<hr class="docutils" />
+<p>to be continued</p>
+<p><a class="reference internal" href="#table-of-content">TOC</a></p>
+<hr class="docutils" />
+<p><em>Tutorial v. 0.3.0 / 25.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+</div>
+</div>
+</div>
+</body>
+</html>
