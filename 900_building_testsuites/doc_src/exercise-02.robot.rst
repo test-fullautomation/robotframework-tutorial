@@ -25,9 +25,11 @@ Content
 We assume to have the variants ``variant1``, ``variant2`` and a ``default`` variant. For every variant we need a configuration file defining the
 parameter values that are specific for this variant. In this exercise that are the files
 
-* ``config/exercise-02_config_default.json``
-* ``config/exercise-02_config_variant1.json``
-* ``config/exercise-02_config_variant2.json``
+.. code::
+
+   config/exercise-02_config_default.json
+   config/exercise-02_config_variant1.json
+   config/exercise-02_config_variant2.json
 
 Every of these files define a test string containing an individual value, e.g. the file ``exercise-02_config_variant1.json`` defines:
 
@@ -37,7 +39,9 @@ Every of these files define a test string containing an individual value, e.g. t
 
 Additionally we need another configuration file defining a mapping between the variant name and the corresponding configuration file:
 
-* ``config/exercise-02_variants.json``
+.. code::
+
+   config/exercise-02_variants.json
 
 With the following content:
 

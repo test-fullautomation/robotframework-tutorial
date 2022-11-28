@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>exercise-02</title>
+<title>exercise-04</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="exercise-02">
-<h1 class="title">exercise-02</h1>
+<div class="document" id="exercise-04">
+<h1 class="title">exercise-04</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH -->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");
@@ -376,172 +376,80 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p><tt class="docutils literal"><span class="pre">exercise-02</span></tt> demonstrates several ways to define the configuration in command line. This can be used to realize a variant handling.</p>
-<p>We assume to have the variants <tt class="docutils literal">variant1</tt>, <tt class="docutils literal">variant2</tt> and a <tt class="docutils literal">default</tt> variant. For every variant we need a configuration file defining the
-parameter values that are specific for this variant. In this exercise that are the files</p>
+<p>In this exercise we introduce some extensions of features already known from the previous exercises.</p>
+<p>We have a bunch of robot files, placed in several subfolders at several levels in the file system:</p>
 <pre class="code literal-block">
-config/exercise-02_config_default.json
-config/exercise-02_config_variant1.json
-config/exercise-02_config_variant2.json
+./testsuites/exercise-04.robot
+./testsuites/001/exercise-04-001.robot
+./testsuites/001/001-01/exercise-04-001-01.robot
+./testsuites/001/001-01/001-01-01/exercise-04-001-01-01.robot
+./testsuites/002/exercise-04-002.robot
 </pre>
-<p>Every of these files define a test string containing an individual value, e.g. the file <tt class="docutils literal"><span class="pre">exercise-02_config_variant1.json</span></tt> defines:</p>
+<p>Every robot file logs the test string. Every robot file requires a variant handling, but we do not want to have the need to maintain the import code</p>
 <pre class="code literal-block">
-&quot;teststring&quot; : &quot;I am the 'variant1' configuration of exercise 02&quot;
+Library    RobotFramework_Testsuites    WITH NAME    testsuites
+Suite Setup    testsuites.testsuite_setup    ../config/exercise-04_variants.json
 </pre>
-<p>Additionally we need another configuration file defining a mapping between the variant name and the corresponding configuration file:</p>
+<p>in every of these files separately.</p>
+<p>Therefore we use a feature of the Robot Framework and put this code into a file with name <tt class="docutils literal">__init__.robot</tt> and we place this file
+at the top level of the test suites folder:</p>
 <pre class="code literal-block">
-config/exercise-02_variants.json
+./testsuites/__init__.robot
 </pre>
-<p>With the following content:</p>
+<p>Definitions within this file will become valid for all tests inside the test suite. And the robot files do not need this code any more.</p>
+<p>Our configuration files we still place inside a config folder:</p>
 <pre class="code literal-block">
-{
-  &quot;default&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_default.json&quot;,
-               &quot;path&quot;: &quot;./config/&quot;
-             },
-  &quot;variant1&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_variant1.json&quot;,
-               &quot;path&quot;: &quot;./config/&quot;
-              },
-  &quot;variant2&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_variant2.json&quot;,
-               &quot;path&quot;: &quot;./config/&quot;
-              }
-}
+./config/exercise-04_config_default.json
+./config/exercise-04_config_variant1.json
+./config/exercise-04_config_variant2.json
+./config/exercise-04_variants.json
 </pre>
-<p>In exercise-02.robot we execute the <tt class="docutils literal">testsuites.testsuite_setup</tt> without providing any configuration file:</p>
+<p>Because of the robot files are placed at different levels within the file system, the variants configuration file <tt class="docutils literal"><span class="pre">exercise-04_variants.json</span></tt>
+requires the <em>three dots</em> syntax:</p>
 <pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup
+&quot;name&quot;: &quot;exercise-04_config_default.json&quot;,
+&quot;path&quot;: &quot;.../config/&quot;
 </pre>
-<p>In exercise-02-B.robot we hand over the mapping configuration file to the <tt class="docutils literal">testsuites.testsuite_setup</tt>:</p>
-<pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup    ./config/exercise-02_variants.json
-</pre>
-<p>And in both we print the content of the test string:</p>
-<pre class="code literal-block">
-Log    teststring : ${teststring}    console=yes
-</pre>
-<p>Now we have several possibilities:</p>
-<ol class="arabic simple">
-<li>Define a variant specific configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
-<li>Execute the test without any variant specific command line extensions (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
-<li>Define only the name of a variant in command line (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
-</ol>
-<p>Starting with the first option ...</p>
-<hr class="docutils" />
-<ol class="arabic simple">
-<li>Define a variant specific configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
-</ol>
+<p>Within the exercise folder execute the following command line:</p>
 </div>
+<hr class="docutils" />
 <div class="section" id="command-line">
 <h1>Command line</h1>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable config_file:&quot;./config/exercise-02_config_variant1.json&quot; &quot;./exercise-02.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-04.xml -l exercise-04_log.html -r exercise-04_report.html -b exercise-04.log &quot;./testsuites&quot;
 </pre>
 </div>
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>A variant specific configuration file can be set with the following command line extension:</p>
+<p>The test string of all executed robot files will have the same content:</p>
 <pre class="code literal-block">
---variable config_file:&quot;&lt;path to configuration file&gt;&quot;
+I am the 'default' variant configuration of exercise 04
 </pre>
-<p>Here we selected the one for <tt class="docutils literal">variant1</tt>. Therefore the test string has the value</p>
-<pre class="code literal-block">
-I am the 'variant1' configuration of exercise 02
-</pre>
-<p>The log file gives more information about the origin</p>
-<pre class="code literal-block">
-Running with configuration level: 1
-CfgFile Path: ./config/exercise-02_config_variant1.json
-</pre>
-<p><em>TODO: Explain the background of the level warning</em> :</p>
-<p><tt class="docutils literal">[ WARN ] The configuration level 1 is set for this Robot run!</tt></p>
-<p>Continuing with the second option ...</p>
-<hr class="docutils" />
-<ol class="arabic simple" start="2">
-<li>Execute the test without any variant specific command line extensions (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
-</ol>
+<p>The <tt class="docutils literal">default</tt> variant is choosen because of the command line does not contain any variant specification.</p>
+<p>In case you want to run all tests under the condition of a certain variant, you have to define this variant in the command line, e.g. <tt class="docutils literal">variant2</tt>:</p>
 </div>
+<hr class="docutils" />
 <div class="section" id="command-line-1">
 <h1>Command line</h1>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log &quot;./exercise-02-B.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-04.xml -l exercise-04_log.html -r exercise-04_report.html -b exercise-04.log --variable variant:&quot;variant2&quot; &quot;./testsuites&quot;
 </pre>
 </div>
 <hr class="docutils" />
 <div class="section" id="outcome-1">
 <h1>Outcome</h1>
-<p>Because no variant name is provided in command line, the defined <tt class="docutils literal">default</tt> variant is loaded and the test string has the value</p>
+<p>The test string of all executed robot files now has the content:</p>
 <pre class="code literal-block">
-I am the 'default' variant configuration of exercise 02
+I am the 'variant2' configuration of exercise 04
 </pre>
-<p>The log file gives more information about the origin</p>
-<pre class="code literal-block">
-Running with configuration level: 2
-CfgFile Path: ./config/exercise-02_config_default.json
-</pre>
-<p>Continuing with the third option ...</p>
-<hr class="docutils" />
-<ol class="arabic simple" start="3">
-<li>Define only the name of a variant in command line (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
-</ol>
-</div>
-<div class="section" id="command-line-2">
-<h1>Command line</h1>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable variant:&quot;variant2&quot; &quot;./exercise-02-B.robot&quot;
-</pre>
-</div>
-<hr class="docutils" />
-<div class="section" id="outcome-2">
-<h1>Outcome</h1>
-<p>A variant name can be provided with the following command line extension</p>
-<pre class="code literal-block">
---variable variant:&quot;&lt;variant name&gt;&quot;
-</pre>
-<p>Choosing the variant name <tt class="docutils literal">variant2</tt> causes the following results:</p>
-<p>The test string</p>
-<pre class="code literal-block">
-I am the 'variant2' configuration of exercise 02
-</pre>
-<p>The log file</p>
+<p>The log file gives more information about the origin:</p>
 <pre class="code literal-block">
 Running with configuration level: 2
-CfgFile Path: ./config/exercise-02_config_variant2.json
+CfgFile Path: ../config/exercise-04_config_variant2.json
 </pre>
-</div>
-<hr class="docutils" />
-<div class="section" id="further-hints">
-<h1>Further hints</h1>
-<p>A certain aspect needs more consideration: How to access configuration parameter in robot files?</p>
-<p>Remember the content of one of the configuration files:</p>
-<pre class="code literal-block">
-{
-  &quot;WelcomeString&quot;: &quot;Hello... RobotFramework AIO is running now!&quot;,
-
-  &quot;Maximum_version&quot;: &quot;0.5.2&quot;,
-  &quot;Minimum_version&quot;: &quot;0.5.2&quot;,
-
-  &quot;Project&quot;: &quot;RobotFramework Testsuites&quot;,
-  &quot;TargetName&quot; : &quot;Device_01&quot;,
-
-  &quot;params&quot; : {
-              &quot;global&quot;: {
-                         &quot;teststring&quot; : &quot;I am the 'default' variant configuration of exercise 02&quot;
-                        }
-             }
-}
-</pre>
-<p>The parameters <tt class="docutils literal">WelcomeString</tt>, <tt class="docutils literal">Maximum_version</tt>, <tt class="docutils literal">Minimum_version</tt>, <tt class="docutils literal">Project</tt> and <tt class="docutils literal">TargetName</tt> are mandatory default parameters of the
-<strong>RobotFramework_Testsuites</strong>. They are realized as keys of a global dictionary. Therefore the have to be accessed e.g. in this way:</p>
-<pre class="code literal-block">
-${CONFIG}[Maximum_version]
-</pre>
-<p>All user defined parameters within <tt class="docutils literal">params:global</tt> are accessible directly, e.g.:</p>
-<pre class="code literal-block">
-${teststring}
-</pre>
+<p>Hint: Add robot files or rearrange the position of the available robot files and repeat the command lines. You will see that - without any path adaptions - all
+robot files still run with the same configuration.</p>
 </div>
 </div>
 </body>
