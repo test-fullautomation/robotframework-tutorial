@@ -70,7 +70,7 @@ In exercise-02-B.robot we hand over the mapping configuration file to the ``test
 
    Suite Setup    testsuites.testsuite_setup    ./config/exercise-02_variants.json
 
-And we print the content of the test string:
+And in both we print the content of the test string:
 
 .. code::
 
@@ -78,15 +78,15 @@ And we print the content of the test string:
 
 Now we have several possibilities:
 
-1. Define a variant specific configuration file directly in command line (``exercise-02.robot``)
-2. Execute the test without any variant specific command line extensions (``exercise-02-B.robot``)
-3. Define only the name of a variant in command line (``exercise-02-B.robot``)
+1. Define a variant specific configuration file directly in command line (with ``exercise-02.robot``)
+2. Execute the test without any variant specific command line extensions (with ``exercise-02-B.robot``)
+3. Define only the name of a variant in command line (with ``exercise-02-B.robot``)
 
 Starting with the first option ...
 
 ----
 
-1. Define a variant specific configuration file directly in command line (``exercise-02.robot``)
+1. Define a variant specific configuration file directly in command line (with ``exercise-02.robot``)
 
 Command line
 ------------
@@ -127,7 +127,7 @@ Continuing with the second option ...
 
 ----
 
-2. Execute the test without any variant specific command line extensions (``exercise-02-B.robot``)
+2. Execute the test without any variant specific command line extensions (with ``exercise-02-B.robot``)
 
 Command line
 ------------
@@ -158,7 +158,7 @@ Continuing with the third option ...
 
 ----
 
-3. Define only the name of a variant in command line (``exercise-02-B.robot``)
+3. Define only the name of a variant in command line (with ``exercise-02-B.robot``)
 
 Command line
 ------------
@@ -178,7 +178,7 @@ A variant name can be provided with the following command line extension
 
    --variable variant:"<variant name>"
 
-Choosing the variant name ``variant2`` cause the following results:
+Choosing the variant name ``variant2`` causes the following results:
 
 The test string
 

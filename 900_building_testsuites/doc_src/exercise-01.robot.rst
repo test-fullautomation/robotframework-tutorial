@@ -20,7 +20,8 @@ exercise-01
 Content
 -------
 
-The first exercise contains the simplest realization of a test suites management:
+The first exercise contains the simplest realization of a test suites management.
+*But this is only to demonstrate some basics! This implementation is not recommended!*
 
 ``exercise-01.robot`` imports the required library
 

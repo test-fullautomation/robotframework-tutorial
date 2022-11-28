@@ -105,7 +105,7 @@ To realize this, the **RobotFramework_Testsuites** together with the **JsonPrepr
 * Follow up definitions in configuration files overwrite previous definitions (of the same parameter)
 * Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file
 
-The RobotFramework AIO supports two different kinds of JSON configuration files:
+The **RobotFramework_Testsuites** supports two different kinds of JSON configuration files:
 
 * Configuration files containing the parameter definitions
 * A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
@@ -220,6 +220,13 @@ In this part of the introduction we take a first look at the content of configur
    mapping file in which they are defined!** You are free to move your test suites one or more level up or down in the file system, but using the
    *three dots* notation enables you to let the position of the ``config`` folder unchanged.
 
+   It is of course still possible to use the standard notation for relative paths:
+
+   .. code:: python
+
+      "path": "./config/"
+
+
 2. Configuration file defining all parameters that shall be available globally during test execution.
 
    Some of them are required. Optionally the user can add own ones. The following example shows the smallest version 
@@ -232,8 +239,8 @@ In this part of the introduction we take a first look at the content of configur
         "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
         "Maximum_version" : "0.5.2",
         "Minimum_version" : "0.5.2",
-        "Project"         : "RobotFramework AIO tutorial",
-        "TargetName"      : "device"
+        "Project"         : "RobotFramework Testsuites",
+        "TargetName"      : "Device_01"
       }
 
    ``Project``, ``WelcomeString`` and ``TargetName`` are simple strings that can be used anyhow. ``Maximum_version`` and ``Minimum_version``
@@ -248,27 +255,19 @@ In this part of the introduction we take a first look at the content of configur
         "WelcomeString"   : "Hello... RobotFramework AIO is running now!",
         "Maximum_version" : "0.5.2",
         "Minimum_version" : "0.5.2",
-        "Project"         : "RobotFramework AIO tutorial",
-        "TargetName"      : "device",
+        "Project"         : "RobotFramework Testsuites",
+        "TargetName"      : "Device_01"
         "params": {
                     // global parameters
                     "global" : {
                                  "param1" : "ABC",
                                  "param2" : 25
                                }
-                  },
-        "preprocessor": {
-                          // feature switches
-                          "definitions" : {
-                                            "switch1" : true,
-                                            "switch2" : false
-                                          }
-                        }
+                  }
       }
 
-   The user defined parameters are separated into **global parameters** and **preprocessor definitions**.
-
-   *TODO: Explain differences; clarify implementation status.*
+   User defined parameters have to be placed inside ``params:global``. The intermediate level ``global`` is introduced to enable further
+   parameter scopes than ``global`` in future.
 
    And another feature can be seen in the example above: In the context of the RobotFramework AIO the JSON format is an extended one.
    Deviating from JSON standard it is possible to comment out lines with starting them with a double slash "``//``". This allows to
@@ -291,7 +290,7 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
   Path and name of the configuration file is provided in command line of the RobotFramework AIO.
 
-* Level 2
+* Level 2 (**recommended**)
 
   The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
   that contains the mapping between the variant and the variant specific configuration
