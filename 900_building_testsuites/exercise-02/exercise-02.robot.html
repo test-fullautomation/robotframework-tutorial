@@ -417,20 +417,20 @@ Suite Setup    testsuites.testsuite_setup
 <pre class="code literal-block">
 Suite Setup    testsuites.testsuite_setup    ./config/exercise-02_variants.json
 </pre>
-<p>And we print the content of the test string:</p>
+<p>And in both we print the content of the test string:</p>
 <pre class="code literal-block">
 Log    teststring : ${teststring}    console=yes
 </pre>
 <p>Now we have several possibilities:</p>
 <ol class="arabic simple">
-<li>Define a variant specific configuration file directly in command line (<tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
-<li>Execute the test without any variant specific command line extensions (<tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
-<li>Define only the name of a variant in command line (<tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
+<li>Define a variant specific configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
+<li>Execute the test without any variant specific command line extensions (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
+<li>Define only the name of a variant in command line (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
 </ol>
 <p>Starting with the first option ...</p>
 <hr class="docutils" />
 <ol class="arabic simple">
-<li>Define a variant specific configuration file directly in command line (<tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
+<li>Define a variant specific configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
 </ol>
 </div>
 <div class="section" id="command-line">
@@ -460,7 +460,7 @@ CfgFile Path: ./config/exercise-02_config_variant1.json
 <p>Continuing with the second option ...</p>
 <hr class="docutils" />
 <ol class="arabic simple" start="2">
-<li>Execute the test without any variant specific command line extensions (<tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
+<li>Execute the test without any variant specific command line extensions (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
 </ol>
 </div>
 <div class="section" id="command-line-1">
@@ -484,7 +484,7 @@ CfgFile Path: ./config/exercise-02_config_default.json
 <p>Continuing with the third option ...</p>
 <hr class="docutils" />
 <ol class="arabic simple" start="3">
-<li>Define only the name of a variant in command line (<tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
+<li>Define only the name of a variant in command line (with <tt class="docutils literal"><span class="pre">exercise-02-B.robot</span></tt>)</li>
 </ol>
 </div>
 <div class="section" id="command-line-2">
@@ -500,7 +500,7 @@ CfgFile Path: ./config/exercise-02_config_default.json
 <pre class="code literal-block">
 --variable variant:&quot;&lt;variant name&gt;&quot;
 </pre>
-<p>Choosing the variant name <tt class="docutils literal">variant2</tt> cause the following results:</p>
+<p>Choosing the variant name <tt class="docutils literal">variant2</tt> causes the following results:</p>
 <p>The test string</p>
 <pre class="code literal-block">
 I am the 'variant2' configuration of exercise 02
