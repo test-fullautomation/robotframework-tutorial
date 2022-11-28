@@ -29,7 +29,7 @@ parameter values that are specific for this variant. In this exercise that are t
 * ``config/exercise-02_config_variant1.json``
 * ``config/exercise-02_config_variant2.json``
 
-Every of these files define a test string containing an individual value, e.g. ``exercise-02_config_variant1.json``:
+Every of these files define a test string containing an individual value, e.g. the file ``exercise-02_config_variant1.json`` defines:
 
 .. code::
 

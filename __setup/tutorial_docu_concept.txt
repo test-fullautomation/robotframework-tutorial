@@ -5,7 +5,7 @@ Tutorial Documentation Concept
 
 XC-CT/ECA3-Queckenstedt
 
-Version 0.4.0 / 28.03.2022
+Version 0.5.0 / 28.11.2022
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ Paradigms:
 * Output format of documentation: HTML
 
 * Supported source file formats for HTML output files are: .rst
-  Also the documentation of  ".rst", ".robot", ".resource", ".json" and ".py" files are taken out
+  Also the documentation of  ".rst", ".robot", ".resource" and ".py" files are taken out
   of separate rst files (and not out of the source files immediately.
   Reason: Limitations of Robot Framework internal documentation generators
   (robot.libdoc and robot.testdoc).
@@ -34,11 +34,11 @@ Paradigms:
   A "tutorial section" is a subfolder of the tutorial folder, except "__setup" and ".git".
 
 * HTML files generated out of stand alone rst files are generated within the root folder of a tutorial section.
-  HTML files generated out of rst files that have a naming counterpart with extension ".robot", ".resource",
-  ".json" or ".py" at any other position within a tutorial folder, are generated within the folder of this
-  source file (see overview below).
+  HTML files generated out of rst files that have a naming counterpart with extension ".robot", ".resource" or ".py"
+  at any other position within a tutorial folder, are generated within the folder of this source file
+  (see overview below).
 
-* !!! Names of files with supported extensions ".rst", ".robot", ".resource", ".json" or ".py" must be
+* !!! Names of files with supported extensions ".rst", ".robot", ".resource" or ".py" must be
   unique within a tutorial section !!!
 
 * In case of an rst file contains a relative path to another document it has to be considered, that this
@@ -103,7 +103,6 @@ tutorial_dir
    |        |        | --- tutorial_section_001.2.resource.rst
    |        |        | --- tutorial_section_001.helper.py.rst
    |        |        | --- tutorial_section_001.additional_keywords.py.rst
-   |        |        | --- tutorial_section_001.1.json.rst
    |        |        | --- tutorial_section_001.1.robot.rst
    |        |        | --- tutorial_section_001.2.robot.rst
    |        |        |
@@ -120,7 +119,6 @@ tutorial_dir
    |        |                 |
    |        |                 | - tutorial_section_001.helper.py
    |        |                 | - tutorial_section_001.additional_keywords.py
-   |        |                 | - tutorial_section_001.1.json
    |        |
    |        | --- tutorial_section_001.1.robot
    |        | --- tutorial_section_001.2.robot
@@ -148,7 +146,6 @@ tutorial_dir
    |        |        | --- tutorial_section_001.2.resource.rst
    |        |        | --- tutorial_section_001.helper.py.rst
    |        |        | --- tutorial_section_001.additional_keywords.py.rst
-   |        |        | --- tutorial_section_001.1.json.rst
    |        |        | --- tutorial_section_001.1.robot.rst
    |        |        | --- tutorial_section_001.2.robot.rst
    |        |        |
@@ -169,8 +166,6 @@ tutorial_dir
    |        |                 | - tutorial_section_001.helper.py.html
    |        |                 | - tutorial_section_001.additional_keywords.py
    |        |                 | - tutorial_section_001.additional_keywords.py.html
-   |        |                 | - tutorial_section_001.1.json
-   |        |                 | - tutorial_section_001.1.json.html
    |        |
    |        | --- tutorial_section_001.1.robot
    |        | --- tutorial_section_001.1.robot.html
