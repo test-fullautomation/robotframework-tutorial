@@ -422,17 +422,26 @@ exercise-04
 
 Demonstrates the usage of an ``__init__.robot`` file in case of several robot files inside a testsuites folder shall run under the same conditions
 
-----
+exercise-05
+~~~~~~~~~~~
 
+Demonstrates the usage of nested JSON configuration files
 
-to be continued
+exercise-06
+~~~~~~~~~~~
 
+*TODO: Demonstrates the usage of local JSON configuration files*
+
+exercise-07
+~~~~~~~~~~~
+
+*TODO: Final example*
 
 TOC_
 
 ----
 
-*Tutorial v. 0.5.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.7.0 / 29.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

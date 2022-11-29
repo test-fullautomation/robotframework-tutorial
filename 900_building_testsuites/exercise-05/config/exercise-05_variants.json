@@ -11,22 +11,19 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//*****************************************************************************
-//  Author: Mai Dinh Nam Son
-//
-//  This file defines all common global parameters and will be included to all
-//  test config files
-//*****************************************************************************
-//
-//  This is to distinguish the different types of resets
+//**************************************************************************
+
 {
-  "gGlobalIntParam" : 1,
-  
-  "gGlobalFloatParam" : 1.332,
-  
-  "gGlobalString"   : "This is a string",
-   
-  "gGlobalStructure": {
-    "general": "general"
-  }
+  "default": {
+               "name": "exercise-05_config_default.json",
+               "path": "./config/"
+             },
+  "variant1": {
+               "name": "exercise-05_config_variant1.json",
+               "path": "./config/"
+              },
+  "variant2": {
+               "name": "exercise-05_config_variant2.json",
+               "path": "./config/"
+              }
 }
