@@ -28,7 +28,7 @@ Table of content
 
 * `How to realize a concrete test suites management?`_
 
-* `How does the content of a configuration files in JSON format look like?`_
+* `How does the content of configuration files in JSON format look like?`_
 
 * `How does the RobotFramework AIO access configuration files?`_
 
@@ -112,7 +112,7 @@ The **RobotFramework_Testsuites** supports two different kinds of JSON configura
   (usually the name of a variant). This name can be used in command line to select a certain configuration file containing the values
   for this variant.
 
-More details about the structure of JSON files can be found in section `How does the content of a configuration files in JSON format look like?`_.
+More details about the structure of JSON files can be found in section `How does the content of configuration files in JSON format look like?`_.
 
 More informations about the **RobotFramework_Testsuites** and the **JsonPreprocessor** can be found here:
 
@@ -164,8 +164,8 @@ TOC_
 
 ----
 
-How does the content of a configuration files in JSON format look like?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How does the content of configuration files in JSON format look like?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this part of the introduction we take a first look at the content of configuration files.
 
@@ -290,11 +290,13 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
   Path and name of the configuration file is provided in command line of the RobotFramework AIO.
 
+  This is handled in ``exercise-02``.
+
 * Level 2 (**recommended**)
 
   The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
   that contains the mapping between the variant and the variant specific configuration
-  (like described in `How does the content of a configuration files in JSON format look like?`_).
+  (like described in `How does the content of configuration files in JSON format look like?`_).
 
   This also requires that this mapping file is known to the test (path and name is an input parameter of the ``Suite Setup``).
 
@@ -307,7 +309,7 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
   This is handled in ``exercise-03``.
 
-* Level 4
+* Level 4 (**unwanted, fallback solution only**)
 
   The RobotFramework AIO uses the default configuration file that is part of the installation.
 
@@ -415,6 +417,11 @@ exercise-03
 
 Demonstrates several ways to load the configuration from a local ``config`` folder
 
+exercise-04
+~~~~~~~~~~~
+
+Demonstrates the usage of an ``__init__.robot`` file in case of several robot files inside a testsuites folder shall run under the same conditions
+
 ----
 
 
@@ -425,7 +432,7 @@ TOC_
 
 ----
 
-*Tutorial v. 0.4.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.5.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

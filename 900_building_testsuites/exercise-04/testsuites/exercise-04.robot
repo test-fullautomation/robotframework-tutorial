@@ -1,4 +1,5 @@
-#  Copyright 2020-2022 Robert Bosch Car Multimedia GmbH
+# **************************************************************************************************************
+#  Copyright 2020-2022 Robert Bosch GmbH
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -11,18 +12,16 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-*** Variables ***
-${variant}    variant_2
+# **************************************************************************************************************
+#
+# exercise-04.robot
+#
+# --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
-Library      RobotFramework_Testsuites    WITH NAME    testsuites
-Suite Setup      testsuites.testsuite_setup    ../config/testsuites_config.json
-Suite Teardown   testsuites.testsuite_teardown
-Test Setup       testsuites.testcase_setup
-Test Teardown    testsuites.testcase_teardown
 
 *** Test Cases ***
-Test Case 0201
-    [documentation]    Log of some CONFIG parameters
-    Log    ${CONFIG}[WelcomeString]
-    Log    ${CONFIG}[Project]
+Test Case exercise-04
+    [documentation]    exercise-04
+    Log    teststring : ${teststring}    console=yes
+

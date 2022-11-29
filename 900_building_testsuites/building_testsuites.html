@@ -383,7 +383,7 @@ limitations under the License. -->
 <li><a class="reference internal" href="#what-is-the-initial-situation">What is the initial situation?</a></li>
 <li><a class="reference internal" href="#how-to-handle-configuration-parameters-in-robotframework-aio">How to handle configuration parameters in RobotFramework AIO?</a></li>
 <li><a class="reference internal" href="#how-to-realize-a-concrete-test-suites-management">How to realize a concrete test suites management?</a></li>
-<li><a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a></li>
+<li><a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a></li>
 <li><a class="reference internal" href="#how-does-the-robotframework-aio-access-configuration-files">How does the RobotFramework AIO access configuration files?</a></li>
 <li><a class="reference internal" href="#how-to-enable-the-test-suites-management-in-robotframework-aio">How to enable the test suites management in RobotFramework AIO?</a></li>
 </ul>
@@ -450,7 +450,7 @@ for configuration parameter</li>
 (usually the name of a variant). This name can be used in command line to select a certain configuration file containing the values
 for this variant.</li>
 </ul>
-<p>More details about the structure of JSON files can be found in section <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>.</p>
+<p>More details about the structure of JSON files can be found in section <a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a>.</p>
 <p>More informations about the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> can be found here:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://pypi.org/project/robotframework-testsuitesmanagement">RobotFramework_Testsuites in PyPi</a></li>
@@ -490,8 +490,8 @@ for this variant are defined.</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 <hr class="docutils" />
-<div class="section" id="how-does-the-content-of-a-configuration-files-in-json-format-look-like">
-<h2>How does the content of a configuration files in JSON format look like?</h2>
+<div class="section" id="how-does-the-content-of-configuration-files-in-json-format-look-like">
+<h2>How does the content of configuration files in JSON format look like?</h2>
 <p>In this part of the introduction we take a first look at the content of configuration files.</p>
 <ol class="arabic">
 <li><p class="first">Configuration file defining the mapping between variant names and where to find the corresponding parameter values</p>
@@ -592,11 +592,12 @@ access the configuration file in a certain order: Level 1 has the highest priori
 <ul>
 <li><p class="first">Level 1</p>
 <p>Path and name of the configuration file is provided in command line of the RobotFramework AIO.</p>
+<p>This is handled in <tt class="docutils literal"><span class="pre">exercise-02</span></tt>.</p>
 </li>
 <li><p class="first">Level 2 (<strong>recommended</strong>)</p>
 <p>The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
 that contains the mapping between the variant and the variant specific configuration
-(like described in <a class="reference internal" href="#how-does-the-content-of-a-configuration-files-in-json-format-look-like">How does the content of a configuration files in JSON format look like?</a>).</p>
+(like described in <a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a>).</p>
 <p>This also requires that this mapping file is known to the test (path and name is an input parameter of the <tt class="docutils literal">Suite Setup</tt>).</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-02</span></tt>.</p>
 </li>
@@ -605,7 +606,7 @@ that contains the mapping between the variant and the variant specific configura
 In case of such a folder exists and configuration files are inside, they will be used.</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-03</span></tt>.</p>
 </li>
-<li><p class="first">Level 4</p>
+<li><p class="first">Level 4 (<strong>unwanted, fallback solution only</strong>)</p>
 <p>The RobotFramework AIO uses the default configuration file that is part of the installation.</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-01</span></tt>.</p>
 </li>
@@ -690,11 +691,15 @@ when the tests are executed. Corresponding informations you will find in the doc
 <div class="section" id="exercise-03">
 <h2>exercise-03</h2>
 <p>Demonstrates several ways to load the configuration from a local <tt class="docutils literal">config</tt> folder</p>
+</div>
+<div class="section" id="exercise-04">
+<h2>exercise-04</h2>
+<p>Demonstrates the usage of an <tt class="docutils literal">__init__.robot</tt> file in case of several robot files inside a testsuites folder shall run under the same conditions</p>
 <hr class="docutils" />
 <p>to be continued</p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.4.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.5.0 / 28.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>
