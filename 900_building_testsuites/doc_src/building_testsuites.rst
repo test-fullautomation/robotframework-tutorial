@@ -295,7 +295,7 @@ access the configuration file in a certain order: Level 1 has the highest priori
 * Level 2 (**recommended**)
 
   The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
-  that contains the mapping between the variant and the variant specific configuration
+  that contains the mapping between the variant name and the variant specific configuration
   (like described in `How does the content of configuration files in JSON format look like?`_).
 
   This also requires that this mapping file is known to the test (path and name is an input parameter of the ``Suite Setup``).
@@ -304,7 +304,7 @@ access the configuration file in a certain order: Level 1 has the highest priori
 
 * Level 3
 
-  The RobotFramework AIO searches for configuration files within a folder ``config/`` in current test suite directory.
+  The RobotFramework AIO searches for configuration files within a folder ``config`` in current test suite directory.
   In case of such a folder exists and configuration files are inside, they will be used.
 
   This is handled in ``exercise-03``.
@@ -441,7 +441,11 @@ TOC_
 
 ----
 
-*Tutorial v. 0.7.0 / 29.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial ``100_variables_and_datatypes``.
+
+----
+
+*Tutorial v. 0.7.1 / 30.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

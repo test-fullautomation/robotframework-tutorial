@@ -596,13 +596,13 @@ access the configuration file in a certain order: Level 1 has the highest priori
 </li>
 <li><p class="first">Level 2 (<strong>recommended</strong>)</p>
 <p>The name of the variant is provided in command line of the RobotFramework AIO. This requires an additional configuration file
-that contains the mapping between the variant and the variant specific configuration
+that contains the mapping between the variant name and the variant specific configuration
 (like described in <a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a>).</p>
 <p>This also requires that this mapping file is known to the test (path and name is an input parameter of the <tt class="docutils literal">Suite Setup</tt>).</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-02</span></tt>.</p>
 </li>
 <li><p class="first">Level 3</p>
-<p>The RobotFramework AIO searches for configuration files within a folder <tt class="docutils literal">config/</tt> in current test suite directory.
+<p>The RobotFramework AIO searches for configuration files within a folder <tt class="docutils literal">config</tt> in current test suite directory.
 In case of such a folder exists and configuration files are inside, they will be used.</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-03</span></tt>.</p>
 </li>
@@ -709,7 +709,9 @@ when the tests are executed. Corresponding informations you will find in the doc
 <p><em>TODO: Final example</em></p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.7.0 / 29.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial <tt class="docutils literal">100_variables_and_datatypes</tt>.</p>
+<hr class="docutils" />
+<p><em>Tutorial v. 0.7.1 / 30.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

@@ -101,22 +101,22 @@ Therefore ``${key_as_string}`` is replaced by ``key_06``. The result is that in 
 Test case 03_03
 ---------------
 
-In test case ``03_03`` we work with nested dictionaries defined within the json configuration file of this tutorial.
+In test case ``03_03`` we work with nested dictionaries defined within the JSON configuration file of this tutorial.
 
 .. code::
 
    ./config/tutorialconfig.json
 
-But before we start, some internals need to be mentioned: The json format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework core, the RobotFramework AIO contains a component called ``JsonPreprocessor``.
-With the help of this component the RobotFramework AIO is able to access the content of json files independently from format differences.
-The ``JsonPreprocessor`` is able to convert the formats, and when the json content is passed to the robot world, then the content is adapted.
+But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
+Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called **JsonPreprocessor**.
+With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
+The **JsonPreprocessor** is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.
 
-But behind the curtain still json parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the json files itself to the requirements of the robot world. The differences are still present
+But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
+the structure of the JSON files itself to the requirements of the robot world. The differences are still present
 (*and explained in this tutorial*).
 
-*Therefore be aware of the differences and be careful when you copy&paste content between json and robot!*
+*Therefore be aware of the differences and be careful when you copy&paste content between JSON and robot!*
 
 Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
 ``log_scalar``, ``log_list`` and ``log_dict``. With the purpose to check also the data type of the given parameter.
@@ -133,9 +133,9 @@ a dictionary variable, this will be the answer:
 
 However, in this tutorial we continue with simply calling it *dictionary*!
 
-**json file content**
+**JSON file content**
 
-Now we take a look at the content of the json file. The global params section defines the dictionary ``dict_val``
+Now we take a look at the content of the JSON file. The global params section defines the dictionary ``dict_val``
 step by step in the following way:
 
 .. code::
@@ -183,7 +183,7 @@ Within ``tutorialconfig.json`` all parameter definitions are put into the follow
               }
 
 Meaning: The scope of all of these user defined parameters is: ``params:global``. In case you want to use
-inside a json configuration file a parameter that is defined within this file also, you have to set this scope.
+inside a JSON configuration file a parameter that is defined within this file also, you have to set this scope.
 
 This is a valid assignment (containing the scope ``${params}['global']``):
 
@@ -225,7 +225,7 @@ With the help of the already known keyword ``log_scalar`` we take a look at ever
    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_212]
    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
 
-*Be aware of: No quotes are used here around the key names. In json it's different: Quotes are required.*
+*Be aware of: No quotes are used here around the key names. In JSON it's different: Quotes are required.*
 
 Like in:
 
@@ -277,7 +277,7 @@ The following ways of accessing a dictionary value are possible in robot code:
 
 **Last aspect** (*that is currently under discussion*)
 
-This is the way an integer value is defined within a json configuration file:
+This is the way an integer value is defined within a JSON configuration file:
 
 .. code::
 

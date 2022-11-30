@@ -434,18 +434,18 @@ is replaced by the value of the variable (<tt class="docutils literal">var</tt>)
 </div>
 <div class="section" id="test-case-03-03">
 <h1>Test case 03_03</h1>
-<p>In test case <tt class="docutils literal">03_03</tt> we work with nested dictionaries defined within the json configuration file of this tutorial.</p>
+<p>In test case <tt class="docutils literal">03_03</tt> we work with nested dictionaries defined within the JSON configuration file of this tutorial.</p>
 <pre class="code literal-block">
 ./config/tutorialconfig.json
 </pre>
-<p>But before we start, some internals need to be mentioned: The json format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework core, the RobotFramework AIO contains a component called <tt class="docutils literal">JsonPreprocessor</tt>.
-With the help of this component the RobotFramework AIO is able to access the content of json files independently from format differences.
-The <tt class="docutils literal">JsonPreprocessor</tt> is able to convert the formats, and when the json content is passed to the robot world, then the content is adapted.</p>
-<p>But behind the curtain still json parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the json files itself to the requirements of the robot world. The differences are still present
+<p>But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
+Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called <strong>JsonPreprocessor</strong>.
+With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
+The <strong>JsonPreprocessor</strong> is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.</p>
+<p>But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
+the structure of the JSON files itself to the requirements of the robot world. The differences are still present
 (<em>and explained in this tutorial</em>).</p>
-<p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between json and robot!</em></p>
+<p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between JSON and robot!</em></p>
 <p>Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
 <tt class="docutils literal">log_scalar</tt>, <tt class="docutils literal">log_list</tt> and <tt class="docutils literal">log_dict</tt>. With the purpose to check also the data type of the given parameter.</p>
 <p>In case of a parameter is an integer value, the name of the data type is: <tt class="docutils literal">int</tt>. That's easy. The name of the dictionary data type
@@ -457,8 +457,8 @@ a dictionary variable, this will be the answer:</p>
 RobotFramework_Testsuites.Config.CConfig.dotdict
 </pre>
 <p>However, in this tutorial we continue with simply calling it <em>dictionary</em>!</p>
-<p><strong>json file content</strong></p>
-<p>Now we take a look at the content of the json file. The global params section defines the dictionary <tt class="docutils literal">dict_val</tt>
+<p><strong>JSON file content</strong></p>
+<p>Now we take a look at the content of the JSON file. The global params section defines the dictionary <tt class="docutils literal">dict_val</tt>
 step by step in the following way:</p>
 <pre class="code literal-block">
 &quot;dict_val&quot; : {},
@@ -499,7 +499,7 @@ that already have been used in tutorial-01:</p>
            }
 </pre>
 <p>Meaning: The scope of all of these user defined parameters is: <tt class="docutils literal">params:global</tt>. In case you want to use
-inside a json configuration file a parameter that is defined within this file also, you have to set this scope.</p>
+inside a JSON configuration file a parameter that is defined within this file also, you have to set this scope.</p>
 <p>This is a valid assignment (containing the scope <tt class="docutils literal"><span class="pre">${params}['global']</span></tt>):</p>
 <pre class="code literal-block">
 &quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${params}['global']['string_val']&quot;,
@@ -529,7 +529,7 @@ log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_211]
 log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_212]
 log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
 </pre>
-<p><em>Be aware of: No quotes are used here around the key names. In json it's different: Quotes are required.</em></p>
+<p><em>Be aware of: No quotes are used here around the key names. In JSON it's different: Quotes are required.</em></p>
 <p>Like in:</p>
 <pre class="code literal-block">
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']
@@ -567,7 +567,7 @@ log_scalar    ${dict_val}[${key}][${subkey}][${subsubkey}]
 log_scalar    ${dict_val['${key}']['${subkey}']['${subsubkey}']}
 </pre>
 <p><strong>Last aspect</strong> (<em>that is currently under discussion</em>)</p>
-<p>This is the way an integer value is defined within a json configuration file:</p>
+<p>This is the way an integer value is defined within a JSON configuration file:</p>
 <pre class="code literal-block">
 &quot;int_val&quot; : 123,
 </pre>

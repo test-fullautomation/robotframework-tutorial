@@ -183,7 +183,7 @@ With these variables test case ``01_02`` does the following arithmetical computa
 
 **Outcome**
 
-Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.
+Where necessary the RobotFramework AIO automatically converts the data types to enable arithmetic computations and catenations.
 
 Test case 01_03
 ---------------
@@ -258,7 +258,7 @@ All comparisons are ``True``.
 Test case 01_04
 ---------------
 
-Test case ``01_04`` contains the computation of variables defined within the following json configuration file:
+Test case ``01_04`` contains the computation of variables defined within the following JSON configuration file:
 
 .. code::
 
@@ -281,22 +281,22 @@ in other parts of this tutorial):
 
 *Background:*
 
-Basically the json configuration files of the Robot Framework AIO have to follow the syntax rules of the json format. But the Robot Framework AIO extends
+Basically the JSON configuration files of the RobotFramework AIO have to follow the syntax rules of the JSON format. But the RobotFramework AIO extends
 this syntax by some additional features like
 
 * the possibility to add comments,
 * the possibility to use the ``${}`` syntax to refer to parameters,
-* the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and json).
+* the possibility to use also the Python syntax for certain keywords (relevant because there are differences between Python and JSON).
 
-In Python the boolean values are written with the first letter capitalized (``True``, ``False``). In json they are written in small letters completely
-(``true``, ``false``). The Python singleton ``None`` is ``null`` in json.
+In Python the boolean values are written with the first letter capitalized (``True``, ``False``). In JSON they are written in small letters completely
+(``true``, ``false``). The Python singleton ``None`` is ``null`` in JSON.
 
 Now it is obvious that the parameters ``bool_val_1``, ``bool_val_3`` and ``none_val`` follow the Python way of typing them and the parameters
-``bool_val_2``, ``bool_val_4`` and ``null_val`` follow the json way of typing them.
+``bool_val_2``, ``bool_val_4`` and ``null_val`` follow the JSON way of typing them.
 
 *Possible is both!*
 
-But this has to be considered: In case of the json way of typing is choosed, internally the values are converted to the Python way of typing.
+But this has to be considered: In case of the JSON way of typing is choosed, internally the values are converted to the Python way of typing.
 If you implement own keyword libraries in Python you have to use the way of typing keywords, that is Python specific.
 
 In this test case at first the content of every parameter is logged with the already knwon ``log_scalar`` keyword:
@@ -315,11 +315,11 @@ In this test case at first the content of every parameter is logged with the alr
 
 **Outcome**
 
-* The value of ``bool_val_2`` is ``True`` - even in case of the parameter is defined with ``true`` within the json file.
-* The value of ``bool_val_4`` is ``False`` - even in case of the parameter is defined with ``false`` within the json file.
-* The value of ``null_val`` is ``None`` - even in case of the parameter is defined with ``null`` within the json file.
+* The value of ``bool_val_2`` is ``True`` - even in case of the parameter is defined with ``true`` within the JSON file.
+* The value of ``bool_val_4`` is ``False`` - even in case of the parameter is defined with ``false`` within the JSON file.
+* The value of ``null_val`` is ``None`` - even in case of the parameter is defined with ``null`` within the JSON file.
 
-This test case finishes with some comparisons between parameters defined in json file and parameters defined in the resource file.
+This test case finishes with some comparisons between parameters defined in JSON file and parameters defined in the resource file.
 
 Because of the internal conversion of keywords take a deeper look at the following expressions:
 
