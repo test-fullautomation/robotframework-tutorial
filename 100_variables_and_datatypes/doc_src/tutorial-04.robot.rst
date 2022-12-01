@@ -159,12 +159,13 @@ Every command line value will be interpreted as string. In case you need to work
 
 ----
 
-**Command line variables and RobotFramework_Testsuites configuration**
+**Command line variables and JSON configuration files**
 
-Up to now for command line tests we have only used variables that are not already defined within a JSON file of the **RobotFramework_Testsuites** configuration.
-What will happen, when we try to overwrite such a configuration value in command line? The answer is: This will not work!
+Up to now for command line tests we have only used variables that are not already defined within a JSON configuration file
+of the **RobotFramework_TestsuitesManagement**. What will happen, when we try to overwrite such a variable in command line?
+The answer is: This will not work!
 
-The **RobotFramework_Testsuites** configuration of the RobotFramework AIO is a certain extension of the Robot Framework. The possibility to
+The **RobotFramework_TestsuitesManagement** is a certain extension of the Robot Framework. The possibility to
 define values in several JSON files under certain conditions is a powerful feature - but this feature currently has the limitation
 that the JSON file values cannot be overwritten in command line (with both ``--variablefile`` and ``--variable``).
 

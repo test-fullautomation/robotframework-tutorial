@@ -86,18 +86,18 @@ The outcome is that another position has to be introduced to store values for va
 And a possibility has to be provided to dynamically make either the one or the other set of values vailable during the execution of tests - depending on
 outer circumstances like "*which variant?*" and "*which test bench?*".
 
-The RobotFramework AIO contains two components - the **RobotFramework_Testsuites** and the **JsonPreprocessor** - that allow the user
+The RobotFramework AIO contains two components - the **RobotFramework_TestsuitesManagement** and the **JsonPreprocessor** - that allow the user
 to define dynamic configuration values within separate configuration files in JSON format. The content of these files will be available
 during the test execution.
 
 In this set the **JsonPreprocessor** is responsible for reading in the values. This includes basic aspects like syntax checks and required data type
 conversions (between JSON format and robot format).
 
-The **RobotFramework_Testsuites** is responsible for making the values available during test execution - but under certain conditions that can be defined
+The **RobotFramework_TestsuitesManagement** is responsible for making the values available during test execution - but under certain conditions that can be defined
 by the user (e.g. to realize a variant handling). This means: Not all parameter values are available during test execution - only the ones that belong to
 the current test scenario.
 
-To realize this, the **RobotFramework_Testsuites** together with the **JsonPreprocessor** enables the user to do the following things:
+To realize this, the **RobotFramework_TestsuitesManagement** together with the **JsonPreprocessor** enables the user to do the following things:
 
 * Split all possible configuration values into several JSON configuration files, with every configuration file contains a specific set of values
   for configuration parameter
@@ -105,7 +105,7 @@ To realize this, the **RobotFramework_Testsuites** together with the **JsonPrepr
 * Follow up definitions in configuration files overwrite previous definitions (of the same parameter)
 * Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file
 
-The **RobotFramework_Testsuites** supports two different kinds of JSON configuration files:
+The **RobotFramework_TestsuitesManagement** supports two different kinds of JSON configuration files:
 
 * Configuration files containing the parameter definitions
 * A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
@@ -114,11 +114,11 @@ The **RobotFramework_Testsuites** supports two different kinds of JSON configura
 
 More details about the structure of JSON files can be found in section `How does the content of configuration files in JSON format look like?`_.
 
-More informations about the **RobotFramework_Testsuites** and the **JsonPreprocessor** can be found here:
+More informations about the **RobotFramework_TestsuitesManagement** and the **JsonPreprocessor** can be found here:
 
-* `RobotFramework_Testsuites in PyPi <https://pypi.org/project/robotframework-testsuitesmanagement>`_
-* `RobotFramework_Testsuites in GitHub <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_
-* `RobotFramework_Testsuites documentation <https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_Testsuites/RobotFramework_Testsuites.pdf>`_
+* `RobotFramework_TestsuitesManagement in PyPi <https://pypi.org/project/robotframework-testsuitesmanagement>`_
+* `RobotFramework_TestsuitesManagement in GitHub <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_
+* `RobotFramework_TestsuitesManagement documentation <https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_TestsuitesManagement/RobotFramework_TestsuitesManagement.pdf>`_
 * `JsonPreprocessor in PyPi <https://pypi.org/project/JsonPreprocessor>`_
 * `JsonPreprocessor in GitHub <https://github.com/test-fullautomation/python-jsonpreprocessor>`_
 * `JsonPreprocessor documentation <https://github.com/test-fullautomation/python-jsonpreprocessor/blob/develop/JsonPreprocessor/JsonPreprocessor.pdf>`_
@@ -204,7 +204,7 @@ In this part of the introduction we take a first look at the content of configur
    different number of ``../`` is required dependent on the directory depth of the test 
    case location.
 
-   Therefore we use here three dots to tell the **RobotFramework_Testsuites** to search from the test 
+   Therefore we use here three dots to tell the **RobotFramework_TestsuitesManagement** to search from the test 
    file location up till the ``robot_config*.json`` files are found:
 
    .. code:: python
@@ -336,15 +336,15 @@ TOC_
 How to enable the test suites management in RobotFramework AIO?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To enable the test suites management you have to import the **RobotFramework_Testsuites** library in the following way:
+To enable the test suites management you have to import the **RobotFramework_TestsuitesManagement** library in the following way:
 
 .. code::
 
-   Library    RobotFramework_Testsuites    WITH NAME    testsuites
+   Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 
 We recommend to use the ``WITH NAME`` option to shorten the robot code a little bit.
 
-The next step is to call the ``testsuite_setup`` of the **RobotFramework_Testsuites** within the ``Suite Setup`` of your test:
+The next step is to call the ``testsuite_setup`` of the **RobotFramework_TestsuitesManagement** within the ``Suite Setup`` of your test:
 
 .. code::
 
@@ -356,7 +356,7 @@ As long as you
 * do not provide a configuration file as parameter of the ``testsuite_setup`` (level 2),
 * do not have a ``config`` folder containing configuration files in your test suites folder (level 3),
 
-the **RobotFramework_Testsuites** falls back to the default configuration (level 4).
+the **RobotFramework_TestsuitesManagement** falls back to the default configuration (level 4).
 
 In case you want to realize a variant handling you have to provide the path and the name of a variant configuration file to the ``testsuite_setup``:
 
@@ -445,7 +445,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.7.1 / 30.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.7.2 / 01.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

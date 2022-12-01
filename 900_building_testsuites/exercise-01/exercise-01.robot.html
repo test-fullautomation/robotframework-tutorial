@@ -380,7 +380,7 @@ limitations under the License. -->
 <em>But this is only to demonstrate some basics! This implementation is not recommended!</em></p>
 <p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
 <pre class="code literal-block">
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 </pre>
 <p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
 <pre class="code literal-block">
@@ -408,10 +408,10 @@ Log    Project : ${CONFIG}[Project]    console=yes
 <p>The logfile tells about the origin of the values:</p>
 <pre class="code literal-block">
 Running with configuration level: 4
-CfgFile Path: &lt;Robot Framework installation&gt;\python39\lib\site-packages\RobotFramework_Testsuites\Config\robot_config.json
+CfgFile Path: &lt;Robot Framework installation&gt;\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.json
 </pre>
-<p>Hint: The <em>level 4</em> configuration is a fallback solution and should be avoided. In case you activate the test suites management, you should also specify an own configuration file.
-This is handled in the following exercises.</p>
+<p>Hint: The <em>level 4</em> configuration is a fallback solution and should be avoided. In case you activate the <strong>RobotFramework_TestsuitesManagement</strong>,
+you should also specify an own configuration file. This is handled in the following exercises.</p>
 </div>
 </div>
 </body>

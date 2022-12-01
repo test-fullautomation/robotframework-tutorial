@@ -427,15 +427,15 @@ tests of several variants and test executions on several test benches, no change
 <p>The outcome is that another position has to be introduced to store values for variant and test bench specific parameters.
 And a possibility has to be provided to dynamically make either the one or the other set of values vailable during the execution of tests - depending on
 outer circumstances like &quot;<em>which variant?</em>&quot; and &quot;<em>which test bench?</em>&quot;.</p>
-<p>The RobotFramework AIO contains two components - the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> - that allow the user
+<p>The RobotFramework AIO contains two components - the <strong>RobotFramework_TestsuitesManagement</strong> and the <strong>JsonPreprocessor</strong> - that allow the user
 to define dynamic configuration values within separate configuration files in JSON format. The content of these files will be available
 during the test execution.</p>
 <p>In this set the <strong>JsonPreprocessor</strong> is responsible for reading in the values. This includes basic aspects like syntax checks and required data type
 conversions (between JSON format and robot format).</p>
-<p>The <strong>RobotFramework_Testsuites</strong> is responsible for making the values available during test execution - but under certain conditions that can be defined
+<p>The <strong>RobotFramework_TestsuitesManagement</strong> is responsible for making the values available during test execution - but under certain conditions that can be defined
 by the user (e.g. to realize a variant handling). This means: Not all parameter values are available during test execution - only the ones that belong to
 the current test scenario.</p>
-<p>To realize this, the <strong>RobotFramework_Testsuites</strong> together with the <strong>JsonPreprocessor</strong> enables the user to do the following things:</p>
+<p>To realize this, the <strong>RobotFramework_TestsuitesManagement</strong> together with the <strong>JsonPreprocessor</strong> enables the user to do the following things:</p>
 <ul class="simple">
 <li>Split all possible configuration values into several JSON configuration files, with every configuration file contains a specific set of values
 for configuration parameter</li>
@@ -443,7 +443,7 @@ for configuration parameter</li>
 <li>Follow up definitions in configuration files overwrite previous definitions (of the same parameter)</li>
 <li>Select between several criteria to let the RobotFramework AIO use a certain JSON configuration file</li>
 </ul>
-<p>The <strong>RobotFramework_Testsuites</strong> supports two different kinds of JSON configuration files:</p>
+<p>The <strong>RobotFramework_TestsuitesManagement</strong> supports two different kinds of JSON configuration files:</p>
 <ul class="simple">
 <li>Configuration files containing the parameter definitions</li>
 <li>A certain single configuration file containing the mapping between the configuration files with parameter definitions and a name
@@ -451,11 +451,11 @@ for configuration parameter</li>
 for this variant.</li>
 </ul>
 <p>More details about the structure of JSON files can be found in section <a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a>.</p>
-<p>More informations about the <strong>RobotFramework_Testsuites</strong> and the <strong>JsonPreprocessor</strong> can be found here:</p>
+<p>More informations about the <strong>RobotFramework_TestsuitesManagement</strong> and the <strong>JsonPreprocessor</strong> can be found here:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://pypi.org/project/robotframework-testsuitesmanagement">RobotFramework_Testsuites in PyPi</a></li>
-<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement">RobotFramework_Testsuites in GitHub</a></li>
-<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_Testsuites/RobotFramework_Testsuites.pdf">RobotFramework_Testsuites documentation</a></li>
+<li><a class="reference external" href="https://pypi.org/project/robotframework-testsuitesmanagement">RobotFramework_TestsuitesManagement in PyPi</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement">RobotFramework_TestsuitesManagement in GitHub</a></li>
+<li><a class="reference external" href="https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_TestsuitesManagement/RobotFramework_TestsuitesManagement.pdf">RobotFramework_TestsuitesManagement documentation</a></li>
 <li><a class="reference external" href="https://pypi.org/project/JsonPreprocessor">JsonPreprocessor in PyPi</a></li>
 <li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor">JsonPreprocessor in GitHub</a></li>
 <li><a class="reference external" href="https://github.com/test-fullautomation/python-jsonpreprocessor/blob/develop/JsonPreprocessor/JsonPreprocessor.pdf">JsonPreprocessor documentation</a></li>
@@ -523,7 +523,7 @@ when the test suite is being executed.</p>
 The path to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files depends on the test file location. A
 different number of <tt class="docutils literal">../</tt> is required dependent on the directory depth of the test
 case location.</p>
-<p>Therefore we use here three dots to tell the <strong>RobotFramework_Testsuites</strong> to search from the test
+<p>Therefore we use here three dots to tell the <strong>RobotFramework_TestsuitesManagement</strong> to search from the test
 file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
 <pre class="code python literal-block">
 <span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
@@ -627,12 +627,12 @@ from installation folder (fallback solution; level 4).</li>
 <hr class="docutils" />
 <div class="section" id="how-to-enable-the-test-suites-management-in-robotframework-aio">
 <h2>How to enable the test suites management in RobotFramework AIO?</h2>
-<p>To enable the test suites management you have to import the <strong>RobotFramework_Testsuites</strong> library in the following way:</p>
+<p>To enable the test suites management you have to import the <strong>RobotFramework_TestsuitesManagement</strong> library in the following way:</p>
 <pre class="code literal-block">
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 </pre>
 <p>We recommend to use the <tt class="docutils literal">WITH NAME</tt> option to shorten the robot code a little bit.</p>
-<p>The next step is to call the <tt class="docutils literal">testsuite_setup</tt> of the <strong>RobotFramework_Testsuites</strong> within the <tt class="docutils literal">Suite Setup</tt> of your test:</p>
+<p>The next step is to call the <tt class="docutils literal">testsuite_setup</tt> of the <strong>RobotFramework_TestsuitesManagement</strong> within the <tt class="docutils literal">Suite Setup</tt> of your test:</p>
 <pre class="code literal-block">
 Suite Setup    testsuites.testsuite_setup
 </pre>
@@ -642,7 +642,7 @@ Suite Setup    testsuites.testsuite_setup
 <li>do not provide a configuration file as parameter of the <tt class="docutils literal">testsuite_setup</tt> (level 2),</li>
 <li>do not have a <tt class="docutils literal">config</tt> folder containing configuration files in your test suites folder (level 3),</li>
 </ul>
-<p>the <strong>RobotFramework_Testsuites</strong> falls back to the default configuration (level 4).</p>
+<p>the <strong>RobotFramework_TestsuitesManagement</strong> falls back to the default configuration (level 4).</p>
 <p>In case you want to realize a variant handling you have to provide the path and the name of a variant configuration file to the <tt class="docutils literal">testsuite_setup</tt>:</p>
 <blockquote>
 <pre class="code literal-block">
@@ -711,7 +711,7 @@ when the tests are executed. Corresponding informations you will find in the doc
 <hr class="docutils" />
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial <tt class="docutils literal">100_variables_and_datatypes</tt>.</p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.7.1 / 30.11.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.7.2 / 01.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

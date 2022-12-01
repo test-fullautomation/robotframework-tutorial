@@ -27,7 +27,7 @@ The first exercise contains the simplest realization of a test suites management
 
 .. code::
 
-   Library    RobotFramework_Testsuites    WITH NAME    testsuites
+   Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 
 and executes the ``testsuite_setup``
 
@@ -67,8 +67,8 @@ The logfile tells about the origin of the values:
 .. code::
 
    Running with configuration level: 4
-   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_Testsuites\Config\robot_config.json
+   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.json
 
-Hint: The *level 4* configuration is a fallback solution and should be avoided. In case you activate the test suites management, you should also specify an own configuration file.
-This is handled in the following exercises.
+Hint: The *level 4* configuration is a fallback solution and should be avoided. In case you activate the **RobotFramework_TestsuitesManagement**,
+you should also specify an own configuration file. This is handled in the following exercises.
 

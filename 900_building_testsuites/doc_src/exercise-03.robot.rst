@@ -26,7 +26,7 @@ The meaning of "local" is that the ``config`` folder is placed in the same folde
 
 Configuration files within this folder are considered under two different conditions:
 
-* The configuration file has the name ``robot_config.json``. That is a fix name predefined by the **RobotFramework_Testsuites**.
+* The configuration file has the name ``robot_config.json``. That is a fix name predefined by the **RobotFramework_TestsuitesManagement**.
 * The configuration file has the same name than a robot file inside the test suites folder, e.g.:
 
   * Name of test suite file: ``exercise-03-A.robot``

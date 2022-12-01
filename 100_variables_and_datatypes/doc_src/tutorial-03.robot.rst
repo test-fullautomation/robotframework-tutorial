@@ -129,7 +129,7 @@ a dictionary variable, this will be the answer:
 
 .. code::
 
-   RobotFramework_Testsuites.Config.CConfig.dotdict
+   RobotFramework_TestsuitesManagement.Config.CConfig.dotdict
 
 However, in this tutorial we continue with simply calling it *dictionary*!
 

@@ -20,6 +20,7 @@
 
 *** Settings ***
 
+# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 Library    RobotFramework_Testsuites    WITH NAME    testsuites
 
 Suite Setup    testsuites.testsuite_setup    ./config/exercise-05_variants.json

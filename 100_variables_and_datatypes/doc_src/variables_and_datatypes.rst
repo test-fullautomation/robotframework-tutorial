@@ -15,7 +15,7 @@
 Variables and datatypes in RobotFramework AIO
 =============================================
 
-Version 0.3.1 / 30.11.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.3.2 / 01.12.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
@@ -74,7 +74,7 @@ It is not the intention of this tutorial to go through all possible error scenar
 we do it, might also not be the *only* way to do it in a proper way.
 
 The possibility to use configuration files in JSON format to define parameters outside the robot code is based on two components that have been developed for the
-Robot Framework: the `RobotFramework_Testsuites <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_ and the
+Robot Framework: the `RobotFramework_TestsuitesManagement <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_ and the
 `JsonPreprocessor <https://github.com/test-fullautomation/python-jsonpreprocessor>`_. How these two components work together with the Robot Framework is described
 in the tutorial ``900_building_testsuites``.
 

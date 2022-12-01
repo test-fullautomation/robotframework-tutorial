@@ -2,6 +2,7 @@
 Documentation     tutorial resource file
 
 # import of RobotFramework AIO configuration managment
+# coming soon: # Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 Library    RobotFramework_Testsuites    WITH NAME    testsuites
 
 # import of Python keyword library e.g. to support printing out further details about variables

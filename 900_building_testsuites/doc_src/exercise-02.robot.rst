@@ -225,7 +225,7 @@ Remember the content of one of the configuration files:
    }
 
 The parameters ``WelcomeString``, ``Maximum_version``, ``Minimum_version``, ``Project`` and ``TargetName`` are mandatory default parameters of the
-**RobotFramework_Testsuites**. They are realized as keys of a global dictionary. Therefore the have to be accessed e.g. in this way:
+**RobotFramework_TestsuitesManagement**. They are realized as keys of a global dictionary. Therefore the have to be accessed e.g. in this way:
 
 .. code::
 
