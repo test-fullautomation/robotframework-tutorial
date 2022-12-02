@@ -430,7 +430,7 @@ Demonstrates the usage of nested JSON configuration files
 exercise-06
 ~~~~~~~~~~~
 
-*TODO: Demonstrates the usage of local JSON configuration files*
+Demonstrates the usage of local JSON configuration files
 
 exercise-07
 ~~~~~~~~~~~
@@ -445,7 +445,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.7.2 / 01.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.8.0 / 02.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

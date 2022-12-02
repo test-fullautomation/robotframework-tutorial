@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<title>exercise-06</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="exercise-06">
+<h1 class="title">exercise-06</h1>
+
+<!-- Copyright 2020-2022 Robert Bosch GmbH -->
+<!-- Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at -->
+<!-- http://www.apache.org/licenses/LICENSE-2.0 -->
+<!-- Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<hr class="docutils" />
+<div class="section" id="content">
+<h1>Content</h1>
+<p><tt class="docutils literal"><span class="pre">exercise-06</span></tt> demonstrates the usage of local JSON configuration files.</p>
+<p>Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
+Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.</p>
+<p>This requirement is fulfilled by the <em>local configuration</em> feature of the <strong>RobotFramework_TestsuitesManagement</strong>.</p>
+<p>Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
+The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.
+And it is possible to use the local configuration to overwrite the default values with values that are specific for a certain test bench.</p>
+<p>The <strong>RobotFramework_TestsuitesManagement</strong> provides two ways to access the local configuration:</p>
+<ol class="arabic">
+<li><p class="first"><em>Command line</em></p>
+<p>Path and name of the configuration file is provided in command line of the RobotFramework AIO with the following syntax:</p>
+<p><tt class="docutils literal"><span class="pre">--variable</span> <span class="pre">local_config:&quot;&lt;path</span> to localconfig file&gt;&quot;</tt></p>
+</li>
+<li><p class="first"><em>Default position</em></p>
+<p>A local configuration file with fix name <tt class="docutils literal">local_config.json</tt> is available at following positions:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">C:\RobotTest\localconfig</span></tt> (Windows)</li>
+<li><tt class="docutils literal"><span class="pre">/home/&lt;user&gt;/RobotTest/localconfig</span></tt> (Linux)</li>
+</ul>
+</li>
+</ol>
+<p>Using this feature is an option. The command line has higher priority than the default position. If both is available the local configuration
+is taken from command line.</p>
+<p>Important: It is not possible in the local configuration to use already existing parameters from <em>outside</em> - e.g. parameters already defined in
+other configuration files. The local configuration feature can only be used to overwrite already existing parameters or to create additional parameters,
+but cannot use parameters from other configuration files (right hand side of the colon)!</p>
+<p>Recommendation: To avoid an accidental overwriting of local configuration files in version control systems we recommend to give those files
+names that are test bench specific.</p>
+<p>In this exercise a local configuration is realized in the following way:</p>
+<p>The config folder contains the already known configuration files</p>
+<pre class="code literal-block">
+config/exercise-06_config_common.json
+config/exercise-06_variants.json
+config/exercise-06_config_default.json
+config/exercise-06_config_variant1.json
+config/exercise-06_config_variant2.json
+</pre>
+<p>The test strings have been extended. The file <tt class="docutils literal"><span class="pre">exercise-06_config_common.json</span></tt> now also contains two test bench specific default values:</p>
+<pre class="code literal-block">
+&quot;teststring_common&quot; : &quot;I am the common teststring valid for all variants and all test benches&quot;,
+&quot;teststring_bench&quot;  : &quot;I am the teststring containing the default value for all test benches&quot;
+</pre>
+<p>Every variant specific configuration file contains also values that are specific for the variant, but the default for the available test benches 1 and 2,
+e.g. <tt class="docutils literal"><span class="pre">exercise-06_config_variant1.json</span></tt>:</p>
+<pre class="code literal-block">
+&quot;[import]&quot;           : &quot;./exercise-06_config_common.json&quot;,
+&quot;teststring_variant&quot; : &quot;I am the 'variant1' configuration of exercise 06&quot;
+</pre>
+<p>New in this exercise is a <tt class="docutils literal">localconfig</tt> folder with a local configuration for bench 1 and another one for bench 2:</p>
+<pre class="code literal-block">
+localconfig\exercise-06_localconfig_bench1.json
+localconfig\exercise-06_localconfig_bench2.json
+</pre>
+<p>In every of theses files a test bench specific value is defined, e.g. in <tt class="docutils literal"><span class="pre">exercise-06_localconfig_bench1.json</span></tt>:</p>
+<pre class="code literal-block">
+${params}['global']['teststring_bench'] : &quot;I am the 'bench1' configuration of exercise 06&quot;
+</pre>
+<p>Here the local configuration is used to overwrite a parameter that is already defined within the <tt class="docutils literal">params:global</tt> section of
+another configuration file. Therefore this scope has to be used: <tt class="docutils literal"><span class="pre">${params}['global']['teststring_bench']</span></tt>.</p>
+<p>In <tt class="docutils literal"><span class="pre">exercise-06.robot</span></tt> all test strings are logged: <tt class="docutils literal">teststring_common</tt>, <tt class="docutils literal">teststring_variant</tt> and <tt class="docutils literal">teststring_bench</tt>.</p>
+<p>We have now several possibilities:</p>
+<ol class="arabic simple">
+<li>No variant name given in command line, no local configuration</li>
+<li>Variant name given in command line, no local configuration</li>
+<li>No variant name given in command line, with local configuration</li>
+<li>Variant name given in command line, with local configuration</li>
+</ol>
+<p>Because every test string is initialized, every combination works - even in case of no variant and also no local configuration is given.
+Default values are taken from <tt class="docutils literal"><span class="pre">exercise-06_config_default.json</span></tt> (<tt class="docutils literal">teststring_variant</tt>) and <tt class="docutils literal"><span class="pre">exercise-06_config_common.json</span></tt>
+(<tt class="docutils literal">teststring_common</tt> and <tt class="docutils literal">teststring_bench</tt>).</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="command-line">
+<h1>Command line</h1>
+<p>Starting with first option: no variant, no local configuration:</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log &quot;./exercise-06.robot&quot;
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="outcome">
+<h1>Outcome</h1>
+<p>The parameter values are:</p>
+<pre class="code literal-block">
+teststring_common : I am the common teststring valid for all variants and all test benches
+teststring_variant : I am the 'default' variant configuration of exercise 06
+teststring_bench : I am the teststring containing the default value for all test benches
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="command-line-1">
+<h1>Command line</h1>
+<p>To cover the remaining three options use the following command lines:</p>
+<p>Variant 1, no local configuration</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable variant:&quot;variant1&quot; &quot;./exercise-06.robot&quot;
+</pre>
+<p>No variant, with local bench1 configuration</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable local_config:&quot;./localconfig/exercise-06_localconfig_bench1.json&quot; &quot;./exercise-06.robot&quot;
+</pre>
+<p>Variant 2, with local bench2 configuration</p>
+<pre class="code literal-block">
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable variant:&quot;variant2&quot; --variable local_config:&quot;./localconfig/exercise-06_localconfig_bench2.json&quot; &quot;./exercise-06.robot&quot;
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="outcome-1">
+<h1>Outcome</h1>
+<p>The values of <tt class="docutils literal">teststring_variant</tt> and <tt class="docutils literal">teststring_bench</tt> are updated accordingly to the settings in command line.
+The value of <tt class="docutils literal">teststring_common</tt> stays unchanged.</p>
+</div>
+<div class="section" id="extension">
+<h1>Extension</h1>
+<p>It might be required to support parameters that are both together: specific for a variant and additionally specific for a test bench also.
+In this case you should initialize these parameters in the variant specific configuration files and make them specific for a certain test bench
+in the local configuration files. Give it a try.</p>
+</div>
+</div>
+</body>
+</html>
