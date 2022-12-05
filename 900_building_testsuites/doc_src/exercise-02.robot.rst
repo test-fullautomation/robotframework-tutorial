@@ -123,10 +123,6 @@ The log file gives more information about the origin
    Running with configuration level: 1
    CfgFile Path: ./config/exercise-02_config_variant1.json
 
-*TODO: Explain the background of the level warning* :
-
-``[ WARN ] The configuration level 1 is set for this Robot run!``
-
 Continuing with the second option ...
 
 ----

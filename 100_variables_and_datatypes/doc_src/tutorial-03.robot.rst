@@ -141,19 +141,21 @@ step by step in the following way:
 .. code::
 
    "dict_val" : {},
-   "${params}['global']['dict_val']['key_1']" : {},
-   "${params}['global']['dict_val']['key_1']['subkey_11']" : {},
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112']" : "${params}['global']['int_val']",
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113']" : "${params}['global']['float_val']",
-   "${params}['global']['dict_val']['key_2']" : {},
-   "${params}['global']['dict_val']['key_2']['subkey_21']" : {},
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211']" : "${params}['global']['bool_val_1']",
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212']" : "${params}['global']['bool_val_2']",
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213']" : "${params}['global']['null_val']"
+   ${params}['global']['dict_val']['key_1'] : {},
+   ${params}['global']['dict_val']['key_1']['subkey_11'] : {},
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
+   ${params}['global']['dict_val']['key_2'] : {},
+   ${params}['global']['dict_val']['key_2']['subkey_21'] : {},
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
 
 This is a nested dictionary - the values of keys are also dictionaries. Every dictionary (at each level)
 needs to be initialized by ``{}`` before keys can be added.
+
+In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.
 
 The dictionary ``dict_val`` contains two keys (``key_1`` and ``key_2``). Every key contain one single key
 at the level below (``subkey_11`` and ``subkey_21``). The lowest level consists of the keys ``subsubkey_111``
@@ -189,15 +191,15 @@ This is a valid assignment (containing the scope ``${params}['global']``):
 
 .. code::
 
-      "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
+      ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
 
 For comparison: These are invalid assignments (where the scope is missing at any position):
 
 .. code::
 
-      "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${string_val}",
-      "${dict_val}['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
-      "${dict_val}['key_1']['subkey_11']['subsubkey_111']" : "${string_val}",
+      ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
+      ${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+      ${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
 
 And very important: In robot code the scope ``params:global`` is the default. In your tests you have to refer to ``subsubkey_111``
 in the following way:
@@ -274,33 +276,4 @@ The following ways of accessing a dictionary value are possible in robot code:
    log_scalar    ${dict_val['key_1']['subkey_11']['subsubkey_111']}
    log_scalar    ${dict_val}[${key}][${subkey}][${subsubkey}]
    log_scalar    ${dict_val['${key}']['${subkey}']['${subsubkey}']}
-
-**Last aspect** (*that is currently under discussion*)
-
-This is the way an integer value is defined within a JSON configuration file:
-
-.. code::
-
-   "int_val" : 123,
-
-With no quotes around ``123`` (like usual).
-
-And this is the way this value is accessed within this file:
-
-.. code::
-
-   "${new_variable}" : "${params}['global']['int_val']",
-
-You may wonder why it is necessary to put quotes around ``${params}['global']['int_val']``.
-
-Let's keep the explanation simple: It is like it is and currently it is necessary.
-
-Most probably in future versions of the RobotFramework AIO this will be changed.
-
-By the way: The data type of ``new_variable`` is ``int``.
-
-
-
-
-
 

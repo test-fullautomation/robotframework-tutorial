@@ -15,7 +15,7 @@
 Variables and datatypes in RobotFramework AIO
 =============================================
 
-Version 0.3.2 / 01.12.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.4.0 / 05.12.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
