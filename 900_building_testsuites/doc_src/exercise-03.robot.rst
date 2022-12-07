@@ -20,9 +20,9 @@ exercise-03
 Content
 -------
 
-``exercise-03`` demonstrates several ways to load the configuration from a local ``config`` folder.
+``exercise-03`` demonstrates several ways to load the configuration from a ``config`` folder.
 
-The meaning of "local" is that the ``config`` folder is placed in the same folder than the test suites.
+This ``config`` folder has to be placed in the same folder than the test suites.
 
 Configuration files within this folder are considered under two different conditions:
 

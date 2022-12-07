@@ -20,7 +20,7 @@ exercise-05
 Content
 -------
 
-``exercise-05`` demonstrates the usage of nested JSON configuration files.
+``exercise-05`` demonstrates the usage of nested configuration files.
 
 Background: In case of a project requires more and more parameters, it makes sense to split the growing configuration file into smaller ones.
 In previous exercises all variant specific configuration files contain all parameters required for this variant - separately.

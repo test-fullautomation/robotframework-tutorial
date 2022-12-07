@@ -20,12 +20,14 @@ exercise-06
 Content
 -------
 
-``exercise-06`` demonstrates the usage of local JSON configuration files.
+``exercise-06`` demonstrates the usage of local configuration files.
 
 Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.
 
 This requirement is fulfilled by the *local configuration* feature of the **RobotFramework_TestsuitesManagement**.
+
+The meaning of *local* in this context is: placed on a certain test bench.
 
 Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
 The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.

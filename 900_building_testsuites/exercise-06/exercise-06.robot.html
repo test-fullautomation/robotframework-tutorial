@@ -376,10 +376,11 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p><tt class="docutils literal"><span class="pre">exercise-06</span></tt> demonstrates the usage of local JSON configuration files.</p>
+<p><tt class="docutils literal"><span class="pre">exercise-06</span></tt> demonstrates the usage of local configuration files.</p>
 <p>Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.</p>
 <p>This requirement is fulfilled by the <em>local configuration</em> feature of the <strong>RobotFramework_TestsuitesManagement</strong>.</p>
+<p>The meaning of <em>local</em> in this context is: placed on a certain test bench.</p>
 <p>Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
 The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.
 And it is possible to use the local configuration to overwrite the default values with values that are specific for a certain test bench.</p>
