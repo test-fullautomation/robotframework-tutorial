@@ -377,7 +377,7 @@ limitations under the License. -->
 <div class="section" id="content">
 <h1>Content</h1>
 <p><tt class="docutils literal"><span class="pre">exercise-02</span></tt> demonstrates several ways to define the configuration in command line. This can be used to realize a variant handling.</p>
-<p>We assume to have the variants <tt class="docutils literal">variant1</tt>, <tt class="docutils literal">variant2</tt> and a <tt class="docutils literal">default</tt> variant. For every variant we need a configuration file defining the
+<p>We assume to have the variants <tt class="docutils literal">variant1</tt>, <tt class="docutils literal">variant2</tt> and a <tt class="docutils literal">default</tt> variant. For every variant we need a parameter configuration file defining the
 parameter values that are specific for this variant. In this exercise that are the files</p>
 <pre class="code literal-block">
 config/exercise-02_config_default.json
@@ -388,7 +388,7 @@ config/exercise-02_config_variant2.json
 <pre class="code literal-block">
 &quot;teststring&quot; : &quot;I am the 'variant1' configuration of exercise 02&quot;
 </pre>
-<p>Additionally we need another configuration file defining a mapping between the variant name and the corresponding configuration file:</p>
+<p>Additionally we need a variants configuration file defining the mapping between the variant name and the corresponding parameter configuration file:</p>
 <pre class="code literal-block">
 config/exercise-02_variants.json
 </pre>
@@ -409,13 +409,13 @@ config/exercise-02_variants.json
               }
 }
 </pre>
-<p>In exercise-02.robot we execute the <tt class="docutils literal">testsuites.testsuite_setup</tt> without providing any configuration file:</p>
+<p>In exercise-02.robot we execute the <tt class="docutils literal">tm.testsuite_setup</tt> without providing any configuration file:</p>
 <pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup
+Suite Setup    tm.testsuite_setup
 </pre>
-<p>In exercise-02-B.robot we hand over the mapping configuration file to the <tt class="docutils literal">testsuites.testsuite_setup</tt>:</p>
+<p>In exercise-02-B.robot we hand over the variants configuration file to the <tt class="docutils literal">tm.testsuite_setup</tt>:</p>
 <pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup    ./config/exercise-02_variants.json
+Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.json
 </pre>
 <p>And in both we print the content of the test string:</p>
 <pre class="code literal-block">
@@ -430,7 +430,7 @@ Log    teststring : ${teststring}    console=yes
 <p>Starting with the first option ...</p>
 <hr class="docutils" />
 <ol class="arabic simple">
-<li>Define a variant specific configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
+<li>Define a variant specific parameter configuration file directly in command line (with <tt class="docutils literal"><span class="pre">exercise-02.robot</span></tt>)</li>
 </ol>
 </div>
 <div class="section" id="command-line">
@@ -442,7 +442,7 @@ Log    teststring : ${teststring}    console=yes
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>A variant specific configuration file can be set with the following command line extension:</p>
+<p>A variant specific parameter configuration file can be set with the following command line extension:</p>
 <pre class="code literal-block">
 --variable config_file:&quot;&lt;path to configuration file&gt;&quot;
 </pre>
@@ -516,9 +516,9 @@ CfgFile Path: ./config/exercise-02_config_variant2.json
 <p>Remember the content of one of the configuration files:</p>
 <pre class="code literal-block">
 {
-  &quot;WelcomeString&quot;: &quot;Hello... RobotFramework AIO is running now!&quot;,
+  &quot;WelcomeString&quot;: &quot;Hello... Robot Framework is running now!&quot;,
 
-  &quot;Maximum_version&quot;: &quot;0.5.2&quot;,
+  &quot;Maximum_version&quot;: &quot;0.6.0&quot;,
   &quot;Minimum_version&quot;: &quot;0.5.2&quot;,
 
   &quot;Project&quot;: &quot;RobotFramework Testsuites&quot;,

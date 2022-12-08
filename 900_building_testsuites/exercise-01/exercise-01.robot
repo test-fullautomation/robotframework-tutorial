@@ -20,10 +20,10 @@
 
 *** Settings ***
 
-# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_Testsuites    WITH NAME    tm
 
-Suite Setup    testsuites.testsuite_setup
+Suite Setup    tm.testsuite_setup
 
 *** Test Cases ***
 Test Case exercise-01

@@ -22,7 +22,7 @@ Content
 
 ``exercise-02`` demonstrates several ways to define the configuration in command line. This can be used to realize a variant handling.
 
-We assume to have the variants ``variant1``, ``variant2`` and a ``default`` variant. For every variant we need a configuration file defining the
+We assume to have the variants ``variant1``, ``variant2`` and a ``default`` variant. For every variant we need a parameter configuration file defining the
 parameter values that are specific for this variant. In this exercise that are the files
 
 .. code::
@@ -37,7 +37,7 @@ Every of these files define a test string containing an individual value, e.g. t
 
    "teststring" : "I am the 'variant1' configuration of exercise 02"
 
-Additionally we need another configuration file defining a mapping between the variant name and the corresponding configuration file:
+Additionally we need a variants configuration file defining the mapping between the variant name and the corresponding parameter configuration file:
 
 .. code::
 
@@ -62,17 +62,17 @@ With the following content:
                  }
    }
 
-In exercise-02.robot we execute the ``testsuites.testsuite_setup`` without providing any configuration file:
+In exercise-02.robot we execute the ``tm.testsuite_setup`` without providing any configuration file:
 
 .. code::
 
-   Suite Setup    testsuites.testsuite_setup
+   Suite Setup    tm.testsuite_setup
 
-In exercise-02-B.robot we hand over the mapping configuration file to the ``testsuites.testsuite_setup``:
+In exercise-02-B.robot we hand over the variants configuration file to the ``tm.testsuite_setup``:
 
 .. code::
 
-   Suite Setup    testsuites.testsuite_setup    ./config/exercise-02_variants.json
+   Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.json
 
 And in both we print the content of the test string:
 
@@ -90,7 +90,7 @@ Starting with the first option ...
 
 ----
 
-1. Define a variant specific configuration file directly in command line (with ``exercise-02.robot``)
+1. Define a variant specific parameter configuration file directly in command line (with ``exercise-02.robot``)
 
 Command line
 ------------
@@ -104,7 +104,7 @@ Command line
 Outcome
 -------
 
-A variant specific configuration file can be set with the following command line extension:
+A variant specific parameter configuration file can be set with the following command line extension:
 
 .. code::
 
@@ -205,9 +205,9 @@ Remember the content of one of the configuration files:
 .. code::
 
    {
-     "WelcomeString": "Hello... RobotFramework AIO is running now!",
+     "WelcomeString": "Hello... Robot Framework is running now!",
 
-     "Maximum_version": "0.5.2",
+     "Maximum_version": "0.6.0",
      "Minimum_version": "0.5.2",
 
      "Project": "RobotFramework Testsuites",

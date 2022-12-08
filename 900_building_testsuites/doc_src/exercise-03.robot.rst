@@ -24,13 +24,13 @@ Content
 
 This ``config`` folder has to be placed in the same folder than the test suites.
 
-Configuration files within this folder are considered under two different conditions:
+Parameter configuration files within this folder are considered under two different conditions:
 
 * The configuration file has the name ``robot_config.json``. That is a fix name predefined by the **RobotFramework_TestsuitesManagement**.
 * The configuration file has the same name than a robot file inside the test suites folder, e.g.:
 
   * Name of test suite file: ``exercise-03-A.robot``
-  * Path and name of corresponding configuration file: ``./config/exercise-03-A.json``
+  * Path and name of corresponding parameter configuration file: ``./config/exercise-03-A.json``
 
   With this rule it is possible to give every test suite in a certain folder an own individual configuration.
 
@@ -40,7 +40,7 @@ This exercise contains the following test suites:
 * ``exercise-03-A.robot``
 * ``exercise-03-B.robot``
 
-together with the following configuration files:
+together with the following parameter configuration files:
 
 * ``config/robot_config.json.json``
 * ``config/exercise-03-A.json``

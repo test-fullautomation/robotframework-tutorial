@@ -14,9 +14,9 @@
 //**************************************************************************
 
 {
-  "WelcomeString": "Hello... RobotFramework AIO is running now!",
+  "WelcomeString": "Hello... Robot Framework is running now!",
 
-  "Maximum_version": "0.5.2",
+  "Maximum_version": "0.6.0",
   "Minimum_version": "0.5.2",
 
   "Project": "RobotFramework Testsuites",

@@ -20,7 +20,7 @@ exercise-06
 Content
 -------
 
-``exercise-06`` demonstrates the usage of local configuration files.
+``exercise-06`` demonstrates the usage of local parameter configuration files.
 
 Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.
@@ -37,13 +37,13 @@ The **RobotFramework_TestsuitesManagement** provides two ways to access the loca
 
 1. *Command line*
 
-   Path and name of the configuration file is provided in command line of the RobotFramework AIO with the following syntax:
+   Path and name of the local parameter configuration file is provided in command line of the Robot Framework with the following syntax:
 
    ``--variable local_config:"<path to localconfig file>"``
 
 2. *Default position*
 
-   A local configuration file with fix name ``local_config.json`` is available at following positions:
+   A local parameter configuration file with fix name ``local_config.json`` is available at following positions:
 
    * ``C:\RobotTest\localconfig`` (Windows)
    * ``/home/<user>/RobotTest/localconfig`` (Linux)

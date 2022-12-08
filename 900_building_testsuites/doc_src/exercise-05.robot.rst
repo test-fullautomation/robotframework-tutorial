@@ -20,7 +20,7 @@ exercise-05
 Content
 -------
 
-``exercise-05`` demonstrates the usage of nested configuration files.
+``exercise-05`` demonstrates the usage of nested parameter configuration files.
 
 Background: In case of a project requires more and more parameters, it makes sense to split the growing configuration file into smaller ones.
 In previous exercises all variant specific configuration files contain all parameters required for this variant - separately.
@@ -35,13 +35,13 @@ the variant specific ones and the common ones.
 
 In this exercise this concept is realized in the following way:
 
-The config folder contains the already known variants file
+The config folder contains the already known variants configuration file
 
 .. code::
 
    config/exercise-05_variants.json
 
-together with variant specific configuration files
+together with variant specific parameter configuration files
 
 .. code::
 
@@ -49,7 +49,7 @@ together with variant specific configuration files
    config/exercise-05_config_variant1.json
    config/exercise-05_config_variant2.json
 
-New in this exercise is a common configuration file
+New in this exercise is a common parameter configuration file
 
 .. code::
 
@@ -61,7 +61,7 @@ containing a parameter that shall have the same value for every variant:
 
    "teststring_common" : "I am the common teststring valid for all variants"
 
-The variant specific configuration files still contain their own specific parameter definitions and additionally
+The variant specific parameter configuration files still contain their own specific parameter definitions and additionally
 the import of the common configuration file, e.g.:
 
 .. code::

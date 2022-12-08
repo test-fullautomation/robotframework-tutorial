@@ -27,13 +27,13 @@ The first exercise contains the simplest realization of a test suites management
 
 .. code::
 
-   Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
+   Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 
 and executes the ``testsuite_setup``
 
 .. code::
 
-   Suite Setup    testsuites.testsuite_setup
+   Suite Setup    tm.testsuite_setup
 
 No further configuration file is given.
 
@@ -51,7 +51,7 @@ Command line
 Outcome
 -------
 
-Because of nothing more is specified the RobotFramework AIO falls back to the default configuration (level 4).
+Because of nothing more is specified the Robot Framework falls back to the default configuration (level 4).
 
 The test prints the ``Maximum_version`` and the ``Project`` name like defined in this default configuration.
 

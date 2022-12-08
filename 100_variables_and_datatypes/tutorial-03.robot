@@ -18,17 +18,17 @@
 #
 # dictionaries handling
 #
-# 0.3.0 / 07.09.2022
+# 0.3.1 / 08.12.2022
 #
 # --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
 Resource    ./libs/testimport.resource
 
-Suite Setup       testsuites.testsuite_setup    ./config/testconfig.json
-Suite Teardown    testsuites.testsuite_teardown
-Test Setup        testsuites.testcase_setup
-Test Teardown     testsuites.testcase_teardown
+Suite Setup       tm.testsuite_setup    ./config/testconfig.json
+Suite Teardown    tm.testsuite_teardown
+Test Setup        tm.testcase_setup
+Test Teardown     tm.testcase_teardown
 
 *** Test Cases ***
 Test Case 03_01

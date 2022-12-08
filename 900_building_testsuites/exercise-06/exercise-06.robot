@@ -20,10 +20,10 @@
 
 *** Settings ***
 
-# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_Testsuites    WITH NAME    tm
 
-Suite Setup    testsuites.testsuite_setup    ./config/exercise-06_variants.json
+Suite Setup    tm.testsuite_setup    ./config/exercise-06_variants.json
 
 *** Test Cases ***
 Test Case exercise-06
@@ -31,4 +31,3 @@ Test Case exercise-06
     Log    teststring_common : ${teststring_common}    console=yes
     Log    teststring_variant : ${teststring_variant}    console=yes
     Log    teststring_bench : ${teststring_bench}    console=yes
-

@@ -380,11 +380,11 @@ limitations under the License. -->
 <em>But this is only to demonstrate some basics! This implementation is not recommended!</em></p>
 <p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
 <pre class="code literal-block">
-Library    RobotFramework_TestsuitesManagement    WITH NAME    testsuites
+Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 </pre>
 <p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
 <pre class="code literal-block">
-Suite Setup    testsuites.testsuite_setup
+Suite Setup    tm.testsuite_setup
 </pre>
 <p>No further configuration file is given.</p>
 </div>
@@ -398,7 +398,7 @@ Suite Setup    testsuites.testsuite_setup
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>Because of nothing more is specified the RobotFramework AIO falls back to the default configuration (level 4).</p>
+<p>Because of nothing more is specified the Robot Framework falls back to the default configuration (level 4).</p>
 <p>The test prints the <tt class="docutils literal">Maximum_version</tt> and the <tt class="docutils literal">Project</tt> name like defined in this default configuration.</p>
 <p>Hint: The parameters are keys of an internal configuration dictionary. They have to be accessed in the following way:</p>
 <pre class="code literal-block">

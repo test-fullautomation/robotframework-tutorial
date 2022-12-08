@@ -376,7 +376,7 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p><tt class="docutils literal"><span class="pre">exercise-06</span></tt> demonstrates the usage of local configuration files.</p>
+<p><tt class="docutils literal"><span class="pre">exercise-06</span></tt> demonstrates the usage of local parameter configuration files.</p>
 <p>Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.</p>
 <p>This requirement is fulfilled by the <em>local configuration</em> feature of the <strong>RobotFramework_TestsuitesManagement</strong>.</p>
@@ -387,11 +387,11 @@ And it is possible to use the local configuration to overwrite the default value
 <p>The <strong>RobotFramework_TestsuitesManagement</strong> provides two ways to access the local configuration:</p>
 <ol class="arabic">
 <li><p class="first"><em>Command line</em></p>
-<p>Path and name of the configuration file is provided in command line of the RobotFramework AIO with the following syntax:</p>
+<p>Path and name of the local parameter configuration file is provided in command line of the Robot Framework with the following syntax:</p>
 <p><tt class="docutils literal"><span class="pre">--variable</span> <span class="pre">local_config:&quot;&lt;path</span> to localconfig file&gt;&quot;</tt></p>
 </li>
 <li><p class="first"><em>Default position</em></p>
-<p>A local configuration file with fix name <tt class="docutils literal">local_config.json</tt> is available at following positions:</p>
+<p>A local parameter configuration file with fix name <tt class="docutils literal">local_config.json</tt> is available at following positions:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">C:\RobotTest\localconfig</span></tt> (Windows)</li>
 <li><tt class="docutils literal"><span class="pre">/home/&lt;user&gt;/RobotTest/localconfig</span></tt> (Linux)</li>

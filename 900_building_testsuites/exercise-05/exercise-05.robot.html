@@ -376,7 +376,7 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p><tt class="docutils literal"><span class="pre">exercise-05</span></tt> demonstrates the usage of nested configuration files.</p>
+<p><tt class="docutils literal"><span class="pre">exercise-05</span></tt> demonstrates the usage of nested parameter configuration files.</p>
 <p>Background: In case of a project requires more and more parameters, it makes sense to split the growing configuration file into smaller ones.
 In previous exercises all variant specific configuration files contain all parameters required for this variant - separately.
 But <em>required</em> is not <em>specific</em>. There might parameters be required, that have the same value in all variants. If we put them
@@ -386,17 +386,17 @@ a separate configuration file. This common parameter file has to be imported in 
 <p>The outcome is that still with the selection of a certain variant specific parameter file both types of parameters are available:
 the variant specific ones and the common ones.</p>
 <p>In this exercise this concept is realized in the following way:</p>
-<p>The config folder contains the already known variants file</p>
+<p>The config folder contains the already known variants configuration file</p>
 <pre class="code literal-block">
 config/exercise-05_variants.json
 </pre>
-<p>together with variant specific configuration files</p>
+<p>together with variant specific parameter configuration files</p>
 <pre class="code literal-block">
 config/exercise-05_config_default.json
 config/exercise-05_config_variant1.json
 config/exercise-05_config_variant2.json
 </pre>
-<p>New in this exercise is a common configuration file</p>
+<p>New in this exercise is a common parameter configuration file</p>
 <pre class="code literal-block">
 config/exercise-05_config_common.json
 </pre>
@@ -404,7 +404,7 @@ config/exercise-05_config_common.json
 <pre class="code literal-block">
 &quot;teststring_common&quot; : &quot;I am the common teststring valid for all variants&quot;
 </pre>
-<p>The variant specific configuration files still contain their own specific parameter definitions and additionally
+<p>The variant specific parameter configuration files still contain their own specific parameter definitions and additionally
 the import of the common configuration file, e.g.:</p>
 <pre class="code literal-block">
 &quot;params&quot; : {
