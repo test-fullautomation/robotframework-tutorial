@@ -579,7 +579,7 @@ are part of a version control mechanism: In case of the version of the currently
 </pre>
 <p>User defined parameters have to be placed inside <tt class="docutils literal">params:global</tt>. The intermediate level <tt class="docutils literal">global</tt> is introduced to enable further
 parameter scopes than <tt class="docutils literal">global</tt> in future.</p>
-<p>And another feature can be seen in the example above: In the context of the Robot Framework the JSON format is an extended one.
+<p>And another feature can be seen in the example above: In the context of the <strong>RobotFramework_TestsuitesManagement</strong> the JSON format is an extended one.
 Deviating from JSON standard it is possible to comment out lines with starting them with a double slash &quot;<tt class="docutils literal">//</tt>&quot;. This allows to
 add explanations about the meaning of the defined parameters already within the JSON file.</p>
 <p>Further JSON syntax extensions - introduced by the <strong>RobotFramework_TestsuitesManagement</strong> - will be explained in the corresponding exercises.</p>
@@ -667,19 +667,15 @@ Suite Setup    tm.testsuite_setup
 </ul>
 <p>the <strong>RobotFramework_TestsuitesManagement</strong> falls back to the default configuration (level 4).</p>
 <p>In case you want to realize a variant handling you have to provide the path and the name of a variants configuration file to the <tt class="docutils literal">testsuite_setup</tt>:</p>
-<blockquote>
 <pre class="code literal-block">
 Suite Setup    tm.testsuite_setup    ./config/exercise_variants.json
 </pre>
-</blockquote>
 <p>To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
 configuration file, for example:</p>
-<blockquote>
 <pre class="code literal-block">
 Running with configuration level: 2
 CfgFile Path: ./config/exercise_config.json
 </pre>
-</blockquote>
 <p>Please consider: The <tt class="docutils literal">testsuite_setup</tt> requires a variants configuration file (in the example above: <tt class="docutils literal">exercise_variants.json</tt>) - whereas
 the log file contains the resulting parameter configuration file (in the example above: <tt class="docutils literal">exercise_config.json</tt>), that is selected depending
 on the name of the variant provided in command line of the Robot Framework.</p>
@@ -733,7 +729,7 @@ when the tests are executed. Corresponding informations you will find in the doc
 <hr class="docutils" />
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial <tt class="docutils literal">100_variables_and_datatypes</tt>.</p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.8.3 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.8.4 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

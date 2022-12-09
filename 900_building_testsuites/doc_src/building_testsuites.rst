@@ -277,7 +277,7 @@ In this part of the introduction we take a first look at the content of configur
    User defined parameters have to be placed inside ``params:global``. The intermediate level ``global`` is introduced to enable further
    parameter scopes than ``global`` in future.
 
-   And another feature can be seen in the example above: In the context of the Robot Framework the JSON format is an extended one.
+   And another feature can be seen in the example above: In the context of the **RobotFramework_TestsuitesManagement** the JSON format is an extended one.
    Deviating from JSON standard it is possible to comment out lines with starting them with a double slash "``//``". This allows to
    add explanations about the meaning of the defined parameters already within the JSON file.
 
@@ -395,17 +395,17 @@ the **RobotFramework_TestsuitesManagement** falls back to the default configurat
 
 In case you want to realize a variant handling you have to provide the path and the name of a variants configuration file to the ``testsuite_setup``:
 
-   .. code::
+.. code::
 
-      Suite Setup    tm.testsuite_setup    ./config/exercise_variants.json
+   Suite Setup    tm.testsuite_setup    ./config/exercise_variants.json
 
 To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
 configuration file, for example:
 
-   .. code::
+.. code::
 
-      Running with configuration level: 2
-      CfgFile Path: ./config/exercise_config.json
+   Running with configuration level: 2
+   CfgFile Path: ./config/exercise_config.json
 
 Please consider: The ``testsuite_setup`` requires a variants configuration file (in the example above: ``exercise_variants.json``) - whereas
 the log file contains the resulting parameter configuration file (in the example above: ``exercise_config.json``), that is selected depending
@@ -479,7 +479,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.8.3 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.8.4 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
