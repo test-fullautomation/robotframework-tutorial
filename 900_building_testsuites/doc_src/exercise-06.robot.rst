@@ -31,30 +31,29 @@ The meaning of *local* in this context is: placed on a certain test bench - and 
 
 Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
 The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.
-And it is possible to use the local configuration to overwrite the default values with values that are specific for a certain test bench.
+And it is possible to use the local configuration to overwrite these default values with values that are specific for a certain test bench.
 
-The **RobotFramework_TestsuitesManagement** provides two ways to access the local configuration:
+Using this local configuration feature is an option and the **RobotFramework_TestsuitesManagement** provides two ways to realize it:
 
-1. *Command line*
+1. *per command line*
 
    Path and name of the local parameter configuration file is provided in command line of the Robot Framework with the following syntax:
 
    ``--variable local_config:"<path to localconfig file>"``
 
-2. *Default position*
+2. *per environment variable*
 
-   (*TODO: This part needs to be reworked, depending on upcoming changes in implementation*)
+   An environment variable named ``ROBOT_LOCAL_CONFIG`` exists and contains path and name of a local parameter configuration file.
 
-   A local parameter configuration file with fix name ``local_config.json`` is available at following positions:
+   The user has to create this environment variable.
 
-   * ``C:\RobotTest\localconfig`` (Windows)
-   * ``/home/<user>/RobotTest/localconfig`` (Linux)
+   This mechanism allows a user - without any command line extensions - automatically to refer on every test bench to an individual local configuration,
+   simply by giving on every test bench this environment variable an individual value.
 
-Using this feature is an option. The command line has higher priority than the default position. If both is available the local configuration
-is taken from command line.
+The command line has a higher priority than the environment variable. If both is available the local configuration is taken from command line.
 
-Recommendation: To avoid an accidental overwriting of local configuration files in version control systems we recommend to give those files
-names that are test bench specific.
+Recommendation: *To avoid an accidental overwriting of local configuration files in version control systems we recommend to give those files
+names that are test bench specific.*
 
 In this exercise a local configuration is realized in the following way:
 
@@ -171,6 +170,17 @@ Outcome
 
 The values of ``teststring_variant`` and ``teststring_bench`` are updated accordingly to the settings in command line.
 The value of ``teststring_common`` stays unchanged.
+
+Also the log file reflects the fact that an additional configuration file is involved.
+
+For example, in case of the local configuration for bench1 is requested, but no certain variant (possibility 3),
+the log file contains the following entries:
+
+.. code::
+
+   Running with configuration level: 2
+   CfgFile Path: ./config/exercise-06_config_default.json
+   Local config file: ./localconfig/exercise-06_localconfig_bench1.json
 
 Extension
 ---------
