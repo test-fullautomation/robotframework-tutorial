@@ -14,36 +14,20 @@
 #  limitations under the License.
 # **************************************************************************************************************
 #
-# tutorial-04.robot
-#
-# command line values
-#
-# 0.1.1 / 08.12.2022
+# exercise-05.robot
 #
 # --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
-Resource    ./libs/testimport.resource
 
-Suite Setup       tm.testsuite_setup    ./config/testconfig.json
-Suite Teardown    tm.testsuite_teardown
-Test Setup        tm.testcase_setup
-Test Teardown     tm.testcase_teardown
+# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_Testsuites    WITH NAME    tm
+
+Suite Setup    tm.testsuite_setup    ./config/exercise-05_variants.json
 
 *** Test Cases ***
-Test Case 04_01
-    [documentation]    Log of variables taken from a variable file or from single variables provided in command line
-    Log    Test '${TEST NAME}' of suite '${SUITE NAME}'    console=yes
-
-    # output of command line variables
-    log_scalar    ${cmdline_var_1}
-    log_scalar    ${cmdline_var_2}
-    log_scalar    ${cmdline_var_3}
-    log_scalar    ${cmdline_var_4}
-    log_scalar    ${cmdline_var_5}
-    log_scalar    ${cmdline_var_6}
-    log_scalar    ${cmdline_var_7}
-
-    # cross check: output of configuration variable
-    log_scalar    ${string_val}
+Test Case exercise-05
+    [documentation]    exercise-05
+    Log    teststring_common : ${teststring_common}    console=yes
+    Log    teststring : ${teststring}    console=yes
 

@@ -11,20 +11,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//*****************************************************************************
-//  Author: Mai Dinh Nam Son
-//
-//  This file defines all common global parameters and will be included to all
-//  test config files
-//*****************************************************************************
+//**************************************************************************
+
 {
-  "gPreprolIntParam" : 1,
-  
-  "gPreproFloatParam" : 1.332,
-  
-  "gPreproString"   : "This is a string",
-   
-  "gPreproStructure": {
-                         "general": "general"
-                      }
+   ${params}['global']['teststring_bench'] : "I am the 'bench2' configuration of exercise 06"
 }

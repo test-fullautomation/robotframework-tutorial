@@ -12,23 +12,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //**************************************************************************
-// 
-// File: robot_execution_config.json
-// Initialized by Mai Dinh Nam Son
-//
-//**************************************************************************
+
 {
-  "[import]": "./common/test_config_common.json",
-  "params": {
-    // Global parameters
-    "global": {
-      "[import]": "./common/params_global_common.json"
-    }
-  },
-  "preprocessor": {
-    "definitions": {
-      // FEATURE switches
-      "[import]": "./common/preprocessor_definitions_common.json"
-    }
-  }
+   "teststring_common" : "I am the common teststring valid for all variants"
 }
+

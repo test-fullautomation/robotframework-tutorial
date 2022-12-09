@@ -387,8 +387,8 @@ limitations under the License. -->
 </pre>
 <p>Every robot file logs the test string. Every robot file requires a variant handling, but we do not want to have the need to maintain the import code</p>
 <pre class="code literal-block">
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
-Suite Setup    testsuites.testsuite_setup    ../config/exercise-04_variants.json
+Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.json
 </pre>
 <p>in every of these files separately.</p>
 <p>Therefore we use a feature of the Robot Framework and put this code into a file with name <tt class="docutils literal">__init__.robot</tt> and we place this file

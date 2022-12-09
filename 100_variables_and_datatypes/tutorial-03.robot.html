@@ -434,18 +434,18 @@ is replaced by the value of the variable (<tt class="docutils literal">var</tt>)
 </div>
 <div class="section" id="test-case-03-03">
 <h1>Test case 03_03</h1>
-<p>In test case <tt class="docutils literal">03_03</tt> we work with nested dictionaries defined within the json configuration file of this tutorial.</p>
+<p>In test case <tt class="docutils literal">03_03</tt> we work with nested dictionaries defined within the JSON configuration file of this tutorial.</p>
 <pre class="code literal-block">
 ./config/tutorialconfig.json
 </pre>
-<p>But before we start, some internals need to be mentioned: The json format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework core, the RobotFramework AIO contains a component called <tt class="docutils literal">JsonPreprocessor</tt>.
-With the help of this component the RobotFramework AIO is able to access the content of json files independently from format differences.
-The <tt class="docutils literal">JsonPreprocessor</tt> is able to convert the formats, and when the json content is passed to the robot world, then the content is adapted.</p>
-<p>But behind the curtain still json parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the json files itself to the requirements of the robot world. The differences are still present
+<p>But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
+Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called <strong>JsonPreprocessor</strong>.
+With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
+The <strong>JsonPreprocessor</strong> is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.</p>
+<p>But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
+the structure of the JSON files itself to the requirements of the robot world. The differences are still present
 (<em>and explained in this tutorial</em>).</p>
-<p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between json and robot!</em></p>
+<p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between JSON and robot!</em></p>
 <p>Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
 <tt class="docutils literal">log_scalar</tt>, <tt class="docutils literal">log_list</tt> and <tt class="docutils literal">log_dict</tt>. With the purpose to check also the data type of the given parameter.</p>
 <p>In case of a parameter is an integer value, the name of the data type is: <tt class="docutils literal">int</tt>. That's easy. The name of the dictionary data type
@@ -454,27 +454,28 @@ with reduced syntax - and therefore easier to use. Examples will be shown below.
 the Robot Framework implements his own version of a dotdict. And when you use the Python <tt class="docutils literal">type()</tt> function to get the data type of
 a dictionary variable, this will be the answer:</p>
 <pre class="code literal-block">
-RobotFramework_Testsuites.Config.CConfig.dotdict
+RobotFramework_TestsuitesManagement.Config.CConfig.dotdict
 </pre>
 <p>However, in this tutorial we continue with simply calling it <em>dictionary</em>!</p>
-<p><strong>json file content</strong></p>
-<p>Now we take a look at the content of the json file. The global params section defines the dictionary <tt class="docutils literal">dict_val</tt>
+<p><strong>JSON file content</strong></p>
+<p>Now we take a look at the content of the JSON file. The global params section defines the dictionary <tt class="docutils literal">dict_val</tt>
 step by step in the following way:</p>
 <pre class="code literal-block">
 &quot;dict_val&quot; : {},
-&quot;${params}['global']['dict_val']['key_1']&quot; : {},
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']&quot; : {},
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${params}['global']['string_val']&quot;,
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112']&quot; : &quot;${params}['global']['int_val']&quot;,
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113']&quot; : &quot;${params}['global']['float_val']&quot;,
-&quot;${params}['global']['dict_val']['key_2']&quot; : {},
-&quot;${params}['global']['dict_val']['key_2']['subkey_21']&quot; : {},
-&quot;${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211']&quot; : &quot;${params}['global']['bool_val_1']&quot;,
-&quot;${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212']&quot; : &quot;${params}['global']['bool_val_2']&quot;,
-&quot;${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213']&quot; : &quot;${params}['global']['null_val']&quot;
+${params}['global']['dict_val']['key_1'] : {},
+${params}['global']['dict_val']['key_1']['subkey_11'] : {},
+${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
+${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
+${params}['global']['dict_val']['key_2'] : {},
+${params}['global']['dict_val']['key_2']['subkey_21'] : {},
+${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
+${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
+${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
 </pre>
 <p>This is a nested dictionary - the values of keys are also dictionaries. Every dictionary (at each level)
 needs to be initialized by <tt class="docutils literal">{}</tt> before keys can be added.</p>
+<p>In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.</p>
 <p>The dictionary <tt class="docutils literal">dict_val</tt> contains two keys (<tt class="docutils literal">key_1</tt> and <tt class="docutils literal">key_2</tt>). Every key contain one single key
 at the level below (<tt class="docutils literal">subkey_11</tt> and <tt class="docutils literal">subkey_21</tt>). The lowest level consists of the keys <tt class="docutils literal">subsubkey_111</tt>
 to <tt class="docutils literal">subsubkey_213</tt>. To every key at this level a scalar is assigned - and we use here the scalars (of the configuration file),
@@ -499,16 +500,16 @@ that already have been used in tutorial-01:</p>
            }
 </pre>
 <p>Meaning: The scope of all of these user defined parameters is: <tt class="docutils literal">params:global</tt>. In case you want to use
-inside a json configuration file a parameter that is defined within this file also, you have to set this scope.</p>
+inside a JSON configuration file a parameter that is defined within this file also, you have to set this scope.</p>
 <p>This is a valid assignment (containing the scope <tt class="docutils literal"><span class="pre">${params}['global']</span></tt>):</p>
 <pre class="code literal-block">
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${params}['global']['string_val']&quot;,
+${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
 </pre>
 <p>For comparison: These are invalid assignments (where the scope is missing at any position):</p>
 <pre class="code literal-block">
-&quot;${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${string_val}&quot;,
-&quot;${dict_val}['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${params}['global']['string_val']&quot;,
-&quot;${dict_val}['key_1']['subkey_11']['subsubkey_111']&quot; : &quot;${string_val}&quot;,
+${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
+${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
 </pre>
 <p>And very important: In robot code the scope <tt class="docutils literal">params:global</tt> is the default. In your tests you have to refer to <tt class="docutils literal">subsubkey_111</tt>
 in the following way:</p>
@@ -529,7 +530,7 @@ log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_211]
 log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_212]
 log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
 </pre>
-<p><em>Be aware of: No quotes are used here around the key names. In json it's different: Quotes are required.</em></p>
+<p><em>Be aware of: No quotes are used here around the key names. In JSON it's different: Quotes are required.</em></p>
 <p>Like in:</p>
 <pre class="code literal-block">
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']
@@ -566,20 +567,6 @@ log_scalar    ${dict_val['key_1']['subkey_11']['subsubkey_111']}
 log_scalar    ${dict_val}[${key}][${subkey}][${subsubkey}]
 log_scalar    ${dict_val['${key}']['${subkey}']['${subsubkey}']}
 </pre>
-<p><strong>Last aspect</strong> (<em>that is currently under discussion</em>)</p>
-<p>This is the way an integer value is defined within a json configuration file:</p>
-<pre class="code literal-block">
-&quot;int_val&quot; : 123,
-</pre>
-<p>With no quotes around <tt class="docutils literal">123</tt> (like usual).</p>
-<p>And this is the way this value is accessed within this file:</p>
-<pre class="code literal-block">
-&quot;${new_variable}&quot; : &quot;${params}['global']['int_val']&quot;,
-</pre>
-<p>You may wonder why it is necessary to put quotes around <tt class="docutils literal"><span class="pre">${params}['global']['int_val']</span></tt>.</p>
-<p>Let's keep the explanation simple: It is like it is and currently it is necessary.</p>
-<p>Most probably in future versions of the RobotFramework AIO this will be changed.</p>
-<p>By the way: The data type of <tt class="docutils literal">new_variable</tt> is <tt class="docutils literal">int</tt>.</p>
 </div>
 </div>
 </body>

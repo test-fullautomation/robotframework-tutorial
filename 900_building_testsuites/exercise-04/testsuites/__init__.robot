@@ -20,8 +20,9 @@
 
 *** Settings ***
 
-Library    RobotFramework_Testsuites    WITH NAME    testsuites
+# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_Testsuites    WITH NAME    tm
 
-Suite Setup    testsuites.testsuite_setup    ../config/exercise-04_variants.json
+Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.json
 
 

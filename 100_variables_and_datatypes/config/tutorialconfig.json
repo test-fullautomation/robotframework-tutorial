@@ -14,9 +14,9 @@
 //**************************************************************************
 
 {
-  "WelcomeString": "Hello... RobotFramework AIO is running now!",
+  "WelcomeString": "Hello... Robot Framework is running now!",
 
-  "Maximum_version": "0.5.2",
+  "Maximum_version": "0.6.0",
   "Minimum_version": "0.5.2",
 
   "Project": "RobotFramework Testsuites",
@@ -34,16 +34,16 @@
                          "none_val" : None,
                          "null_val" : null,
                          "dict_val" : {},
-                         "${params}['global']['dict_val']['key_1']" : {},
-                         "${params}['global']['dict_val']['key_1']['subkey_11']" : {},
-                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
-                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112']" : "${params}['global']['int_val']",
-                         "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113']" : "${params}['global']['float_val']",
-                         "${params}['global']['dict_val']['key_2']" : {},
-                         "${params}['global']['dict_val']['key_2']['subkey_21']" : {},
-                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211']" : "${params}['global']['bool_val_1']",
-                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212']" : "${params}['global']['bool_val_2']",
-                         "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213']" : "${params}['global']['null_val']"
+                         ${params}['global']['dict_val']['key_1'] : {},
+                         ${params}['global']['dict_val']['key_1']['subkey_11'] : {},
+                         ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+                         ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
+                         ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
+                         ${params}['global']['dict_val']['key_2'] : {},
+                         ${params}['global']['dict_val']['key_2']['subkey_21'] : {},
+                         ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
+                         ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
+                         ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
                         }
              }
 }

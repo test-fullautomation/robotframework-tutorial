@@ -24,7 +24,8 @@
 
   "params" : {
               "global": {
-                         "teststring" : "I am the 'default' variant configuration of exercise 04"
+                         "[import]"   : "./exercise-05_config_common.json",
+                         "teststring" : "I am the 'variant1' configuration of exercise 05"
                         }
              }
 }

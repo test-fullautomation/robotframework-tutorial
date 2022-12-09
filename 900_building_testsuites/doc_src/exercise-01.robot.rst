@@ -27,13 +27,13 @@ The first exercise contains the simplest realization of a test suites management
 
 .. code::
 
-   Library    RobotFramework_Testsuites    WITH NAME    testsuites
+   Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 
 and executes the ``testsuite_setup``
 
 .. code::
 
-   Suite Setup    testsuites.testsuite_setup
+   Suite Setup    tm.testsuite_setup
 
 No further configuration file is given.
 
@@ -51,7 +51,7 @@ Command line
 Outcome
 -------
 
-Because of nothing more is specified the RobotFramework AIO falls back to the default configuration (level 4).
+Because of nothing more is specified the Robot Framework falls back to the default configuration (level 4).
 
 The test prints the ``Maximum_version`` and the ``Project`` name like defined in this default configuration.
 
@@ -67,8 +67,8 @@ The logfile tells about the origin of the values:
 .. code::
 
    Running with configuration level: 4
-   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_Testsuites\Config\robot_config.json
+   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.json
 
-Hint: The *level 4* configuration is a fallback solution and should be avoided. In case you activate the test suites management, you should also specify an own configuration file.
-This is handled in the following exercises.
+Hint: The *level 4* configuration is a fallback solution and should be avoided. In case you activate the **RobotFramework_TestsuitesManagement**,
+you should also specify an own configuration file. This is handled in the following exercises.
 

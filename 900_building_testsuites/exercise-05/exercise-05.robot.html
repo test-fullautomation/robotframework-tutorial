@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>exercise-01</title>
+<title>exercise-05</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="exercise-01">
-<h1 class="title">exercise-01</h1>
+<div class="document" id="exercise-05">
+<h1 class="title">exercise-05</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH -->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");
@@ -376,42 +376,80 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p>The first exercise contains the simplest realization of a test suites management.
-<em>But this is only to demonstrate some basics! This implementation is not recommended!</em></p>
-<p><tt class="docutils literal"><span class="pre">exercise-01.robot</span></tt> imports the required library</p>
+<p><tt class="docutils literal"><span class="pre">exercise-05</span></tt> demonstrates the usage of nested parameter configuration files.</p>
+<p>Background: In case of a project requires more and more parameters, it makes sense to split the growing configuration file into smaller ones.
+In previous exercises all variant specific configuration files contain all parameters required for this variant - separately.
+But <em>required</em> is not <em>specific</em>. There might parameters be required, that have the same value in all variants. If we put them
+into every variant specific configuration file, we create a lot of redundancy. And we complicate the maintenance.</p>
+<p>The solution is to use the variant specific configuration files only for variant specific parameters and to put all common parameters in
+a separate configuration file. This common parameter file has to be imported in every variant specific parameter file.</p>
+<p>The outcome is that still with the selection of a certain variant specific parameter file both types of parameters are available:
+the variant specific ones and the common ones.</p>
+<p>In this exercise this concept is realized in the following way:</p>
+<p>The config folder contains the already known variants configuration file</p>
 <pre class="code literal-block">
-Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+config/exercise-05_variants.json
 </pre>
-<p>and executes the <tt class="docutils literal">testsuite_setup</tt></p>
+<p>together with variant specific parameter configuration files</p>
 <pre class="code literal-block">
-Suite Setup    tm.testsuite_setup
+config/exercise-05_config_default.json
+config/exercise-05_config_variant1.json
+config/exercise-05_config_variant2.json
 </pre>
-<p>No further configuration file is given.</p>
+<p>New in this exercise is a common parameter configuration file</p>
+<pre class="code literal-block">
+config/exercise-05_config_common.json
+</pre>
+<p>containing a parameter that shall have the same value for every variant:</p>
+<pre class="code literal-block">
+&quot;teststring_common&quot; : &quot;I am the common teststring valid for all variants&quot;
+</pre>
+<p>The variant specific parameter configuration files still contain their own specific parameter definitions and additionally
+the import of the common configuration file, e.g.:</p>
+<pre class="code literal-block">
+&quot;params&quot; : {
+            &quot;global&quot;: {
+                       &quot;[import]&quot;   : &quot;./exercise-05_config_common.json&quot;,
+                       &quot;teststring&quot; : &quot;I am the 'variant1' configuration of exercise 05&quot;
+                      }
+           }
+</pre>
+<p>The key <tt class="docutils literal">[import]</tt> indicates the import of another configuration file. The value of the key is the path and name of this file.</p>
+<p>Imports can be nested. An imported configuration file is allowed to contain imports also.</p>
+<p>The content of the importing file and the content of all imported files are merged. In case of duplicate parameter names follow up definitions
+overwrite previous definitions of the same parameter! Also imported files need to follow the JSON syntax rules. This means, at least they have
+to start with an opening curly bracket and they have to end with a closing curly bracket.</p>
+<p>The full code of <tt class="docutils literal"><span class="pre">exercise-05_config_common.json</span></tt> therefore is</p>
+<pre class="code literal-block">
+{
+   &quot;teststring_common&quot; : &quot;I am the common teststring valid for all variants&quot;
+}
+</pre>
+<p>The test suite <tt class="docutils literal"><span class="pre">exercise-05.robot</span></tt> of this exercise prints the value of both the common parameter and the specific parameter</p>
+<pre class="code literal-block">
+Log    teststring_common : ${teststring_common}    console=yes
+Log    teststring : ${teststring}    console=yes
+</pre>
+<p>We have now the same possibilities like in previous exercies: We can execute the test suite with providing a variant name and without.
+In second case the <tt class="docutils literal">default</tt> variant is choosed automatically.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="command-line">
 <h1>Command line</h1>
+<p>Selecting variant1:</p>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-01.xml -l exercise-01_log.html -r exercise-01_report.html -b exercise-01.log &quot;./exercise-01.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-05.xml -l exercise-05_log.html -r exercise-05_report.html -b exercise-05.log --variable variant:&quot;variant1&quot; &quot;./exercise-05.robot&quot;
 </pre>
 </div>
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>Because of nothing more is specified the Robot Framework falls back to the default configuration (level 4).</p>
-<p>The test prints the <tt class="docutils literal">Maximum_version</tt> and the <tt class="docutils literal">Project</tt> name like defined in this default configuration.</p>
-<p>Hint: The parameters are keys of an internal configuration dictionary. They have to be accessed in the following way:</p>
+<p>The parameter values are:</p>
 <pre class="code literal-block">
-Log    Maximum_version : ${CONFIG}[Maximum_version]    console=yes
-Log    Project : ${CONFIG}[Project]    console=yes
+teststring_common : I am the common teststring valid for all variants
+teststring : I am the 'variant1' configuration of exercise 05
 </pre>
-<p>The logfile tells about the origin of the values:</p>
-<pre class="code literal-block">
-Running with configuration level: 4
-CfgFile Path: &lt;Robot Framework installation&gt;\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.json
-</pre>
-<p>Hint: The <em>level 4</em> configuration is a fallback solution and should be avoided. In case you activate the <strong>RobotFramework_TestsuitesManagement</strong>,
-you should also specify an own configuration file. This is handled in the following exercises.</p>
+<p>Select another variant in command line - and you will see: The <tt class="docutils literal">teststring</tt> changes, the <tt class="docutils literal">teststring_common</tt> stays unchanged.</p>
 </div>
 </div>
 </body>

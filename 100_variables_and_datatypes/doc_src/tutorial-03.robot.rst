@@ -101,22 +101,22 @@ Therefore ``${key_as_string}`` is replaced by ``key_06``. The result is that in 
 Test case 03_03
 ---------------
 
-In test case ``03_03`` we work with nested dictionaries defined within the json configuration file of this tutorial.
+In test case ``03_03`` we work with nested dictionaries defined within the JSON configuration file of this tutorial.
 
 .. code::
 
    ./config/tutorialconfig.json
 
-But before we start, some internals need to be mentioned: The json format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework core, the RobotFramework AIO contains a component called ``JsonPreprocessor``.
-With the help of this component the RobotFramework AIO is able to access the content of json files independently from format differences.
-The ``JsonPreprocessor`` is able to convert the formats, and when the json content is passed to the robot world, then the content is adapted.
+But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
+Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called **JsonPreprocessor**.
+With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
+The **JsonPreprocessor** is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.
 
-But behind the curtain still json parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the json files itself to the requirements of the robot world. The differences are still present
+But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
+the structure of the JSON files itself to the requirements of the robot world. The differences are still present
 (*and explained in this tutorial*).
 
-*Therefore be aware of the differences and be careful when you copy&paste content between json and robot!*
+*Therefore be aware of the differences and be careful when you copy&paste content between JSON and robot!*
 
 Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
 ``log_scalar``, ``log_list`` and ``log_dict``. With the purpose to check also the data type of the given parameter.
@@ -129,31 +129,33 @@ a dictionary variable, this will be the answer:
 
 .. code::
 
-   RobotFramework_Testsuites.Config.CConfig.dotdict
+   RobotFramework_TestsuitesManagement.Config.CConfig.dotdict
 
 However, in this tutorial we continue with simply calling it *dictionary*!
 
-**json file content**
+**JSON file content**
 
-Now we take a look at the content of the json file. The global params section defines the dictionary ``dict_val``
+Now we take a look at the content of the JSON file. The global params section defines the dictionary ``dict_val``
 step by step in the following way:
 
 .. code::
 
    "dict_val" : {},
-   "${params}['global']['dict_val']['key_1']" : {},
-   "${params}['global']['dict_val']['key_1']['subkey_11']" : {},
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112']" : "${params}['global']['int_val']",
-   "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113']" : "${params}['global']['float_val']",
-   "${params}['global']['dict_val']['key_2']" : {},
-   "${params}['global']['dict_val']['key_2']['subkey_21']" : {},
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211']" : "${params}['global']['bool_val_1']",
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212']" : "${params}['global']['bool_val_2']",
-   "${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213']" : "${params}['global']['null_val']"
+   ${params}['global']['dict_val']['key_1'] : {},
+   ${params}['global']['dict_val']['key_1']['subkey_11'] : {},
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
+   ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
+   ${params}['global']['dict_val']['key_2'] : {},
+   ${params}['global']['dict_val']['key_2']['subkey_21'] : {},
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
+   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
 
 This is a nested dictionary - the values of keys are also dictionaries. Every dictionary (at each level)
 needs to be initialized by ``{}`` before keys can be added.
+
+In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.
 
 The dictionary ``dict_val`` contains two keys (``key_1`` and ``key_2``). Every key contain one single key
 at the level below (``subkey_11`` and ``subkey_21``). The lowest level consists of the keys ``subsubkey_111``
@@ -183,21 +185,21 @@ Within ``tutorialconfig.json`` all parameter definitions are put into the follow
               }
 
 Meaning: The scope of all of these user defined parameters is: ``params:global``. In case you want to use
-inside a json configuration file a parameter that is defined within this file also, you have to set this scope.
+inside a JSON configuration file a parameter that is defined within this file also, you have to set this scope.
 
 This is a valid assignment (containing the scope ``${params}['global']``):
 
 .. code::
 
-      "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
+      ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
 
 For comparison: These are invalid assignments (where the scope is missing at any position):
 
 .. code::
 
-      "${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']" : "${string_val}",
-      "${dict_val}['key_1']['subkey_11']['subsubkey_111']" : "${params}['global']['string_val']",
-      "${dict_val}['key_1']['subkey_11']['subsubkey_111']" : "${string_val}",
+      ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
+      ${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
+      ${dict_val}['key_1']['subkey_11']['subsubkey_111'] : ${string_val},
 
 And very important: In robot code the scope ``params:global`` is the default. In your tests you have to refer to ``subsubkey_111``
 in the following way:
@@ -225,7 +227,7 @@ With the help of the already known keyword ``log_scalar`` we take a look at ever
    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_212]
    log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
 
-*Be aware of: No quotes are used here around the key names. In json it's different: Quotes are required.*
+*Be aware of: No quotes are used here around the key names. In JSON it's different: Quotes are required.*
 
 Like in:
 
@@ -274,33 +276,4 @@ The following ways of accessing a dictionary value are possible in robot code:
    log_scalar    ${dict_val['key_1']['subkey_11']['subsubkey_111']}
    log_scalar    ${dict_val}[${key}][${subkey}][${subsubkey}]
    log_scalar    ${dict_val['${key}']['${subkey}']['${subsubkey}']}
-
-**Last aspect** (*that is currently under discussion*)
-
-This is the way an integer value is defined within a json configuration file:
-
-.. code::
-
-   "int_val" : 123,
-
-With no quotes around ``123`` (like usual).
-
-And this is the way this value is accessed within this file:
-
-.. code::
-
-   "${new_variable}" : "${params}['global']['int_val']",
-
-You may wonder why it is necessary to put quotes around ``${params}['global']['int_val']``.
-
-Let's keep the explanation simple: It is like it is and currently it is necessary.
-
-Most probably in future versions of the RobotFramework AIO this will be changed.
-
-By the way: The data type of ``new_variable`` is ``int``.
-
-
-
-
-
 
