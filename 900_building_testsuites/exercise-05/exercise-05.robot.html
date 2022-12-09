@@ -415,6 +415,7 @@ the import of the common configuration file, e.g.:</p>
            }
 </pre>
 <p>The key <tt class="docutils literal">[import]</tt> indicates the import of another configuration file. The value of the key is the path and name of this file.</p>
+<p>Imports can be nested. An imported configuration file is allowed to contain imports also.</p>
 <p>The content of the importing file and the content of all imported files are merged. In case of duplicate parameter names follow up definitions
 overwrite previous definitions of the same parameter! Also imported files need to follow the JSON syntax rules. This means, at least they have
 to start with an opening curly bracket and they have to end with a closing curly bracket.</p>

@@ -239,7 +239,7 @@ In this part of the introduction we take a first look at the content of configur
 
    Some parameters are required. Optionally the user can add own ones. The following example shows the smallest version 
    of a parameter configuration file containing only the required parameters. This version is a default version and part of the
-   Robot Framework installation.
+   **RobotFramework_TestsuitesManagement** installation.
 
    .. code:: python
 
@@ -281,7 +281,7 @@ In this part of the introduction we take a first look at the content of configur
    Deviating from JSON standard it is possible to comment out lines with starting them with a double slash "``//``". This allows to
    add explanations about the meaning of the defined parameters already within the JSON file.
 
-   Further JSON syntax extensions will be explained in the corresponding exercises.
+   Further JSON syntax extensions - introduced by the **RobotFramework_TestsuitesManagement** - will be explained in the corresponding exercises.
 
 TOC_
 
@@ -319,7 +319,7 @@ file in a certain order: Level 1 has the highest priority and level 4 has the lo
 
 * Level 4 (**unwanted, fallback solution only**)
 
-  The Robot Framework uses the default configuration file that is part of the installation.
+  The Robot Framework uses the default configuration file that is part of the **RobotFramework_TestsuitesManagement** installation.
 
   This is handled in ``exercise-01``.
 
@@ -479,7 +479,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.8.2 / 08.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.8.3 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

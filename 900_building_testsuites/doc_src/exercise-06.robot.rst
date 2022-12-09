@@ -27,7 +27,7 @@ Already in the introduction we mentioned a third level: parameters that are spec
 
 This requirement is fulfilled by the *local configuration* feature of the **RobotFramework_TestsuitesManagement**.
 
-The meaning of *local* in this context is: placed on a certain test bench.
+The meaning of *local* in this context is: placed on a certain test bench - and valid for this bench only.
 
 Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
 The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.
@@ -43,6 +43,8 @@ The **RobotFramework_TestsuitesManagement** provides two ways to access the loca
 
 2. *Default position*
 
+   (*TODO: This part needs to be reworked, depending on upcoming changes in implementation*)
+
    A local parameter configuration file with fix name ``local_config.json`` is available at following positions:
 
    * ``C:\RobotTest\localconfig`` (Windows)
@@ -50,10 +52,6 @@ The **RobotFramework_TestsuitesManagement** provides two ways to access the loca
 
 Using this feature is an option. The command line has higher priority than the default position. If both is available the local configuration
 is taken from command line.
-
-Important: It is not possible in the local configuration to use already existing parameters from *outside* - e.g. parameters already defined in
-other configuration files. The local configuration feature can only be used to overwrite already existing parameters or to create additional parameters,
-but cannot use parameters from other configuration files (right hand side of the colon)!
 
 Recommendation: To avoid an accidental overwriting of local configuration files in version control systems we recommend to give those files
 names that are test bench specific.

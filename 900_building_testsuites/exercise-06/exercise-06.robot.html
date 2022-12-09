@@ -380,7 +380,7 @@ limitations under the License. -->
 <p>Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.</p>
 <p>This requirement is fulfilled by the <em>local configuration</em> feature of the <strong>RobotFramework_TestsuitesManagement</strong>.</p>
-<p>The meaning of <em>local</em> in this context is: placed on a certain test bench.</p>
+<p>The meaning of <em>local</em> in this context is: placed on a certain test bench - and valid for this bench only.</p>
 <p>Also this local configuration is based on configuration files in JSON format. These files are the last ones that are considered when the configuration is loaded.
 The outcome is that it is possible to define default values for test bench specific parameters in other configuration files - to be also test bench independent.
 And it is possible to use the local configuration to overwrite the default values with values that are specific for a certain test bench.</p>
@@ -391,6 +391,7 @@ And it is possible to use the local configuration to overwrite the default value
 <p><tt class="docutils literal"><span class="pre">--variable</span> <span class="pre">local_config:&quot;&lt;path</span> to localconfig file&gt;&quot;</tt></p>
 </li>
 <li><p class="first"><em>Default position</em></p>
+<p>(<em>TODO: This part needs to be reworked, depending on upcoming changes in implementation</em>)</p>
 <p>A local parameter configuration file with fix name <tt class="docutils literal">local_config.json</tt> is available at following positions:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">C:\RobotTest\localconfig</span></tt> (Windows)</li>
@@ -400,9 +401,6 @@ And it is possible to use the local configuration to overwrite the default value
 </ol>
 <p>Using this feature is an option. The command line has higher priority than the default position. If both is available the local configuration
 is taken from command line.</p>
-<p>Important: It is not possible in the local configuration to use already existing parameters from <em>outside</em> - e.g. parameters already defined in
-other configuration files. The local configuration feature can only be used to overwrite already existing parameters or to create additional parameters,
-but cannot use parameters from other configuration files (right hand side of the colon)!</p>
 <p>Recommendation: To avoid an accidental overwriting of local configuration files in version control systems we recommend to give those files
 names that are test bench specific.</p>
 <p>In this exercise a local configuration is realized in the following way:</p>
