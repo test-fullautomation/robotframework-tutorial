@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<title>exercise-04</title>
+<title>exercise-07</title>
 <style type="text/css">
 
 /*
@@ -360,8 +360,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="exercise-04">
-<h1 class="title">exercise-04</h1>
+<div class="document" id="exercise-07">
+<h1 class="title">exercise-07</h1>
 
 <!-- Copyright 2020-2022 Robert Bosch GmbH -->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");
@@ -376,80 +376,100 @@ limitations under the License. -->
 <hr class="docutils" />
 <div class="section" id="content">
 <h1>Content</h1>
-<p>In this exercise we introduce some extensions of features already known from the previous exercises.</p>
-<p>We have a bunch of robot files, placed in several subfolders at several levels in the file system:</p>
+<p><tt class="docutils literal"><span class="pre">exercise-07</span></tt> demonstrates the priority of configuration parameters.</p>
+<p>Background: In previous exercises we handled the level concept. This concept introduces four levels of priority
+that define, which of the possible sources of configuration parameters are processed.
+But there are other rules involved that influence the priority:</p>
+<ul class="simple">
+<li><em>The local configuration has higher priority than other parameter configurations</em></li>
+<li><em>The command line has higher priority than definitions within configuration files</em></li>
+</ul>
+<p>Already in command line we have several possibilities to make settings:</p>
+<ul class="simple">
+<li><em>Set a parameter configuration file</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">config_file</tt>; <em>level 1</em>)</li>
+<li><em>Set a variant name</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">variant</tt>, <em>level 2</em>)</li>
+<li><em>Set a local configuration</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">local_config</tt>)</li>
+<li><em>Set any other variables</em> (directly with Robot Framework command line variable <tt class="docutils literal"><span class="pre">--variable</span></tt>)</li>
+</ul>
+<p>And it is possible that in all four use cases the same parameters are used. Or in other words: It is possible to use the
+<tt class="docutils literal"><span class="pre">--variable</span></tt> mechanism to define a parameter that is also defined within a parameter configuration or within a local configuration - or
+in both together.</p>
+<p>Finally this is the order of processing (with highest priority first):</p>
+<ol class="arabic simple">
+<li>Single command line variable (<tt class="docutils literal"><span class="pre">--variable</span></tt>)</li>
+<li>Local configuration (<tt class="docutils literal">local_config</tt>)</li>
+<li>Variant specific configuration <tt class="docutils literal">config_file</tt> or <tt class="docutils literal">variant</tt></li>
+</ol>
+<p>Meaning:</p>
+<ol class="arabic simple">
+<li>Variant specific configuration is overwritten by local configuration</li>
+<li>Local configuration is overwritten by single command line variable</li>
+</ol>
+<p>What happens in case of a command line contains both a <tt class="docutils literal">config_file</tt> and a <tt class="docutils literal">variant</tt>?</p>
+<p><tt class="docutils literal">config_file</tt> is level 1 and <tt class="docutils literal">variant</tt> is level 2. Level 1 has higher priority than level 2. Therefore <tt class="docutils literal">config_file</tt>
+is the valid one. This does <strong>not</strong> mean that <tt class="docutils literal">config_file</tt> overwrites <tt class="docutils literal">variant</tt>! In case of a certain level is identified
+(here: level 1), all other levels are ignored. The outcome is that - in this example - the <tt class="docutils literal">variant</tt> has no meaning.
+Between different levels there is an &quot;either or&quot; relationship. And that is the reason for that it makes no sense to define both in command line,
+a <tt class="docutils literal">config_file</tt> and a <tt class="docutils literal">variant</tt>. The <strong>RobotFramework_TestsuitesManagement</strong> throws an error in this case.</p>
+<p>But when additionally <tt class="docutils literal"><span class="pre">--variable</span></tt> is used to define a new value for a parameter that is already defined in one of the involved configuration files,
+then the configuration file value is overwritten by the command line value.</p>
+<p>In this exercise the configuration is realized in the following way:</p>
+<p>The <tt class="docutils literal">config</tt> folder contains the already known configuration files</p>
 <pre class="code literal-block">
-./testsuites/exercise-04.robot
-./testsuites/001/exercise-04-001.robot
-./testsuites/001/001-01/exercise-04-001-01.robot
-./testsuites/001/001-01/001-01-01/exercise-04-001-01-01.robot
-./testsuites/002/exercise-04-002.robot
+config/exercise-07_variants.json
+config/exercise-07_config_default.json
+config/exercise-07_config_variant1.json
+config/exercise-07_config_variant2.json
 </pre>
-<p>Every robot file logs the test string. Every robot file requires a variant handling, but we do not want to have the need to maintain the import code</p>
+<p>The <tt class="docutils literal">localconfig</tt> folder contains the already known local configuration files</p>
 <pre class="code literal-block">
-Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
-Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.json
+localconfig\exercise-07_localconfig_bench1.json
+localconfig\exercise-07_localconfig_bench2.json
 </pre>
-<p>in every of these files separately.</p>
-<p>Therefore we use a feature of the Robot Framework and put this code into a file with name <tt class="docutils literal">__init__.robot</tt> and we place this file
-at the top level of the test suites folder:</p>
-<pre class="code literal-block">
-./testsuites/__init__.robot
-</pre>
-<p>Definitions within this file will become valid for all tests inside the test suite. And the robot files do not need this code any more.</p>
-<p>Our configuration files we still place inside a <tt class="docutils literal">config</tt> folder:</p>
-<pre class="code literal-block">
-./config/exercise-04_config_default.json
-./config/exercise-04_config_variant1.json
-./config/exercise-04_config_variant2.json
-./config/exercise-04_variants.json
-</pre>
-<p>Because of the robot files are placed at different levels within the file system, the variants configuration file <tt class="docutils literal"><span class="pre">exercise-04_variants.json</span></tt>
-requires the <em>three dots</em> syntax:</p>
-<pre class="code literal-block">
-&quot;name&quot;: &quot;exercise-04_config_default.json&quot;,
-&quot;path&quot;: &quot;.../config/&quot;
-</pre>
-<p>Within the exercise folder execute the following command line:</p>
+<p>The test strings from previous exercises are reduced to one single test string: <tt class="docutils literal">teststring</tt>.
+Every configuration file contains an individual value indicating also the origin: variant configuration or local configuration.</p>
+<p><tt class="docutils literal"><span class="pre">exercise-07.robot</span></tt> uses the <tt class="docutils literal">testsuite_setup</tt> without a variant configuration file and <tt class="docutils literal"><span class="pre">exercise-07-B.robot</span></tt> uses
+<tt class="docutils literal">testsuite_setup</tt> with a variant configuration file.</p>
+<p>Both robot files log the test string.</p>
+<p>We have now several possibilities to execute the robot files in this exercise with several combinations of all possible ways to define
+configuration parameter:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">config_file</tt></p>
+<p>Variant configuration is overwritten by command line variable.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">local_config</tt> and <tt class="docutils literal">config_file</tt></p>
+<p>Variant configuration is overwritten by local configuration.
+Local configuration is overwritten by command line variable.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">local_config</tt> and <tt class="docutils literal">variant</tt></p>
+<p>Variant configuration is overwritten by local configuration.
+Local configuration is overwritten by command line variable.</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">local_config</tt></p>
+<p>Local configuration is overwritten by command line variable.</p>
+</li>
+</ul>
+<p>The order of these settings in command line of the Robot Framework has no meaning!</p>
+<p>Depending on the combination and depending on the priorities in this combination, the test string has a corresponding value.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="command-line">
 <h1>Command line</h1>
+<p>For example we take a look at the second option:</p>
+<p><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">local_config</tt> and <tt class="docutils literal">config_file</tt></p>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-04.xml -l exercise-04_log.html -r exercise-04_report.html -b exercise-04.log &quot;./testsuites&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-07.xml -l exercise-07_log.html -r exercise-07_report.html -b exercise-07.log --variable teststring:&quot;command line test string&quot; --variable local_config:&quot;./localconfig/exercise-07_localconfig_bench1.json&quot; --variable config_file:&quot;./config/exercise-07_config_variant1.json&quot; &quot;./exercise-07.robot&quot;
 </pre>
 </div>
 <hr class="docutils" />
 <div class="section" id="outcome">
 <h1>Outcome</h1>
-<p>The test string of all executed robot files will have the same content:</p>
+<p>The command line value overwrites the variant configuration and also the local configuration and therefore the value of the test string is:</p>
 <pre class="code literal-block">
-I am the 'default' variant configuration of exercise 04
+teststring : command line test string
 </pre>
-<p>The <tt class="docutils literal">default</tt> variant is choosen because of the command line does not contain any variant specification.</p>
-<p>In case you want to run all tests under the condition of a certain variant, you have to define this variant in the command line, e.g. <tt class="docutils literal">variant2</tt>:</p>
-</div>
 <hr class="docutils" />
-<div class="section" id="command-line-1">
-<h1>Command line</h1>
-<pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-04.xml -l exercise-04_log.html -r exercise-04_report.html -b exercise-04.log --variable variant:&quot;variant2&quot; &quot;./testsuites&quot;
-</pre>
-</div>
-<hr class="docutils" />
-<div class="section" id="outcome-1">
-<h1>Outcome</h1>
-<p>The test string of all executed robot files now has the content:</p>
-<pre class="code literal-block">
-I am the 'variant2' configuration of exercise 04
-</pre>
-<p>The log file gives more information about the origin:</p>
-<pre class="code literal-block">
-Running with configuration level: 2
-CfgFile Path: ../config/exercise-04_config_variant2.json
-</pre>
-<p>Hint: Add robot files or rearrange the position of the available robot files and repeat the command lines. You will see that - without any path adaptions - all
-robot files still run with the same configuration.</p>
+<p>Now it's on you to explore the other combinations.</p>
 </div>
 </div>
 </body>

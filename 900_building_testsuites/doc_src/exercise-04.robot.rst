@@ -50,7 +50,7 @@ at the top level of the test suites folder:
 
 Definitions within this file will become valid for all tests inside the test suite. And the robot files do not need this code any more.
 
-Our configuration files we still place inside a config folder:
+Our configuration files we still place inside a ``config`` folder:
 
 .. code::
    

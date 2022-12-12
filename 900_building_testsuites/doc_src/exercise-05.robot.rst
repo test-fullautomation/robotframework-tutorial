@@ -35,7 +35,7 @@ the variant specific ones and the common ones.
 
 In this exercise this concept is realized in the following way:
 
-The config folder contains the already known variants configuration file
+The ``config`` folder contains the already known variants configuration file
 
 .. code::
 

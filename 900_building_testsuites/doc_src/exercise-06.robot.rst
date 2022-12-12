@@ -57,7 +57,7 @@ names that are test bench specific.*
 
 In this exercise a local configuration is realized in the following way:
 
-The config folder contains the already known configuration files
+The ``config`` folder contains the already known configuration files
 
 .. code::
 
