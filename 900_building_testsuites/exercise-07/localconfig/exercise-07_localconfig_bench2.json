@@ -14,19 +14,5 @@
 //**************************************************************************
 
 {
-  "WelcomeString"   : "Hello... Robot Framework is running now!",
-
-  "Maximum_version" : "1.0.0",
-  "Minimum_version" : "0.6.0",
-
-  "Project"         : "RobotFramework Testsuites",
-  "TargetName"      : "Device_01",
-
-  "params" : {
-              "global" : {
-                          "[import]"           : "./exercise-06_config_common.json",
-                          "teststring_variant" : "I am the 'variant1' configuration of exercise 06"
-                         }
-             }
+   ${params}['global']['teststring'] : "I am the 'bench2' configuration of exercise 07"
 }
-

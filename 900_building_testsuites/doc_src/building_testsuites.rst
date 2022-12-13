@@ -469,6 +469,11 @@ Demonstrates the usage of local parameter configuration files
 exercise-07
 ~~~~~~~~~~~
 
+Demonstrates the priority of configuration parameters
+
+exercise-08
+~~~~~~~~~~~
+
 *TODO: Final example*
 
 TOC_
@@ -479,7 +484,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.8.5 / 09.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.9.0 / 12.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
