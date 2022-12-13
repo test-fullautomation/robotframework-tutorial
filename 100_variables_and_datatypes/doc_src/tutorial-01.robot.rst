@@ -183,7 +183,7 @@ With these variables test case ``01_02`` does the following arithmetical computa
 
 **Outcome**
 
-Where necessary the RobotFramework AIO automatically converts the data types to enable arithmetic computations and catenations.
+Where necessary the Robot Framework automatically converts the data types to enable arithmetic computations and catenations.
 
 Test case 01_03
 ---------------
@@ -281,8 +281,8 @@ in other parts of this tutorial):
 
 *Background:*
 
-Basically the JSON configuration files of the RobotFramework AIO have to follow the syntax rules of the JSON format. But the RobotFramework AIO extends
-this syntax by some additional features like
+Basically the JSON configuration files of the **RobotFramework_TestsuitesManagement** have to follow the syntax rules of the JSON format.
+But the **RobotFramework_TestsuitesManagement** extends this syntax by some additional features like
 
 * the possibility to add comments,
 * the possibility to use the ``${}`` syntax to refer to parameters,

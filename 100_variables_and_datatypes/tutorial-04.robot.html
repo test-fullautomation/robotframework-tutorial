@@ -470,23 +470,21 @@ Every command line value will be interpreted as string. In case you need to work
 <hr class="docutils" />
 <p><strong>Command line variables and JSON configuration files</strong></p>
 <p>Up to now for command line tests we have only used variables that are not already defined within a JSON configuration file
-of the <strong>RobotFramework_TestsuitesManagement</strong>. What will happen, when we try to overwrite such a variable in command line?
-The answer is: This will not work!</p>
-<p>The <strong>RobotFramework_TestsuitesManagement</strong> is a certain extension of the Robot Framework. The possibility to
-define values in several JSON files under certain conditions is a powerful feature - but this feature currently has the limitation
-that the JSON file values cannot be overwritten in command line (with both <tt class="docutils literal"><span class="pre">--variablefile</span></tt> and <tt class="docutils literal"><span class="pre">--variable</span></tt>).</p>
+of the <strong>RobotFramework_TestsuitesManagement</strong>. Like other parameters also parameters defined within a JSON configuration file,
+can be overwritten in command line.</p>
 <p>Remember:</p>
 <p>In the global params section of <tt class="docutils literal">tutorialconfig.json</tt> the following string variable is defined:</p>
 <pre class="code literal-block">
 &quot;string_val&quot; : &quot;test string&quot;,
 </pre>
-<p>Use the following command line to (try to) overwrite this value:</p>
+<p>The following command line overwrites this value:</p>
 <pre class="code literal-block">
 &quot;%RobotPythonPath%/python.exe&quot; -m robot --variable string_val:&quot;command line test string&quot; -d ./logfiles -o tutorial-04.xml -l tutorial-04_log.html -r tutorial-04_report.html -b tutorial-04.log ./tutorial-04.robot
 </pre>
 <p><strong>Outcome</strong></p>
-<p>The configuration variable <tt class="docutils literal">string_val</tt> still has the original value <tt class="docutils literal">test string</tt>.</p>
-<p><em>Please be aware of this effect when you design your tests.</em></p>
+<p>The configuration variable <tt class="docutils literal">string_val</tt> has the new value <tt class="docutils literal">command line test string</tt>.</p>
+<p>The order in which configuration values are assigned, is based on priorities defined within the <strong>RobotFramework_TestsuitesManagement</strong>.
+This is described in more detail in the tutorial <tt class="docutils literal">900_building_testsuites</tt>.</p>
 </div>
 </div>
 </body>

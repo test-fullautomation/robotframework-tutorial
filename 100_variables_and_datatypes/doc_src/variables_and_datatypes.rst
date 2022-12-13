@@ -12,10 +12,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Variables and datatypes in RobotFramework AIO
-=============================================
+Variables and datatypes in Robot Framework
+==========================================
 
-Version 0.4.0 / 05.12.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.4.1 / 13.12.2022 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
@@ -26,7 +26,7 @@ Table of content
 Introduction
 ------------
 
-The RobotFramework AIO supports several types of variables and variables can be defined at several positions.
+The Robot Framework supports several types of variables and variables can be defined at several positions.
 
 These are the types:
 
@@ -41,7 +41,17 @@ These are the positions:
 * imported resource file
 * imported variable file
 * during test execution
-* JSON configuration file (RobotFramework AIO addon)
+
+For the Robot Framework a component called **RobotFramework_TestsuitesManagement** is available, that allows to define
+parameters within separate files in JSON format also.
+
+More detailled information about this component and about how to install you can find here:
+
+* `RobotFramework_TestsuitesManagement in PyPi <https://pypi.org/project/robotframework-testsuitesmanagement>`_
+* `RobotFramework_TestsuitesManagement in GitHub <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_
+* `RobotFramework_TestsuitesManagement documentation <https://github.com/test-fullautomation/robotframework-testsuitesmanagement/blob/develop/RobotFramework_TestsuitesManagement/RobotFramework_TestsuitesManagement.pdf>`_
+
+This component is also handled in more detail in the tutorial section ``900_building_testsuites``.
 
 This part of the tutorial contains examples that demonstrate how to handle the definition of variables and how to access them.
 
@@ -55,14 +65,14 @@ in more detail in a HTML file with same name.
 Most of the robot files can be executed directly. But some of them require command line extensions. Therefore this tutorial contains for all robot files
 a command line that demonstates how to execute the file.
 
-All command lines let the RobotFramework AIO save the log files in a local ``logfiles`` folder within this tutorial.
+All command lines let the Robot Framework save the log files in a local ``logfiles`` folder within this tutorial.
 
 The syntax of all command lines belong to Windows. In case you work with this tutorial under Linux you have to modify the way, environment variables are accessed:
 
 * ``%RobotPythonPath%`` under Windows
 * ``${RobotPythonPath}`` under Linux
 
-For best results while working with this tutorial, a basic knowledge of RobotFramework AIO is recommended.
+For best results while working with this tutorial, a basic knowledge of Robot Framework is recommended.
 
 It is also recommended to explore the tutorial files in the order of their numbers.
 
@@ -73,10 +83,6 @@ Only the result of the test execution is not like expected.
 It is not the intention of this tutorial to go through all possible error scenarios while working with variables. We concentrate here on *what works*. And the way
 we do it, might also not be the *only* way to do it in a proper way.
 
-The possibility to use configuration files in JSON format to define parameters outside the robot code is based on two components that have been developed for the
-Robot Framework: the `RobotFramework_TestsuitesManagement <https://github.com/test-fullautomation/robotframework-testsuitesmanagement>`_ and the
-`JsonPreprocessor <https://github.com/test-fullautomation/python-jsonpreprocessor>`_. How these two components work together with the Robot Framework is described
-in the tutorial ``900_building_testsuites``.
 
 TOC_
 

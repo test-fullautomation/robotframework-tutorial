@@ -439,12 +439,10 @@ is replaced by the value of the variable (<tt class="docutils literal">var</tt>)
 ./config/tutorialconfig.json
 </pre>
 <p>But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called <strong>JsonPreprocessor</strong>.
-With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
-The <strong>JsonPreprocessor</strong> is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.</p>
+Both have their own formats. But the <strong>RobotFramework_TestsuitesManagement</strong> is able to convert the formats, and when the JSON
+file content is passed to the Robot Framework, then the content is adapted.</p>
 <p>But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the JSON files itself to the requirements of the robot world. The differences are still present
-(<em>and explained in this tutorial</em>).</p>
+the structure of the JSON files itself to the requirements of the Robot Framework. The differences are still present.</p>
 <p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between JSON and robot!</em></p>
 <p>Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
 <tt class="docutils literal">log_scalar</tt>, <tt class="docutils literal">log_list</tt> and <tt class="docutils literal">log_dict</tt>. With the purpose to check also the data type of the given parameter.</p>
@@ -535,7 +533,7 @@ log_scalar    ${dict_val}[key_2][subkey_21][subsubkey_213]
 <pre class="code literal-block">
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']
 </pre>
-<p>Above we mentioned that in the context of the RobotFramework AIO a dictionary is a certain one: a <tt class="docutils literal">dotdict</tt>.</p>
+<p>Above we mentioned that in the context of the Robot Framework a dictionary is a certain one: a <tt class="docutils literal">dotdict</tt>.</p>
 <p>The impact is:</p>
 <ol class="arabic simple">
 <li>Like demonstrated in the previous robot code example, the standard syntax of accessing dictionary values is still valid.</li>
