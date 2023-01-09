@@ -108,13 +108,11 @@ In test case ``03_03`` we work with nested dictionaries defined within the JSON 
    ./config/tutorialconfig.json
 
 But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
-Both have their own formats. Compared to the Robot Framework, the RobotFramework AIO contains a component called **JsonPreprocessor**.
-With the help of this component the RobotFramework AIO is able to access the content of JSON files independently from format differences.
-The **JsonPreprocessor** is able to convert the formats, and when the JSON content is passed to the robot world, then the content is adapted.
+Both have their own formats. But the **RobotFramework_TestsuitesManagement** is able to convert the formats, and when the JSON
+file content is passed to the Robot Framework, then the content is adapted.
 
 But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
-the structure of the JSON files itself to the requirements of the robot world. The differences are still present
-(*and explained in this tutorial*).
+the structure of the JSON files itself to the requirements of the Robot Framework. The differences are still present.
 
 *Therefore be aware of the differences and be careful when you copy&paste content between JSON and robot!*
 
@@ -235,7 +233,7 @@ Like in:
 
    ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111']
 
-Above we mentioned that in the context of the RobotFramework AIO a dictionary is a certain one: a ``dotdict``.
+Above we mentioned that in the context of the Robot Framework a dictionary is a certain one: a ``dotdict``.
 
 The impact is:
 

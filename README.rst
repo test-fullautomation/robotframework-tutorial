@@ -18,16 +18,17 @@ Package Description
 Getting Started
 ---------------
 
-The RobotFramework AIO tutorial contains robot code examples together with the documentation explaining how to use these
+This Robot Framework tutorial contains robot code examples together with the documentation explaining how to use these
 examples and how they work. The basic idea behind this tutorial is not to have theory only but additionally to this theory
 also the possibility to experience what is explained inside.
 
-The main focus of this tutorial is on all additional features provided by the RobotFramework AIO. It is assumed
-that the user is already familiar with basic RobotFramework functionality.
+The main focus of this tutorial is on some feature extensions available for the Robot Framework.
 
-An overviev about helpful extensions of the RobotFramework can be found here:
+An overviev about those extensions of the Robot Framework can be found here:
 
 `test-fullautomation <https://github.com/test-fullautomation>`_
+
+It is assumed that the user is already familiar with basic Robot Framework functionality.
 
 How to install
 --------------

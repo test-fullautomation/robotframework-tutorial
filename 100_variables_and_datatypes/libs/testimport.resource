@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     tutorial resource file
 
-# import of RobotFramework AIO configuration managment
+# import of RobotFramework_TestsuitesManagement
 # coming soon: # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 Library    RobotFramework_Testsuites    WITH NAME    tm
 

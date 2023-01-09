@@ -42,7 +42,7 @@ This exercise contains the following test suites:
 
 together with the following parameter configuration files:
 
-* ``config/robot_config.json.json``
+* ``config/robot_config.json``
 * ``config/exercise-03-A.json``
 * ``config/exercise-03-B.json``
 

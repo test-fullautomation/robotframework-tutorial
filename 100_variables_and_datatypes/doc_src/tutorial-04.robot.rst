@@ -162,12 +162,8 @@ Every command line value will be interpreted as string. In case you need to work
 **Command line variables and JSON configuration files**
 
 Up to now for command line tests we have only used variables that are not already defined within a JSON configuration file
-of the **RobotFramework_TestsuitesManagement**. What will happen, when we try to overwrite such a variable in command line?
-The answer is: This will not work!
-
-The **RobotFramework_TestsuitesManagement** is a certain extension of the Robot Framework. The possibility to
-define values in several JSON files under certain conditions is a powerful feature - but this feature currently has the limitation
-that the JSON file values cannot be overwritten in command line (with both ``--variablefile`` and ``--variable``).
+of the **RobotFramework_TestsuitesManagement**. Like other parameters also parameters defined within a JSON configuration file,
+can be overwritten in command line.
 
 Remember:
 
@@ -177,7 +173,7 @@ In the global params section of ``tutorialconfig.json`` the following string var
 
    "string_val" : "test string",
 
-Use the following command line to (try to) overwrite this value:
+The following command line overwrites this value:
 
 .. code::
 
@@ -185,7 +181,9 @@ Use the following command line to (try to) overwrite this value:
 
 **Outcome**
 
-The configuration variable ``string_val`` still has the original value ``test string``.
+The configuration variable ``string_val`` has the new value ``command line test string``.
 
-*Please be aware of this effect when you design your tests.*
+The order in which configuration values are assigned, is based on priorities defined within the **RobotFramework_TestsuitesManagement**.
+This is described in more detail in the tutorial ``900_building_testsuites``.
+
 
