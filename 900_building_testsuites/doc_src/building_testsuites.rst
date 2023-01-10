@@ -32,7 +32,7 @@ Table of content
 
 * `How does the Robot Framework access configuration files?`_
 
-* `How to enable the test suites management in Robot Framework?`_
+* `How to activate the test suites management in Robot Framework?`_
 
 2. `Exercises`_
 
@@ -238,15 +238,15 @@ In this part of the introduction we take a first look at the content of configur
    In these configuration files all parameters are defined, that shall be available globally during test execution.
 
    Some parameters are required. Optionally the user can add own ones. The following example shows the smallest version 
-   of a parameter configuration file containing only the required parameters. This version is a default version and part of the
+   of a parameter configuration file containing only the most important parameters. This version is a default version and part of the
    **RobotFramework_TestsuitesManagement** installation.
 
    .. code:: python
 
       {
         "WelcomeString"   : "Hello... Robot Framework is running now!",
-        "Maximum_version" : "0.6.0",
-        "Minimum_version" : "0.5.2",
+        "Maximum_version" : "1.0.0",
+        "Minimum_version" : "0.6.0",
         "Project"         : "RobotFramework Testsuites",
         "TargetName"      : "Device_01"
       }
@@ -255,14 +255,32 @@ In this part of the introduction we take a first look at the content of configur
    are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
    ``Minimum_version`` and ``Maximum_version``, the test execution stops with an error message.
 
+   The version control mechanism is optional. In case you do not need to have your tests under version control, you can set 
+   the versions to the value ``null``.
+
+   .. code:: python
+
+      "Maximum_version" : null,
+      "Minimum_version" : null,
+
+   As an alternative it is also possible to remove ``Minimum_version`` and ``Maximum_version`` completely.
+
+   In case you define only one single version number, only this version number is considered. The following combination
+   makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:
+ 
+   .. code:: python
+
+      "Maximum_version" : null,
+      "Minimum_version" : "0.6.0",
+
    The following example is an extended version of a configuration file containing also some user defined parameters.
 
    .. code:: python
 
       {
         "WelcomeString"   : "Hello... Robot Framework is running now!",
-        "Maximum_version" : "0.6.0",
-        "Minimum_version" : "0.5.2",
+        "Maximum_version" : "1.0.0",
+        "Minimum_version" : "0.6.0",
         "Project"         : "RobotFramework Testsuites",
         "TargetName"      : "Device_01"
         "params": {
@@ -292,8 +310,8 @@ How does the Robot Framework access configuration files?
 
 With an installed **RobotFramework_TestsuitesManagement** every test execution requires a configuration - that is the accessibility
 of a configuration file in JSON format. The **RobotFramework_TestsuitesManagement** provides four different possibilities - also
-called *level* - to realize such an access. These possibilities are sorted and the Robot Framework tries to access the configuration
-file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.
+called *level* - to realize such an access. These possibilities are sorted and the **RobotFramework_TestsuitesManagement** tries
+to access the configuration file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.
 
 * Level 1
 
@@ -312,14 +330,15 @@ file in a certain order: Level 1 has the highest priority and level 4 has the lo
 
 * Level 3
 
-  The Robot Framework searches for parameter configuration files within a folder ``config`` in current test suite folder.
+  The **RobotFramework_TestsuitesManagement** searches for parameter configuration files within a folder ``config``
+  in current test suite folder.
   In case of such a folder exists and parameter configuration files are inside, they will be used.
 
   This is handled in ``exercise-03``.
 
 * Level 4 (**unwanted, fallback solution only**)
 
-  The Robot Framework uses the default configuration file that is part of the **RobotFramework_TestsuitesManagement** installation.
+  The **RobotFramework_TestsuitesManagement** uses the default configuration file that is part of the installation.
 
   This is handled in ``exercise-01``.
 
@@ -331,11 +350,11 @@ file in a certain order: Level 1 has the highest priority and level 4 has the lo
 * If a parameter configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
   in case of also other configuration files (level 3 - level 4) are available.
 
-* If nothing is specified in command line, then the Robot Framework tries to find parameter configuration files within a ``config`` folder and take them if
-  available - even in case of also the level 4 configuration file is available.
+* If nothing is specified in command line, then the **RobotFramework_TestsuitesManagement** tries to find parameter configuration files within a ``config``
+  folder and take them if available - even in case of also the level 4 configuration file is available.
 
-* In case of the user does not provide any information about parameter configuration files to use, the Robot Framework loads the default configuration
-  from installation folder (fallback solution; level 4).
+* In case of the user does not provide any information about parameter configuration files to use, the **RobotFramework_TestsuitesManagement** loads the default
+  configuration from installation folder (fallback solution; level 4).
 
 **In this context two aspects are important to know for users:**
 
@@ -368,10 +387,10 @@ TOC_
 
 ----
 
-How to enable the test suites management in Robot Framework?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to activate the test suites management in Robot Framework?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To enable the test suites management you have to import the **RobotFramework_TestsuitesManagement** library in the following way:
+To activate the test suites management you have to import the **RobotFramework_TestsuitesManagement** library in the following way:
 
 .. code::
 
@@ -471,10 +490,6 @@ exercise-07
 
 Demonstrates the priority of configuration parameters
 
-exercise-08
-~~~~~~~~~~~
-
-*TODO: Final example*
 
 TOC_
 
@@ -484,7 +499,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.9.0 / 12.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.11.0 / 09.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

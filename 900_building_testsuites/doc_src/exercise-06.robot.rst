@@ -45,7 +45,7 @@ Using this local configuration feature is an option and the **RobotFramework_Tes
 
    An environment variable named ``ROBOT_LOCAL_CONFIG`` exists and contains path and name of a local parameter configuration file.
 
-   The user has to create this environment variable.
+   \textbf{The user has to create this environment variable!}
 
    This mechanism allows a user - without any command line extensions - automatically to refer on every test bench to an individual local configuration,
    simply by giving on every test bench this environment variable an individual value.

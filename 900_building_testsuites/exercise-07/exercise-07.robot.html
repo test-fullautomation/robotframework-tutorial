@@ -386,7 +386,7 @@ But there are other rules involved that influence the priority:</p>
 </ul>
 <p>Already in command line we have several possibilities to make settings:</p>
 <ul class="simple">
-<li><em>Set a parameter configuration file</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">config_file</tt>; <em>level 1</em>)</li>
+<li><em>Set a parameter configuration file</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">config_file</tt>, <em>level 1</em>)</li>
 <li><em>Set a variant name</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">variant</tt>, <em>level 2</em>)</li>
 <li><em>Set a local configuration</em> (with <strong>RobotFramework_TestsuitesManagement</strong> command line variable <tt class="docutils literal">local_config</tt>)</li>
 <li><em>Set any other variables</em> (directly with Robot Framework command line variable <tt class="docutils literal"><span class="pre">--variable</span></tt>)</li>
@@ -398,7 +398,7 @@ in both together.</p>
 <ol class="arabic simple">
 <li>Single command line variable (<tt class="docutils literal"><span class="pre">--variable</span></tt>)</li>
 <li>Local configuration (<tt class="docutils literal">local_config</tt>)</li>
-<li>Variant specific configuration <tt class="docutils literal">config_file</tt> or <tt class="docutils literal">variant</tt></li>
+<li>Variant specific configuration (<tt class="docutils literal">config_file</tt> or <tt class="docutils literal">variant</tt>)</li>
 </ol>
 <p>Meaning:</p>
 <ol class="arabic simple">
@@ -409,7 +409,7 @@ in both together.</p>
 <p><tt class="docutils literal">config_file</tt> is level 1 and <tt class="docutils literal">variant</tt> is level 2. Level 1 has higher priority than level 2. Therefore <tt class="docutils literal">config_file</tt>
 is the valid one. This does <strong>not</strong> mean that <tt class="docutils literal">config_file</tt> overwrites <tt class="docutils literal">variant</tt>! In case of a certain level is identified
 (here: level 1), all other levels are ignored. The outcome is that - in this example - the <tt class="docutils literal">variant</tt> has no meaning.
-Between different levels there is an &quot;either or&quot; relationship. And that is the reason for that it makes no sense to define both in command line,
+Between different levels there is an <em>either or</em> relationship. And that is the reason for that it makes no sense to define both in command line,
 a <tt class="docutils literal">config_file</tt> and a <tt class="docutils literal">variant</tt>. The <strong>RobotFramework_TestsuitesManagement</strong> throws an error in this case.</p>
 <p>But when additionally <tt class="docutils literal"><span class="pre">--variable</span></tt> is used to define a new value for a parameter that is already defined in one of the involved configuration files,
 then the configuration file value is overwritten by the command line value.</p>
@@ -423,8 +423,8 @@ config/exercise-07_config_variant2.json
 </pre>
 <p>The <tt class="docutils literal">localconfig</tt> folder contains the already known local configuration files</p>
 <pre class="code literal-block">
-localconfig\exercise-07_localconfig_bench1.json
-localconfig\exercise-07_localconfig_bench2.json
+localconfig/exercise-07_localconfig_bench1.json
+localconfig/exercise-07_localconfig_bench2.json
 </pre>
 <p>The test strings from previous exercises are reduced to one single test string: <tt class="docutils literal">teststring</tt>.
 Every configuration file contains an individual value indicating also the origin: variant configuration or local configuration.</p>

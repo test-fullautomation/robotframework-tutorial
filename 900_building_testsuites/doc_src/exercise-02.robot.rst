@@ -108,7 +108,7 @@ A variant specific parameter configuration file can be set with the following co
 
 .. code::
 
-   --variable config_file:"<path to configuration file>"
+   --variable config_file:"<path to parameter configuration file>"
 
 Here we selected the one for ``variant1``. Therefore the test string has the value
 
@@ -207,8 +207,8 @@ Remember the content of one of the configuration files:
    {
      "WelcomeString": "Hello... Robot Framework is running now!",
 
-     "Maximum_version": "0.6.0",
-     "Minimum_version": "0.5.2",
+     "Maximum_version" : "1.0.0",
+     "Minimum_version" : "0.6.0",
 
      "Project": "RobotFramework Testsuites",
      "TargetName" : "Device_01",
