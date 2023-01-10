@@ -31,7 +31,7 @@ But there are other rules involved that influence the priority:
 
 Already in command line we have several possibilities to make settings:
 
-* *Set a parameter configuration file* (with **RobotFramework_TestsuitesManagement** command line variable ``config_file``; *level 1*)
+* *Set a parameter configuration file* (with **RobotFramework_TestsuitesManagement** command line variable ``config_file``, *level 1*)
 * *Set a variant name* (with **RobotFramework_TestsuitesManagement** command line variable ``variant``, *level 2*)
 * *Set a local configuration* (with **RobotFramework_TestsuitesManagement** command line variable ``local_config``)
 * *Set any other variables* (directly with Robot Framework command line variable ``--variable``)
@@ -44,7 +44,7 @@ Finally this is the order of processing (with highest priority first):
 
 1. Single command line variable (``--variable``)
 2. Local configuration (``local_config``)
-3. Variant specific configuration ``config_file`` or ``variant``
+3. Variant specific configuration (``config_file`` or ``variant``)
 
 Meaning:
 
@@ -56,7 +56,7 @@ What happens in case of a command line contains both a ``config_file`` and a ``v
 ``config_file`` is level 1 and ``variant`` is level 2. Level 1 has higher priority than level 2. Therefore ``config_file``
 is the valid one. This does **not** mean that ``config_file`` overwrites ``variant``! In case of a certain level is identified
 (here: level 1), all other levels are ignored. The outcome is that - in this example - the ``variant`` has no meaning.
-Between different levels there is an "either or" relationship. And that is the reason for that it makes no sense to define both in command line,
+Between different levels there is an *either or* relationship. And that is the reason for that it makes no sense to define both in command line,
 a ``config_file`` and a ``variant``. The **RobotFramework_TestsuitesManagement** throws an error in this case.
 
 But when additionally ``--variable`` is used to define a new value for a parameter that is already defined in one of the involved configuration files,
@@ -77,8 +77,8 @@ The ``localconfig`` folder contains the already known local configuration files
 
 .. code::
 
-   localconfig\exercise-07_localconfig_bench1.json
-   localconfig\exercise-07_localconfig_bench2.json
+   localconfig/exercise-07_localconfig_bench1.json
+   localconfig/exercise-07_localconfig_bench2.json
 
 The test strings from previous exercises are reduced to one single test string: ``teststring``.
 Every configuration file contains an individual value indicating also the origin: variant configuration or local configuration.

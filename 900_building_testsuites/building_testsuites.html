@@ -385,7 +385,7 @@ limitations under the License. -->
 <li><a class="reference internal" href="#how-to-realize-a-concrete-test-suites-management">How to realize a concrete test suites management?</a></li>
 <li><a class="reference internal" href="#how-does-the-content-of-configuration-files-in-json-format-look-like">How does the content of configuration files in JSON format look like?</a></li>
 <li><a class="reference internal" href="#how-does-the-robot-framework-access-configuration-files">How does the Robot Framework access configuration files?</a></li>
-<li><a class="reference internal" href="#how-to-enable-the-test-suites-management-in-robot-framework">How to enable the test suites management in Robot Framework?</a></li>
+<li><a class="reference internal" href="#how-to-activate-the-test-suites-management-in-robot-framework">How to activate the test suites management in Robot Framework?</a></li>
 </ul>
 <ol class="arabic simple" start="2">
 <li><a class="reference internal" href="#exercises">Exercises</a></li>
@@ -546,13 +546,13 @@ mapping file in which they are defined!</strong> You are free to move your test 
 <li><p class="first"><em>parameter configuration files</em></p>
 <p>In these configuration files all parameters are defined, that shall be available globally during test execution.</p>
 <p>Some parameters are required. Optionally the user can add own ones. The following example shows the smallest version
-of a parameter configuration file containing only the required parameters. This version is a default version and part of the
+of a parameter configuration file containing only the most important parameters. This version is a default version and part of the
 <strong>RobotFramework_TestsuitesManagement</strong> installation.</p>
 <pre class="code python literal-block">
 <span class="punctuation">{</span>
   <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
   <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span>
   <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span>
 <span class="punctuation">}</span>
@@ -560,12 +560,25 @@ of a parameter configuration file containing only the required parameters. This 
 <p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
 are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
 <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>, the test execution stops with an error message.</p>
+<p>The version control mechanism is optional. In case you do not need to have your tests under version control, you can set
+the versions to the value <tt class="docutils literal">null</tt>.</p>
+<pre class="code python literal-block">
+<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
+<span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
+</pre>
+<p>As an alternative it is also possible to remove <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt> completely.</p>
+<p>In case you define only one single version number, only this version number is considered. The following combination
+makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:</p>
+<pre class="code python literal-block">
+<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
+<span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
+</pre>
 <p>The following example is an extended version of a configuration file containing also some user defined parameters.</p>
 <pre class="code python literal-block">
 <span class="punctuation">{</span>
   <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.5.2&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span>
+  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
   <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span>
   <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span>
   <span class="literal string double">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
@@ -592,8 +605,8 @@ add explanations about the meaning of the defined parameters already within the 
 <h2>How does the Robot Framework access configuration files?</h2>
 <p>With an installed <strong>RobotFramework_TestsuitesManagement</strong> every test execution requires a configuration - that is the accessibility
 of a configuration file in JSON format. The <strong>RobotFramework_TestsuitesManagement</strong> provides four different possibilities - also
-called <em>level</em> - to realize such an access. These possibilities are sorted and the Robot Framework tries to access the configuration
-file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.</p>
+called <em>level</em> - to realize such an access. These possibilities are sorted and the <strong>RobotFramework_TestsuitesManagement</strong> tries
+to access the configuration file in a certain order: Level 1 has the highest priority and level 4 has the lowest priority.</p>
 <ul>
 <li><p class="first">Level 1</p>
 <p>Path and name of a parameter configuration file is provided in command line of the Robot Framework.</p>
@@ -606,12 +619,13 @@ file in a certain order: Level 1 has the highest priority and level 4 has the lo
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-02</span></tt>.</p>
 </li>
 <li><p class="first">Level 3</p>
-<p>The Robot Framework searches for parameter configuration files within a folder <tt class="docutils literal">config</tt> in current test suite folder.
+<p>The <strong>RobotFramework_TestsuitesManagement</strong> searches for parameter configuration files within a folder <tt class="docutils literal">config</tt>
+in current test suite folder.
 In case of such a folder exists and parameter configuration files are inside, they will be used.</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-03</span></tt>.</p>
 </li>
 <li><p class="first">Level 4 (<strong>unwanted, fallback solution only</strong>)</p>
-<p>The Robot Framework uses the default configuration file that is part of the <strong>RobotFramework_TestsuitesManagement</strong> installation.</p>
+<p>The <strong>RobotFramework_TestsuitesManagement</strong> uses the default configuration file that is part of the installation.</p>
 <p>This is handled in <tt class="docutils literal"><span class="pre">exercise-01</span></tt>.</p>
 </li>
 </ul>
@@ -621,10 +635,10 @@ In case of such a folder exists and parameter configuration files are inside, th
 are available.</li>
 <li>If a parameter configuration file is not provided in command line, but a variant name, then the configuration belonging to this variant, is loaded - even
 in case of also other configuration files (level 3 - level 4) are available.</li>
-<li>If nothing is specified in command line, then the Robot Framework tries to find parameter configuration files within a <tt class="docutils literal">config</tt> folder and take them if
-available - even in case of also the level 4 configuration file is available.</li>
-<li>In case of the user does not provide any information about parameter configuration files to use, the Robot Framework loads the default configuration
-from installation folder (fallback solution; level 4).</li>
+<li>If nothing is specified in command line, then the <strong>RobotFramework_TestsuitesManagement</strong> tries to find parameter configuration files within a <tt class="docutils literal">config</tt>
+folder and take them if available - even in case of also the level 4 configuration file is available.</li>
+<li>In case of the user does not provide any information about parameter configuration files to use, the <strong>RobotFramework_TestsuitesManagement</strong> loads the default
+configuration from installation folder (fallback solution; level 4).</li>
 </ul>
 <p><strong>In this context two aspects are important to know for users:</strong></p>
 <ol class="arabic">
@@ -648,9 +662,9 @@ another parameter configuration file and another entry in the variants configura
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 </div>
 <hr class="docutils" />
-<div class="section" id="how-to-enable-the-test-suites-management-in-robot-framework">
-<h2>How to enable the test suites management in Robot Framework?</h2>
-<p>To enable the test suites management you have to import the <strong>RobotFramework_TestsuitesManagement</strong> library in the following way:</p>
+<div class="section" id="how-to-activate-the-test-suites-management-in-robot-framework">
+<h2>How to activate the test suites management in Robot Framework?</h2>
+<p>To activate the test suites management you have to import the <strong>RobotFramework_TestsuitesManagement</strong> library in the following way:</p>
 <pre class="code literal-block">
 Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 </pre>
@@ -725,15 +739,11 @@ when the tests are executed. Corresponding informations you will find in the doc
 <div class="section" id="exercise-07">
 <h2>exercise-07</h2>
 <p>Demonstrates the priority of configuration parameters</p>
-</div>
-<div class="section" id="exercise-08">
-<h2>exercise-08</h2>
-<p><em>TODO: Final example</em></p>
 <p><a class="reference internal" href="#table-of-content">TOC</a></p>
 <hr class="docutils" />
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial <tt class="docutils literal">100_variables_and_datatypes</tt>.</p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.9.0 / 12.12.2022 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.11.0 / 09.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

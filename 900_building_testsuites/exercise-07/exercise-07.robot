@@ -20,8 +20,7 @@
 
 *** Settings ***
 
-# coming soon # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
-Library    RobotFramework_Testsuites    WITH NAME    tm
+Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 
 Suite Setup    tm.testsuite_setup
 
