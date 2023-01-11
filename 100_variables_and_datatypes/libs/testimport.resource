@@ -2,8 +2,7 @@
 Documentation     tutorial resource file
 
 # import of RobotFramework_TestsuitesManagement
-# coming soon: # Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
-Library    RobotFramework_Testsuites    WITH NAME    tm
+Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 
 # import of Python keyword library e.g. to support printing out further details about variables
 Library    ./testlibrary.py
