@@ -39,13 +39,15 @@ Using this local configuration feature is an option and the **RobotFramework_Tes
 
    Path and name of the local parameter configuration file is provided in command line of the Robot Framework with the following syntax:
 
-   ``--variable local_config:"<path to localconfig file>"``
+   .. code::
+
+      --variable local_config:"<path to localconfig file>"
 
 2. *per environment variable*
 
    An environment variable named ``ROBOT_LOCAL_CONFIG`` exists and contains path and name of a local parameter configuration file.
 
-   \textbf{The user has to create this environment variable!}
+   **The user has to create this environment variable!**
 
    This mechanism allows a user - without any command line extensions - automatically to refer on every test bench to an individual local configuration,
    simply by giving on every test bench this environment variable an individual value.

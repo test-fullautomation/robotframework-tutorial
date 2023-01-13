@@ -388,11 +388,13 @@ And it is possible to use the local configuration to overwrite these default val
 <ol class="arabic">
 <li><p class="first"><em>per command line</em></p>
 <p>Path and name of the local parameter configuration file is provided in command line of the Robot Framework with the following syntax:</p>
-<p><tt class="docutils literal"><span class="pre">--variable</span> <span class="pre">local_config:&quot;&lt;path</span> to localconfig file&gt;&quot;</tt></p>
+<pre class="code literal-block">
+--variable local_config:&quot;&lt;path to localconfig file&gt;&quot;
+</pre>
 </li>
 <li><p class="first"><em>per environment variable</em></p>
 <p>An environment variable named <tt class="docutils literal">ROBOT_LOCAL_CONFIG</tt> exists and contains path and name of a local parameter configuration file.</p>
-<p>textbf{The user has to create this environment variable!}</p>
+<p><strong>The user has to create this environment variable!</strong></p>
 <p>This mechanism allows a user - without any command line extensions - automatically to refer on every test bench to an individual local configuration,
 simply by giving on every test bench this environment variable an individual value.</p>
 </li>
