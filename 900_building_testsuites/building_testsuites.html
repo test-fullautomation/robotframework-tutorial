@@ -500,24 +500,24 @@ for this variant are defined.</p>
 <li><p class="first"><em>variant configuration file</em></p>
 <p>This file configures the access to all variant dependent <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files.</p>
 <pre class="code python literal-block">
-<span class="punctuation">{</span>
-  <span class="literal string double">&quot;default&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
-               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.json&quot;</span><span class="punctuation">,</span>
-               <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
-             <span class="punctuation">},</span>
-  <span class="literal string double">&quot;variant_1&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
-                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.json&quot;</span><span class="punctuation">,</span>
-                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
-               <span class="punctuation">},</span>
-  <span class="literal string double">&quot;variant_2&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
-                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.json&quot;</span><span class="punctuation">,</span>
-                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
-               <span class="punctuation">},</span>
-  <span class="literal string double">&quot;variant_3&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
-                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.json&quot;</span><span class="punctuation">,</span>
-                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span>
-               <span class="punctuation">}</span>
-<span class="punctuation">}</span>
+<span class="punctuation">{</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;default&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>               <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
+</span>             <span class="punctuation">},</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;variant_1&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
+</span>               <span class="punctuation">},</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;variant_2&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
+</span>               <span class="punctuation">},</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;variant_3&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
+</span>               <span class="punctuation">}</span><span class="whitespace">
+</span><span class="punctuation">}</span>
 </pre>
 <p>The example above contains definitions for three variants with name <tt class="docutils literal">variant_1</tt>, <tt class="docutils literal">variant_2</tt> and <tt class="docutils literal">variant_3</tt>.</p>
 <p>Additionally a variant named <tt class="docutils literal">default</tt> is defined. This default configuration becomes active in case of no certain variant name is provided
@@ -529,10 +529,10 @@ case location.</p>
 <p>Therefore we use here three dots to tell the <strong>RobotFramework_TestsuitesManagement</strong> to search from the test
 file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
 <pre class="code python literal-block">
-<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
-<span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
-<span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
-<span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
+</span><span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
+</span><span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
+</span><span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
 </pre>
 <p>and so on.</p>
 <p>Hint: The paths to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are relative to the position of the test suite - <strong>and not relative to the position of the
@@ -549,13 +549,13 @@ mapping file in which they are defined!</strong> You are free to move your test 
 of a parameter configuration file containing only the most important parameters. This version is a default version and part of the
 <strong>RobotFramework_TestsuitesManagement</strong> installation.</p>
 <pre class="code python literal-block">
-<span class="punctuation">{</span>
-  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span>
-<span class="punctuation">}</span>
+<span class="punctuation">{</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span><span class="whitespace">
+</span><span class="punctuation">}</span>
 </pre>
 <p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
 are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
@@ -563,32 +563,32 @@ are part of a version control mechanism: In case of the version of the currently
 <p>The version control mechanism is optional. In case you do not need to have your tests under version control, you can set
 the versions to the value <tt class="docutils literal">null</tt>.</p>
 <pre class="code python literal-block">
-<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
-<span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
+<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span><span class="whitespace">
+</span><span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
 </pre>
 <p>As an alternative it is also possible to remove <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt> completely.</p>
 <p>In case you define only one single version number, only this version number is considered. The following combination
 makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:</p>
 <pre class="code python literal-block">
-<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span>
-<span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
+<span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span><span class="whitespace">
+</span><span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
 </pre>
 <p>The following example is an extended version of a configuration file containing also some user defined parameters.</p>
 <pre class="code python literal-block">
-<span class="punctuation">{</span>
-  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span>
-  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span>
-  <span class="literal string double">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span>
-              <span class="operator">//</span> <span class="keyword">global</span> <span class="name">parameters</span>
-              <span class="literal string double">&quot;global&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span>
-                           <span class="literal string double">&quot;param1&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;ABC&quot;</span><span class="punctuation">,</span>
-                           <span class="literal string double">&quot;param2&quot;</span> <span class="punctuation">:</span> <span class="literal number integer">25</span>
-                         <span class="punctuation">}</span>
-            <span class="punctuation">}</span>
-<span class="punctuation">}</span>
+<span class="punctuation">{</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;WelcomeString&quot;</span>   <span class="punctuation">:</span> <span class="literal string double">&quot;Hello... Robot Framework is running now!&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;1.0.0&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;Project&quot;</span>         <span class="punctuation">:</span> <span class="literal string double">&quot;RobotFramework Testsuites&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;TargetName&quot;</span>      <span class="punctuation">:</span> <span class="literal string double">&quot;Device_01&quot;</span><span class="whitespace">
+</span>  <span class="literal string double">&quot;params&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>              <span class="operator">//</span> <span class="keyword">global</span> <span class="name">parameters</span><span class="whitespace">
+</span>              <span class="literal string double">&quot;global&quot;</span> <span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
+</span>                           <span class="literal string double">&quot;param1&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;ABC&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                           <span class="literal string double">&quot;param2&quot;</span> <span class="punctuation">:</span> <span class="literal number integer">25</span><span class="whitespace">
+</span>                         <span class="punctuation">}</span><span class="whitespace">
+</span>            <span class="punctuation">}</span><span class="whitespace">
+</span><span class="punctuation">}</span>
 </pre>
 <p>User defined parameters have to be placed inside <tt class="docutils literal">params:global</tt>. The intermediate level <tt class="docutils literal">global</tt> is introduced to enable further
 parameter scopes than <tt class="docutils literal">global</tt> in future.</p>
@@ -743,7 +743,7 @@ when the tests are executed. Corresponding informations you will find in the doc
 <hr class="docutils" />
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial <tt class="docutils literal">100_variables_and_datatypes</tt>.</p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.11.0 / 09.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.11.1 / 13.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>
