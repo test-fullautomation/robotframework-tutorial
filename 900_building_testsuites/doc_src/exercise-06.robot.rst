@@ -25,7 +25,7 @@ Content
 Background: In previous exercises we handled common parameters that are valid for all variants, and we handled variant specific parameters.
 Already in the introduction we mentioned a third level: parameters that are specific for certain test benches.
 
-This requirement is fulfilled by the *local configuration* feature of the **RobotFramework_TestsuitesManagement**.
+The need to define test bench specific parameters is fulfilled by the *local configuration* feature of the **RobotFramework_TestsuitesManagement**.
 
 The meaning of *local* in this context is: placed on a certain test bench - and valid for this bench only.
 
@@ -88,8 +88,8 @@ New in this exercise is a ``localconfig`` folder with a local configuration for 
 
 .. code::
 
-   localconfig\exercise-06_localconfig_bench1.json
-   localconfig\exercise-06_localconfig_bench2.json
+   localconfig/exercise-06_localconfig_bench1.json
+   localconfig/exercise-06_localconfig_bench2.json
 
 In every of theses files a test bench specific value is defined, e.g. in ``exercise-06_localconfig_bench1.json``:
 
@@ -98,7 +98,11 @@ In every of theses files a test bench specific value is defined, e.g. in ``exerc
    ${params}['global']['teststring_bench'] : "I am the 'bench1' configuration of exercise 06"
 
 Here the local configuration is used to overwrite a parameter that is already defined within the ``params:global`` section of
-another configuration file. Therefore this scope has to be used: ``${params}['global']['teststring_bench']``.
+another configuration file. Therefore this scope has to be used:
+
+.. code::
+
+   ${params}['global']['teststring_bench']
 
 In ``exercise-06.robot`` all test strings are logged: ``teststring_common``, ``teststring_variant`` and ``teststring_bench``.
 
@@ -184,8 +188,78 @@ the log file contains the following entries:
    CfgFile Path: ./config/exercise-06_config_default.json
    Local config file: ./localconfig/exercise-06_localconfig_bench1.json
 
-Extension
----------
+Extension I
+-----------
+
+Instead of defining the local configuration in command line with
+
+.. code::
+
+   --variable local_config:"<path to localconfig file>"
+
+define now the local configuration within an environment variable.
+
+Create an environment variable with name ``ROBOT_LOCAL_CONFIG`` and value 
+
+.. code::
+
+   <tutorial root path>/exercise-06/localconfig/exercise-06_localconfig_bench1.json
+
+With this change execute the next command line.
+
+Command line
+------------
+
+This command line selects ``variant1``:
+
+.. code::
+
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable variant:"variant1" "./exercise-06.robot"
+
+Outcome
+-------
+
+Because ``ROBOT_LOCAL_CONFIG`` points to ``exercise-06_localconfig_bench1.json``, the value of ``teststring_bench``
+is the ``bench1`` specific one.
+
+.. code::
+
+   teststring_common : I am the common teststring valid for all variants and all test benches
+   teststring_variant : I am the 'variant1' configuration of exercise 06
+   teststring_bench : I am the 'bench1' configuration of exercise 06
+
+What will happen in case you extend the command line above with:
+
+.. code::
+
+   --variable local_config:"./localconfig/exercise-06_localconfig_bench2.json"
+
+Then you have two contradicting settings in environment variable and in command line. Because the command line has a higher priority
+than other settings, the output changes to:
+
+.. code::
+
+   teststring_common : I am the common teststring valid for all variants and all test benches
+   teststring_variant : I am the 'variant1' configuration of exercise 06
+   teststring_bench : I am the 'bench2' configuration of exercise 06
+
+What will happen in case you extend the (already extended) command line again, but now with:
+
+.. code::
+
+   --variable teststring_bench:"teststring_bench command line value"
+
+Single parameter definitions mady by ``--variable`` in command line have higher priority than any other settings.
+Because of this the ``teststring_bench`` now has the value provided in command line immediately.
+
+.. code::
+
+   teststring_common : I am the common teststring valid for all variants and all test benches
+   teststring_variant : I am the 'variant1' configuration of exercise 06
+   teststring_bench : teststring_bench command line value
+
+Extension II
+------------
 
 It might be required to support parameters that are both together: specific for a variant and additionally specific for a test bench also.
 In this case you should initialize these parameters in the variant specific configuration files and make them specific for a certain test bench
