@@ -20,7 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# 28.03.2022
+# 20.01.2023
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -87,21 +87,28 @@ class CDocument():
       listCmdLineParts = []
 
       # -- computing path and name of destination file
-      sDstFile = None
-      sSrcFile = self.__sDocument
-      oSrcFile = CFile(sSrcFile)
-      dSrcFileInfo = oSrcFile.GetFileInfo()
-      sSrcFileNameOnly = dSrcFileInfo['sFileNameOnly'] # => without extension '.rst'
+      sDstFile         = None # the HTML file to be generated out of the RST file
+      sSrcFile         = self.__sDocument # the RST file, e.g. file.robot.rst (as per naming convention the RST file name must contain the extension of the corresponding tutorial file name!)
+      oSrcFile         = CFile(sSrcFile)
+      dSrcFileInfo     = oSrcFile.GetFileInfo()
+      sSrcFileNameOnly = dSrcFileInfo['sFileNameOnly'] # without extension '.rst'; file.robot.rst -> file.robot (= full tutorial file name incl. extension!)
+      sHTMLFileName    = f"{sSrcFileNameOnly}.html"
       if sSrcFileNameOnly in dictTutorialFiles:
          # counterpart available
          sDstFilePath = dictTutorialFiles[sSrcFileNameOnly]
-         sDstFile = f"{sDstFilePath}/{sSrcFileNameOnly}.html"
+         # check if tutorial file name is marked to have a name duplicate
+         if sDstFilePath is None:
+            self.__oStatistics.IncCntOutputFilesNotExisting()
+            bSuccess = False
+            sResult  = f"The documentation file '{sSrcFile}' belongs to a tutorial file with ambiguous name. Such a tutorial file cannot be documented. Please fix and try again. Aborting now"
+            return bConverterIssue, bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+         sDstFile = f"{sDstFilePath}/{sHTMLFileName}"
       else:
          # no counterpart available => standalone rst file
-         sDstFile = f"{sSectionRootPath}/{sSrcFileNameOnly}.html"
+         sDstFile = f"{sSectionRootPath}/{sHTMLFileName}"
 
       # -- preparing command line
-      sPython = self.__oRepositoryConfig.Get('sPython')
+      sPython   = self.__oRepositoryConfig.Get('sPython')
       sRST2HTML = self.__oRepositoryConfig.Get('sRST2HTML')
       listCmdLineParts.append(f"\"{sPython}\"")
       listCmdLineParts.append(f"\"{sRST2HTML}\"")
@@ -112,7 +119,8 @@ class CDocument():
 
       # -- executing command line
 
-      print(f"* converting '{sSrcFile}'")
+      sSrcFileName = dSrcFileInfo['sFileName']
+      print(f"* converting '{sSrcFileName}'")
 
       self.__oStatistics.IncCntInputFiles()
 
@@ -127,7 +135,7 @@ class CDocument():
          nReturn = subprocess.call(listCmdLineParts)
          if nReturn == 0:
             bSuccess = True
-            sResult  = f"File '{self.__sDocument}' converted"
+            sResult  = f"File '{sSrcFile}'" + "\nconverted to:\n" + f"'{sDstFile}'"
          else:
             bSuccess = True # Not handled as error here because we do not want to quit this script for such a reason.
                             # Instead of this we want to continue the computation with the next file.
