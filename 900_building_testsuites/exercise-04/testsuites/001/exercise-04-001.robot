@@ -23,5 +23,5 @@
 *** Test Cases ***
 Test Case exercise-04-001
     [documentation]    exercise-04-001
-    Log    teststring : ${teststring}    console=yes
+    Log    teststring : ${teststring} (exercise-04-001.robot)    console=yes
 

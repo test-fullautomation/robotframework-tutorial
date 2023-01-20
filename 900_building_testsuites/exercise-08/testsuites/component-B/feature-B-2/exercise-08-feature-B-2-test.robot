@@ -14,14 +14,16 @@
 #  limitations under the License.
 # **************************************************************************************************************
 #
-# exercise-04-002.robot
+# exercise-08-feature-B-2-test.robot
 #
 # --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
 
 *** Test Cases ***
-Test Case exercise-04-002
-    [documentation]    exercise-04-002
-    Log    teststring : ${teststring} (exercise-04-002.robot)    console=yes
+Test Case exercise-08-feature-B-2-test
+    [documentation]    exercise-08-feature-B-2-test
+    Log    teststring_common : ${teststring_common} (exercise-08-feature-B-2-test.robot)    console=yes
+    Log    teststring_variant : ${teststring_variant} (exercise-08-feature-B-2-test.robot)    console=yes
+    Log    teststring_bench : ${teststring_bench} (exercise-08-feature-B-2-test.robot)    console=yes
 

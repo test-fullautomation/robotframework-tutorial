@@ -14,14 +14,14 @@
 #  limitations under the License.
 # **************************************************************************************************************
 #
-# exercise-04-002.robot
+# __init__.robot
 #
 # --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
 
-*** Test Cases ***
-Test Case exercise-04-002
-    [documentation]    exercise-04-002
-    Log    teststring : ${teststring} (exercise-04-002.robot)    console=yes
+Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+
+Suite Setup    tm.testsuite_setup    ../config/exercise-08_variants.json
+
 

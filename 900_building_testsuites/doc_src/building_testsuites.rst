@@ -490,6 +490,10 @@ exercise-07
 
 Demonstrates the priority of configuration parameters
 
+exercise-08
+~~~~~~~~~~~
+
+Example with robot files for different components with different features (final tutorial playground)
 
 TOC_
 
@@ -499,7 +503,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.12.1 / 18.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.13.0 / 20.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
