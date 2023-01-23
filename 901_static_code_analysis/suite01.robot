@@ -14,7 +14,7 @@
 *** Settings ***
 Resource    ./libs/testimport.resource
 
-Library      RobotFramework_Testsuites    WITH NAME    testsuites
+Library      RobotFramework_TestsuitesManagement    WITH NAME    testsuites
 
 Suite Setup      testsuites.testsuite_setup
 Suite Teardown   testsuites.testsuite_teardown
