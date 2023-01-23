@@ -86,6 +86,10 @@ Now we have several possibilities:
 2. Execute the test without any variant specific command line extensions (with ``exercise-02-B.robot``)
 3. Define only the name of a variant in command line (with ``exercise-02-B.robot``)
 
+Please consider: Some of the following command lines contain relative paths to configuration files.
+
+**These paths have to be relative to the position of the executed test suite!**
+
 Starting with the first option ...
 
 ----

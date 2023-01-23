@@ -25,8 +25,8 @@
 #
 # --------------------------------------------------------------------------------------------------------------
 #
-sThisScriptVersionNumber = "0.6.0"
-sThisScriptVersionDate   = "28.11.2022"
+sThisScriptVersionNumber = "0.7.0"
+sThisScriptVersionDate   = "20.01.2023"
 #
 # --------------------------------------------------------------------------------------------------------------
 #TM***
@@ -146,7 +146,7 @@ else:
    print(sResult)
 print()
 
-# -- for every tutorial section generate the documentation (in HTML format, out of robot, resource, rst and py files)
+# -- for every tutorial section generate the documentation (in HTML format, out of robot, resource, rst, py and json files)
 for sSectionRootPath in listSections:
    oStatistics.IncCntSections()
    oSection = None

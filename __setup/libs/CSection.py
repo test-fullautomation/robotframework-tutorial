@@ -20,7 +20,7 @@
 #
 # XC-CT/ECA3-Queckenstedt
 #
-# 28.11.2022
+# 20.01.2023
 #
 # --------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ class CSection():
 
       sMethod = "GetDocumentsList"
 
-      tupleSupportedFileExtensions = (".rst", ".robot", ".resource", ".py") # excluded: , ".json"
+      tupleSupportedFileExtensions = (".rst", ".robot", ".resource", ".py", ".json")
 
       bSuccess = None
       sResult  = None
@@ -96,15 +96,15 @@ class CSection():
                else:
                   # duplicate check
                   if sFileName in self.__dictTutorialFiles:
-                     self.__oRepositoryConfig.Set("dictTutorialFiles", self.__dictTutorialFiles)
-
-                     # file with same name found previously in tutorial section
-                     sTutorialFilePath = self.__dictTutorialFiles[sFileName]
-                     sTutorialFile = CString.NormalizePath(os.path.join(sTutorialFilePath, sFileName))
-
-                     bSuccess = False
-                     sResult  = f"Found file duplicate '{sFile}'\n(duplicate of '{sTutorialFile}')"
-                     return self.__listRstFiles, bSuccess, CString.FormatResult(sMethod, bSuccess, sResult)
+                     # File with same name previously found in this tutorial section.
+                     # Such ambiguous files cannot be documented, because as per tutorial documentation concept
+                     # we need a 1x1 naming relationship between documentation files in RST format and tutorial files.
+                     # But this also means that duplicate file names only cause a problem in case of such a file shall be documented.
+                     # As long as no corresponding RST file is found, there is no problem. Therefore we do not stop here, but we mark
+                     # the file with ambiguous name with None. Later, when both file lists are completed and we start rendering the
+                     # html files, then we check against None and we throw an error in case we have a match between an RST file
+                     # and a tutorial file with path None.
+                     self.__dictTutorialFiles[sFileName] = None
                   else:
                      self.__dictTutorialFiles[sFileName] = sLocalRootPath
             # eof if bFileSupported is True:

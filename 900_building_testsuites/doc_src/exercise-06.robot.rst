@@ -120,6 +120,10 @@ Because every test string is initialized, every combination works - even in case
 Default values are taken from ``exercise-06_config_default.json`` (``teststring_variant``) and ``exercise-06_config_common.json``
 (``teststring_common`` and ``teststring_bench``).
 
+Please consider: Some of the following command lines contain relative paths to configuration files.
+
+**These paths have to be relative to the position of the executed test suite!**
+
 ----
 
 Command line
