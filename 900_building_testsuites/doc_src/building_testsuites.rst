@@ -460,50 +460,69 @@ exercise-01
 
 Simplest example referring to the default configuration from installation
 
+`exercise-01.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-01/exercise-01.robot.html>`_
+
 exercise-02
 ~~~~~~~~~~~
 
 Demonstrates several ways to define the configuration in command line
+
+`exercise-02.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-02/exercise-02.robot.html>`_
 
 exercise-03
 ~~~~~~~~~~~
 
 Demonstrates several ways to load the configuration from a ``config`` folder
 
+`exercise-03.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-03/exercise-03.robot.html>`_
+
 exercise-04
 ~~~~~~~~~~~
 
 Demonstrates the usage of an ``__init__.robot`` file in case of several robot files inside a testsuites folder shall run under the same conditions
+
+`exercise-04.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-04/testsuites/exercise-04.robot.html>`_
 
 exercise-05
 ~~~~~~~~~~~
 
 Demonstrates the usage of nested parameter configuration files
 
+`exercise-05.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-05/exercise-05.robot.html>`_
+
 exercise-06
 ~~~~~~~~~~~
 
 Demonstrates the usage of local parameter configuration files
+
+`exercise-06.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-06/exercise-06.robot.html>`_
 
 exercise-07
 ~~~~~~~~~~~
 
 Demonstrates the priority of configuration parameters
 
+`exercise-07.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-07/exercise-07.robot.html>`_
+
 exercise-08
 ~~~~~~~~~~~
 
 Example with robot files for different components with different features (final tutorial playground)
 
+`exercise-08.robot.html <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/exercise-08/testsuites/exercise-08.robot.html>`_
+
+
 TOC_
 
 ----
 
-Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial ``100_variables_and_datatypes``.
+Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial
+`100_variables_and_datatypes <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/100_variables_and_datatypes/variables_and_datatypes.html>`_
+
 
 ----
 
-*Tutorial v. 0.13.0 / 20.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.13.1 / 30.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
