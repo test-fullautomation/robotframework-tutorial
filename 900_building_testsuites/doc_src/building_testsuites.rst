@@ -326,6 +326,9 @@ to access the configuration file in a certain order: Level 1 has the highest pri
   This level requires that a variant configuration file is passed to the suite setup of the **RobotFramework_TestsuitesManagement**
   (like described in `How does the content of configuration files in JSON format look like?`_).
 
+  Level 2 includes the automated selection of a default variant (in case of no variant name is provided in command line). Also this default variant
+  has to be defined within the variant configuration file.
+
   This is handled in ``exercise-02``.
 
 * Level 3
@@ -522,7 +525,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.13.1 / 30.01.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.13.2 / 09.02.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
