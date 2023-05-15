@@ -27,11 +27,11 @@ parameter values that are specific for this variant. In this exercise that are t
 
 .. code::
 
-   config/exercise-02_config_default.json
-   config/exercise-02_config_variant1.json
-   config/exercise-02_config_variant2.json
+   config/exercise-02_config_default.jsonp
+   config/exercise-02_config_variant1.jsonp
+   config/exercise-02_config_variant2.jsonp
 
-Every of these files define a test string containing an individual value, e.g. the file ``exercise-02_config_variant1.json`` defines:
+Every of these files define a test string containing an individual value, e.g. the file ``exercise-02_config_variant1.jsonp`` defines:
 
 .. code::
 
@@ -41,7 +41,7 @@ Additionally we need a variants configuration file defining the mapping between 
 
 .. code::
 
-   config/exercise-02_variants.json
+   config/exercise-02_variants.jsonp
 
 With the following content:
 
@@ -49,15 +49,15 @@ With the following content:
 
    {
      "default": {
-                  "name": "exercise-02_config_default.json",
+                  "name": "exercise-02_config_default.jsonp",
                   "path": "./config/"
                 },
      "variant1": {
-                  "name": "exercise-02_config_variant1.json",
+                  "name": "exercise-02_config_variant1.jsonp",
                   "path": "./config/"
                  },
      "variant2": {
-                  "name": "exercise-02_config_variant2.json",
+                  "name": "exercise-02_config_variant2.jsonp",
                   "path": "./config/"
                  }
    }
@@ -72,7 +72,7 @@ In exercise-02-B.robot we hand over the variants configuration file to the ``tm.
 
 .. code::
 
-   Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.json
+   Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.jsonp
 
 And in both we print the content of the test string:
 
@@ -101,7 +101,7 @@ Command line
 
 .. code::
 
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable config_file:"./config/exercise-02_config_variant1.json" "./exercise-02.robot"
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable config_file:"./config/exercise-02_config_variant1.jsonp" "./exercise-02.robot"
 
 ----
 
@@ -125,7 +125,7 @@ The log file gives more information about the origin
 .. code::
 
    Running with configuration level: 1
-   CfgFile Path: ./config/exercise-02_config_variant1.json
+   CfgFile Path: ./config/exercise-02_config_variant1.jsonp
 
 Continuing with the second option ...
 
@@ -156,7 +156,7 @@ The log file gives more information about the origin
 .. code::
 
    Running with configuration level: 2
-   CfgFile Path: ./config/exercise-02_config_default.json
+   CfgFile Path: ./config/exercise-02_config_default.jsonp
 
 Continuing with the third option ...
 
@@ -195,7 +195,7 @@ The log file
 .. code::
 
    Running with configuration level: 2
-   CfgFile Path: ./config/exercise-02_config_variant2.json
+   CfgFile Path: ./config/exercise-02_config_variant2.jsonp
 
 ----
 

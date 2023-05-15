@@ -26,11 +26,11 @@ This ``config`` folder has to be placed in the same folder than the test suites.
 
 Parameter configuration files within this folder are considered under two different conditions:
 
-* The configuration file has the name ``robot_config.json``. That is a fix name predefined by the **RobotFramework_TestsuitesManagement**.
+* The configuration file has the name ``robot_config.jsonp``. That is a fix name predefined by the **RobotFramework_TestsuitesManagement**.
 * The configuration file has the same name than a robot file inside the test suites folder, e.g.:
 
   * Name of test suite file: ``exercise-03-A.robot``
-  * Path and name of corresponding parameter configuration file: ``./config/exercise-03-A.json``
+  * Path and name of corresponding parameter configuration file: ``./config/exercise-03-A.jsonp``
 
   With this rule it is possible to give every test suite in a certain folder an own individual configuration.
 
@@ -42,11 +42,11 @@ This exercise contains the following test suites:
 
 together with the following parameter configuration files:
 
-* ``config/robot_config.json``
-* ``config/exercise-03-A.json``
-* ``config/exercise-03-B.json``
+* ``config/robot_config.jsonp``
+* ``config/exercise-03-A.jsonp``
+* ``config/exercise-03-B.jsonp``
 
-Every of these configuration files define a test string containing an individual value, e.g. the file ``exercise-03-A.json``
+Every of these configuration files define a test string containing an individual value, e.g. the file ``exercise-03-A.jsonp``
 defines:
 
 .. code::
@@ -73,13 +73,13 @@ Command lines
 Outcome
 -------
 
-The test suites ``exercise-03-A.robot`` and ``exercise-03-B.robot`` have the configuration counterparts (same file names) ``config/exercise-03-A.json``
-and ``config/exercise-03-B.json``.
+The test suites ``exercise-03-A.robot`` and ``exercise-03-B.robot`` have the configuration counterparts (same file names) ``config/exercise-03-A.jsonp``
+and ``config/exercise-03-B.jsonp``.
 
 Therefore the value of the test string is taken out of these configuration files.
 
 The test suite ``exercise-03.robot`` does not have a configuration counterpart. Therefore the Robot Framework AIO falls back to the configuration file with the
-default name ``config/robot_config.json`` and the value of the test string is:
+default name ``config/robot_config.jsonp`` and the value of the test string is:
 
 .. code::
 
@@ -90,5 +90,5 @@ The log file gives more information about the origin; in case of ``exercise-03.r
 .. code::
 
    Running with configuration level: 3
-   CfgFile Path: config/robot_config.json
+   CfgFile Path: config/robot_config.jsonp
 

@@ -110,6 +110,10 @@ To realize this, the following features are available:
 * Follow up definitions in configuration files overwrite previous definitions (of the same parameter)
 * Select between several criteria to let the Robot Framework use a certain JSON configuration file
 
+These features cause deviations from standard JSON format. To give applications like editors or syntax checkers a chance to handle these
+deviations (without invalid findings), all JSON configurations files of the **RobotFramework_TestsuitesManagement** have the extension ``.jsonp``,
+instead of ``.json``.
+
 The **RobotFramework_TestsuitesManagement** supports two different kinds of JSON configuration files:
 
 * *parameter configuration files*
@@ -177,25 +181,25 @@ In this part of the introduction we take a first look at the content of configur
 
 1. *variant configuration file*
 
-   This file configures the access to all variant dependent ``robot_config*.json`` files.
+   This file configures the access to all variant dependent ``robot_config*.jsonp`` files.
 
    .. code:: python
 
       {
         "default": {
-                     "name": "robot_execution_config.json",
+                     "name": "robot_execution_config.jsonp",
                      "path": ".../config/"
                    },
         "variant_1": {
-                       "name": "robot_config_variant_1.json",
+                       "name": "robot_config_variant_1.jsonp",
                        "path": ".../config/"
                      },
         "variant_2": {
-                       "name": "robot_config_variant_2.json",
+                       "name": "robot_config_variant_2.jsonp",
                        "path": ".../config/"
                      },
         "variant_3": {
-                       "name": "robot_config_variant_3.json",
+                       "name": "robot_config_variant_3.jsonp",
                        "path": ".../config/"
                      }
       }
@@ -206,23 +210,23 @@ In this part of the introduction we take a first look at the content of configur
    when the test suite is being executed.
 
    Another aspect is important: the *three dots*.
-   The path to the ``robot_config*.json`` files depends on the test file location. A 
+   The path to the ``robot_config*.jsonp`` files depends on the test file location. A 
    different number of ``../`` is required dependent on the directory depth of the test 
    case location.
 
    Therefore we use here three dots to tell the **RobotFramework_TestsuitesManagement** to search from the test 
-   file location up till the ``robot_config*.json`` files are found:
+   file location up till the ``robot_config*.jsonp`` files are found:
 
    .. code:: python
 
-      ./config/robot_config.json
-      ../config/robot_config.json
-      ../../config/robot_config.json
-      ../../../config/robot_config.json
+      ./config/robot_config.jsonp
+      ../config/robot_config.jsonp
+      ../../config/robot_config.jsonp
+      ../../../config/robot_config.jsonp
 
    and so on.
 
-   Hint: The paths to the ``robot_config*.json`` files are relative to the position of the test suite - **and not relative to the position of the
+   Hint: The paths to the ``robot_config*.jsonp`` files are relative to the position of the test suite - **and not relative to the position of the
    mapping file in which they are defined!** You are free to move your test suites one or more level up or down in the file system, but using the
    *three dots* notation enables you to let the position of the ``config`` folder unchanged.
 
@@ -419,7 +423,7 @@ In case you want to realize a variant handling you have to provide the path and 
 
 .. code::
 
-   Suite Setup    tm.testsuite_setup    ./config/exercise_variants.json
+   Suite Setup    tm.testsuite_setup    ./config/exercise_variants.jsonp
 
 To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
 configuration file, for example:
@@ -427,10 +431,10 @@ configuration file, for example:
 .. code::
 
    Running with configuration level: 2
-   CfgFile Path: ./config/exercise_config.json
+   CfgFile Path: ./config/exercise_config.jsonp
 
-Please consider: The ``testsuite_setup`` requires a variants configuration file (in the example above: ``exercise_variants.json``) - whereas
-the log file contains the resulting parameter configuration file (in the example above: ``exercise_config.json``), that is selected depending
+Please consider: The ``testsuite_setup`` requires a variants configuration file (in the example above: ``exercise_variants.jsonp``) - whereas
+the log file contains the resulting parameter configuration file (in the example above: ``exercise_config.jsonp``), that is selected depending
 on the name of the variant provided in command line of the Robot Framework.
 
 **For now it's enough theory - time for exercises.**
@@ -525,7 +529,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.13.2 / 09.02.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.14.0 / 15.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 

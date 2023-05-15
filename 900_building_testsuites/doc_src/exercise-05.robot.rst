@@ -39,21 +39,21 @@ The ``config`` folder contains the already known variants configuration file
 
 .. code::
 
-   config/exercise-05_variants.json
+   config/exercise-05_variants.jsonp
 
 together with variant specific parameter configuration files
 
 .. code::
 
-   config/exercise-05_config_default.json
-   config/exercise-05_config_variant1.json
-   config/exercise-05_config_variant2.json
+   config/exercise-05_config_default.jsonp
+   config/exercise-05_config_variant1.jsonp
+   config/exercise-05_config_variant2.jsonp
 
 New in this exercise is a common parameter configuration file
 
 .. code::
 
-   config/exercise-05_config_common.json
+   config/exercise-05_config_common.jsonp
 
 containing a parameter that shall have the same value for every variant:
 
@@ -68,7 +68,7 @@ the import of the common configuration file, e.g.:
 
    "params" : {
                "global": {
-                          "[import]"   : "./exercise-05_config_common.json",
+                          "[import]"   : "./exercise-05_config_common.jsonp",
                           "teststring" : "I am the 'variant1' configuration of exercise 05"
                          }
               }
@@ -81,7 +81,7 @@ The content of the importing file and the content of all imported files are merg
 overwrite previous definitions of the same parameter! Also imported files need to follow the JSON syntax rules. This means, at least they have
 to start with an opening curly bracket and they have to end with a closing curly bracket.
 
-The full code of ``exercise-05_config_common.json`` therefore is
+The full code of ``exercise-05_config_common.jsonp`` therefore is
 
 .. code::
 

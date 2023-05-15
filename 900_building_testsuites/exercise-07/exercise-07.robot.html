@@ -416,15 +416,15 @@ then the configuration file value is overwritten by the command line value.</p>
 <p>In this exercise the configuration is realized in the following way:</p>
 <p>The <tt class="docutils literal">config</tt> folder contains the already known configuration files</p>
 <pre class="code literal-block">
-config/exercise-07_variants.json
-config/exercise-07_config_default.json
-config/exercise-07_config_variant1.json
-config/exercise-07_config_variant2.json
+config/exercise-07_variants.jsonp
+config/exercise-07_config_default.jsonp
+config/exercise-07_config_variant1.jsonp
+config/exercise-07_config_variant2.jsonp
 </pre>
 <p>The <tt class="docutils literal">localconfig</tt> folder contains the already known local configuration files</p>
 <pre class="code literal-block">
-localconfig/exercise-07_localconfig_bench1.json
-localconfig/exercise-07_localconfig_bench2.json
+localconfig/exercise-07_localconfig_bench1.jsonp
+localconfig/exercise-07_localconfig_bench2.jsonp
 </pre>
 <p>The test strings from previous exercises are reduced to one single test string: <tt class="docutils literal">teststring</tt>.
 Every configuration file contains an individual value indicating also the origin: variant configuration or local configuration.</p>
@@ -458,7 +458,7 @@ Local configuration is overwritten by command line variable.</p>
 <p>For example we take a look at the second option:</p>
 <p><tt class="docutils literal"><span class="pre">--variable</span></tt> and <tt class="docutils literal">local_config</tt> and <tt class="docutils literal">config_file</tt></p>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-07.xml -l exercise-07_log.html -r exercise-07_report.html -b exercise-07.log --variable teststring:&quot;command line test string&quot; --variable local_config:&quot;./localconfig/exercise-07_localconfig_bench1.json&quot; --variable config_file:&quot;./config/exercise-07_config_variant1.json&quot; &quot;./exercise-07.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-07.xml -l exercise-07_log.html -r exercise-07_report.html -b exercise-07.log --variable teststring:&quot;command line test string&quot; --variable local_config:&quot;./localconfig/exercise-07_localconfig_bench1.jsonp&quot; --variable config_file:&quot;./config/exercise-07_config_variant1.jsonp&quot; &quot;./exercise-07.robot&quot;
 </pre>
 </div>
 <hr class="docutils" />

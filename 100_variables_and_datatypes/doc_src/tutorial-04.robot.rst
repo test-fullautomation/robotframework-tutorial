@@ -167,7 +167,7 @@ can be overwritten in command line.
 
 Remember:
 
-In the global params section of ``tutorialconfig.json`` the following string variable is defined:
+In the global params section of ``tutorialconfig.jsonp`` the following string variable is defined:
 
 .. code::
 

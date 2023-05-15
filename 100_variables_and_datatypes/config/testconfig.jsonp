@@ -14,23 +14,23 @@
 //**************************************************************************
 
 //*****************************************************************************
-// The file configures the access to all variant dependent robot_config*.json
+// The file configures the access to all variant dependent robot_config*.jsonp
 // files.
 //
-// The path to the robot_config*.json files depends on the test file location. A 
+// The path to the robot_config*.jsonp files depends on the test file location. A 
 // different number of ../ is required dependend on the directory depth of the test 
 // case location.
 // Therefore we use here three ... to tell the ROBFW to search from the test 
-// file location up till the robot_config*.json files are found:
-// ./config/robot_config.json
-// ../config/robot_config.json
-// ../../config/robot_config.json
-// ../../../config/robot_config.json
+// file location up till the robot_config*.jsonp files are found:
+// ./config/robot_config.jsonp
+// ../config/robot_config.jsonp
+// ../../config/robot_config.jsonp
+// ../../../config/robot_config.jsonp
 // and so on.
 //*****************************************************************************
 {
   "default": {
-    "name": "tutorialconfig.json",
+    "name": "tutorialconfig.jsonp",
     "path": "./config/"
   }
 }

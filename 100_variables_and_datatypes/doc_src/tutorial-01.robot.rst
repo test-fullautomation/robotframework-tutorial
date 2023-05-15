@@ -262,7 +262,7 @@ Test case ``01_04`` contains the computation of variables defined within the fol
 
 .. code::
 
-   ./config/tutorialconfig.json
+   ./config/tutorialconfig.jsonp
 
 Within the global params section of this configuration file the following scalars are defined (also lists and dictionaries, but they will be handled
 in other parts of this tutorial):
