@@ -52,18 +52,18 @@ Similar to previous exercises the ``config`` folder contains the variant specifi
 
 .. code::
 
-   config/exercise-08_config_common.json
-   config/exercise-08_config_default.json
-   config/exercise-08_config_variant1.json
-   config/exercise-08_config_variant2.json
-   config/exercise-08_variants.json
+   config/exercise-08_config_common.jsonp
+   config/exercise-08_config_default.jsonp
+   config/exercise-08_config_variant1.jsonp
+   config/exercise-08_config_variant2.jsonp
+   config/exercise-08_variants.jsonp
 
 and the ``localconfig`` folder contains the test bench specific configuration files:
 
 .. code::
 
-   localconfig/exercise-08_localconfig_bench1.json
-   localconfig/exercise-08_localconfig_bench2.json
+   localconfig/exercise-08_localconfig_bench1.jsonp
+   localconfig/exercise-08_localconfig_bench2.jsonp
 
 Also this exercise works with the already known common, variant specifc and test bench specific test strings:
 
@@ -75,7 +75,7 @@ Also this exercise works with the already known common, variant specifc and test
 
 To test your knowledge try to answer the following questions:
 
-* What is the meaning of ``.../config/`` inside file ``exercise-08_variants.json``?
+* What is the meaning of ``.../config/`` inside file ``exercise-08_variants.jsonp``?
 * A parameter shall have the same value in all variants. Where to define this parameter?
 * What is the difference between a variant configuration file and a parameter configuration file?
 * Which possibilities do you have to define a variant in command line of Robot Framework?

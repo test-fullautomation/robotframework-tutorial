@@ -448,6 +448,9 @@ for configuration parameter</li>
 <li>Follow up definitions in configuration files overwrite previous definitions (of the same parameter)</li>
 <li>Select between several criteria to let the Robot Framework use a certain JSON configuration file</li>
 </ul>
+<p>These features cause deviations from standard JSON format. To give applications like editors or syntax checkers a chance to handle these
+deviations (without invalid findings), all JSON configurations files of the <strong>RobotFramework_TestsuitesManagement</strong> have the extension <tt class="docutils literal">.jsonp</tt>,
+instead of <tt class="docutils literal">.json</tt>.</p>
 <p>The <strong>RobotFramework_TestsuitesManagement</strong> supports two different kinds of JSON configuration files:</p>
 <ul>
 <li><p class="first"><em>parameter configuration files</em></p>
@@ -498,23 +501,23 @@ for this variant are defined.</p>
 <p>In this part of the introduction we take a first look at the content of configuration files.</p>
 <ol class="arabic">
 <li><p class="first"><em>variant configuration file</em></p>
-<p>This file configures the access to all variant dependent <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files.</p>
+<p>This file configures the access to all variant dependent <tt class="docutils literal"><span class="pre">robot_config*.jsonp</span></tt> files.</p>
 <pre class="code python literal-block">
 <span class="punctuation">{</span><span class="whitespace">
 </span>  <span class="literal string double">&quot;default&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
-</span>               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>               <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_execution_config.jsonp&quot;</span><span class="punctuation">,</span><span class="whitespace">
 </span>               <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
 </span>             <span class="punctuation">},</span><span class="whitespace">
 </span>  <span class="literal string double">&quot;variant_1&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
-</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_1.jsonp&quot;</span><span class="punctuation">,</span><span class="whitespace">
 </span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
 </span>               <span class="punctuation">},</span><span class="whitespace">
 </span>  <span class="literal string double">&quot;variant_2&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
-</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_2.jsonp&quot;</span><span class="punctuation">,</span><span class="whitespace">
 </span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
 </span>               <span class="punctuation">},</span><span class="whitespace">
 </span>  <span class="literal string double">&quot;variant_3&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span><span class="whitespace">
-</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.json&quot;</span><span class="punctuation">,</span><span class="whitespace">
+</span>                 <span class="literal string double">&quot;name&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;robot_config_variant_3.jsonp&quot;</span><span class="punctuation">,</span><span class="whitespace">
 </span>                 <span class="literal string double">&quot;path&quot;</span><span class="punctuation">:</span> <span class="literal string double">&quot;.../config/&quot;</span><span class="whitespace">
 </span>               <span class="punctuation">}</span><span class="whitespace">
 </span><span class="punctuation">}</span>
@@ -523,19 +526,19 @@ for this variant are defined.</p>
 <p>Additionally a variant named <tt class="docutils literal">default</tt> is defined. This default configuration becomes active in case of no certain variant name is provided
 when the test suite is being executed.</p>
 <p>Another aspect is important: the <em>three dots</em>.
-The path to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files depends on the test file location. A
+The path to the <tt class="docutils literal"><span class="pre">robot_config*.jsonp</span></tt> files depends on the test file location. A
 different number of <tt class="docutils literal">../</tt> is required dependent on the directory depth of the test
 case location.</p>
 <p>Therefore we use here three dots to tell the <strong>RobotFramework_TestsuitesManagement</strong> to search from the test
-file location up till the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are found:</p>
+file location up till the <tt class="docutils literal"><span class="pre">robot_config*.jsonp</span></tt> files are found:</p>
 <pre class="code python literal-block">
-<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
-</span><span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
-</span><span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span><span class="whitespace">
-</span><span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">json</span>
+<span class="operator">./</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">jsonp</span><span class="whitespace">
+</span><span class="operator">../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">jsonp</span><span class="whitespace">
+</span><span class="operator">../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">jsonp</span><span class="whitespace">
+</span><span class="operator">../../../</span><span class="name">config</span><span class="operator">/</span><span class="name">robot_config</span><span class="operator">.</span><span class="name">jsonp</span>
 </pre>
 <p>and so on.</p>
-<p>Hint: The paths to the <tt class="docutils literal"><span class="pre">robot_config*.json</span></tt> files are relative to the position of the test suite - <strong>and not relative to the position of the
+<p>Hint: The paths to the <tt class="docutils literal"><span class="pre">robot_config*.jsonp</span></tt> files are relative to the position of the test suite - <strong>and not relative to the position of the
 mapping file in which they are defined!</strong> You are free to move your test suites one or more level up or down in the file system, but using the
 <em>three dots</em> notation enables you to let the position of the <tt class="docutils literal">config</tt> folder unchanged.</p>
 <p>It is of course still possible to use the standard notation for relative paths:</p>
@@ -684,16 +687,16 @@ Suite Setup    tm.testsuite_setup
 <p>the <strong>RobotFramework_TestsuitesManagement</strong> falls back to the default configuration (level 4).</p>
 <p>In case you want to realize a variant handling you have to provide the path and the name of a variants configuration file to the <tt class="docutils literal">testsuite_setup</tt>:</p>
 <pre class="code literal-block">
-Suite Setup    tm.testsuite_setup    ./config/exercise_variants.json
+Suite Setup    tm.testsuite_setup    ./config/exercise_variants.jsonp
 </pre>
 <p>To ease the analysis of a test execution, the log file contains informations about the selected level and the path and the name of the used
 configuration file, for example:</p>
 <pre class="code literal-block">
 Running with configuration level: 2
-CfgFile Path: ./config/exercise_config.json
+CfgFile Path: ./config/exercise_config.jsonp
 </pre>
-<p>Please consider: The <tt class="docutils literal">testsuite_setup</tt> requires a variants configuration file (in the example above: <tt class="docutils literal">exercise_variants.json</tt>) - whereas
-the log file contains the resulting parameter configuration file (in the example above: <tt class="docutils literal">exercise_config.json</tt>), that is selected depending
+<p>Please consider: The <tt class="docutils literal">testsuite_setup</tt> requires a variants configuration file (in the example above: <tt class="docutils literal">exercise_variants.jsonp</tt>) - whereas
+the log file contains the resulting parameter configuration file (in the example above: <tt class="docutils literal">exercise_config.jsonp</tt>), that is selected depending
 on the name of the variant provided in command line of the Robot Framework.</p>
 <p><strong>For now it's enough theory - time for exercises.</strong></p>
 <p>All further formats and features that need to be explained, will be explained in those test suites who use them.</p>
@@ -758,7 +761,7 @@ when the tests are executed. Corresponding informations you will find in the doc
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial
 <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/100_variables_and_datatypes/variables_and_datatypes.html">100_variables_and_datatypes</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.13.2 / 09.02.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.14.0 / 15.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

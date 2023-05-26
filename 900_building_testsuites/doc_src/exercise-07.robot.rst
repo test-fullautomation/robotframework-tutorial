@@ -68,17 +68,17 @@ The ``config`` folder contains the already known configuration files
 
 .. code::
 
-   config/exercise-07_variants.json
-   config/exercise-07_config_default.json
-   config/exercise-07_config_variant1.json
-   config/exercise-07_config_variant2.json
+   config/exercise-07_variants.jsonp
+   config/exercise-07_config_default.jsonp
+   config/exercise-07_config_variant1.jsonp
+   config/exercise-07_config_variant2.jsonp
 
 The ``localconfig`` folder contains the already known local configuration files
 
 .. code::
 
-   localconfig/exercise-07_localconfig_bench1.json
-   localconfig/exercise-07_localconfig_bench2.json
+   localconfig/exercise-07_localconfig_bench1.jsonp
+   localconfig/exercise-07_localconfig_bench2.jsonp
 
 The test strings from previous exercises are reduced to one single test string: ``teststring``.
 Every configuration file contains an individual value indicating also the origin: variant configuration or local configuration.
@@ -124,7 +124,7 @@ For example we take a look at the second option:
 
 .. code::
 
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-07.xml -l exercise-07_log.html -r exercise-07_report.html -b exercise-07.log --variable teststring:"command line test string" --variable local_config:"./localconfig/exercise-07_localconfig_bench1.json" --variable config_file:"./config/exercise-07_config_variant1.json" "./exercise-07.robot"
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-07.xml -l exercise-07_log.html -r exercise-07_report.html -b exercise-07.log --variable teststring:"command line test string" --variable local_config:"./localconfig/exercise-07_localconfig_bench1.jsonp" --variable config_file:"./config/exercise-07_config_variant1.jsonp" "./exercise-07.robot"
 
 ----
 

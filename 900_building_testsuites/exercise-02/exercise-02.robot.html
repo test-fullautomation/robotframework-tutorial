@@ -380,31 +380,31 @@ limitations under the License. -->
 <p>We assume to have the variants <tt class="docutils literal">variant1</tt>, <tt class="docutils literal">variant2</tt> and a <tt class="docutils literal">default</tt> variant. For every variant we need a parameter configuration file defining the
 parameter values that are specific for this variant. In this exercise that are the files</p>
 <pre class="code literal-block">
-config/exercise-02_config_default.json
-config/exercise-02_config_variant1.json
-config/exercise-02_config_variant2.json
+config/exercise-02_config_default.jsonp
+config/exercise-02_config_variant1.jsonp
+config/exercise-02_config_variant2.jsonp
 </pre>
-<p>Every of these files define a test string containing an individual value, e.g. the file <tt class="docutils literal"><span class="pre">exercise-02_config_variant1.json</span></tt> defines:</p>
+<p>Every of these files define a test string containing an individual value, e.g. the file <tt class="docutils literal"><span class="pre">exercise-02_config_variant1.jsonp</span></tt> defines:</p>
 <pre class="code literal-block">
 &quot;teststring&quot; : &quot;I am the 'variant1' configuration of exercise 02&quot;
 </pre>
 <p>Additionally we need a variants configuration file defining the mapping between the variant name and the corresponding parameter configuration file:</p>
 <pre class="code literal-block">
-config/exercise-02_variants.json
+config/exercise-02_variants.jsonp
 </pre>
 <p>With the following content:</p>
 <pre class="code literal-block">
 {
   &quot;default&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_default.json&quot;,
+               &quot;name&quot;: &quot;exercise-02_config_default.jsonp&quot;,
                &quot;path&quot;: &quot;./config/&quot;
              },
   &quot;variant1&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_variant1.json&quot;,
+               &quot;name&quot;: &quot;exercise-02_config_variant1.jsonp&quot;,
                &quot;path&quot;: &quot;./config/&quot;
               },
   &quot;variant2&quot;: {
-               &quot;name&quot;: &quot;exercise-02_config_variant2.json&quot;,
+               &quot;name&quot;: &quot;exercise-02_config_variant2.jsonp&quot;,
                &quot;path&quot;: &quot;./config/&quot;
               }
 }
@@ -415,7 +415,7 @@ Suite Setup    tm.testsuite_setup
 </pre>
 <p>In exercise-02-B.robot we hand over the variants configuration file to the <tt class="docutils literal">tm.testsuite_setup</tt>:</p>
 <pre class="code literal-block">
-Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.json
+Suite Setup    tm.testsuite_setup    ./config/exercise-02_variants.jsonp
 </pre>
 <p>And in both we print the content of the test string:</p>
 <pre class="code literal-block">
@@ -438,7 +438,7 @@ Log    teststring : ${teststring}    console=yes
 <div class="section" id="command-line">
 <h1>Command line</h1>
 <pre class="code literal-block">
-&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable config_file:&quot;./config/exercise-02_config_variant1.json&quot; &quot;./exercise-02.robot&quot;
+&quot;%RobotPythonPath%/python.exe&quot; -m robot -d ./logfiles -o exercise-02.xml -l exercise-02_log.html -r exercise-02_report.html -b exercise-02.log --variable config_file:&quot;./config/exercise-02_config_variant1.jsonp&quot; &quot;./exercise-02.robot&quot;
 </pre>
 </div>
 <hr class="docutils" />
@@ -455,7 +455,7 @@ I am the 'variant1' configuration of exercise 02
 <p>The log file gives more information about the origin</p>
 <pre class="code literal-block">
 Running with configuration level: 1
-CfgFile Path: ./config/exercise-02_config_variant1.json
+CfgFile Path: ./config/exercise-02_config_variant1.jsonp
 </pre>
 <p>Continuing with the second option ...</p>
 <hr class="docutils" />
@@ -479,7 +479,7 @@ I am the 'default' variant configuration of exercise 02
 <p>The log file gives more information about the origin</p>
 <pre class="code literal-block">
 Running with configuration level: 2
-CfgFile Path: ./config/exercise-02_config_default.json
+CfgFile Path: ./config/exercise-02_config_default.jsonp
 </pre>
 <p>Continuing with the third option ...</p>
 <hr class="docutils" />
@@ -508,7 +508,7 @@ I am the 'variant2' configuration of exercise 02
 <p>The log file</p>
 <pre class="code literal-block">
 Running with configuration level: 2
-CfgFile Path: ./config/exercise-02_config_variant2.json
+CfgFile Path: ./config/exercise-02_config_variant2.jsonp
 </pre>
 </div>
 <hr class="docutils" />

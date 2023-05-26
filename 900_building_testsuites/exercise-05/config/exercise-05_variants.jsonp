@@ -15,15 +15,15 @@
 
 {
   "default": {
-               "name": "exercise-06_config_default.json",
+               "name": "exercise-05_config_default.jsonp",
                "path": "./config/"
              },
   "variant1": {
-               "name": "exercise-06_config_variant1.json",
+               "name": "exercise-05_config_variant1.jsonp",
                "path": "./config/"
               },
   "variant2": {
-               "name": "exercise-06_config_variant2.json",
+               "name": "exercise-05_config_variant2.jsonp",
                "path": "./config/"
               }
 }

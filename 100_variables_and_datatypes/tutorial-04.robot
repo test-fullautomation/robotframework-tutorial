@@ -18,14 +18,14 @@
 #
 # command line values
 #
-# 0.1.1 / 08.12.2022
+# 0.1.2 / 15.05.2023
 #
 # --------------------------------------------------------------------------------------------------------------
 
 *** Settings ***
 Resource    ./libs/testimport.resource
 
-Suite Setup       tm.testsuite_setup    ./config/testconfig.json
+Suite Setup       tm.testsuite_setup    ./config/testconfig.jsonp
 Suite Teardown    tm.testsuite_teardown
 Test Setup        tm.testcase_setup
 Test Teardown     tm.testcase_teardown

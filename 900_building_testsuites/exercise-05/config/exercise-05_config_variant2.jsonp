@@ -23,10 +23,10 @@
   "TargetName"      : "Device_01",
 
   "params" : {
-              "global" : {
-                          "[import]"           : "./exercise-06_config_common.json",
-                          "teststring_variant" : "I am the 'default' variant configuration of exercise 06"
-                         }
+              "global": {
+                         "[import]"   : "./exercise-05_config_common.jsonp",
+                         "teststring" : "I am the 'variant2' configuration of exercise 05"
+                        }
              }
 }
 

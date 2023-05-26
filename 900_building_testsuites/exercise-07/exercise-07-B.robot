@@ -22,7 +22,7 @@
 
 Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
 
-Suite Setup    tm.testsuite_setup    ./config/exercise-07_variants.json
+Suite Setup    tm.testsuite_setup    ./config/exercise-07_variants.jsonp
 
 *** Test Cases ***
 Test Case exercise-07-B

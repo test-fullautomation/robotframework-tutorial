@@ -388,7 +388,7 @@ limitations under the License. -->
 <p>Every robot file logs the test string. Every robot file requires a variant handling, but we do not want to have the need to maintain the import code</p>
 <pre class="code literal-block">
 Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
-Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.json
+Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.jsonp
 </pre>
 <p>in every of these files separately.</p>
 <p>Therefore we use a feature of the Robot Framework and put this code into a file with name <tt class="docutils literal">__init__.robot</tt> and we place this file
@@ -399,15 +399,15 @@ at the top level of the test suites folder:</p>
 <p>Definitions within this file will become valid for all tests inside the test suite. And the robot files do not need this code any more.</p>
 <p>Our configuration files we still place inside a <tt class="docutils literal">config</tt> folder:</p>
 <pre class="code literal-block">
-./config/exercise-04_config_default.json
-./config/exercise-04_config_variant1.json
-./config/exercise-04_config_variant2.json
-./config/exercise-04_variants.json
+./config/exercise-04_config_default.jsonp
+./config/exercise-04_config_variant1.jsonp
+./config/exercise-04_config_variant2.jsonp
+./config/exercise-04_variants.jsonp
 </pre>
-<p>Because of the robot files are placed at different levels within the file system, the variants configuration file <tt class="docutils literal"><span class="pre">exercise-04_variants.json</span></tt>
+<p>Because of the robot files are placed at different levels within the file system, the variants configuration file <tt class="docutils literal"><span class="pre">exercise-04_variants.jsonp</span></tt>
 requires the <em>three dots</em> syntax:</p>
 <pre class="code literal-block">
-&quot;name&quot;: &quot;exercise-04_config_default.json&quot;,
+&quot;name&quot;: &quot;exercise-04_config_default.jsonp&quot;,
 &quot;path&quot;: &quot;.../config/&quot;
 </pre>
 <p>Within the exercise folder execute the following command line:</p>
@@ -446,7 +446,7 @@ I am the 'variant2' configuration of exercise 04
 <p>The log file gives more information about the origin:</p>
 <pre class="code literal-block">
 Running with configuration level: 2
-CfgFile Path: ../config/exercise-04_config_variant2.json
+CfgFile Path: ../config/exercise-04_config_variant2.jsonp
 </pre>
 <p>Hint: Add robot files or rearrange the position of the available robot files and repeat the command lines. You will see that - without any path adaptions - all
 robot files still run with the same configuration.</p>

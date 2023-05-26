@@ -388,17 +388,17 @@ the variant specific ones and the common ones.</p>
 <p>In this exercise this concept is realized in the following way:</p>
 <p>The <tt class="docutils literal">config</tt> folder contains the already known variants configuration file</p>
 <pre class="code literal-block">
-config/exercise-05_variants.json
+config/exercise-05_variants.jsonp
 </pre>
 <p>together with variant specific parameter configuration files</p>
 <pre class="code literal-block">
-config/exercise-05_config_default.json
-config/exercise-05_config_variant1.json
-config/exercise-05_config_variant2.json
+config/exercise-05_config_default.jsonp
+config/exercise-05_config_variant1.jsonp
+config/exercise-05_config_variant2.jsonp
 </pre>
 <p>New in this exercise is a common parameter configuration file</p>
 <pre class="code literal-block">
-config/exercise-05_config_common.json
+config/exercise-05_config_common.jsonp
 </pre>
 <p>containing a parameter that shall have the same value for every variant:</p>
 <pre class="code literal-block">
@@ -409,7 +409,7 @@ the import of the common configuration file, e.g.:</p>
 <pre class="code literal-block">
 &quot;params&quot; : {
             &quot;global&quot;: {
-                       &quot;[import]&quot;   : &quot;./exercise-05_config_common.json&quot;,
+                       &quot;[import]&quot;   : &quot;./exercise-05_config_common.jsonp&quot;,
                        &quot;teststring&quot; : &quot;I am the 'variant1' configuration of exercise 05&quot;
                       }
            }
@@ -419,7 +419,7 @@ the import of the common configuration file, e.g.:</p>
 <p>The content of the importing file and the content of all imported files are merged. In case of duplicate parameter names follow up definitions
 overwrite previous definitions of the same parameter! Also imported files need to follow the JSON syntax rules. This means, at least they have
 to start with an opening curly bracket and they have to end with a closing curly bracket.</p>
-<p>The full code of <tt class="docutils literal"><span class="pre">exercise-05_config_common.json</span></tt> therefore is</p>
+<p>The full code of <tt class="docutils literal"><span class="pre">exercise-05_config_common.jsonp</span></tt> therefore is</p>
 <pre class="code literal-block">
 {
    &quot;teststring_common&quot; : &quot;I am the common teststring valid for all variants&quot;

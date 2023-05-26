@@ -105,7 +105,7 @@ In test case ``03_03`` we work with nested dictionaries defined within the JSON 
 
 .. code::
 
-   ./config/tutorialconfig.json
+   ./config/tutorialconfig.jsonp
 
 But before we start, some internals need to be mentioned: The JSON format and the robot code format are two different worlds.
 Both have their own formats. But the **RobotFramework_TestsuitesManagement** is able to convert the formats, and when the JSON
@@ -172,7 +172,7 @@ that already have been used in tutorial-01:
    "none_val" : None,
    "null_val" : null,
 
-Within ``tutorialconfig.json`` all parameter definitions are put into the following code:
+Within ``tutorialconfig.jsonp`` all parameter definitions are put into the following code:
 
 .. code::
 

@@ -67,7 +67,7 @@ The logfile tells about the origin of the values:
 .. code::
 
    Running with configuration level: 4
-   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.json
+   CfgFile Path: <Robot Framework installation>\python39\lib\site-packages\RobotFramework_TestsuitesManagement\Config\robot_config.jsonp
 
 Hint: The *level 4* configuration is a fallback solution and should be avoided. In case you activate the **RobotFramework_TestsuitesManagement**,
 you should also specify an own configuration file. This is handled in the following exercises.

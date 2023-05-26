@@ -63,13 +63,13 @@ The ``config`` folder contains the already known configuration files
 
 .. code::
 
-   config/exercise-06_config_common.json
-   config/exercise-06_variants.json
-   config/exercise-06_config_default.json
-   config/exercise-06_config_variant1.json
-   config/exercise-06_config_variant2.json
+   config/exercise-06_config_common.jsonp
+   config/exercise-06_variants.jsonp
+   config/exercise-06_config_default.jsonp
+   config/exercise-06_config_variant1.jsonp
+   config/exercise-06_config_variant2.jsonp
 
-The test strings have been extended. The file ``exercise-06_config_common.json`` now also contains two test bench specific default values:
+The test strings have been extended. The file ``exercise-06_config_common.jsonp`` now also contains two test bench specific default values:
 
 .. code::
 
@@ -77,21 +77,21 @@ The test strings have been extended. The file ``exercise-06_config_common.json``
    "teststring_bench"  : "I am the teststring containing the default value for all test benches"
 
 Every variant specific configuration file contains also values that are specific for the variant, but the default for the available test benches 1 and 2,
-e.g. ``exercise-06_config_variant1.json``:
+e.g. ``exercise-06_config_variant1.jsonp``:
 
 .. code::
 
-   "[import]"           : "./exercise-06_config_common.json",
+   "[import]"           : "./exercise-06_config_common.jsonp",
    "teststring_variant" : "I am the 'variant1' configuration of exercise 06"
 
 New in this exercise is a ``localconfig`` folder with a local configuration for bench 1 and another one for bench 2:
 
 .. code::
 
-   localconfig/exercise-06_localconfig_bench1.json
-   localconfig/exercise-06_localconfig_bench2.json
+   localconfig/exercise-06_localconfig_bench1.jsonp
+   localconfig/exercise-06_localconfig_bench2.jsonp
 
-In every of theses files a test bench specific value is defined, e.g. in ``exercise-06_localconfig_bench1.json``:
+In every of theses files a test bench specific value is defined, e.g. in ``exercise-06_localconfig_bench1.jsonp``:
 
 .. code::
 
@@ -117,7 +117,7 @@ We have now several possibilities:
 4. Variant name given in command line, with local configuration
 
 Because every test string is initialized, every combination works - even in case of no variant and also no local configuration is given.
-Default values are taken from ``exercise-06_config_default.json`` (``teststring_variant``) and ``exercise-06_config_common.json``
+Default values are taken from ``exercise-06_config_default.jsonp`` (``teststring_variant``) and ``exercise-06_config_common.jsonp``
 (``teststring_common`` and ``teststring_bench``).
 
 Please consider: Some of the following command lines contain relative paths to configuration files.
@@ -165,13 +165,13 @@ No variant, with local bench1 configuration
 
 .. code::
 
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable local_config:"./localconfig/exercise-06_localconfig_bench1.json" "./exercise-06.robot"
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable local_config:"./localconfig/exercise-06_localconfig_bench1.jsonp" "./exercise-06.robot"
 
 Variant 2, with local bench2 configuration
 
 .. code::
 
-   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable variant:"variant2" --variable local_config:"./localconfig/exercise-06_localconfig_bench2.json" "./exercise-06.robot"
+   "%RobotPythonPath%/python.exe" -m robot -d ./logfiles -o exercise-06.xml -l exercise-06_log.html -r exercise-06_report.html -b exercise-06.log --variable variant:"variant2" --variable local_config:"./localconfig/exercise-06_localconfig_bench2.jsonp" "./exercise-06.robot"
 
 ----
 
@@ -189,8 +189,8 @@ the log file contains the following entries:
 .. code::
 
    Running with configuration level: 2
-   CfgFile Path: ./config/exercise-06_config_default.json
-   Local config file: ./localconfig/exercise-06_localconfig_bench1.json
+   CfgFile Path: ./config/exercise-06_config_default.jsonp
+   Local config file: ./localconfig/exercise-06_localconfig_bench1.jsonp
 
 Extension I
 -----------
@@ -207,7 +207,7 @@ Create an environment variable with name ``ROBOT_LOCAL_CONFIG`` and value
 
 .. code::
 
-   <tutorial root path>/exercise-06/localconfig/exercise-06_localconfig_bench1.json
+   <tutorial root path>/exercise-06/localconfig/exercise-06_localconfig_bench1.jsonp
 
 With this change execute the next command line.
 
@@ -223,7 +223,7 @@ This command line selects ``variant1``:
 Outcome
 -------
 
-Because ``ROBOT_LOCAL_CONFIG`` points to ``exercise-06_localconfig_bench1.json``, the value of ``teststring_bench``
+Because ``ROBOT_LOCAL_CONFIG`` points to ``exercise-06_localconfig_bench1.jsonp``, the value of ``teststring_bench``
 is the ``bench1`` specific one.
 
 .. code::
@@ -236,7 +236,7 @@ What will happen in case you extend the command line above with:
 
 .. code::
 
-   --variable local_config:"./localconfig/exercise-06_localconfig_bench2.json"
+   --variable local_config:"./localconfig/exercise-06_localconfig_bench2.jsonp"
 
 Then you have two contradicting settings in environment variable and in command line. Because the command line has a higher priority
 than other settings, the output changes to:
