@@ -561,8 +561,16 @@ of a parameter configuration file containing only the most important parameters.
 </span><span class="punctuation">}</span>
 </pre>
 <p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
-are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
+are part of a version control mechanism: In case of the version of the currently installed software is outside the range between
 <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>, the test execution stops with an error message.</p>
+<p>What is the meaning of &quot;currently installed software&quot;?</p>
+<ul class="simple">
+<li>The first possibility is that the <strong>RobotFramework_TestsuitesManagement</strong> runs stand-alone, that means, it is not part of a larger bundle
+(like the RobotFramework AIO). The installation from PyPi or GitHub causes such a stand-alone installation. In this case the compoent version
+of the <strong>RobotFramework_TestsuitesManagement</strong> itself is used for a version control against <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>.</li>
+<li>The second possibility is that the <strong>RobotFramework_TestsuitesManagement</strong> runs as part of the RobotFramework AIO. In this case the version
+of the entire RobotFramework AIO is used for a version control instead.</li>
+</ul>
 <p>The version control mechanism is optional. In case you do not need to have your tests under version control, you can set
 the versions to the value <tt class="docutils literal">null</tt>.</p>
 <pre class="code python literal-block">
@@ -571,7 +579,7 @@ the versions to the value <tt class="docutils literal">null</tt>.</p>
 </pre>
 <p>As an alternative it is also possible to remove <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt> completely.</p>
 <p>In case you define only one single version number, only this version number is considered. The following combination
-makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:</p>
+makes sure, that the installed software is of at least version 0.6.0, but there is no upper version limit:</p>
 <pre class="code python literal-block">
 <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span><span class="whitespace">
 </span><span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
