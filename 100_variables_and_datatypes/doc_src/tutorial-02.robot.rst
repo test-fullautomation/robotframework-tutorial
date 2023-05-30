@@ -102,5 +102,28 @@ is replaced by the value of the variable (``var``) *as-is*.
 Therefore ``${index_as_string}`` is replaced by ``5`` and also ``${index_as_integer}`` is replaced by ``5``. The result is that in all three cases
 ``${var_list}[5]`` is the expression to be evaluated.
 
+**Addendum**
 
+Instead of using resource files it is also possible to define lists in JSON configuration files.
 
+Example:
+
+.. code::
+
+   "params" : {
+                "global" : {
+                             "string_val" : "string",
+                             "int_val"    : 123,
+                             "bool_val"   : True,
+                             "list_val"   : ["also string",
+                                             456,
+                                             ${params}['global']['string_val'],
+                                             ${params}['global']['int_val'],
+                                             ${params}['global']['bool_val']]
+                           }
+              }
+
+The handling of JSON configuration files is explained in more detail in
+
+* file `tutorial-03 <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/100_variables_and_datatypes/tutorial-03.robot.html>`_ of this tutorial
+* tutorial `900_building_testsuites <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/building_testsuites.html>`_
