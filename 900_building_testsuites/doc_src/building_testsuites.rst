@@ -262,7 +262,7 @@ In this part of the introduction we take a first look at the content of configur
    What is the meaning of "currently installed software"?
 
    * The first possibility is that the **RobotFramework_TestsuitesManagement** runs stand-alone, that means, it is not part of a larger bundle
-     (like the RobotFramework AIO). The installation from PyPi or GitHub causes such a stand-alone installation. In this case the compoent version
+     (like the RobotFramework AIO). The installation from PyPi or GitHub causes such a stand-alone installation. In this case the component version
      of the **RobotFramework_TestsuitesManagement** itself is used for a version control against ``Minimum_version`` and ``Maximum_version``.
    * The second possibility is that the **RobotFramework_TestsuitesManagement** runs as part of the RobotFramework AIO. In this case the version
      of the entire RobotFramework AIO is used for a version control instead.
