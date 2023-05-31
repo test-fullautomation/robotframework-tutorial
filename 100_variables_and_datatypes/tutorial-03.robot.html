@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta name="generator" content="Docutils 0.20: https://docutils.sourceforge.io/" />
 <title>tutorial-03: working with dictionaries</title>
 <style type="text/css">
 
@@ -444,17 +444,6 @@ file content is passed to the Robot Framework, then the content is adapted.</p>
 <p>But behind the curtain still JSON parsing mechanisms are used to get the content and therefore it is not possible to align already
 the structure of the JSON files itself to the requirements of the Robot Framework. The differences are still present.</p>
 <p><em>Therefore be aware of the differences and be careful when you copy&amp;paste content between JSON and robot!</em></p>
-<p>Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
-<tt class="docutils literal">log_scalar</tt>, <tt class="docutils literal">log_list</tt> and <tt class="docutils literal">log_dict</tt>. With the purpose to check also the data type of the given parameter.</p>
-<p>In case of a parameter is an integer value, the name of the data type is: <tt class="docutils literal">int</tt>. That's easy. The name of the dictionary data type
-is: <tt class="docutils literal">dict</tt> (in pure Python). Also in pure Python an extension of the <tt class="docutils literal">dict</tt> data type is available: called <tt class="docutils literal">dotdict</tt>. This is a dictionary
-with reduced syntax - and therefore easier to use. Examples will be shown below. Important here is: Additionally to what Python provides already,
-the Robot Framework implements his own version of a dotdict. And when you use the Python <tt class="docutils literal">type()</tt> function to get the data type of
-a dictionary variable, this will be the answer:</p>
-<pre class="code literal-block">
-RobotFramework_TestsuitesManagement.Config.CConfig.dotdict
-</pre>
-<p>However, in this tutorial we continue with simply calling it <em>dictionary</em>!</p>
 <p><strong>JSON file content</strong></p>
 <p>Now we take a look at the content of the JSON file. The global params section defines the dictionary <tt class="docutils literal">dict_val</tt>
 step by step in the following way:</p>
@@ -465,18 +454,26 @@ ${params}['global']['dict_val']['key_1']['subkey_11'] : {},
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
 ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
-${params}['global']['dict_val']['key_2'] : {},
-${params}['global']['dict_val']['key_2']['subkey_21'] : {},
-${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
-${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
-${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
+${params.global.dict_val.key_2} : {},
+${params.global.dict_val.key_2.subkey_21} : {},
+${params.global.dict_val.key_2.subkey_21.subsubkey_211} : ${params.global.bool_val_1},
+${params.global.dict_val.key_2.subkey_21.subsubkey_212} : ${params.global.bool_val_2},
+${params.global.dict_val.key_2.subkey_21.subsubkey_213} : ${params.global.null_val}
 </pre>
 <p>This is a nested dictionary - the values of keys are also dictionaries. Every dictionary (at each level)
 needs to be initialized by <tt class="docutils literal">{}</tt> before keys can be added.</p>
-<p>In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.</p>
-<p>The dictionary <tt class="docutils literal">dict_val</tt> contains two keys (<tt class="docutils literal">key_1</tt> and <tt class="docutils literal">key_2</tt>). Every key contain one single key
+<p>In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.
+If you use quotes at the right hand side of the colon, you will get values of type <tt class="docutils literal">string</tt>!</p>
+<p>The dictionary <tt class="docutils literal">dict_val</tt> contains two keys (<tt class="docutils literal">key_1</tt> and <tt class="docutils literal">key_2</tt>). Every key contains one single key
 at the level below (<tt class="docutils literal">subkey_11</tt> and <tt class="docutils literal">subkey_21</tt>). The lowest level consists of the keys <tt class="docutils literal">subsubkey_111</tt>
-to <tt class="docutils literal">subsubkey_213</tt>. To every key at this level a scalar is assigned - and we use here the scalars (of the configuration file),
+to <tt class="docutils literal">subsubkey_213</tt>.</p>
+<p>Two different types of assignments are used:</p>
+<ul class="simple">
+<li><tt class="docutils literal">key_1</tt> in standard dictionary notation</li>
+<li><tt class="docutils literal">key_2</tt> in alternative <tt class="docutils literal">dotdict</tt> notation</li>
+</ul>
+<p>The <tt class="docutils literal">dotdict</tt> notation is shorter and therefore easier to read, but requires that no key name contains a dot.</p>
+<p>To every <tt class="docutils literal">subsubkey</tt> a scalar is assigned - and we use here the scalars (of the configuration file),
 that already have been used in tutorial-01:</p>
 <pre class="code literal-block">
 &quot;string_val&quot; : &quot;test string&quot;,

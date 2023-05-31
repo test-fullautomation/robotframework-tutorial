@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta name="generator" content="Docutils 0.20: https://docutils.sourceforge.io/" />
 <title>tutorial-02: working with lists</title>
 <style type="text/css">
 
@@ -435,6 +435,28 @@ ${index_as_integer}   ${5}
 is replaced by the value of the variable (<tt class="docutils literal">var</tt>) <em>as-is</em>.</p>
 <p>Therefore <tt class="docutils literal">${index_as_string}</tt> is replaced by <tt class="docutils literal">5</tt> and also <tt class="docutils literal">${index_as_integer}</tt> is replaced by <tt class="docutils literal">5</tt>. The result is that in all three cases
 <tt class="docutils literal"><span class="pre">${var_list}[5]</span></tt> is the expression to be evaluated.</p>
+<p><strong>Addendum</strong></p>
+<p>Instead of using resource files it is also possible to define lists in JSON configuration files.</p>
+<p>Example:</p>
+<pre class="code literal-block">
+&quot;params&quot; : {
+             &quot;global&quot; : {
+                          &quot;string_val&quot; : &quot;string&quot;,
+                          &quot;int_val&quot;    : 123,
+                          &quot;bool_val&quot;   : True,
+                          &quot;list_val&quot;   : [&quot;also string&quot;,
+                                          456,
+                                          ${params}['global']['string_val'],
+                                          ${params}['global']['int_val'],
+                                          ${params}['global']['bool_val']]
+                        }
+           }
+</pre>
+<p>The handling of JSON configuration files is explained in more detail in</p>
+<ul class="simple">
+<li>file <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/100_variables_and_datatypes/tutorial-03.robot.html">tutorial-03</a> of this tutorial</li>
+<li>tutorial <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/900_building_testsuites/building_testsuites.html">900_building_testsuites</a></li>
+</ul>
 </div>
 </div>
 </body>

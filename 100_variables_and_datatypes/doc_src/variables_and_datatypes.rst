@@ -15,7 +15,7 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.4.2 / 15.05.2023 / by XC-CT/ECA3-Queckenstedt
+Version 0.4.3 / 30.05.2023 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------

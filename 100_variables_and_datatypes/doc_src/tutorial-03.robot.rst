@@ -116,21 +116,6 @@ the structure of the JSON files itself to the requirements of the Robot Framewor
 
 *Therefore be aware of the differences and be careful when you copy&paste content between JSON and robot!*
 
-Another aspect is the name of the data type of a dictionary. In this tutorial we mostly use for logging own keywords like
-``log_scalar``, ``log_list`` and ``log_dict``. With the purpose to check also the data type of the given parameter.
-
-In case of a parameter is an integer value, the name of the data type is: ``int``. That's easy. The name of the dictionary data type
-is: ``dict`` (in pure Python). Also in pure Python an extension of the ``dict`` data type is available: called ``dotdict``. This is a dictionary
-with reduced syntax - and therefore easier to use. Examples will be shown below. Important here is: Additionally to what Python provides already,
-the Robot Framework implements his own version of a dotdict. And when you use the Python ``type()`` function to get the data type of
-a dictionary variable, this will be the answer: 
-
-.. code::
-
-   RobotFramework_TestsuitesManagement.Config.CConfig.dotdict
-
-However, in this tutorial we continue with simply calling it *dictionary*!
-
 **JSON file content**
 
 Now we take a look at the content of the JSON file. The global params section defines the dictionary ``dict_val``
@@ -144,20 +129,30 @@ step by step in the following way:
    ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_111'] : ${params}['global']['string_val'],
    ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_112'] : ${params}['global']['int_val'],
    ${params}['global']['dict_val']['key_1']['subkey_11']['subsubkey_113'] : ${params}['global']['float_val'],
-   ${params}['global']['dict_val']['key_2'] : {},
-   ${params}['global']['dict_val']['key_2']['subkey_21'] : {},
-   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_211'] : ${params}['global']['bool_val_1'],
-   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_212'] : ${params}['global']['bool_val_2'],
-   ${params}['global']['dict_val']['key_2']['subkey_21']['subsubkey_213'] : ${params}['global']['null_val']
+   ${params.global.dict_val.key_2} : {},
+   ${params.global.dict_val.key_2.subkey_21} : {},
+   ${params.global.dict_val.key_2.subkey_21.subsubkey_211} : ${params.global.bool_val_1},
+   ${params.global.dict_val.key_2.subkey_21.subsubkey_212} : ${params.global.bool_val_2},
+   ${params.global.dict_val.key_2.subkey_21.subsubkey_213} : ${params.global.null_val}
 
 This is a nested dictionary - the values of keys are also dictionaries. Every dictionary (at each level)
 needs to be initialized by ``{}`` before keys can be added.
 
 In case of the dollar operator is used to refer to already existing parameters it is not necessary to wrap the expression in quotes.
+If you use quotes at the right hand side of the colon, you will get values of type ``string``!
 
-The dictionary ``dict_val`` contains two keys (``key_1`` and ``key_2``). Every key contain one single key
+The dictionary ``dict_val`` contains two keys (``key_1`` and ``key_2``). Every key contains one single key
 at the level below (``subkey_11`` and ``subkey_21``). The lowest level consists of the keys ``subsubkey_111``
-to ``subsubkey_213``. To every key at this level a scalar is assigned - and we use here the scalars (of the configuration file),
+to ``subsubkey_213``.
+
+Two different types of assignments are used:
+
+* ``key_1`` in standard dictionary notation
+* ``key_2`` in alternative ``dotdict`` notation
+
+The ``dotdict`` notation is shorter and therefore easier to read, but requires that no key name contains a dot.
+
+To every ``subsubkey`` a scalar is assigned - and we use here the scalars (of the configuration file),
 that already have been used in tutorial-01:
 
 .. code::

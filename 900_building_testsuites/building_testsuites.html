@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta name="generator" content="Docutils 0.20: https://docutils.sourceforge.io/" />
 <title>Building test suites in Robot Framework</title>
 <style type="text/css">
 
@@ -561,8 +561,16 @@ of a parameter configuration file containing only the most important parameters.
 </span><span class="punctuation">}</span>
 </pre>
 <p><tt class="docutils literal">Project</tt>, <tt class="docutils literal">WelcomeString</tt> and <tt class="docutils literal">TargetName</tt> are simple strings that can be used anyhow. <tt class="docutils literal">Maximum_version</tt> and <tt class="docutils literal">Minimum_version</tt>
-are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
+are part of a version control mechanism: In case of the version of the currently installed software is outside the range between
 <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>, the test execution stops with an error message.</p>
+<p>What is the meaning of &quot;currently installed software&quot;?</p>
+<ul class="simple">
+<li>The first possibility is that the <strong>RobotFramework_TestsuitesManagement</strong> runs stand-alone, that means, it is not part of a larger bundle
+(like the RobotFramework AIO). The installation from PyPi or GitHub causes such a stand-alone installation. In this case the component version
+of the <strong>RobotFramework_TestsuitesManagement</strong> itself is used for a version control against <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt>.</li>
+<li>The second possibility is that the <strong>RobotFramework_TestsuitesManagement</strong> runs as part of the RobotFramework AIO. In this case the version
+of the entire RobotFramework AIO is used for a version control instead.</li>
+</ul>
 <p>The version control mechanism is optional. In case you do not need to have your tests under version control, you can set
 the versions to the value <tt class="docutils literal">null</tt>.</p>
 <pre class="code python literal-block">
@@ -571,7 +579,7 @@ the versions to the value <tt class="docutils literal">null</tt>.</p>
 </pre>
 <p>As an alternative it is also possible to remove <tt class="docutils literal">Minimum_version</tt> and <tt class="docutils literal">Maximum_version</tt> completely.</p>
 <p>In case you define only one single version number, only this version number is considered. The following combination
-makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:</p>
+makes sure, that the installed software is of at least version 0.6.0, but there is no upper version limit:</p>
 <pre class="code python literal-block">
 <span class="literal string double">&quot;Maximum_version&quot;</span> <span class="punctuation">:</span> <span class="name">null</span><span class="punctuation">,</span><span class="whitespace">
 </span><span class="literal string double">&quot;Minimum_version&quot;</span> <span class="punctuation">:</span> <span class="literal string double">&quot;0.6.0&quot;</span><span class="punctuation">,</span>
@@ -761,7 +769,7 @@ when the tests are executed. Corresponding informations you will find in the doc
 <p>Hint: To learn more about how to work with parameters of different data types in JSON files please take a look at the tutorial
 <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/100_variables_and_datatypes/variables_and_datatypes.html">100_variables_and_datatypes</a></p>
 <hr class="docutils" />
-<p><em>Tutorial v. 0.14.0 / 15.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
+<p><em>Tutorial v. 0.14.1 / 30.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt</em></p>
 </div>
 </div>
 </div>

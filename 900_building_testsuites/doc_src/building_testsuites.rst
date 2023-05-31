@@ -256,8 +256,16 @@ In this part of the introduction we take a first look at the content of configur
       }
 
    ``Project``, ``WelcomeString`` and ``TargetName`` are simple strings that can be used anyhow. ``Maximum_version`` and ``Minimum_version``
-   are part of a version control mechanism: In case of the version of the currently installed Robot Framework is outside the range between
-   ``Minimum_version`` and ``Maximum_version``, the test execution stops with an error message.
+   are part of a version control mechanism: In case of the version of the currently installed software is outside the range between
+   ``Minimum_version`` and ``Maximum_version``, the test execution stops with an error message. 
+
+   What is the meaning of "currently installed software"?
+
+   * The first possibility is that the **RobotFramework_TestsuitesManagement** runs stand-alone, that means, it is not part of a larger bundle
+     (like the RobotFramework AIO). The installation from PyPi or GitHub causes such a stand-alone installation. In this case the component version
+     of the **RobotFramework_TestsuitesManagement** itself is used for a version control against ``Minimum_version`` and ``Maximum_version``.
+   * The second possibility is that the **RobotFramework_TestsuitesManagement** runs as part of the RobotFramework AIO. In this case the version
+     of the entire RobotFramework AIO is used for a version control instead.
 
    The version control mechanism is optional. In case you do not need to have your tests under version control, you can set 
    the versions to the value ``null``.
@@ -270,7 +278,7 @@ In this part of the introduction we take a first look at the content of configur
    As an alternative it is also possible to remove ``Minimum_version`` and ``Maximum_version`` completely.
 
    In case you define only one single version number, only this version number is considered. The following combination
-   makes sure, that the installed Robot Framework at least is of version 0.6.0, but there is no upper version limit:
+   makes sure, that the installed software is of at least version 0.6.0, but there is no upper version limit:
  
    .. code:: python
 
@@ -529,7 +537,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.14.0 / 15.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.14.1 / 30.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
