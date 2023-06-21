@@ -15,10 +15,12 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.4.3 / 30.05.2023 / by XC-CT/ECA3-Queckenstedt
+Version 0.4.4 / 21.06.2023 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
+
+| `Tutorial main sections <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/robot_framework_tutorial.html>`_
 
 | `Introduction`_
 | `Tutorial files`_

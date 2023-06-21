@@ -30,6 +30,9 @@ An overviev about those extensions of the Robot Framework can be found here:
 
 It is assumed that the user is already familiar with basic Robot Framework functionality.
 
+Here you find the online version of the rendered `tutorial documentation <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/robot_framework_tutorial.html>`_.
+
+
 How to install
 --------------
 

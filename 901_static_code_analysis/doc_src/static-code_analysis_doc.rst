@@ -15,10 +15,12 @@
 Static code analysis in Robot Framework
 =======================================
 
-Version 0.2.0 / 26.07.2022 / by XC-CT/ECA3-Queckenstedt
+Version 0.2.1 / 21.06.2023 / by XC-CT/ECA3-Queckenstedt
 
 Table of content
 ----------------
+
+| `Tutorial main sections <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/robot_framework_tutorial.html>`_
 
 | `Introduction`_
 | `Configuration`_

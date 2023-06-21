@@ -20,21 +20,23 @@ Building test suites in Robot Framework
 Table of content
 ----------------
 
-1. `Introduction`_
+1. `Tutorial main sections <https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/robot_framework_tutorial.html>`_
 
-* `What is the initial situation?`_
+2. `Introduction`_
 
-* `How to handle configuration parameters in Robot Framework?`_
+   * `What is the initial situation?`_
 
-* `How to realize a concrete test suites management?`_
+   * `How to handle configuration parameters in Robot Framework?`_
 
-* `How does the content of configuration files in JSON format look like?`_
+   * `How to realize a concrete test suites management?`_
 
-* `How does the Robot Framework access configuration files?`_
+   * `How does the content of configuration files in JSON format look like?`_
 
-* `How to activate the test suites management in Robot Framework?`_
+   * `How does the Robot Framework access configuration files?`_
 
-2. `Exercises`_
+   * `How to activate the test suites management in Robot Framework?`_
+
+3. `Exercises`_
 
 
 Introduction
@@ -537,7 +539,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.14.1 / 30.05.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.14.2 / 21.06.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
