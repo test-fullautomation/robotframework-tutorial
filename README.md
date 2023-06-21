@@ -22,9 +22,6 @@ Framework functionality.
 Here you find the online version of the rendered [tutorial
 documentation](https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/develop/robot_framework_tutorial.html).
 
-[Tutorial main
-sections](https://htmlpreview.github.io/?https://github.com/test-fullautomation/robotframework-tutorial/blob/HolQue/task/documentation_maintenance/robot_framework_tutorial.html)
-
 ## How to install
 
 Clone the **robotframework-tutorial** repository to your machine.
