@@ -38,7 +38,7 @@
 # Section "COMPONENT":
 # --------------------
 
-   "COMPONENT" : "RobotframeworkTutorial",
+   "COMPONENT" : "RobotFramework AIO Tutorial",
 
 
 # Section "RELEASES" for RobotFramework AIO:
