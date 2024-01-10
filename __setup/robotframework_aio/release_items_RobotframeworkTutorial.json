@@ -45,15 +45,9 @@
 # ------------------------------------------
 
    "RELEASES"  : {
-                   "0.9." : [
-                              "RobotframeworkTutorial change 0.9 A",
-                              "RobotframeworkTutorial change 0.9 B",
-                              "RobotframeworkTutorial change 0.9 X"
-                            ],
-                   "0.10." : [
-                               "RobotframeworkTutorial change 0.10 A",
-                               "RobotframeworkTutorial change 0.10 B",
-                               "RobotframeworkTutorial change 0.10 X"
+                   "0.x.y" : [
+                               "0.x.y",
+                               "0.x.y"
                              ]
                  }
 }
