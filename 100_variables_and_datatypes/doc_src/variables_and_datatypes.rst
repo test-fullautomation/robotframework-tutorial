@@ -1,4 +1,4 @@
-.. Copyright 2020-2023 Robert Bosch GmbH
+.. Copyright 2020-2024 Robert Bosch GmbH
 
 .. Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 Variables and datatypes in Robot Framework
 ==========================================
 
-Version 0.4.4 / 21.06.2023 / by XC-CT/ECA3-Queckenstedt
+Version 0.4.4 / 21.06.2023 / by XC-HWP/ESW3-Queckenstedt
 
 Table of content
 ----------------
