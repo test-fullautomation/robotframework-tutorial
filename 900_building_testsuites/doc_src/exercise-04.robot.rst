@@ -65,7 +65,7 @@ requires the *three dots* syntax:
 .. code::
 
    "name": "exercise-04_config_default.jsonp",
-   "path": ".../config/"
+   "path": "./"
 
 Within the exercise folder execute the following command line:
 
