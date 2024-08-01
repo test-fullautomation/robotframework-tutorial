@@ -124,7 +124,7 @@ class CConfig():
 
       sRST2HTML = None
       if sPlatformSystem == "Windows":
-         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/Scripts/rst2html.py")
+         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/Scripts/rst2html.exe")
       elif sPlatformSystem == "Linux":
          sRST2HTML = CString.NormalizePath(f"{sPythonPath}/rst2html.py")
       else:
