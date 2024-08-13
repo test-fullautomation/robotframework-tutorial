@@ -75,7 +75,7 @@ Also this exercise works with the already known common, variant specifc and test
 
 To test your knowledge try to answer the following questions:
 
-* What is the meaning of ``.../config/`` inside file ``exercise-08_variants.jsonp``?
+* What is the meaning of ``.../config/exercise-08_variants.jsonp`` inside file ``exercise-08/testsuites/__init__.robot``?
 * A parameter shall have the same value in all variants. Where to define this parameter?
 * What is the difference between a variant configuration file and a parameter configuration file?
 * Which possibilities do you have to define a variant in command line of Robot Framework?

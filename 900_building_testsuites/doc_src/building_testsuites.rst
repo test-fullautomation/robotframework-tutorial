@@ -190,19 +190,19 @@ In this part of the introduction we take a first look at the content of configur
       {
         "default": {
                      "name": "robot_execution_config.jsonp",
-                     "path": ".../config/"
+                     "path": "./"
                    },
         "variant_1": {
                        "name": "robot_config_variant_1.jsonp",
-                       "path": ".../config/"
+                       "path": "./"
                      },
         "variant_2": {
                        "name": "robot_config_variant_2.jsonp",
-                       "path": ".../config/"
+                       "path": "./"
                      },
         "variant_3": {
                        "name": "robot_config_variant_3.jsonp",
-                       "path": ".../config/"
+                       "path": "./"
                      }
       }
 
@@ -211,32 +211,9 @@ In this part of the introduction we take a first look at the content of configur
    Additionally a variant named ``default`` is defined. This default configuration becomes active in case of no certain variant name is provided
    when the test suite is being executed.
 
-   Another aspect is important: the *three dots*.
-   The path to the ``robot_config*.jsonp`` files depends on the test file location. A 
-   different number of ``../`` is required dependent on the directory depth of the test 
-   case location.
-
-   Therefore we use here three dots to tell the **RobotFramework_TestsuitesManagement** to search from the test 
-   file location up till the ``robot_config*.jsonp`` files are found:
-
-   .. code:: python
-
-      ./config/robot_config.jsonp
-      ../config/robot_config.jsonp
-      ../../config/robot_config.jsonp
-      ../../../config/robot_config.jsonp
-
-   and so on.
-
-   Hint: The paths to the ``robot_config*.jsonp`` files are relative to the position of the test suite - **and not relative to the position of the
-   mapping file in which they are defined!** You are free to move your test suites one or more level up or down in the file system, but using the
-   *three dots* notation enables you to let the position of the ``config`` folder unchanged.
-
-   It is of course still possible to use the standard notation for relative paths:
-
-   .. code:: python
-
-      "path": "./config/"
+   Another aspect is the ``path``. 
+   The paths to the ``robot_config*.jsonp`` are relative paths and depend on the position of 
+   the mapping file in which they are defined.
 
 
 2. *parameter configuration files*
@@ -339,6 +316,44 @@ to access the configuration file in a certain order: Level 1 has the highest pri
 
   This level requires that a variant configuration file is passed to the suite setup of the **RobotFramework_TestsuitesManagement**
   (like described in `How does the content of configuration files in JSON format look like?`_).
+
+  Hint: Use the *three dots* in the relative path of variant configuration file when passing 
+  it to the suite setup of the **RobotFramework_TestsuitesManagement**
+
+  The following example is a suite setup with level 2 of the accessibility of a configuration file.
+
+  .. code:: 
+
+    *** Settings ***
+
+    Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+
+    Suite Setup    tm.testsuite_setup    .../config/variants_config.jsonp
+
+  Therefore we use here three dots to tell the **RobotFramework_TestsuitesManagement** to search from the test 
+  file location up till the ``/config/variants_config.jsonp`` file is found:
+
+  .. code:: python
+
+    ./config/variants_config.jsonp
+    ../config/variants_config.jsonp
+    ../../config/variants_config.jsonp
+    ../../../config/variants_config.jsonp
+
+  and so on.
+
+  You are free to move your test suites one or more level up or down in the file system, but using the
+  *three dots* notation enables you to let the position of the ``config`` folder unchanged.
+
+  It is of course still possible to use the standard notation for relative paths:
+
+  .. code:: 
+
+    *** Settings ***
+
+    Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+
+    Suite Setup    tm.testsuite_setup    ../../../config/variants_config.jsonp
 
   Level 2 includes the automated selection of a default variant (in case of no variant name is provided in command line). Also this default variant
   has to be defined within the variant configuration file.

@@ -50,15 +50,15 @@ With the following content:
    {
      "default": {
                   "name": "exercise-02_config_default.jsonp",
-                  "path": "./config/"
+                  "path": "./"
                 },
      "variant1": {
                   "name": "exercise-02_config_variant1.jsonp",
-                  "path": "./config/"
+                  "path": "./"
                  },
      "variant2": {
                   "name": "exercise-02_config_variant2.jsonp",
-                  "path": "./config/"
+                  "path": "./"
                  }
    }
 
