@@ -1,4 +1,4 @@
-.. Copyright 2020-2022 Robert Bosch GmbH
+.. Copyright 2020-2024 Robert Bosch GmbH
 
 .. Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -211,9 +211,7 @@ In this part of the introduction we take a first look at the content of configur
    Additionally a variant named ``default`` is defined. This default configuration becomes active in case of no certain variant name is provided
    when the test suite is being executed.
 
-   Another aspect is the ``path``. 
-   The paths to the ``robot_config*.jsonp`` are relative paths and depend on the position of 
-   the mapping file in which they are defined.
+   The paths to the ``robot_config*.jsonp`` files are relative paths and depend on the position of the variant configuration file in which they are defined.
 
 
 2. *parameter configuration files*
@@ -317,10 +315,7 @@ to access the configuration file in a certain order: Level 1 has the highest pri
   This level requires that a variant configuration file is passed to the suite setup of the **RobotFramework_TestsuitesManagement**
   (like described in `How does the content of configuration files in JSON format look like?`_).
 
-  Hint: Use the *three dots* in the relative path of variant configuration file when passing 
-  it to the suite setup of the **RobotFramework_TestsuitesManagement**
-
-  The following example is a suite setup with level 2 of the accessibility of a configuration file.
+  Example
 
   .. code:: 
 
@@ -330,8 +325,8 @@ to access the configuration file in a certain order: Level 1 has the highest pri
 
     Suite Setup    tm.testsuite_setup    .../config/variants_config.jsonp
 
-  Therefore we use here three dots to tell the **RobotFramework_TestsuitesManagement** to search from the test 
-  file location up till the ``/config/variants_config.jsonp`` file is found:
+  Beneath relative paths like ``./`` and ``../`` it is also possible to use a so called *three-dots* syntax. This makes the positional dependency between the file containing the suite setup and the file with the variant configuration, dynamic.
+  The Robot Framework now also recursively considers parent directories while searching for variant configuration files starting with the actual path (the path of the test file).
 
   .. code:: python
 
@@ -342,18 +337,8 @@ to access the configuration file in a certain order: Level 1 has the highest pri
 
   and so on.
 
-  You are free to move your test suites one or more level up or down in the file system, but using the
-  *three dots* notation enables you to let the position of the ``config`` folder unchanged.
-
-  It is of course still possible to use the standard notation for relative paths:
-
-  .. code:: 
-
-    *** Settings ***
-
-    Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
-
-    Suite Setup    tm.testsuite_setup    ../../../config/variants_config.jsonp
+  This has a big advantage: It is possible now to move the folder containing the variant configuration files and the parameter configuration files and also test files up and down in the hierarchy of directories in the file sytem
+  **without the need to adapt any import path afterwards**!
 
   Level 2 includes the automated selection of a default variant (in case of no variant name is provided in command line). Also this default variant
   has to be defined within the variant configuration file.
@@ -554,7 +539,7 @@ Hint: To learn more about how to work with parameters of different data types in
 
 ----
 
-*Tutorial v. 0.14.2 / 21.06.2023 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
+*Tutorial v. 0.14.3 / 27.08.2024 / by MS/EMC1-XC Mai Dinh Nam Son and XC-CT/ECA3-Queckenstedt*
 
 .. _TOC: `Table of content`_
 
