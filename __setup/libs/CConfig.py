@@ -126,7 +126,7 @@ class CConfig():
       if sPlatformSystem == "Windows":
          sRST2HTML = CString.NormalizePath(f"{sPythonPath}/Scripts/rst2html.exe")
       elif sPlatformSystem == "Linux":
-         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/rst2html.py")
+         sRST2HTML = CString.NormalizePath(f"{sPythonPath}/rst2html")
       else:
          bSuccess = None
          sResult  = f"Platform system '{sPlatformSystem}' is not supported"
