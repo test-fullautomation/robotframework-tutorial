@@ -321,7 +321,7 @@ to access the configuration file in a certain order: Level 1 has the highest pri
 
     *** Settings ***
 
-    Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+    Library    RobotFramework_TestsuitesManagement    AS    tm
 
     Suite Setup    tm.testsuite_setup    .../config/variants_config.jsonp
 
@@ -411,9 +411,9 @@ To activate the test suites management you have to import the **RobotFramework_T
 
 .. code::
 
-   Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+   Library    RobotFramework_TestsuitesManagement    AS    tm
 
-We recommend to use the ``WITH NAME`` option to shorten the robot code a little bit.
+We recommend to use the ``AS`` option to shorten the robot code a little bit.
 
 The next step is to call the ``testsuite_setup`` of the **RobotFramework_TestsuitesManagement** within the ``Suite Setup`` of your test:
 
