@@ -612,7 +612,7 @@ to access the configuration file in a certain order: Level 1 has the highest pri
 <pre class="code literal-block">
 *** Settings ***
 
-Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_TestsuitesManagement    AS    tm
 
 Suite Setup    tm.testsuite_setup    .../config/variants_config.jsonp
 </pre>
@@ -679,9 +679,9 @@ another parameter configuration file and another entry in the variants configura
 <h2>How to activate the test suites management in Robot Framework?</h2>
 <p>To activate the test suites management you have to import the <strong>RobotFramework_TestsuitesManagement</strong> library in the following way:</p>
 <pre class="code literal-block">
-Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_TestsuitesManagement    AS    tm
 </pre>
-<p>We recommend to use the <tt class="docutils literal">WITH NAME</tt> option to shorten the robot code a little bit.</p>
+<p>We recommend to use the <tt class="docutils literal">AS</tt> option to shorten the robot code a little bit.</p>
 <p>The next step is to call the <tt class="docutils literal">testsuite_setup</tt> of the <strong>RobotFramework_TestsuitesManagement</strong> within the <tt class="docutils literal">Suite Setup</tt> of your test:</p>
 <pre class="code literal-block">
 Suite Setup    tm.testsuite_setup

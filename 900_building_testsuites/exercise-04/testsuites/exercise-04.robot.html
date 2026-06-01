@@ -388,7 +388,7 @@ limitations under the License. -->
 </pre>
 <p>Every robot file logs the test string. Every robot file requires a variant handling, but we do not want to have the need to maintain the import code</p>
 <pre class="code literal-block">
-Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+Library    RobotFramework_TestsuitesManagement    AS    tm
 Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.jsonp
 </pre>
 <p>in every of these files separately.</p>

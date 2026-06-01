@@ -36,7 +36,7 @@ Every robot file logs the test string. Every robot file requires a variant handl
 
 .. code::
 
-   Library    RobotFramework_TestsuitesManagement    WITH NAME    tm
+   Library    RobotFramework_TestsuitesManagement    AS    tm
    Suite Setup    tm.testsuite_setup    ../config/exercise-04_variants.jsonp
 
 in every of these files separately.
